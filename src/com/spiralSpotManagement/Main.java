@@ -1,4 +1,4 @@
-package com.company;
+package com.spiralSpotManagement;
 
 public class Main {
 
