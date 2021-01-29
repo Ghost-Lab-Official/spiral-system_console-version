@@ -5,8 +5,8 @@ import com.mysql.jdbc.SQLError;
 
 import java.sql.*;
 
-public class ClaudStorageConnection {
-    public static  Connection getConnection()throws Exception{
+public class CloudStorageConnection {
+    public  Connection getConnection()throws Exception{
         Connection connection = null;
 
         try{
@@ -16,7 +16,7 @@ public class ClaudStorageConnection {
 
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url,username,password);
-            System.out.println("database connection is done ... ");
+//            System.out.println("database connection is done ... ");
             return connection;
         }
         catch (CommunicationsException e){
@@ -38,7 +38,7 @@ public class ClaudStorageConnection {
             THIS IS  HOW WE WILL BE CALLING THE CONNECTION TO THE ONLINE DATABASE
      */
 
-    public static void checkDbWorking(Connection connection)throws Exception{
+    public void checkDbWorking(Connection connection)throws Exception{
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("select  * from test_tb");
         System.out.println(" -------------------------- TEST TABLE DATA  ------------------------- ");
@@ -51,9 +51,9 @@ public class ClaudStorageConnection {
         }
     }
 
-    public static void main(String[] args)throws Exception {
-        checkDbWorking(getConnection());
-    }
+//    public static void main(String[] args)throws Exception {
+//        checkDbWorking(getConnection());
+//    }
 
 
 }
