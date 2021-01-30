@@ -1,3 +1,4 @@
 ## Let's make a difference
 ## Console Version Project
-OK
+Original Spot Management Project.
+We're currently working on it.
