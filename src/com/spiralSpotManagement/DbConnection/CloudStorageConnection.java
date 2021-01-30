@@ -1,7 +1,8 @@
 package com.spiralSpotManagement.DbConnection;
 
-import com.mysql.jdbc.CommunicationsException;
-import com.mysql.jdbc.SQLError;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
+import com.mysql.jdbc.*;
+
 
 import java.sql.*;
 
@@ -14,7 +15,7 @@ public class CloudStorageConnection {
             String username = "2YQ7auowc7";
             String password = "R2IMVJC67L";
 
-            Class.forName("com.mysql.jdbc.Driver");
+//            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url,username,password);
 //            System.out.println("database connection is done ... ");
             return connection;
