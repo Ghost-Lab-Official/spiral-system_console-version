@@ -3,7 +3,8 @@ package com.spiralSpotManagement.ReportModule;
 import java.util.Scanner;
 
 public class Navigation {
-    public static  String toContinue;
+//    public static  String toContinue;
+    public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
     public static void navigateToHome(){
 
@@ -18,9 +19,10 @@ public class Navigation {
 //            toContinue= scanValue.nextLine();
 //        }while (toContinue.equals("Y") || toContinue.equals("y"));
     }
-
+//=================================================================================================
+//=======================              SPOTS RELATED           ====================================
     public static void navigateToSpotsManagement(){
-        Scanner scanInput=new Scanner(System.in);
+
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS                     = ");
         System.out.println("\t\t\t============================================= ");
@@ -34,28 +36,19 @@ public class Navigation {
         System.out.println("\t\t\t Make a choice: ");
         choice=scanInput.nextInt();
 
-        switch (choice){
-            case 1:
-                viewAllStatistics();
-                break;
-            case 2:
-                viewAllSpots();
-                break;
-            case 3:
-                viewSpotsByStatus();
-                break;
-            case 4:
-                navigateToHome();
-                break;
-            case 5:
-                System.exit(0);
-            default:
-                System.out.println("\t\t\t\t Invalid input");
+        switch (choice) {
+            case 1 -> viewAllStatistics();
+            case 2 -> viewAllSpots();
+            case 3 -> viewSpotsByStatus();
+            case 4 -> navigateToHome();
+            case 5 -> System.exit(0);
+            default -> System.out.println("\t\t\t\t Invalid input");
         }
     }
 
+
     public static void viewAllStatistics(){
-        Scanner scanInput1=new Scanner(System.in);
+
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
@@ -69,29 +62,16 @@ public class Navigation {
 
 
         System.out.println("Make a choice ");
-        int choice = scanInput1.nextInt();
+        int choice = scanInput.nextInt();
 
         switch (choice) {
-            case 1:
-                getTheTotalNumberOfRegisteredSpots();
-                break;
-            case 2:
-                getTheTotalNumberOfActiveSpots();
-                break;
-            case 3:
-                getTheTotalNumberOfInactiveSpots();
-                break;
-            case 4:
-                getTheNumberOfHighlyVisitedSpots();
-                break;
-            case 5:
-                navigateToSpotsManagement();
-                break;
-            case 6:
-                System.exit(0);
-                break;
-            default:
-                System.out.println("\t\t\t\t Invalid input");
+            case 1 -> getTheTotalNumberOfRegisteredSpots();
+            case 2 -> getTheTotalNumberOfActiveSpots();
+            case 3 -> getTheTotalNumberOfInactiveSpots();
+            case 4 -> getTheNumberOfHighlyVisitedSpots();
+            case 5 -> navigateToSpotsManagement();
+            case 6 -> System.exit(0);
+            default -> System.out.println("\t\t\t\t Invalid input");
         }
 
     }
@@ -138,14 +118,14 @@ public class Navigation {
 
     public static void viewAllSpots(){
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All          = ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All            = ");
         System.out.println("\t\t\t============================================= ");
 
 //        viewAListOfAllSpots();
     }
 
     public static void viewSpotsByStatus(){
-        Scanner scanInput1=new Scanner(System.in);
+
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-by-status      = ");
         System.out.println("\t\t\t============================================= ");
@@ -158,25 +138,136 @@ public class Navigation {
 
 
         System.out.println("Make a choice ");
-        int choice = scanInput1.nextInt();
+        int choice = scanInput.nextInt();
 
         switch (choice) {
             case 1:
 //                viewAllActiveSpots();
                 break;
             case 2:
-//                viewAllActiveSpots();
+//                viewAllArchivedSpots();
                 break;
             case 3:
-//                viewAllActiveSpots();
+//                highlyVisitedSpots();
                 break;
             case 4:
-//                viewAllActiveSpots();
+//                go back
                 break;
             case 5:
                 System.exit(0);
                 break;
         }
+    }
+
+//=======================              END OF SPOTS             ===================================
+
+
+//=================================================================================================
+//=======================              USERS RELATED           ====================================
+
+    public static void navigateToUsersManagement() {
+        Scanner scanInput=new Scanner(System.in);
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/Users                     = ");
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t|| 1.  View user Statistics                ||");
+        System.out.println("\t\t\t|| 2.  View all users                      ||");
+        System.out.println("\t\t\t|| 3.  View user activities                ||");
+        System.out.println("\t\t\t|| 4.  Back                                ||");
+        System.out.println("\t\t\t|| 5.  Exit                                ||");
+        System.out.println("\t\t\t============================================ ");
+
+        System.out.println("\t\t\t Make a choice: ");
+        choice=scanInput.nextInt();
+
+        switch (choice) {
+            case 1 -> viewUserStatistics();
+            case 2 -> viewAllUsers();
+            case 3 -> viewUserActivities();
+            case 4 -> navigateToHome();
+            case 5 -> System.exit(0);
+            default -> System.out.println("\t\t\t\t Invalid input");
+        }
+    }
+
+    private static void viewUserStatistics() {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/Users/STATISTICS          = ");
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t|| 1.  Number of registered Users          ||");
+        System.out.println("\t\t\t|| 2.  Number of active users              ||");
+        System.out.println("\t\t\t|| 3.  Number of inactive users            ||");
+        System.out.println("\t\t\t|| 4.  settings                            ||");
+        System.out.println("\t\t\t|| 5.  Back                                ||");
+        System.out.println("\t\t\t|| 6.  Exit                                ||");
+        System.out.println("\t\t\t============================================ ");
+
+
+        System.out.println("Make a choice ");
+        int choice = scanInput.nextInt();
+
+        switch (choice) {
+            case 1:
+                //get the number of registered users method
+                break;
+            case 2:
+                //get the number of active users method
+                break;
+            case 3:
+                //get the number of inactive users method
+                break;
+            case 4:
+                //settings
+                break;
+            case 5:
+                //back
+                break;
+            case 6:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("\t\t\t\t Invalid input");
+        }
+    }
+
+    public static void viewAllUsers() {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+        System.out.println("\t\t\t============================================= ");
+
+        //viewAllUsers();
+    }
+
+    public static void viewUserActivities() {
+        System.out.println("\t\t\t=============================================");
+        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/Activities    =");
+        System.out.println("\t\t\t=============================================");
+        System.out.println("\t\t\t|| 1.  In general                          ||");
+        System.out.println("\t\t\t|| 2.  Specific User                       ||");
+        System.out.println("\t\t\t|| 3.  Back                                ||");
+        System.out.println("\t\t\t|| 4.  Exit                                ||");
+        System.out.println("\t\t\t============================================ ");
+
+        System.out.println("\t\t\t Make a choice: ");
+        choice=scanInput.nextInt();
+
+        switch (choice) {
+            case 1 -> usersActivities();
+            case 2 -> userActivities();
+            case 3 -> navigateToHome();
+            case 4 -> System.exit(0);
+            default -> System.out.println("\t\t\t\t Invalid input");
+        }
+    }
+
+    public static void usersActivities() {
+        System.out.println("\t\t\t=============================================");
+        System.out.println("\t\t\t=    ADMIN DASHBOARD/All USERS/Activities   =");
+        System.out.println("\t\t\t=============================================");
+    }
+
+    public static void userActivities() {
+        //user activities methods
     }
 
 }

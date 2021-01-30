@@ -17,16 +17,11 @@ public class ReportModule extends Navigation{
         System.out.println("Make a choice ");
         int choice = scanner.nextInt();
 
-        switch (choice){
-            case 1:navigateToHome();
-            break;
-
-            case 2:navigateToSpotsManagement();
-            break;
-
-            default:
-                System.out.println("Invalid choice");
-                break;
+        switch (choice) {
+            case 1 -> navigateToHome();
+            case 2 -> navigateToSpotsManagement();
+            case 3 -> navigateToUsersManagement();
+            default -> System.out.println("Invalid choice");
         }
     }
 
