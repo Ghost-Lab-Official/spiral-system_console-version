@@ -1,8 +1,15 @@
 package com.spiralSpotManagement.UsersModule;
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Properties;
 
 public class UsersModule {
     CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
@@ -30,6 +37,43 @@ public class UsersModule {
             System.out.println(" ------------------------------------------------------------------------------------------------------------------------------------ ");
         }
     }
+
+// ===================================================================================================
+// ===================notification function by muhodari
+
+ public void sendNotification(String from, String password, String to,String sub, String msg) {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+        //get Session
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(from,password);
+                    }
+                });
+//        System.out.println(session);
+
+        //compose message
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            message.setSubject(sub);
+            message.setText(msg);
+
+            //send message
+            Transport.send(message);
+            System.out.println("message sent successfully");
+        } catch (MessagingException e) {throw new RuntimeException(e);}
+
+
+    }
+
+
 
 
 
