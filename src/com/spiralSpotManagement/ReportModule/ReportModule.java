@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
-public class ReportModule {
+public class ReportModule extends Navigation{
     public static void reportDashboard() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t============================================= ");
@@ -13,6 +13,24 @@ public class ReportModule {
         System.out.println("\t\t\t|| 3.  Users Management                    ||");
         System.out.println("\t\t\t|| 4.  Settings                            ||");
         System.out.println("\t\t\t============================================ ");
-        String choice = scanner.nextLine();
+
+        System.out.println("Make a choice ");
+        int choice = scanner.nextInt();
+
+        switch (choice){
+            case 1:navigateToHome();
+            break;
+
+            case 2:navigateToSpotsManagement();
+            break;
+
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
     }
+
+
 }
+
+
