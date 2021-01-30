@@ -3,22 +3,24 @@ package com.spiralSpotManagement.ReportModule;
 import java.util.Scanner;
 
 public class Navigation {
-//    public static  String toContinue;
-    public static Scanner scanInput=new Scanner(System.in);
+    public static  String toContinue;
     public static  int choice;
+    public static Scanner scanInput=new Scanner(System.in);
     public static void navigateToHome(){
 
-//        do{
+        do{
             System.out.println("\t\t\t\t Good management is the art of making problems so interesting\n" +
                     "\t\t\t\t and their solutions so constructive that everyone wants to get\n" +
                     " \t\t\t\t to work and deal with them.");
             System.out.println("\t\t\t\t welcome to spiral app’s management module");
 
-//            System.out.println("'\t\t Do you want to continue ? ");
-//            Scanner scanValue=new Scanner(System.in);
-//            toContinue= scanValue.nextLine();
-//        }while (toContinue.equals("Y") || toContinue.equals("y"));
+            System.out.println("'\t\t Do you want to continue ? ");
+            Scanner scanValue=new Scanner(System.in);
+            toContinue= scanValue.nextLine();
+        }while (toContinue.equals("Y") || toContinue.equals("y"));
     }
+
+
 //=================================================================================================
 //=======================              SPOTS RELATED           ====================================
     public static void navigateToSpotsManagement(){

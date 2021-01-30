@@ -19,9 +19,9 @@ public class CloudStorageConnection {
 //            System.out.println("database connection is done ... ");
             return connection;
         }
-        catch (CommunicationsException e){
-            System.out.println("connection problem is occurring on the host server ");
-        }
+//        catch (CommunicationsException e){
+//            System.out.println("connection problem is occurring on the host server ");
+//        }
 
         catch (SQLException e){
             System.out.println("sql connection exception is occurring ... ");
