@@ -21,7 +21,7 @@ public class Navigation {
     }
 //=================================================================================================
 //=======================              SPOTS RELATED           ====================================
-    public static void navigateToSpotsManagement(){
+    public static void navigateToSpotsManagement() throws Exception {
 
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS                     = ");
@@ -47,7 +47,7 @@ public class Navigation {
     }
 
 
-    public static void viewAllStatistics(){
+    public static void viewAllStatistics() throws Exception {
 
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
@@ -63,10 +63,10 @@ public class Navigation {
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-
+        ReportStatistics reportStatistics = new ReportStatistics();
         switch (choice) {
-            case 1 -> getTheTotalNumberOfRegisteredSpots();
-            case 2 -> getTheTotalNumberOfActiveSpots();
+            case 1 -> reportStatistics.getTheTotalNumberOfRegisteredSpots();
+            case 2 -> reportStatistics.getTheTotalNumberOfActiveSpots();
             case 3 -> getTheTotalNumberOfInactiveSpots();
             case 4 -> getTheNumberOfHighlyVisitedSpots();
             case 5 -> navigateToSpotsManagement();

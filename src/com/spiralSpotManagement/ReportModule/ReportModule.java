@@ -3,7 +3,7 @@ package com.spiralSpotManagement.ReportModule;
 import java.util.Scanner;
 
 public class ReportModule extends Navigation{
-    public static void reportDashboard() {
+    public static void reportDashboard() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t=                ADMIN DASHBOARD            = ");
