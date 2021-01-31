@@ -1,6 +1,7 @@
 package com.spiralSpotManagement;
 
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.ReportModule.ReportModule;
 
 public class Main {
 
@@ -8,5 +9,7 @@ public class Main {
         System.out.println("HELLO SPIRAL SYSTEM\n\n ");
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+
     }
+
 }
