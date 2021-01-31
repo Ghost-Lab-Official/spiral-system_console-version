@@ -17,7 +17,6 @@ public class UsersModule {
 
 
 
-
 //view users list function  done by muhodari
     public void getUsersList(Connection connection)throws Exception{
         Statement stmt = connection.createStatement();
@@ -40,15 +39,14 @@ public class UsersModule {
 
 // ===================================================================================================
 // ===================notification function by muhodari
-
- public void sendNotification(String from, String password, String to,String sub, String msg) {
+// happy of notication function now it is working
+ public void sendNotification(String from, String password, String to, String sub, String msg) {
         Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class",
-                "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
+     props.put("mail.smtp.host", "smtp.gmail.com");
+     props.put("mail.smtp.socketFactory.port", "465");
+     props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+     props.put("mail.smtp.auth", "true");
+     props.put("mail.smtp.port", "465");
         //get Session
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
@@ -56,7 +54,7 @@ public class UsersModule {
                         return new PasswordAuthentication(from,password);
                     }
                 });
-//        System.out.println(session);
+//
 
         //compose message
         try {
@@ -65,6 +63,7 @@ public class UsersModule {
             message.setSubject(sub);
             message.setText(msg);
 
+
             //send message
             Transport.send(message);
             System.out.println("message sent successfully");
@@ -72,7 +71,6 @@ public class UsersModule {
 
 
     }
-
 
 
 
