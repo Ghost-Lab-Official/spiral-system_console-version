@@ -1,2 +1,4 @@
-package com.spiralSpotManagement.Server.ModuleConnectors;public class Location {
+package com.spiralSpotManagement.Server.ModuleConnectors;
+
+public class Location {
 }
