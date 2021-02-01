@@ -13,7 +13,7 @@ public class SearchByPopularity {
 	public static ArrayList<String> popuralityByRatesArray(java.sql.Connection connection) throws SQLException{
 		ArrayList<String> spots=new ArrayList<String>();
 		String SelectRatesquery="select *from Spot_table order by rates desc limit 5";
-		 PreparedStatement pt=connection.prepareStatement(Selectquery);
+		 PreparedStatement pt=connection.prepareStatement(SelectRatesquery);
 		 ResultSet results=pt.executeQuery();
 	
 
