@@ -1,12 +1,17 @@
 package com.spiralSpotManagement.SearchModule;
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
-import java.util.*;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ListIterator;
+
 public class RecentSearches {
     public static void viewAll(Connection con) throws SQLException {
-//        List resultArray= new ArrayList<String>();
+     List resultArray= new ArrayList<String>();
 // this will hold the result from db in array to display recent searches
 // you will iterate from last elt and you display 10 searches at most
         Statement stmt = con.createStatement();
@@ -14,11 +19,19 @@ public class RecentSearches {
 while(rs.next()){
 String searcheq=rs.getString( "searched_query");
 String madate = rs.getString("search_date");
-
-    System.out.println("search query : " + searcheq);
-    System.out.println("the date of the query : " + madate);
+String concat=searcheq+" on "+ madate;
+   resultArray.add(concat);
+//   System.out.println("search query : " + searcheq+" on the date  : " + madate);
 
 }
+        System.out.println(resultArray);
+        System.out.println("after reverse");
+            Collections.reverse(resultArray);
+    System.out.println(resultArray);
+        //    for(int i= resultArray.size()-1; i>=0; i--){
+//        System.out.println(resultArray.get(i));
+//    }
+
     }
     public static void main(String[] args) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
