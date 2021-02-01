@@ -1,7 +1,5 @@
 package com.spiralSpotManagement.DbConnection;
 
-import com.mysql.jdbc.CommunicationsException;
-import com.mysql.jdbc.SQLError;
 
 import java.sql.*;
 
