@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.DbConnection;
 
 
+import javax.naming.CommunicationException;
 import java.sql.*;
 
 public class CloudStorageConnection {
@@ -12,16 +13,11 @@ public class CloudStorageConnection {
             String username = "2YQ7auowc7";
             String password = "R2IMVJC67L";
 
-            Class.forName("com.mysql.jdbc.Driver");
+//            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url,username,password);
 //            System.out.println("database connection is done ... ");
             return connection;
-        }
-        catch (CommunicationsException e){
-            System.out.println("connection problem is occurring on the host server ");
-        }
-
-        catch (SQLException e){
+        } catch (SQLException e){
             System.out.println("sql connection exception is occurring ... ");
             System.out.println(e);
         }
