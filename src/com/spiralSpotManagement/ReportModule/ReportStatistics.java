@@ -80,6 +80,7 @@ public class ReportStatistics {
                     .forEach(a -> System.out.printf(formatString1.toString(), table1[a]));
 //            System.out.println("");
         }
+        connection.close();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -150,6 +151,7 @@ public class ReportStatistics {
                     .forEach(a -> System.out.printf(formatString1.toString(), table1[a]));
 //            System.out.println("");
         }
+        connection.close();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -220,6 +222,7 @@ public class ReportStatistics {
                     .forEach(a -> System.out.printf(formatString1.toString(), table1[a]));
 //            System.out.println("");
         }
+        connection.close();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -235,6 +238,7 @@ public class ReportStatistics {
         while(rs.next()){
             System.out.println( "\t\t\t||  Number of registered spots :         "+ rs.getInt(1)+"||");
         }
+        connection.close();
 
 //        calculateTheTotalNumberOfSpots();
         System.out.println("\t\t\t============================================= ");
