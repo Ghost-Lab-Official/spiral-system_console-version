@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import java.io.*;
 import java.sql.*;
-import java.util.ListIterator;
 
 public class RecentSearches {
     public static void viewAll(Connection con) throws SQLException {
@@ -33,6 +32,27 @@ String concat=searcheq+" on "+ madate;
 //    }
 
     }
+
+
+    public static void viewRecentOfMostSearched(Connection con) throws  SQLException{
+        try {
+            Statement stm = con.createStatement();
+            ResultSet res = stm.executeQuery("SELECT DISTINCT searched_query,count(history_id) AS frequency FROM searchHistory WHERE searched_query ='hotels in Rwanda' AND user_id=1 ORDER BY frequency DESC");
+
+            System.out.println("Recent searches");
+            int i = 1;
+            while (res.next()) {
+                String query = res.getString("searched_query");
+                System.out.println("----------------");
+                System.out.println(i + " " + query);
+                i++;
+            }
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+
     public static void main(String[] args) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int choice;
@@ -42,7 +62,7 @@ String concat=searcheq+" on "+ madate;
         if(cloudStorageConnection.getConnection() !=null){
 
             do {
-            System.out.println("1.view all recent searches \n 2.Exit \n");
+            System.out.println("1.view all recent searches \n 2.view most searched spots \n 3.Exit \n");
             System.out.println("Enter your choice");
                 choice = Integer.parseInt(reader.readLine());
 
@@ -51,7 +71,12 @@ String concat=searcheq+" on "+ madate;
         case 1:
             viewAll(cloudStorageConnection.getConnection());
             break;
-
+        case 2:
+            viewRecentOfMostSearched(cloudStorageConnection.getConnection());
+            break;
+        case 3:
+            System.out.println("Program executed");
+            break;
         default:
             System.out.println("the value you entered is wrong");
             break;
