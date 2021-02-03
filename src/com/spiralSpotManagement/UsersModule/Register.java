@@ -56,22 +56,7 @@ public class Register {
             System.out.println("an error occurred");
         }
     }
-//    public static String getUsers(Connection connection,String userName,String email) throws Exception {
-//        String sql = "SELECT user_name,email FROM users_table";
-//        Statement st = connection.createStatement();
-//        ResultSet rs = st.executeQuery(sql);
-//        while (rs.next()) {
-//            String user_name = rs.getString("user_name");
-//            String email_db = rs.getString("email");
-//            if (user_name == userName){
-//                String errorStatement = "User name is already registered";
-//                return errorStatement;
-//            } else if(email == email_db){
-//                String errorStatement = "User name is already registered";
-//                return errorStatement;
-//            }
-//        }
-//    }
+
     private static byte[] genSalt() throws NoSuchAlgorithmException, NoSuchProviderException {
        //A secure random generator
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG","SUN");
