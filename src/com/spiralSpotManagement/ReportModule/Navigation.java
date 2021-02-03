@@ -3,22 +3,37 @@ package com.spiralSpotManagement.ReportModule;
 import java.util.Scanner;
 
 public class Navigation extends ReportOperation{
-//    public static  String toContinue;
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
-    public static void navigateToHome(){
-
-//        do{
-            System.out.println("\t\t\t\t Good management is the art of making problems so interesting\n" +
+    public static void navigateToHome() throws Exception {
+        System.out.println("\t\t\t\t Good management is the art of making problems so interesting\n" +
                     "\t\t\t\t and their solutions so constructive that everyone wants to get\n" +
                     " \t\t\t\t to work and deal with them.");
-            System.out.println("\t\t\t\t welcome to spiral app’s management module");
+        System.out.println("\t\t\t\t welcome to spiral app’s management module");
 
-//            System.out.println("'\t\t Do you want to continue ? ");
-//            Scanner scanValue=new Scanner(System.in);
-//            toContinue= scanValue.nextLine();
-//        }while (toContinue.equals("Y") || toContinue.equals("y"));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t=                ADMIN DASHBOARD            = ");
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t|| 1.  Home                                ||");
+        System.out.println("\t\t\t|| 2.  Spot Management                     ||");
+        System.out.println("\t\t\t|| 3.  Users Management                    ||");
+        System.out.println("\t\t\t|| 4.  Exit                                ||");
+        System.out.println("\t\t\t============================================ ");
+
+        System.out.println("Make a choice ");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1 -> navigateToHome();
+            case 2 -> navigateToSpotsManagement();
+            case 3 -> navigateToUsersManagement();
+            case 4 -> System.exit(0);
+            default -> System.out.println("Invalid choice");
+        }
     }
+
+
 //=================================================================================================
 //=======================              SPOTS RELATED           ====================================
     public static void navigateToSpotsManagement() throws Exception {
@@ -65,9 +80,10 @@ public class Navigation extends ReportOperation{
         int choice = scanInput.nextInt();
         ReportOperation reportOperation = new ReportOperation();
         switch (choice) {
-//            case 1 -> reportOperation.getTheTotalNumberOfRegisteredSpots();
-//            case 2 -> reportOperation.getTheTotalNumberOfActiveSpots();
-//            case 3 -> reportOperation.getTheTotalNumberOfInactiveSpots();
+            case 1 ->
+                getTheTotalNumberOfRegisteredSpots();
+            case 2 -> getTheTotalNumberOfActiveSpots();
+            case 3 -> getTheTotalNumberOfInactiveSpots();
             case 4 -> getTheNumberOfHighlyVisitedSpots();
             case 5 -> navigateToSpotsManagement();
             case 6 -> System.exit(0);
@@ -81,8 +97,6 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of registered spots            ||");
 
-//        ReportOperation.getTheTotalNumberOfRegisteredSpots();
-        System.out.println("\t\t\t============================================= ");
 
     }
 
@@ -92,8 +106,6 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of Active spots               ||");
 
-//        ReportOperation.getTheTotalNumberOfActiveSpots();
-        System.out.println("\t\t\t============================================= ");
     }
 
     public static void getTheTotalNumberOfInactiveSpots() throws Exception {
@@ -101,8 +113,6 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of Inactive spots               ||");
-//        ReportOperation.getTheTotalNumberOfInactiveSpots();
-        System.out.println("\t\t\t============================================= ");
     }
 
     public static void getTheNumberOfHighlyVisitedSpots(){
@@ -112,14 +122,13 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t||    Number of trending spots               ||");
 
 //        calculateTheTotalNumberOfHighlyVisitedSpots();
-        System.out.println("\t\t\t============================================= ");
     }
 
     public static void viewAllSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All            = ");
         System.out.println("\t\t\t============================================= ");
-//        ReportOperation.viewAllSpots();
+        //something here
     }
 
     public static void viewSpotsByStatus() throws Exception {
@@ -140,10 +149,10 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-//                ReportOperation.viewAllActiveSpots();
+                ReportOperation.viewAllActiveSpots();
                 break;
             case 2:
-                ReportOperation.viewAllArchivedSpots();
+                //viewAllInActiveSpots();
                 break;
             case 3:
 //                highlyVisitedSpots();
@@ -163,7 +172,7 @@ public class Navigation extends ReportOperation{
 //=================================================================================================
 //=======================              USERS RELATED           ====================================
 
-    public static void navigateToUsersManagement() {
+    public static void navigateToUsersManagement() throws Exception {
         Scanner scanInput=new Scanner(System.in);
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/Users                     = ");
@@ -236,7 +245,7 @@ public class Navigation extends ReportOperation{
         //viewAllUsers();
     }
 
-    public static void viewUserActivities() {
+    public static void viewUserActivities() throws Exception {
         System.out.println("\t\t\t=============================================");
         System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/Activities    =");
         System.out.println("\t\t\t=============================================");
@@ -252,7 +261,7 @@ public class Navigation extends ReportOperation{
         switch (choice) {
             case 1 -> usersActivities();
             case 2 -> userActivities();
-            case 3 -> navigateToHome();
+            case 3 -> navigateToUsersManagement();
             case 4 -> System.exit(0);
             default -> System.out.println("\t\t\t\t Invalid input");
         }
@@ -267,5 +276,12 @@ public class Navigation extends ReportOperation{
     public static void userActivities() {
         //user activities methods
     }
+
+
+    //=================================================================================================
+//=======================              TO CONTINUE STATEMENT           ====================================
+
+
+
 
 }
