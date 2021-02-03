@@ -10,8 +10,8 @@ public class Main {
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
 //
-//        ReportModule report1=new ReportModule();
-//        report1.reportDashboard();
+        ReportModule report1=new ReportModule();
+        report1.reportDashboard();
     }
 
 }
