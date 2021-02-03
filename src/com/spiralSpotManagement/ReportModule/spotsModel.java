@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class spotsModel {
     private String spot_id;
-    private String user_id;
-    private String category_id;
-    private String location_id;
+    private String user_name;
+    private String category_name;
+    private String locationName;
     private String spot_name;
     public String spot_description;
     private double views;
@@ -14,18 +14,18 @@ public class spotsModel {
     private Date registration_date;
 
     public spotsModel(String spot_id,
-                      String user_id,
-                      String category_id,
-                      String location_id,
+                      String user_name,
+                      String category_name,
+                      String locationName,
                       String spot_name,
                       String spot_description,
                       double views,
                       String status,
                       Date registration_date) {
         this.spot_id=spot_id;
-        this.user_id=user_id;
-        this.category_id=category_id;
-        this.location_id=location_id;
+        this.user_name=user_name;
+        this.category_name=category_name;
+        this.locationName=locationName;
         this.spot_name=spot_name;
         this.spot_description=spot_description;
         this.views=views;
@@ -34,12 +34,12 @@ public class spotsModel {
     }
 
 
-    public String getCategory_id() {
-        return category_id;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public String getLocation_id() {
-        return location_id;
+    public String getLocationName() {
+        return locationName;
     }
 
     public Date getRegistration_date() {
@@ -54,8 +54,8 @@ public class spotsModel {
         return spot_name;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getuser_name() {
+        return user_name;
     }
 
     public String getStatus() {
@@ -66,12 +66,12 @@ public class spotsModel {
         return views;
     }
 
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 
-    public void setLocation_id(String location_id) {
-        this.location_id = location_id;
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 
     public void setSpot_id(String spot_id) {
@@ -86,8 +86,8 @@ public class spotsModel {
         this.spot_name = spot_name;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setuser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public void setStatus(String status) {

@@ -15,7 +15,14 @@ public class ReportOperation {
             CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
             Connection connection= cloudStorageConnection.getConnection();
             Statement stmt = connection.createStatement();
-            ResultSet result = stmt.executeQuery("select  * from Spot_table where status='active'");
+            String query= "SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
+                    " Spot_table.status , Spot_table.views  , Spot_table.registration_date ," +
+                    " users_table.user_name , Locations.locationName , spot_category.category_name from Spot_table " +
+                    "left join users_table on Spot_table.spot_id= users_table.user_id" +
+                    " left join Locations on Spot_table.location_id = Locations.locationId" +
+                    " left join spot_category on Spot_table.category_id = spot_category.category_id " +
+                    "WHERE Spot_table.status ='active'";
+            ResultSet result = stmt.executeQuery(query);
 
 
         ArrayList<spotsModel> ActiveSpotsList = new ArrayList<spotsModel>();
@@ -25,9 +32,9 @@ public class ReportOperation {
 
             spotsModel  myActiveSpot = new spotsModel(
                     result.getString("spot_id"),
-                    result.getString("user_id"),
-                    result.getString("category_id"),
-                    result.getString("location_id"),
+                    result.getString("user_name"),
+                    result.getString("category_name"),
+                    result.getString("locationName"),
                     result.getString("spot_name"),
                     result.getString("spot_description"),
                     result.getDouble("views"),
@@ -44,20 +51,15 @@ public class ReportOperation {
 //        }
 
         Iterator it = ActiveSpotsList.iterator();
-        System.out.println(" " + "#Id" +  " | " + "userId" +" | " + "spot_name");
+        System.out.println("\t\t\t  #Id" + "\t\t\t createdBy" +  "\t\t\t\t Entitled " +  "\t\t\t location" +  "\t\t\t category " +  "\t\t\t\t status " +  "\t\t\t\t views"+  "\t\t\t registrationDate ");
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         while(it.hasNext()){
             spotsModel spot = (spotsModel)it.next();
-            System.out.println(" "+spot.getSpot_id() + " | " + spot.getUser_id()+ " | " + spot.getSpot_name());
+            System.out.println(" \t\t\t\t "+spot.getSpot_id() + " \t\t\t\t " + spot.getuser_name()+ " \t\t\t\t " + spot.getSpot_name()+ " \t\t\t\t " + spot.getLocationName()+ " \t\t\t\t " + spot.getCategory_name()+ " \t\t\t\t " + spot.getStatus()
+                    + " \t\t\t\t " + spot.getViews()+ " \t\t\t\t " + spot.getRegistration_date());
         }
-
-
         connection.close();
         }
 
-
-
-        public static  void displayDataInTabularFormat(){
-          
-        }
 
 }
