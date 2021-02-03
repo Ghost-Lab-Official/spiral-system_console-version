@@ -1,4 +1,5 @@
 package com.spiralSpotManagement.SpotModule;
 
-public class SearchModule {
+public class SpotModule {
+    
 }
