@@ -15,7 +15,7 @@ public class Register {
     public static void  UpdateUser(Connection connection) throws Exception{
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your first name ");
+        System.out.println("Enter youfirst name ");
         String firstName = scanner.nextLine();
         System.out.println("Enter your last name ");
         String lastName = scanner.nextLine();
@@ -52,6 +52,28 @@ public class Register {
         if(inserted == 1){
             System.out.println("Inserted");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         else{
             System.out.println("an error occurred");
         }
