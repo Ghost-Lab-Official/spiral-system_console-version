@@ -9,7 +9,8 @@ public class Main {
         System.out.println("HELLO SPIRAL SYSTEM\n\n ");
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
-
+        ReportModule reportModule = new ReportModule();
+        reportModule.reportDashboard();
     }
 
 }

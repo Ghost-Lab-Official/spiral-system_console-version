@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
-public class Navigation {
+public class Navigation extends ReportOperation{
 //    public static  String toContinue;
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
@@ -63,11 +63,11 @@ public class Navigation {
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-        ReportStatistics reportStatistics = new ReportStatistics();
+        ReportOperation reportOperation = new ReportOperation();
         switch (choice) {
-            case 1 -> reportStatistics.getTheTotalNumberOfRegisteredSpots();
-            case 2 -> reportStatistics.getTheTotalNumberOfActiveSpots();
-            case 3 -> getTheTotalNumberOfInactiveSpots();
+            case 1 -> reportOperation.getTheTotalNumberOfRegisteredSpots();
+            case 2 -> reportOperation.getTheTotalNumberOfActiveSpots();
+            case 3 -> reportOperation.getTheTotalNumberOfInactiveSpots();
             case 4 -> getTheNumberOfHighlyVisitedSpots();
             case 5 -> navigateToSpotsManagement();
             case 6 -> System.exit(0);
@@ -75,34 +75,33 @@ public class Navigation {
         }
 
     }
-    public static void getTheTotalNumberOfRegisteredSpots(){
+    public static void getTheTotalNumberOfRegisteredSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of registered spots            ||");
 
-//        calculateTheTotalNumberOfSpots();
+        ReportOperation.getTheTotalNumberOfRegisteredSpots();
         System.out.println("\t\t\t============================================= ");
 
     }
 
-    public static void getTheTotalNumberOfActiveSpots(){
+    public static void getTheTotalNumberOfActiveSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of Active spots               ||");
 
-//        calculateTheTotalNumberOfActiveSpots();
+        ReportOperation.getTheTotalNumberOfActiveSpots();
         System.out.println("\t\t\t============================================= ");
     }
 
-    public static void getTheTotalNumberOfInactiveSpots(){
+    public static void getTheTotalNumberOfInactiveSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of Inactive spots               ||");
-
-//        calculateTheTotalNumberOfInactiveSpots();
+        ReportOperation.getTheTotalNumberOfInactiveSpots();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -116,15 +115,14 @@ public class Navigation {
         System.out.println("\t\t\t============================================= ");
     }
 
-    public static void viewAllSpots(){
+    public static void viewAllSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All            = ");
         System.out.println("\t\t\t============================================= ");
-
-//        viewAListOfAllSpots();
+//        ReportOperation.viewAllSpots();
     }
 
-    public static void viewSpotsByStatus(){
+    public static void viewSpotsByStatus() throws Exception {
 
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-by-status      = ");
@@ -142,16 +140,16 @@ public class Navigation {
 
         switch (choice) {
             case 1:
-//                viewAllActiveSpots();
+//                ReportOperation.viewAllActiveSpots();
                 break;
             case 2:
-//                viewAllArchivedSpots();
+//                ReportOperation.viewAllArchivedSpots();
                 break;
             case 3:
 //                highlyVisitedSpots();
                 break;
             case 4:
-//                go back
+                navigateToSpotsManagement();
                 break;
             case 5:
                 System.exit(0);
