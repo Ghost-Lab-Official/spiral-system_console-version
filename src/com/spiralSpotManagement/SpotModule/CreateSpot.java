@@ -33,13 +33,6 @@ public class CreateSpot {
     public static void insertSpot(Connection connection) throws SQLException{
     }
 
-
-
-    //  select Spot function
-    public static void selectSpot(Connection connection)throws Exception{
-    }
-
-
     //    Update Spot function
     public static void UpdateSpot(Connection connection) throws Exception{
 
@@ -67,6 +60,7 @@ public class CreateSpot {
         try (PreparedStatement sql= connection.prepareStatement(deleteSQL)){
             sql.setInt(1,id);
             sql.execute();
+            System.out.println("\nSpot Is Deleted Successfully!");
         }
         catch (SQLException e){
             e.printStackTrace();
@@ -82,9 +76,8 @@ public class CreateSpot {
         System.out.println("==============================\n");
         System.out.println("||\t\t1.Create Spot\t\t||\n");
         System.out.println("||\t\t2.Edit Spot\t\t\t||\n");
-        System.out.println("||\t\t3.View Spot\t\t\t||\n");
-        System.out.println("||\t\t4.Delete Spot\t\t||\n");
-        System.out.println("||\t\t5.Exit         \t\t||\n");
+        System.out.println("||\t\t3.Delete Spot\t\t||\n");
+        System.out.println("||\t\t4.Exit         \t\t||\n");
         System.out.println("==============================");
         String choose =input.nextLine();
 
@@ -98,12 +91,9 @@ public class CreateSpot {
                 UpdateSpot(cloudStorageConnection.getConnection());
                 break;
             case "3":
-                selectSpot(cloudStorageConnection.getConnection());
-                break;
-            case "4":
                 deleteSpot(cloudStorageConnection.getConnection());
                 break;
-            case "5":
+            case "4":
                 System.exit(0);
             default:
                 System.out.println("Incorrect Input!!");
