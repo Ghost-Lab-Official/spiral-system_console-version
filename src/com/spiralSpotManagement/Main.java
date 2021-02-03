@@ -7,8 +7,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         System.out.println("HELLO SPIRAL SYSTEM\n\n ");
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
-        cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+//        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+//        cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+
+        ReportModule report =new ReportModule();
+        report.reportDashboard();
 
     }
 
