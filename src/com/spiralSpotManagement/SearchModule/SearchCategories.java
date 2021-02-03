@@ -19,7 +19,9 @@ public class SearchCategories {
 
         switch(option){
             case 1 -> filter.spotFilter();
-            default -> System.out.println("Invalid choice");
+            case 2 -> filter.peopleFilter();
+            case 3 -> filter.messageFilter();
+            default -> System.out.println("Invalid option");
         }
 
         filter.spotFilter();
