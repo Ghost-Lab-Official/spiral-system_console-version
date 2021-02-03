@@ -9,23 +9,21 @@ import java.util.Scanner;
 public class CreateSpot {
 
     private static int spotId;
-    private static String spotName;
+    private static String spotName, user_id, category_id, location_id, spot_name, spot_description, views, viewers, rates, registration_date, update_date, status;
 
-    public CreateSpot(){}
-
-    public CreateSpot(String spotName){
-        this.spotName=spotName;
+    public CreateSpot(String user_id, String category_id, String location_id, String spot_name, String spot_description, String views, String viewers, String rates, String registration_date, String update_date, String status){
+        this.user_id=user_id; this.category_id=category_id; this.location_id=location_id; this.spot_name=spot_name; this.spot_description=spot_description; this.views=views; this.viewers=viewers; this.rates=rates; this.registration_date=registration_date; this.update_date=update_date; this.status=status;
     }
 
     public int getSpotId() { return spotId; }
     public void setSpotId(int spotId) { this.spotId = spotId; }
-    public String getSpotName() { return spotName; }
+//    public String getSpotName() { return spotName; }
     public void setSpotName(String spotName) { this.spotName = spotName; }
 
 
 
     private static final String InsertSql = "INSERT INTO Spot_table (user_id, category_id, location_id, spot_name, spot_description, views, viewers, rates, registration_date, update_date, status) VALUES(?)";
-    private static final String UpdateSql = "UPDATE Spot_table SET spot_entity=? WHERE spot_id=?";
+    private static final String UpdateSql = "UPDATE Spot_table SET category_id=?, location_id=?, spot_name=?, spot_description=? WHERE spot_id=?";
     private static final String deleteSQL = "DELETE FROM Spot_table where spot_id=?";
 
 
@@ -44,10 +42,35 @@ public class CreateSpot {
 
     //    Update Spot function
     public static void UpdateSpot(Connection connection) throws Exception{
+
+        Scanner scan = new Scanner(System.in);
+        String user_id="1", category_id="", location_id="", spot_name="", spot_description="", views="", viewers="", rates="", registration_date="", update_date="", status="";
+//        CreateSpot spot = new CreateSpot(user_id, category_id, location_id, spot_name, spot_description, views, viewers, rates, registration_date, update_date, status);
+        try (PreparedStatement sql = connection.prepareStatement(UpdateSql)){
+            sql.setString(1,category_id);
+            sql.setString(2,location_id);
+            sql.setString(3,spot_name);
+            sql.setString(4,spot_description);
+            sql.execute();
+            System.out.println(sql);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     //delete function
     public static void deleteSpot(Connection connection) throws Exception{
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Insert Spot id: ");
+        int id = scan.nextInt();
+        try (PreparedStatement sql= connection.prepareStatement(deleteSQL)){
+            sql.setInt(1,id);
+            sql.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 
