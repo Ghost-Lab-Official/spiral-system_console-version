@@ -9,7 +9,7 @@ public class Filter {
         Scanner scanInput=new Scanner(System.in);
         String searchKey;
 
-        System.out.println("\n\t\t\t Search a spot: ");
+        System.out.print("\n\t\t\t Search a spot: \t");
         searchKey = scanInput.nextLine();
 
         String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%'";
