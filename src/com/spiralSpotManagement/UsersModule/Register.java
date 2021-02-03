@@ -12,7 +12,7 @@ import java.util.Scanner;
 //somehow done
 
 public class Register {
-    public static void  registerUser(Connection connection) throws Exception{
+    public static void  UpdateUser(Connection connection) throws Exception{
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your first name ");
