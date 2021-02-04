@@ -7,7 +7,7 @@ import java.io.Serializable;
         @Description: the model for the SpotCategory class
  */
 public class SpotCategory implements Serializable {
-    private Integer spotId;
+    private Integer categoryId;
     private Integer userId;
     private String categoryName;
     private String description;
@@ -16,20 +16,13 @@ public class SpotCategory implements Serializable {
     public SpotCategory() {
     }
 
-    public SpotCategory(Integer spotId, Integer userId, String categoryName, String description, String status) {
-        this.spotId = spotId;
-        this.userId = userId;
-        this.categoryName = categoryName;
-        this.description = description;
-        this.status = status;
+
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public Integer getSpotId() {
-        return spotId;
-    }
-
-    public void setSpotId(Integer spotId) {
-        this.spotId = spotId;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Integer getUserId() {
@@ -38,6 +31,14 @@ public class SpotCategory implements Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public SpotCategory(Integer categoryId, Integer userId, String categoryName, String description, String status) {
+        this.categoryId = categoryId;
+        this.userId = userId;
+        this.categoryName = categoryName;
+        this.description = description;
+        this.status = status;
     }
 
     public String getCategoryName() {

@@ -23,14 +23,13 @@ public class SpotCategoryController {
                 usersObject.add((Object) registeredStatus);
                 return  usersObject;
 
-            case "login":
-                ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
+            case "update":
+                ResponseStatus loggedInStatus = new SpotCategoryActions().updateSpotCategory((SpotCategory) requestBody.getObject());
                 usersObject.add((Object) loggedInStatus);
                 return  usersObject;
 
             default:
+                return usersObject;
         }
-
-        return null;
     }
 }

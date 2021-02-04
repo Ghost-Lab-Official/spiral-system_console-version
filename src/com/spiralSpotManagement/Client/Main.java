@@ -53,7 +53,7 @@ public class Main {
 //        registerUser();
 //        new UserView().registerUser();
 //        new UserView().loginUser();
-        new SpotCategoryView().CreateCategory();
+       spotModuleMain();
     }
 
 
@@ -76,9 +76,9 @@ public class Main {
             case 1 :
                 new SpotCategoryView().CreateCategory();
                 break;
-//            case 2:
-//                UpdateCategory();
-//                break;
+            case 2:
+                new SpotCategoryView().UpdateCategory();
+                break;
 //            case 3 :
 //                GetspotCategory();
 //                break;

@@ -57,36 +57,46 @@ public class SpotCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
 
-
-//        try {
-//            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
-//            Connection connection = cloudStorageConnection.getConnection();
-//            String sql = "INSERT INTO spot_category(user_id,category_name,description,status) VALUES (?,?,?,?)";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setInt(1, user_id);
-//            statement.setString(2, category_name);
-//            statement.setString(3, description);
-//            statement.setString(4, status);
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println("User Not created! Try again Later");
-//            e.printStackTrace();
-//        }
-
     }
 
-//    public void UpdateCategory() throws Exception {
-//
-//        BufferedReader reader2 = new BufferedReader(new InputStreamReader(System.in));
-//        System.out.println("\t\t\t Enter category ID: ");
-//        int category_id = parseInt(reader2.readLine());
-//        System.out.println("\t\t\t Enter category name: ");
-//        String category_name = reader2.readLine();
-//        System.out.println("\t\t\t  Enter category description: ");
-//        String description = reader2.readLine();
-//        System.out.println("\t\t\t Enter the status: ");
-//        String status = reader2.readLine();
-//
+    public void UpdateCategory() throws Exception {
+
+        Scanner read = new Scanner(System.in);
+        System.out.println("\t\t\t Enter category ID: ");
+        int categoryId = read.nextInt();
+        System.out.println("\t\t\t Enter category name: ");
+        String categoryName = read.nextLine();
+        System.out.println("\t\t\t  Enter category description: ");
+        String description = read.nextLine();
+        System.out.println("\t\t\t Enter the status: ");
+        String status = read.nextLine();
+
+        SpotCategory spotCategoryToInsert = new SpotCategory();
+        spotCategoryToInsert.setCategoryName(categoryName);
+        spotCategoryToInsert.setDescription(description);
+        spotCategoryToInsert.setCategoryId(categoryId);
+        spotCategoryToInsert.setStatus(status);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/sportCategory");
+        requestBody.setAction("update");
+        requestBody.setObject(spotCategoryToInsert);
+
+        /*
+            Send Request Body
+         */
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+
+
 //        try {
 //            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
 //            Connection connection = cloudStorageConnection.getConnection();
@@ -102,7 +112,7 @@ public class SpotCategoryView {
 //            System.out.println("Sorry! Try again Later");
 //            e.printStackTrace();
 //        }
-//    }
+    }
 //
 //    public void GetspotCategory() throws Exception {
 //
