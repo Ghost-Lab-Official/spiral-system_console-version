@@ -32,25 +32,28 @@ public class UsersActions {
             return new ResponseStatus(200,"USER FOUND","User email is found, try another ");
         }
 
-        PreparedStatement preparedStatement = connection.prepareStatement(createUserQuery);
-        preparedStatement.setString(1,userToRegister.getFirstName());
-        preparedStatement.setString(2,userToRegister.getLastName());
-        preparedStatement.setString(3,userToRegister.getUserName());
-        preparedStatement.setString(4,userToRegister.getEmail());
-        preparedStatement.setString(5,userToRegister.getGender());
-        preparedStatement.setString(6,userToRegister.getBirthDate());
-        preparedStatement.setString(7,userToRegister.getPassword());
-        preparedStatement.setInt(8,1);
-        preparedStatement.setString(9,userToRegister.getLocation());
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(createUserQuery);
+            preparedStatement.setString(1,userToRegister.getFirstName());
+            preparedStatement.setString(2,userToRegister.getLastName());
+            preparedStatement.setString(3,userToRegister.getUserName());
+            preparedStatement.setString(4,userToRegister.getEmail());
+            preparedStatement.setString(5,userToRegister.getGender());
+            preparedStatement.setString(6,userToRegister.getBirthDate());
+            preparedStatement.setString(7,userToRegister.getPassword());
+            preparedStatement.setInt(8,1);
+            preparedStatement.setString(9,userToRegister.getLocation());
 
-        int inserted = preparedStatement.executeUpdate();
-        if(inserted == 1){
-            return new ResponseStatus(200,"CREATED","User registered , Go Login");
+            int inserted = preparedStatement.executeUpdate();
+            if(inserted == 1){
+                return new ResponseStatus(200,"CREATED","User registered , Go Login");
+            }
+            else{
+                return new ResponseStatus(500,"SERVER ERROR","Insertion failed, try or contact System Administrator");
+            }
         }
-        else{
-            return new ResponseStatus(500,"SERVER ERROR","Insertion failed, try or contact System Administrator");
-
+        catch (Exception e){
+            return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
         }
-        return responseStatus;
     }
 }
