@@ -57,7 +57,7 @@ public class Navigation{
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-        switch (choice) {
+         switch (choice) {
             case 1 -> printTheTotalNumberOfRegisteredSpots();
             case 2 -> printTheTotalNumberOfActiveSpots();
             case 3 -> printTheTotalNumberOfInActiveSpots();
@@ -132,10 +132,10 @@ public class Navigation{
                 spotReportController.viewAllActiveSpots();
                 break;
             case 2:
-                //viewAllInActiveSpots();
-                break;
+               printAllInactiveSpots();
+               break;
             case 3:
-//                highlyVisitedSpots();
+                PrintTop5HighlyVisitedSpots();
                 break;
             case 4:
                 navigateToSpotsManagement();
@@ -144,6 +144,20 @@ public class Navigation{
                 System.exit(0);
                 break;
         }
+    }
+
+    public static void printAllInactiveSpots() throws Exception {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-Inactive       = ");
+        System.out.println("\t\t\t============================================= ");
+        spotReportController.viewAllInactiveSpots();
+    }
+
+    public static void PrintTop5HighlyVisitedSpots() throws Exception {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/On-Fire            = ");
+        System.out.println("\t\t\t============================================= ");
+        spotReportController.ViewHighlyVisitedSpots();
     }
 
 //=======================              END OF SPOTS             ===================================
