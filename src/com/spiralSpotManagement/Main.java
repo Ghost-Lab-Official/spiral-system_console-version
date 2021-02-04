@@ -2,6 +2,8 @@ package com.spiralSpotManagement;
 
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 import com.spiralSpotManagement.ReportModule.ReportModule;
+//import com.spiralSpotManagement.UsersModule.UsersModule;
+
 
 public class Main {
 
@@ -9,8 +11,18 @@ public class Main {
         System.out.println("HELLO SPIRAL SYSTEM\n\n ");
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+
         ReportModule reportModule = new ReportModule();
         reportModule.reportDashboard();
+
+//        cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+
+
+
+        UsersModule usersModule=new UsersModule();
+      //   usersModule.getUsersList(cloudStorageConnection.getConnection());
+        usersModule.sendNotification("sagemuho@gmail.com","***************","mugaboverite@gmail.com","testing notification","this is small notification checking system");
+
     }
 
 }
