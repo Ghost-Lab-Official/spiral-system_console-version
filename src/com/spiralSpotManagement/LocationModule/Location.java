@@ -27,9 +27,9 @@ public class Location extends Location_Level {
                 "`location_name` varchar(255) NOT NULL," +
                 "`location_GPS` varchar(255) NOT NULL," +
                 "`description` TEXT NOT NULL," +
-                "CONSTRAINT `FK_location_idfk2` PRIMARY KEY (`location_id`)," +
-                "CONSTRAINT `FK_parent_idfk3` FOREIGN KEY (`parent_id`) REFERENCES `locations`(`location_id`)," +
-                "FOREIGN KEY (`level_id`) REFERENCES `location_levels`(`level_id`)" +
+                "PRIMARY KEY (`location_id`)," +
+                "CONSTRAINT `location_fk0` FOREIGN KEY (`parent_id`) REFERENCES `locations`(`location_id`)," +
+                "CONSTRAINT  `location_fk1` FOREIGN KEY (`level_id`) REFERENCES `location_levels`(`level_id`)" +
                 ")";
         try{
             PreparedStatement stmt = getConnection().prepareStatement(sql);
