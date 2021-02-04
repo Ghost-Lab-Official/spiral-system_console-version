@@ -1,19 +1,32 @@
 package com.spiralSpotManagement.Server.DbController;
 
+
+
 import com.mysql.jdbc.CommunicationsException;
 
+import java.io.FileReader;
 import java.sql.*;
+import java.util.Properties;
 
 public class CloudStorageConnectionHandler {
     public  Connection getConnection()throws Exception{
         Connection connection = null;
+        FileReader reader = new FileReader("config.properties");
+        Properties propertiesStored = new Properties();
+        propertiesStored.load(reader);
 
         try{
-            String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
-            String username = "2YQ7auowc7";
-            String password = "R2IMVJC67L";
+//            String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
+//            String username = "2YQ7auowc7";
+//            String password = "R2IMVJC67L";
 
-            Class.forName("com.mysql.jdbc.Driver");
+            String url = propertiesStored.getProperty("dbUrl");
+            String username = propertiesStored.getProperty("dbUsername");
+            String password = propertiesStored.getProperty("dbPassword");
+
+
+
+            //Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url,username,password);
 //            System.out.println("database connection is done ... ");
             return connection;
@@ -37,7 +50,7 @@ public class CloudStorageConnectionHandler {
             THIS IS  HOW WE WILL BE CALLING THE CONNECTION TO THE ONLINE DATABASE
      */
 
-    public void checkDbWorking(Connection connection)throws Exception{
+    public static void checkDbWorking(Connection connection)throws Exception{
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("select  * from test_tb");
         System.out.println(" -------------------------- TEST TABLE DATA  ------------------------- ");

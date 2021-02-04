@@ -3,6 +3,7 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
+import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,13 +11,10 @@ import java.util.Scanner;
 /*
             @author : Ntwari Egide - Scrum Master
             USER CONTROLLER  - SERVER CONTROLLER
-            Sychronizing all the methods on the
+            Synchronizing all the methods on the
  */
 
 public class Main {
-
-
-
     public static void ExampleOfUsageOfClientServerConnector()throws Exception{
         RequestBody requestBody = new RequestBody();
 
@@ -47,6 +45,7 @@ public class Main {
         */
     }
     public static void main(String[] args) throws Exception{
+        new SpiralMultiThreadedServer().startServer();
 //        registerUser();
         loginUser();
     }
