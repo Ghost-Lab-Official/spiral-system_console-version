@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ReportOperation {
+public class spotReportController {
 
     public static void viewAllActiveSpots() throws Exception {
 
@@ -21,7 +21,7 @@ public class ReportOperation {
                     "left join users_table on Spot_table.spot_id= users_table.user_id" +
                     " left join Locations on Spot_table.location_id = Locations.locationId" +
                     " left join spot_category on Spot_table.category_id = spot_category.category_id " +
-                    "WHERE Spot_table.status ='active'";
+                    "WHERE Spot_table.status =1";
             ResultSet result = stmt.executeQuery(query);
 
 
@@ -29,7 +29,6 @@ public class ReportOperation {
 
 
         while (result.next()) {
-
             spotsModel  myActiveSpot = new spotsModel(
                     result.getString("spot_id"),
                     result.getString("user_name"),
@@ -50,11 +49,11 @@ public class ReportOperation {
 //            System.out.println(ActiveSpotsList.get(i).getSpot_id() + "| " + ActiveSpotsList.get(i).getUser_id() + " | " + ActiveSpotsList.get(i).getSpot_name());
 //        }
 
-        Iterator it = ActiveSpotsList.iterator();
-        System.out.println("\t\t\t  #Id" + "\t\t\t createdBy" +  "\t\t\t\t Entitled " +  "\t\t\t location" +  "\t\t\t category " +  "\t\t\t\t status " +  "\t\t\t\t views"+  "\t\t\t registrationDate ");
+        Iterator iterator = ActiveSpotsList.iterator();
+        System.out.println("\t\t\t  #Id" + "\t\t\t\t createdBy" +  "\t\t\t\t  Entitled " +  "\t\t\t\t\t location" +  "\t\t\t\t\t category " +  "\t\t\t\t\t\t status " +  "\t\t\t\t\t views"+  "\t\t\t\t\t  registrationDate ");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        while(it.hasNext()){
-            spotsModel spot = (spotsModel)it.next();
+        while(iterator.hasNext()){
+            spotsModel spot = (spotsModel)iterator.next();
             System.out.println(" \t\t\t\t "+spot.getSpot_id() + " \t\t\t\t " + spot.getuser_name()+ " \t\t\t\t " + spot.getSpot_name()+ " \t\t\t\t " + spot.getLocationName()+ " \t\t\t\t " + spot.getCategory_name()+ " \t\t\t\t " + spot.getStatus()
                     + " \t\t\t\t " + spot.getViews()+ " \t\t\t\t " + spot.getRegistration_date());
         }

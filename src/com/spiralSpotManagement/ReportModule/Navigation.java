@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
-public class Navigation extends ReportOperation{
+public class Navigation{
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
     public static void navigateToHome() throws Exception {
@@ -10,27 +10,6 @@ public class Navigation extends ReportOperation{
                     "\t\t\t\t and their solutions so constructive that everyone wants to get\n" +
                     " \t\t\t\t to work and deal with them.");
         System.out.println("\t\t\t\t welcome to spiral app’s management module");
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t=                ADMIN DASHBOARD            = ");
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t|| 1.  Home                                ||");
-        System.out.println("\t\t\t|| 2.  Spot Management                     ||");
-        System.out.println("\t\t\t|| 3.  Users Management                    ||");
-        System.out.println("\t\t\t|| 4.  Exit                                ||");
-        System.out.println("\t\t\t============================================ ");
-
-        System.out.println("Make a choice ");
-        int choice = scanner.nextInt();
-
-        switch (choice) {
-            case 1 -> navigateToHome();
-            case 2 -> navigateToSpotsManagement();
-            case 3 -> navigateToUsersManagement();
-            case 4 -> System.exit(0);
-            default -> System.out.println("Invalid choice");
-        }
     }
 
 
@@ -78,7 +57,7 @@ public class Navigation extends ReportOperation{
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-        ReportOperation reportOperation = new ReportOperation();
+//        ReportOperation reportOperation = new ReportOperation();
         switch (choice) {
             case 1 ->
                 getTheTotalNumberOfRegisteredSpots();
@@ -150,7 +129,7 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-                ReportOperation.viewAllActiveSpots();
+                spotReportController.viewAllActiveSpots();
                 break;
             case 2:
                 //viewAllInActiveSpots();

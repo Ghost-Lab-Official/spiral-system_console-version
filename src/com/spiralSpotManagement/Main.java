@@ -11,7 +11,7 @@ public class Main {
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
 //
         ReportModule report1=new ReportModule();
-        report1.reportDashboard();
+        report1.printDashboard();
     }
 
 }

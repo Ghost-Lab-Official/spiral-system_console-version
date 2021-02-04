@@ -1,8 +1,8 @@
 package com.spiralSpotManagement.ReportModule;
-
 import java.util.Scanner;
 
 public class ReportModule extends Navigation{
+    public static String toContinue;
     public static void reportDashboard() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t============================================= ");
@@ -24,6 +24,18 @@ public class ReportModule extends Navigation{
             case 4-> System.exit(0);
             default -> System.out.println("Invalid choice");
         }
+    }
+
+
+    public static void printDashboard()throws Exception{
+        do{
+            reportDashboard();
+
+            System.out.println("Do you want to continue ? ");
+            Scanner scanToContinue=new Scanner(System.in);
+            toContinue=scanToContinue.nextLine();
+        }while(toContinue.equals("Y") || toContinue.equals("y"));
+
     }
 
 
