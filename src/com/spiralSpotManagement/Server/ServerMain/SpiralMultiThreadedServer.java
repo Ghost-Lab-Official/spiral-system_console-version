@@ -1,5 +1,9 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
+import com.spiralSpotManagement.Server.Model.RequestBody;
+import com.spiralSpotManagement.Server.Model.Users;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Server class
-public class MutliThreadedServer {
+public class SpiralMultiThreadedServer {
     public static void main(String[] args)
     {
         ServerSocket server = null;
@@ -79,53 +83,53 @@ public class MutliThreadedServer {
                 // get the inputstream of client
                 in = new ObjectInputStream(clientSocket.getInputStream());
 
-                MultiThreadedClient.RequestBody requestBody;
-                while ((requestBody = (MultiThreadedClient.RequestBody) in.readObject()) != null) {
+                RequestBody requestBody;
+                while ((requestBody = (RequestBody) in.readObject()) != null) {
                     //Reading the url
-//                    String url = requestBody.getUrl();
-//                    switch (url){
-//                        case "/users":
-//
-//                            break;
-//
-//                        case "/spot":
-//
-//                            break;
-//
-//                        case "sport-category":
-//                            break;
-//
-//                        case "/search":
-//                            break;
-//
-//                        case "/report":
-//                            break;
-//
-//                        case "/locations":
-//                            break;
+                    String url = requestBody.getUrl();
 
-//                        case "/billing":
-//                            break;
-//
-//                        default:
-//
-//                            break;
-//
-//
-//                    }
+                    List<Object> responseObject = null;
+                    switch (url){
+                        case "/users":
+
+                            responseObject =  new UserController().mainMethod(requestBody);
+                            break;
+
+                        case "/spot":
+
+                            break;
+
+                        case "sport-category":
+                            break;
+
+                        case "/search":
+                            break;
+
+                        case "/report":
+                            break;
+
+                        case "/locations":
+                            break;
+
+                        case "/billing":
+                            break;
+
+                        default:
+
+                    }
                     // writing the received message from
                     // client
-                    MultiThreadedClient.Users users = new MultiThreadedClient.Users();
-                    users.setEmail(((MultiThreadedClient.Users) requestBody.getObject()).getEmail());
-                    System.out.println(users.getEmail());
-//                    System.out.printf(
-//                            " Sent from the client: %s\n",
-//                            requestBody.getObject());
-                    List<MultiThreadedClient.Users> usersList = new ArrayList<>();
-                    usersList.add(users);
-                    usersList.add(users);
+//                   Users users = new Users();
+//                    users.setEmail(((Users) requestBody.getObject()).getEmail());
+//                    System.out.println(users.getEmail());
+////                    System.out.printf(
+////                            " Sent from the client: %s\n",
+////                            requestBody.getObject());
+//                    List<Users> usersList = new ArrayList<>();
+//                    usersList.add(users);
+//                    usersList.add(users);
 
-                    out.writeObject(usersList);
+                    out.writeObject(responseObject);
                 }
             }
             catch (IOException | ClassNotFoundException e) {
