@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.LocationModule;
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.UUID;
@@ -59,6 +60,29 @@ public class Location extends CloudStorageConnection {
         String result = "false";
         String location_id = UUID.randomUUID().toString();
         String par_id = parent_id==null || parent_id.trim()==""? "": parent_id;
+        String sql = "INSERT INTO locations(" +
+                "location_id,level_id,parent_id,location_name,location_GPS,description)" +
+                " VALUES(?,?,?,?,?,?)";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, location_id);
+            stmt.setString(2, level_id);
+            stmt.setString(3, par_id);
+            stmt.setString(4, location_name);
+            stmt.setString(5, location_GPS);
+            stmt.setString(6, description);
+            int inserted_rec = stmt.executeUpdate();
+            if(inserted_rec == 1){
+                result = location_id;
+            }
+            if(conn != null){
+                conn.close();
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         return result;
     }
 }
