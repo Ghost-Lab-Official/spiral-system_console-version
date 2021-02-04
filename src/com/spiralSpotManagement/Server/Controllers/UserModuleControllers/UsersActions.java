@@ -4,14 +4,24 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.User;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Base64;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UsersActions {
     String createUserQuery = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location,user_status) values (?,?,?,?,?,?,?,?,?,?)";
     String loginUserQuery = "SELECT * FROM users_table WHERE email = ? AND password = ?";
+    String secreteKey = "SpiralSystemPrivateKeyForAuthentication";
 
     public static boolean checkIfUserExist(Connection connection,String email) throws Exception {
         String sql = "SELECT * FROM users_table WHERE email = ?";
@@ -66,17 +76,16 @@ public class UsersActions {
         preparedStatement.setString(1,userToLogin.getEmail());
         preparedStatement.setString(2,userToLogin.getPassword());
         ResultSet rs = preparedStatement.executeQuery();
+
+        String token = "";
         if (rs.next()){
             checkUser = true;
-//            generateJwtToken();
         }
         else{
-            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect");
+            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect\n"+token);
         }
 
         return new ResponseStatus(200,"LOGGED IN","You are logged in ");
     }
-
-
 
 }
