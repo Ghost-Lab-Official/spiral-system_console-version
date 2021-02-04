@@ -6,26 +6,47 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+/**
+ *@author kerie and blessing
+ *@description  class that will help in search by popularity
 
+ **/
 public class SearchByPopularity {
-
+	/**
+	 *@description   method to  make array of all popular stops to be displayed
+	 * @param connection
+	 *
+	 * @return Array of Popular spots
+	 * @throws SQLException
+	 */
 	public static ArrayList<String> popularityArray(java.sql.Connection connection) throws SQLException{
 		ArrayList<String> spots=new ArrayList<String>();
 
+
 		String SelectRatesquery="select *from Spot_table order by rates desc limit 5";
 	  String SelectViewsquery="select *from Spot_table order by views desc limit 5";
-		 PreparedStatement ptRates=connection.prepareStatement(SelectRatesquery);
-		 PreparedStatement ptViews=connection.prepareStatement(SelectViewsquery);
-		 ResultSet Ratesresults=ptRates.executeQuery();
-	     ResultSet Viewsresults=ptViews.executeQuery();
 
+		/**
+		 * @description  query to  to fetch popular spots by rates they have  into array of pupular spots to be displayed to user
+		 * @auther izere uwonkunda kerie
+		 */
+		PreparedStatement ptRates=connection.prepareStatement(SelectRatesquery);
+		 ResultSet Ratesresults=ptRates.executeQuery();
 		 while( Ratesresults.next()) {
 			 String spotName= Ratesresults.getString("spot_name");
 			if(!spots.contains(spotName)) {
 				 spots.add(spotName);
 			}
-					 
 		 }
+
+
+		/**
+		 * @description  query to  to fetch popular spots by views they have  into array of popular spots to be displayed to user
+		 * if there is duplicate(if spots has high rates and high vies ata same time we keep it once) we don't add it to our array
+		 * @auther izere uwonkunda kerie
+		 */
+		PreparedStatement ptViews=connection.prepareStatement(SelectViewsquery);
+		ResultSet Viewsresults=ptViews.executeQuery();
 		 while(  Viewsresults.next() ) {
 			 String spotName= Viewsresults.getString("spot_name");
 
@@ -34,9 +55,8 @@ public class SearchByPopularity {
 				 spots.add(spotName);
 			}	 
 		 }
-		
-		
-		 
+
+
 		String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
 		PreparedStatement sq = connection.prepareStatement(SelectMostSearchedQuery);
 
@@ -70,8 +90,8 @@ public class SearchByPopularity {
 
 		CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
 		// cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
-		popularityByRatesArray(cloudStorageConnection.getConnection());
-		popularSpots.addAll(popularityByRatesArray(cloudStorageConnection.getConnection()));
+		popularityArray(cloudStorageConnection.getConnection());
+		popularSpots.addAll(popularityArray(cloudStorageConnection.getConnection()));
 		DisplayPopularSpots(popularSpots);
 		int NO;
 		System.out.print("choose on one");
