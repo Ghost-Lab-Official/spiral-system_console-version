@@ -9,9 +9,9 @@ import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
 public class SearchByPopularity {
 
-	public static ArrayList<String> popularityByRatesArray(java.sql.Connection connection) throws SQLException{
+	public static ArrayList<String> popularityArray(java.sql.Connection connection) throws SQLException{
 		ArrayList<String> spots=new ArrayList<String>();
-<<<<<<< HEAD
+
 		String SelectRatesquery="select *from Spot_table order by rates desc limit 5";
 	  String SelectViewsquery="select *from Spot_table order by views desc limit 5";
 		 PreparedStatement ptRates=connection.prepareStatement(SelectRatesquery);
@@ -35,31 +35,24 @@ public class SearchByPopularity {
 			}	 
 		 }
 		
-		 return spots;
-=======
-		String SelectRatesquery="select * from Spot_table order by rates desc limit 5";
-		PreparedStatement pt=connection.prepareStatement(SelectRatesquery);
-		ResultSet results=pt.executeQuery();
+		
+		 
 		String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
 		PreparedStatement sq = connection.prepareStatement(SelectMostSearchedQuery);
 
 		ResultSet searcResults = sq.executeQuery();
 
-
-		while(results.next()) {
-
-			String spotName = results.getString("spot_name");
-			spots.add(spotName);
-		}
-
 		while (searcResults.next()){
 
 			String searchedSpot = searcResults.getString("searched_query");
-			spots.add(searchedSpot);
+
+			 if(!spots.contains(searchedSpot)) {
+				 spots.add(searchedSpot);
+			}	
+			
 		}
 
 		return spots;
->>>>>>> 7e1f16bd6df32ea8f62acdea0290ccbe8c5dce73
 	}
 
 	public static void DisplayPopularSpots(ArrayList<String> popularSpots) {
