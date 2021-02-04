@@ -30,7 +30,5 @@ public class SearchCategories {
             case 3 -> filter.messageFilter();
             default -> System.out.println("Invalid option");
         }
-
-        filter.spotFilter(stmt);
     }
 }
