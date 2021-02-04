@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
+import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.Users;
 
@@ -14,6 +15,24 @@ import java.util.List;
 
 // Server class
 public class SpiralMultiThreadedServer {
+
+
+
+/*
+* This method is called once to set the db configurations
+*/
+
+/*
+    public void startServer()throws Exception{
+    String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
+    String username = "2YQ7auowc7";
+    String password = "R2IMVJC67L";
+
+    PropertyVariables propertyVariables = new PropertyVariables(url,username,password,3306l,1000l);
+    propertyVariables.setPropertiesInFile();
+  }
+  */
+
     public static void main(String[] args)
     {
         ServerSocket server = null;
