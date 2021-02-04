@@ -33,18 +33,20 @@ String concat=searcheq+" on "+ madate;
 
     }
 
-
+     // author @Mugisha Isaac
+    // method that prints the most searched spot by a loggedin user
     public static void viewRecentOfMostSearched(Connection con) throws  SQLException{
         try {
             Statement stm = con.createStatement();
-            ResultSet res = stm.executeQuery("SELECT DISTINCT searched_query,count(history_id) AS frequency FROM searchHistory WHERE searched_query ='hotels in Rwanda' AND user_id=1 ORDER BY frequency DESC");
-
-            System.out.println("Recent searches");
+            ResultSet res = stm.executeQuery("select searched_query, count(*) AS times from `searchHistory` group by searched_query order by times desc");
+            System.out.println("Recent Most Searched Spot By Their Order");
+            System.out.println("----------------------------------------");
+            System.out.println("Number\t\t Query \t\t\t\t\t Times");
             int i = 1;
             while (res.next()) {
                 String query = res.getString("searched_query");
-                System.out.println("----------------");
-                System.out.println(i + " " + query);
+                int times = res.getInt("times");
+                System.out.println(i + "\t\t\t" + query + "\t\t\t"+times);
                 i++;
             }
         }
@@ -52,6 +54,23 @@ String concat=searcheq+" on "+ madate;
             System.out.println(ex);
         }
     }
+
+
+    // author Mugisha Isaac
+    // method to print recents for an non-loggedin user
+
+//    public static  void viewRecentForUnauthonticatedUser(Connection con,String ipaddress) throws  SQLException{
+//        // using ip address to give most searched spots in that area
+//        try{
+//          String query = "SELECT searhed_query,max()  "
+//          Statement stm = con.createStatement();
+//          ResultSet res = stm.executeQuery(query);
+//        }
+//        catch(Exception ex){
+//            System.out.println(ex);
+//        }
+//    }
+
 
     public static void main(String[] args) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -82,7 +101,6 @@ String concat=searcheq+" on "+ madate;
             break;
 
     }
-
         }while( choice!=2);
 
         }
