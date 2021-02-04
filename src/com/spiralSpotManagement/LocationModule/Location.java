@@ -42,13 +42,23 @@ public class Location extends CloudStorageConnection {
         return query_ok;
     }
 
-
-    public HashMap<String, String> newLocation(
+    /**
+     * Registering a new location. This function will take:
+     * @param location_name the new location name
+     * @param location_GPS the new location GPS coordinates
+     * @param description the new location description
+     * @param level_id the new location's location level id
+     * @param parent_id the new location's parent location id. It can be null or empty string if no parent exists.
+     * @return String the new location id or false in case of query failure.
+     * @author Harerimana Egide
+     */
+    public String newLocation(
             String location_name, String location_GPS, String description,
             String level_id, String parent_id
     ) {
-        HashMap<String, String> location_map = new HashMap<>();
+        String result = "false";
         String location_id = UUID.randomUUID().toString();
-        return location_map;
+        String par_id = parent_id==null || parent_id.trim()==""? "": parent_id;
+        return result;
     }
 }
