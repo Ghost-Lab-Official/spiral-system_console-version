@@ -20,7 +20,7 @@ public class SearchCategories {
         System.out.println("\t\t\t|| 1.  SEARCH SPOT                         ||");
         System.out.println("\t\t\t|| 2.  SEARCH PEOPLE                       ||");
         System.out.println("\t\t\t|| 3.  SEARCH MESSAGE                      ||");
-        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t============================================ ");
         System.out.print("Enter Your choice: ");
         int option = scanner.nextInt();
 

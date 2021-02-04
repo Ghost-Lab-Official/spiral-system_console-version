@@ -9,10 +9,10 @@ public class Filter {
         Scanner scanInput=new Scanner(System.in);
         String searchKey;
 
-        System.out.print("\n\t\t\t Search a spot: \t");
+        System.out.print("\n\t\t\t Search a spot: ");
         searchKey = scanInput.nextLine();
 
-        String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%'";
+        String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' ORDER BY registration_date DESC";
 
         ResultSet rs = stmt.executeQuery(sql);
         Boolean found = false;
