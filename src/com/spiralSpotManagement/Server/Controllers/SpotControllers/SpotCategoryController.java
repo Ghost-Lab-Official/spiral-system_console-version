@@ -28,6 +28,14 @@ public class SpotCategoryController {
                 usersObject.add((Object) loggedInStatus);
                 return  usersObject;
 
+            case "getAll":
+                List<SpotCategory> spotCategoryList = new SpotCategoryActions().getAllSpotCategories();
+                for (SpotCategory spotCategory:spotCategoryList){
+                    usersObject.add((Object) spotCategory);
+                }
+
+                return  usersObject;
+
             default:
                 return usersObject;
         }

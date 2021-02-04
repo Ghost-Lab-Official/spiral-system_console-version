@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -86,6 +87,24 @@ public class SpotCategoryView {
             Send Request Body
          */
         ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response : responseBody.getResponse()) {
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
+            System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+//
+    public void GetSpotCategory() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/sportCategory");
+        requestBody.setAction("getAll");
+        requestBody.setObject(null);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
 
         for (Object response: responseBody.getResponse()){
@@ -96,27 +115,6 @@ public class SpotCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
 
-
-//        try {
-//            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
-//            Connection connection = cloudStorageConnection.getConnection();
-//            String sql = "UPDATE spot_category SET category_name=?,description=?,status=? WHERE category_id=?";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//
-//            statement.setString(1, category_name);
-//            statement.setString(2, description);
-//            statement.setString(3, status);
-//            statement.setInt(4, category_id);
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println("Sorry! Try again Later");
-//            e.printStackTrace();
-//        }
-    }
-//
-//    public void GetspotCategory() throws Exception {
-//
-//
 //        try {
 //            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
 //            Connection connection = cloudStorageConnection.getConnection();
@@ -138,9 +136,9 @@ public class SpotCategoryView {
 //            System.out.println("Sorry! Try again Later");
 //            ex.printStackTrace();
 //        }
-//
-//
-//    }
+
+
+    }
 //
 //    public void Changespotstatus() throws Exception {
 //

@@ -79,9 +79,9 @@ public class Main {
             case 2:
                 new SpotCategoryView().UpdateCategory();
                 break;
-//            case 3 :
-//                GetspotCategory();
-//                break;
+            case 3 :
+                new SpotCategoryView().GetSpotCategory();
+                break;
 //            case 4 :
 //                Changespotstatus();
 //                break;
