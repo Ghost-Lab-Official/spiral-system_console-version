@@ -70,7 +70,7 @@ public class RecentSearches {
      * that of the user
      */
 
-    public static void viewRecentForUnauthonticatedUser(Connection con) throws SQLException {
+    public static void viewRecentForUnauthanticatedUser(Connection con) throws SQLException {
         try {
             Statement stm = con.createStatement();
             ResultSet res = stm.executeQuery(
@@ -114,7 +114,7 @@ public class RecentSearches {
                         viewRecentOfMostSearched(cloudStorageConnection.getConnection());
                         break;
                     case 3:
-                        viewRecentForUnauthonticatedUser(cloudStorageConnection.getConnection());
+                        viewRecentForUnauthanticatedUser(cloudStorageConnection.getConnection());
                         break;
                     case 4:
                         System.out.println("program terminated");
