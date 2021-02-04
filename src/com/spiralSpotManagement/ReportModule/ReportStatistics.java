@@ -155,7 +155,7 @@ public class ReportStatistics {
         System.out.println("\t\t\t============================================= ");
     }
 
-    public static void viewAllArchivedSpots() throws Exception {
+    public static void viewAllInactiveSpots() throws Exception {
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
@@ -285,7 +285,7 @@ public class ReportStatistics {
 
     public static void main(String[] args) throws Exception {
         viewAllSpots();
-        viewAllArchivedSpots();
+        viewAllInactiveSpots();
         viewAllActiveSpots();
         getTheTotalNumberOfRegisteredSpots();
         getTheTotalNumberOfActiveSpots();

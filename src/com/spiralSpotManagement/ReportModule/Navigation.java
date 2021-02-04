@@ -152,10 +152,11 @@ public class Navigation extends ReportOperation{
                 ReportOperation.viewAllActiveSpots();
                 break;
             case 2:
-                //viewAllInActiveSpots();
+                viewAllInactiveSpots();
+
                 break;
             case 3:
-//                highlyVisitedSpots();
+                highlyVisitedSpots();
                 break;
             case 4:
                 navigateToSpotsManagement();
