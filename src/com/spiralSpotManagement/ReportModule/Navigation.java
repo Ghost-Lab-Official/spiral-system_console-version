@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
-public class Navigation extends ReportOperation{
+public class Navigation extends SpotReportController{
 //    public static  String toContinue;
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
@@ -63,12 +63,12 @@ public class Navigation extends ReportOperation{
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-        ReportOperation reportOperation = new ReportOperation();
+        SpotReportController spotReportController = new SpotReportController();
         switch (choice) {
-            case 1 -> reportOperation.getTheTotalNumberOfRegisteredSpots();
-            case 2 -> reportOperation.getTheTotalNumberOfActiveSpots();
-            case 3 -> reportOperation.getTheTotalNumberOfInactiveSpots();
-            case 4 -> reportOperation.getTheTotalNumberOfHighlyVisitedSpots();
+            case 1 -> spotReportController.getTheTotalNumberOfRegisteredSpots();
+            case 2 -> spotReportController.getTheTotalNumberOfActiveSpots();
+            case 3 -> spotReportController.getTheTotalNumberOfInactiveSpots();
+            case 4 -> spotReportController.getTheTotalNumberOfHighlyVisitedSpots();
             case 5 -> navigateToSpotsManagement();
             case 6 -> System.exit(0);
             default -> System.out.println("\t\t\t\t Invalid input");
@@ -81,7 +81,7 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of registered spots            ||");
 
-        ReportOperation.getTheTotalNumberOfRegisteredSpots();
+        SpotReportController.getTheTotalNumberOfRegisteredSpots();
         System.out.println("\t\t\t============================================= ");
 
     }
@@ -92,7 +92,7 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of Active spots               ||");
 
-        ReportOperation.getTheTotalNumberOfActiveSpots();
+        SpotReportController.getTheTotalNumberOfActiveSpots();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -101,7 +101,7 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of Inactive spots               ||");
-        ReportOperation.getTheTotalNumberOfInactiveSpots();
+        SpotReportController.getTheTotalNumberOfInactiveSpots();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -111,7 +111,7 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of trending spots               ||");
 
-        ReportOperation.getTheTotalNumberOfHighlyVisitedSpots();
+        SpotReportController.getTheTotalNumberOfHighlyVisitedSpots();
         System.out.println("\t\t\t============================================= ");
     }
 

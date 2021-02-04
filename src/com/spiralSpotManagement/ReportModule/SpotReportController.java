@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class ReportOperation {
+public class SpotReportController {
 
     /**
      * @author Ntezirizaza Erneste
