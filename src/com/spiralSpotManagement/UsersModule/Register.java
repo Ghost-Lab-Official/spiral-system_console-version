@@ -1,17 +1,22 @@
 package com.spiralSpotManagement.UsersModule;
 
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+//import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Scanner;
 
 //somehow done
 
 public class Register {
+
+
     public static void  registerUser(Connection connection) throws Exception{
 
         Scanner scanner = new Scanner(System.in);
@@ -31,11 +36,17 @@ public class Register {
         String password = scanner.nextLine();
         System.out.println("Enter your location ");
         String location = scanner.next();
-
+        if(checkIfUserExist(connection,email)){
+            System.out.println("Email is already used");
+            System.exit(0);
+        }
         byte[] salt = genSalt();
         String securePassword = getSecurePassword(password,salt);
+//        String originalPassword = password;
+//        String generateSecuredPassword = BCrypt.withDefaults().hashToString(originalPassword, password.toCharArray());
+//        boolean matched = BCrypt.checkpw(originalPassword,generateSecuredPassword);
 
-
+//        System.out.println(matched);
         String sql = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location) values (?,?,?,?,?,?,?,?,?)";
 //        getUsers
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -45,7 +56,7 @@ public class Register {
         preparedStatement.setString(4,email);
         preparedStatement.setString(5,gender);
         preparedStatement.setString(6,birthDate);
-        preparedStatement.setString(7,securePassword);
+        preparedStatement.setString(7,password);
         preparedStatement.setInt(8,1);
         preparedStatement.setString(9,location);
         int inserted = preparedStatement.executeUpdate();
@@ -56,22 +67,23 @@ public class Register {
             System.out.println("an error occurred");
         }
     }
-//    public static String getUsers(Connection connection,String userName,String email) throws Exception {
-//        String sql = "SELECT user_name,email FROM users_table";
-//        Statement st = connection.createStatement();
-//        ResultSet rs = st.executeQuery(sql);
-//        while (rs.next()) {
-//            String user_name = rs.getString("user_name");
-//            String email_db = rs.getString("email");
-//            if (user_name == userName){
-//                String errorStatement = "User name is already registered";
-//                return errorStatement;
-//            } else if(email == email_db){
-//                String errorStatement = "User name is already registered";
-//                return errorStatement;
-//            }
-//        }
+//    public String hashPassword(String password,String hash){
+//        return BCrypt.hashpw(password,BCrypt.gensalt(12));
 //    }
+//    public boolean checkIfPasswordsAreEqual(String password, String hash){
+//        return BCrypt.checkpw(password,hash);
+//    }
+    public static boolean checkIfUserExist(Connection connection,String email) throws Exception {
+        String sql = "SELECT * FROM users_table WHERE email = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,email);
+        ResultSet rs = preparedStatement.executeQuery();
+        boolean checkUser = false;
+        if (rs.next()){
+            checkUser = true;
+        }
+        return checkUser;
+    }
     private static byte[] genSalt() throws NoSuchAlgorithmException, NoSuchProviderException {
        //A secure random generator
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG","SUN");
