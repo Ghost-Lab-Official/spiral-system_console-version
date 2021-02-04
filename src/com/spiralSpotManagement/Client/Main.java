@@ -14,12 +14,14 @@ public class Main {
         cloudStorageConnectionHandler.checkDbWorking(cloudStorageConnectionHandler.getConnection());
 
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/users");
 
         Users testingObject = new Users();
         testingObject.setEmail("ntwari@gmal.test");
         testingObject.setFullName("ntwari testing");
         requestBody.setObject(testingObject);
+
+        requestBody.setUrl("/users");
+        requestBody.setAction("register");
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
@@ -34,5 +36,11 @@ public class Main {
             System.out.println("Server replied "
             + (userFound.getEmail()));
         }
+
+        /*
+            WORKING ON USER REGISTRATION
+        */
+
+
     }
 }
