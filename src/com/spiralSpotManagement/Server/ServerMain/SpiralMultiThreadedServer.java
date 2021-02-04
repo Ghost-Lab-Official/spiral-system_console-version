@@ -132,7 +132,7 @@ public class SpiralMultiThreadedServer {
                     out.writeObject(responseObject);
                 }
             }
-            catch (IOException | ClassNotFoundException e) {
+            catch (Exception e) {
                 e.printStackTrace();
             }
             finally {
