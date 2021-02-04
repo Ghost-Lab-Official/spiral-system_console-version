@@ -45,15 +45,11 @@ public class Location_Level extends CloudStorageConnection{
      * @author Harerimana Egide
      * @version 1.0
      * @param level_name the name for new level
-     * @return HashMap containing level_id, level_name, query_ok keys of strings
+     * @return String the new location level id or false in case of query failure.
      */
-    public HashMap<String, String> newLevel(String level_name){
-        HashMap<String, String> level_map = new HashMap<>();
+    public String newLevel(String level_name){
+        String res = "false";
         String level_id = UUID.randomUUID().toString();
-        level_map.put("level_id", level_id);
-        level_map.put("level_name", level_name);
-        level_map.put("query_ok", "false");
-        boolean ok = false;
         try{
             String sql = "INSERT INTO location_levels(level_id,level_name) VALUES(?,?)";
             Connection conn = getConnection();
@@ -62,7 +58,7 @@ public class Location_Level extends CloudStorageConnection{
             stmt.setString(2, level_name);
             int inserted_rec = stmt.executeUpdate();
             if(inserted_rec == 1){
-                level_map.put("query_ok", "true");
+                res = level_id;
             }
             if(conn != null){
                 conn.close();
@@ -70,7 +66,7 @@ public class Location_Level extends CloudStorageConnection{
         }catch(Exception e) {
             System.out.println("ERROR: " + e.getMessage());
         }
-        return level_map;
+        return res;
     }
 
     /**
