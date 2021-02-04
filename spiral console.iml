@@ -7,6 +7,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.49" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.491" level="project" />
+    <orderEntry type="library" name="javax.mail-1.6.2" level="project" />
+    <orderEntry type="library" name="javax.mail" level="project" />
+<<<<<<< HEAD
+    <orderEntry type="library" name="mysql-connector-java-5.1.492" level="project" />
+=======
+    <orderEntry type="library" name="activation-1.1" level="project" />
+>>>>>>> 312a634390dc4a1a0d6ec1e9ab16057e256b8a1a
   </component>
 </module>

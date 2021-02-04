@@ -32,7 +32,7 @@ public class Navigation{
 
         switch (choice) {
             case 1 -> viewAllStatistics();
-            case 2 -> viewAllSpots();
+            case 2 -> printAllSpots();
             case 3 -> viewSpotsByStatus();
             case 4 -> navigateToHome();
             case 5 -> System.exit(0);
@@ -49,7 +49,7 @@ public class Navigation{
         System.out.println("\t\t\t|| 1.  Number of registered spots          ||");
         System.out.println("\t\t\t|| 2.  Number of active spots              ||");
         System.out.println("\t\t\t|| 3.  Number of inactive spots            ||");
-        System.out.println("\t\t\t|| 4.  Number of frequently visited spots  ||");
+        System.out.println("\t\t\t|| 4.  Number of HIghly visited spots      ||");
         System.out.println("\t\t\t|| 5.  Back                                ||");
         System.out.println("\t\t\t|| 6.  Exit                                ||");
         System.out.println("\t\t\t============================================ ");
@@ -57,58 +57,58 @@ public class Navigation{
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-//        ReportOperation reportOperation = new ReportOperation();
         switch (choice) {
-            case 1 ->
-                getTheTotalNumberOfRegisteredSpots();
-            case 2 -> getTheTotalNumberOfActiveSpots();
-            case 3 -> getTheTotalNumberOfInactiveSpots();
-            case 4 -> getTheNumberOfHighlyVisitedSpots();
+            case 1 -> printTheTotalNumberOfRegisteredSpots();
+            case 2 -> printTheTotalNumberOfActiveSpots();
+            case 3 -> printTheTotalNumberOfInActiveSpots();
+            case 4 -> printTheTotalNumberOfHighlyVisitedSpots();
             case 5 -> navigateToSpotsManagement();
             case 6 -> System.exit(0);
             default -> System.out.println("\t\t\t\t Invalid input");
         }
 
     }
-    public static void getTheTotalNumberOfRegisteredSpots() throws Exception {
+    public static void printTheTotalNumberOfRegisteredSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t||    Number of registered spots            ||");
+        System.out.println("\t\t\t Number of registered spots                   ");
 
+        spotReportController.getTheTotalNumberOfRegisteredSpots();
 
     }
 
-    public static void getTheTotalNumberOfActiveSpots() throws Exception {
+    public static void printTheTotalNumberOfActiveSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t||    Number of Active spots               ||");
+        System.out.println("\t\t\t   Number of Active spots                     ");
 
+        spotReportController.getTheTotalNumberOfActiveSpots();
     }
 
-    public static void getTheTotalNumberOfInactiveSpots() throws Exception {
+    public static void printTheTotalNumberOfInActiveSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t||    Number of Inactive spots               ||");
-
+        System.out.println("\t\t\t    Number of Inactive spots               ");
+        spotReportController.getTheTotalNumberOfInactiveSpots();
     }
 
-    public static void getTheNumberOfHighlyVisitedSpots(){
+    public static void printTheTotalNumberOfHighlyVisitedSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t||    Number of trending spots               ||");
+        System.out.println("\t\t\t    Number of trending spots                  ");
 
-//        calculateTheTotalNumberOfHighlyVisitedSpots();
+        spotReportController.getTheTotalNumberOfHighlyVisitedSpots();
     }
 
-    public static void viewAllSpots() throws Exception {
+    public static void printAllSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All            = ");
         System.out.println("\t\t\t============================================= ");
-        //something here
+        spotReportController.viewAllActiveSpots();
     }
 
     public static void viewSpotsByStatus() throws Exception {
