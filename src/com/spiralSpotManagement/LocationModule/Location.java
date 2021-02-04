@@ -20,7 +20,7 @@ public class Location extends Location_Level {
      */
     public boolean createLocationsTable(){
         boolean query_ok = false;
-        String sql = "CREATE TABLE IF NOT EXISTS `locations` (" +
+        String sql = "CREATE TABLE IF NOT EXISTS `Locations` (" +
                 "`location_id` varchar(255) NOT NULL," +
                 "`level_id` varchar(255) NOT NULL," +
                 "`parent_id` varchar(255)," +
