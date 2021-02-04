@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.UsersModule;
 
+<<<<<<< HEAD:src/com/spiralSpotManagement/UsersModule/UsersModule.java
 import java.net.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -163,4 +164,7 @@ public class UsersModule {
 
 =======
 >>>>>>> 312a634390dc4a1a0d6ec1e9ab16057e256b8a1a
+=======
+public class UserController {
+>>>>>>> 4b3c768af2d41de7662bf40cfbe6aec311d53638:src/com/spiralSpotManagement/UsersModule/UserController.java
 }
