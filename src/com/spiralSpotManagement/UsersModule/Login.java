@@ -1,61 +1,74 @@
+/**
+ * @author Mutoni Uwingeneye Denyse
+ *
+ *
+ */
 package com.spiralSpotManagement.UsersModule;
 
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Base64;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.TreeMap;
 
+/**
+ * Login controller
+ * @author Mutoni Uwingeneye Denyse
+ */
 public class Login {
-    private String secretKey = "qbeyS2bwIwlxJa5KBTSFkvyYgHc7E5gtzbrMToWUSzw=";
-    public boolean loginUser(Connection connection) throws Exception{
+    public void loginUser(Connection connection,String email,String password) throws Exception{
         boolean checkUser = false;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your email ");
-        String email = scanner.nextLine();
-        System.out.println("Enter your password ");
-        String password = scanner.nextLine();
-        String sql = "SELECT * FROM users_table WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM users_table WHERE email = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,email);
-        preparedStatement.setString(2,password);
+
         ResultSet rs = preparedStatement.executeQuery();
         if (rs.next()){
-            checkUser = true;
-            generateJwtToken();
+            System.out.println(rs.getString("email"));
+            System.out.println(checkIfPasswordsAreEqual(password,rs.getString("password")));
+            if(checkIfPasswordsAreEqual(password,rs.getString("password"))){
+                checkUser = true;
+                TreeMap <String,String> newPayload = new TreeMap<String,String>();
+                newPayload.put("email",rs.getString("email"));
+                newPayload.put("user_name",rs.getString("user_name"));
+                newPayload.put("user_category",rs.getString("user_Category"));
+                Token loginCredentials = new Token(rs.getString("email"),newPayload);
+                String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
+                System.out.println(userToken);
+            };
         }
         else{
             throw new Exception("invalid credentials");
         }
         System.out.println(checkUser);
-        return checkUser;
     }
-    private String generateJwtToken(){
-        byte[] secret = Base64.getDecoder().decode(this.secretKey);
-        Instant now = Instant.now();
 
-        String token = Jwts.builder()
-                .setSubject("Mutoni Denyse")
-                .claim("name","denyse")
-                .claim("name","denyse")
-                .setIssuedAt(Date.from(now))
-                .setExpiration(Date.from(now.plus(1, ChronoUnit.DAYS)))
-                .signWith(Keys.hmacShaKeyFor(secret))
-                .compact();
 
-        System.out.println(token);
-        return token;
+    /**
+     * @author Mutoni Uwingeneye Denyse
+     * The checkIfPasswordsAreEqual checks if the passwords are equal
+     *make sure that the passwords are equal or get the error
+     * @param password password that is not hashed, of String type
+     * @param hash hashed password , of String hash;
+     * @return decoded string, of String type
+     *
+     * @throws IllegalArgumentException invalid password
+     */
+    public boolean checkIfPasswordsAreEqual(String password, String hash){
+        boolean rightPassword = false;
+        try{
+            rightPassword =  BCrypt.checkpw(password,hash);
+
+        }catch (IllegalArgumentException e){
+            System.out.println("Wrong credentials");
+        }
+        return rightPassword;
     }
-    public static void main(String[] args) throws Exception{
-        Login login = new Login();
 
-        login.loginUser(new CloudStorageConnection().getConnection());
-    }
+//    public static void main(String[] args) throws Exception{
+//        Login login = new Login();
+//        login.loginUser(new CloudStorageConnection().getConnection();
+//    }
 }
