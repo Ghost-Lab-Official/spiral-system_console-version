@@ -1,11 +1,10 @@
-package com.spiralSpotManagement.DbConnection;
+package com.spiralSpotManagement.Server.DbController;
 
 import com.mysql.jdbc.CommunicationsException;
-import com.mysql.jdbc.SQLError;
 
 import java.sql.*;
 
-public class CloudStorageConnection {
+public class CloudStorageConnectionHandler {
     public  Connection getConnection()throws Exception{
         Connection connection = null;
 
@@ -54,6 +53,4 @@ public class CloudStorageConnection {
 //    public static void main(String[] args)throws Exception {
 //        checkDbWorking(getConnection());
 //    }
-
-
 }
