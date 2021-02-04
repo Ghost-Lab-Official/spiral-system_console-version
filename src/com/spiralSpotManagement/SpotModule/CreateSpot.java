@@ -52,7 +52,7 @@ public class CreateSpot {
 //    Insert spot function
 
     public static void insertSpot(Connection connection) throws SQLException{
-        String spot_id="1", user_id="1", category_id="", location_id="", spot_name="", spot_description="", registration_date="2021-01-31", status="";
+        String spot_id="6", user_id="1", category_id="45", location_id="5655", spot_name="Computer", spot_description="Balck and brown table found in Ouuaagaadouuguuu", registration_date="2021-01-31", status="1";
         Scanner scan = new Scanner(System.in);
         CreateSpot spot = new CreateSpot(user_id, category_id, location_id, spot_name, spot_description, registration_date, status, spot_id);
         try (PreparedStatement preparedStatement = connection.prepareStatement(InsertSql)){
