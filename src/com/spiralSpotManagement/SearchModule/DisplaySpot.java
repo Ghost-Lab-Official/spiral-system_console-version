@@ -2,9 +2,20 @@ package com.spiralSpotManagement.SearchModule;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/* this is class to display search result to the user. It has two levels; levelOne which include
+* those results that needs to be filtered again and give specific results on the next level which is
+* levelTwo
+*
+* This is displayClass is the door to the entire kingdom of the client. We are starting client......
+*
+* @author:Anne Bethiane */
+
+
 public class DisplaySpot {
-    public static Scanner scanner = new Scanner(System.in);
-    private  static  String toContinue;
+
+    public  static Scanner scanner = new Scanner(System.in);
+    private static  String toContinue;
     private static int special;
     private static int filtered;
 
@@ -23,7 +34,7 @@ public class DisplaySpot {
 
     public static int filter() {
         System.out.println("The filtered result is:\n");
-        System.out.println("Enter the query of your choice");
+        System.out.println("Enter the query of your choice to meet our menu");
         filtered = scanner.nextInt();
             if (special != filtered) {
                 System.out.println("Invalid input");
@@ -50,10 +61,9 @@ public class DisplaySpot {
 
     public static void main(String[] args) throws IOException {
     do{
-
-    levelOne();
-    filter();
-        System.out.println("Byarangiye birongera biratangira");
+        levelOne();
+        filter();
+        System.out.println("Maze ndore!");
         //userChoice = levelOne();
         System.out.println(" Do you want to continue Y/N ? ");
         toContinue = scanner.next();
