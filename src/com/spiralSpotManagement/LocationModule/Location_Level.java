@@ -14,6 +14,7 @@ import java.util.UUID;
  * Location level management class. It contains all methods for manipulating location_levels table.
  * @author Harerimana Egide
  * @version 1.0
+ * @since 2021-02-02
  */
 public class Location_Level extends CloudStorageConnection{
 
