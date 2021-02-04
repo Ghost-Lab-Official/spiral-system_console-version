@@ -13,7 +13,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Server class
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
 public class SpiralMultiThreadedServer {
+
+
+
+/*
+* This method is called once to set the db configurations
+*/
+
+//
+//    public void startServer()throws Exception{
+//    String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
+//    String username = "2YQ7auowc7";
+//    String password = "R2IMVJC67L";
+//
+//    PropertyVariables propertyVariables = new PropertyVariables(url,username,password,3306l,1000l);
+//    propertyVariables.setPropertiesInFile();
+//  }
+
+
     public static void main(String[] args)
     {
         ServerSocket server = null;
