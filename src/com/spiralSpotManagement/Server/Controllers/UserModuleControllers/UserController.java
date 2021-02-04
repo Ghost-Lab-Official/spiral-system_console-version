@@ -7,17 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 /*
 
-            UNTILL HERE LET'S TRY TO SEND SOME LIST OF DATA : USERS TO THE SERVER TO CLIENT
+            UNTILL HERE LET'S TRY TO SEND SOME LIST OF DATA : USER
  */
 
 public class UserController {
     public List<Object> mainMethod(RequestBody requestBody){
         String action = requestBody.getIndex();
-        switch (action){
-            case "post":
-                // all logic goes here
-                break;
-        }
+
 
         List<Users> usersList = new ArrayList<>();
         Users userExample = new Users();
