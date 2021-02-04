@@ -87,10 +87,10 @@ public class Main {
 
         for (Object response: responseBody.getResponse()){
             ResponseStatus responseStatus = (ResponseStatus) response;
-            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+"---------------------------");
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
-            System.out.println("\t\t -----------------------------------------------------------------------------");
+            System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
 }

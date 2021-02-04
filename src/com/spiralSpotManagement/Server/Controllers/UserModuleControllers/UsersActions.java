@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class UsersActions {
-    String createUserQuery = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location) values (?,?,?,?,?,?,?,?,?)";
+    String createUserQuery = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location,user_status) values (?,?,?,?,?,?,?,?,?,?)";
 
     public static boolean checkIfUserExist(Connection connection,String email) throws Exception {
         String sql = "SELECT * FROM users_table WHERE email = ?";
@@ -43,6 +43,7 @@ public class UsersActions {
             preparedStatement.setString(7,userToRegister.getPassword());
             preparedStatement.setInt(8,1);
             preparedStatement.setString(9,userToRegister.getLocation());
+            preparedStatement.setString(10,"inactive");
 
             int inserted = preparedStatement.executeUpdate();
             if(inserted == 1){
