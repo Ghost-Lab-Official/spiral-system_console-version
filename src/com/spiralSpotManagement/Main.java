@@ -11,5 +11,4 @@ public class Main {
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
 
     }
-
 }

@@ -8,7 +8,6 @@ import java.sql.*;
 public class CloudStorageConnection {
     public  Connection getConnection()throws Exception{
         Connection connection = null;
-
         try{
             String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
             String username = "2YQ7auowc7";
