@@ -7,8 +7,8 @@ public class Navigation extends ReportOperation{
     public static  int choice;
     public static void navigateToHome() throws Exception {
         System.out.println("\t\t\t\t Good management is the art of making problems so interesting\n" +
-                "\t\t\t\t and their solutions so constructive that everyone wants to get\n" +
-                " \t\t\t\t to work and deal with them.");
+                    "\t\t\t\t and their solutions so constructive that everyone wants to get\n" +
+                    " \t\t\t\t to work and deal with them.");
         System.out.println("\t\t\t\t welcome to spiral app’s management module");
 
         Scanner scanner = new Scanner(System.in);
@@ -33,8 +33,7 @@ public class Navigation extends ReportOperation{
         }
     }
 
-
-    //=================================================================================================
+//=================================================================================================
 //=======================              SPOTS RELATED           ====================================
     public static void navigateToSpotsManagement() throws Exception {
 
@@ -80,8 +79,7 @@ public class Navigation extends ReportOperation{
         int choice = scanInput.nextInt();
         ReportOperation reportOperation = new ReportOperation();
         switch (choice) {
-            case 1 ->
-                    getTheTotalNumberOfRegisteredSpots();
+            case 1 -> getTheTotalNumberOfRegisteredSpots();
             case 2 -> getTheTotalNumberOfActiveSpots();
             case 3 -> getTheTotalNumberOfInactiveSpots();
             case 4 -> getTheNumberOfHighlyVisitedSpots();
@@ -151,7 +149,7 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-                //ReportOperation.viewAllActiveSpots();
+                ReportOperation.viewAllActiveSpots();
                 break;
             case 2:
                 //viewAllInActiveSpots();
@@ -285,5 +283,5 @@ public class Navigation extends ReportOperation{
 
 
 
-
 }
+
