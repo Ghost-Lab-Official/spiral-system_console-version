@@ -1,6 +1,11 @@
 package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
+/*
+            @author : Ishimwe Gervais
+            Location levels modal format
+            This is describing the entities reserved for the Location_levels table
+ */
 
 public class LocationLevels implements Serializable {
   private Integer level_id;
