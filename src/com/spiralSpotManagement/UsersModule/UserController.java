@@ -1,4 +1,4 @@
 package com.spiralSpotManagement.UsersModule;
 
-public class UsersModule {
+public class UserController {
 }
