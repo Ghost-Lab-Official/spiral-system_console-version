@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 
 public class UsersActions {
     String createUserQuery = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location,user_status) values (?,?,?,?,?,?,?,?,?,?)";
+    String loginUserQuery = "SELECT * FROM users_table WHERE email = ? AND password = ?";
 
     public static boolean checkIfUserExist(Connection connection,String email) throws Exception {
         String sql = "SELECT * FROM users_table WHERE email = ?";
@@ -57,4 +58,25 @@ public class UsersActions {
             return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
         }
     }
+
+    public ResponseStatus loginUser(User userToLogin)throws Exception{
+        boolean checkUser = false;
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(loginUserQuery);
+        preparedStatement.setString(1,userToLogin.getEmail());
+        preparedStatement.setString(2,userToLogin.getPassword());
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()){
+            checkUser = true;
+//            generateJwtToken();
+        }
+        else{
+            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect");
+        }
+
+        return new ResponseStatus(200,"LOGGED IN","You are logged in ");
+    }
+
+
+
 }

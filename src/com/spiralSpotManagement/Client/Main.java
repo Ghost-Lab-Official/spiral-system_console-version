@@ -15,6 +15,8 @@ import java.util.Scanner;
 
 public class Main {
 
+
+
     public static void ExampleOfUsageOfClientServerConnector()throws Exception{
         RequestBody requestBody = new RequestBody();
 
@@ -45,7 +47,8 @@ public class Main {
         */
     }
     public static void main(String[] args) throws Exception{
-        registerUser();
+//        registerUser();
+        loginUser();
     }
 
     public static void registerUser()throws Exception{
@@ -99,4 +102,41 @@ public class Main {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
+
+
+    public static void loginUser()throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your email ");
+        String email = scanner.nextLine();
+        System.out.println("Enter your password ");
+        String password = scanner.nextLine();
+
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+
+        /*
+               Define Request Body
+         */
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("login");
+        requestBody.setObject(user);
+
+        /*
+            Send Request Body
+         */
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+
+
 }

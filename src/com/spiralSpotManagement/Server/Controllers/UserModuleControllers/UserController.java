@@ -18,8 +18,13 @@ public class UserController {
         List<Object> usersObject = new ArrayList<>();
         switch (action){
             case "register":
-                ResponseStatus status = new UsersActions().registerUserInDb((User) requestBody.getObject());
-                usersObject.add((Object) status);
+                ResponseStatus registeredStatus = new UsersActions().registerUserInDb((User) requestBody.getObject());
+                usersObject.add((Object) registeredStatus);
+                return  usersObject;
+
+            case "login":
+                ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
+                usersObject.add((Object) loggedInStatus);
                 return  usersObject;
         }
 
