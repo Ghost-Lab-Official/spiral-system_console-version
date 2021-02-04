@@ -7,6 +7,8 @@ public class LocationLevels implements Serializable {
   private String level_name;
   private String description;
 
+  public LocationLevels(){}
+
     public LocationLevels(Integer level_id, String level_name, String description) {
         this.level_id = level_id;
         this.level_name = level_name;
