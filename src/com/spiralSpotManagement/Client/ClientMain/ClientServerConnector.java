@@ -12,6 +12,13 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+
+         @author : Ntwari Egide - Scrum Master
+         @author : Ishimwe Gervais
+
+ */
+
 public class ClientServerConnector {
     public ResponseBody ConnectToServer(RequestBody requestBody)throws Exception
     {
@@ -50,7 +57,7 @@ public class ClientServerConnector {
                 out.flush();
 
                 // displaying server reply
-                 List<Object> usersFound = (List<Object>) in.readObject();
+                 List<Object> dataReturned = (List<Object>) in.readObject();
 //                 for (Users user:usersFound){
 //                     System.out.println("Server replied "
 //                             + user.getEmail());
@@ -60,7 +67,7 @@ public class ClientServerConnector {
             // closing the scanner object
             sc.close();
 
-            ResponseBody responseBody = new ResponseBody(usersFound);
+            ResponseBody responseBody = new ResponseBody(dataReturned);
 
             return responseBody;
 

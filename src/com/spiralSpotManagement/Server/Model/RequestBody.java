@@ -1,16 +1,22 @@
 package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
 
 public class RequestBody implements Serializable {
     private String url; // /users
-    private String index; //update
+    private String action; //update
     private Object object; //{}
 
     public RequestBody(){}
-    public RequestBody(String url, String index, Object object) {
+    public RequestBody(String url, String action, Object object) {
         this.url = url;
-        this.index = index;
+        this.action = action;
         this.object = object;
     }
         /*
@@ -27,12 +33,12 @@ public class RequestBody implements Serializable {
         this.url = url;
     }
 
-    public String getIndex() {
-        return index;
+    public String getAction() {
+        return action;
     }
 
-    public void setIndex(String index) {
-        this.index = index;
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public Object getObject() {

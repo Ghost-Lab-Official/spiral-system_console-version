@@ -1,8 +1,15 @@
 package com.spiralSpotManagement.Server.Model;
 
+import java.io.Serializable;
 import java.util.List;
+/*
 
-public class ResponseBody {
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
+
+public class ResponseBody implements Serializable {
     private List<Object> response;
 
     public List<Object> getResponse() {

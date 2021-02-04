@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Server class
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
 public class SpiralMultiThreadedServer {
 
 
@@ -22,7 +28,7 @@ public class SpiralMultiThreadedServer {
 * This method is called once to set the db configurations
 */
 
-/*
+
     public void startServer()throws Exception{
     String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
     String username = "2YQ7auowc7";
@@ -31,7 +37,7 @@ public class SpiralMultiThreadedServer {
     PropertyVariables propertyVariables = new PropertyVariables(url,username,password,3306l,1000l);
     propertyVariables.setPropertiesInFile();
   }
-  */
+
 
     public static void main(String[] args)
     {
@@ -151,7 +157,7 @@ public class SpiralMultiThreadedServer {
                     out.writeObject(responseObject);
                 }
             }
-            catch (IOException | ClassNotFoundException e) {
+            catch (Exception e) {
                 e.printStackTrace();
             }
             finally {
