@@ -1,19 +1,12 @@
 package com.spiralSpotManagement.LocationModule;
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
-import java.util.HashMap;
-
-public class LocationModule {
-    /**
-     * Registering a location
-     */
-    public static boolean registerLocation(){
-        HashMap<String,String> location = new HashMap<>();
-        location.put("_id", "12345");
-        return false;
-    }
-
-    public static void main(String[] args){
-        registerLocation();
-    }
+/**
+ * LocationModule class. This class extends all methods for location and location_levels tables
+ *  data manipulation.
+ * @author Harerimana Egide
+ * @since 2021-02-04
+ * @version 1.0
+ */
+public class LocationModule extends Location {
+    public LocationModule(){}
 }

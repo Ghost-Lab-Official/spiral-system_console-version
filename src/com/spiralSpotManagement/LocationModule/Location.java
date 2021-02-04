@@ -1,5 +1,5 @@
 package com.spiralSpotManagement.LocationModule;
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.LocationModule.Location_Level;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.util.UUID;
  * @version 1.0
  * @since 2021-02-03
  */
-public class Location extends CloudStorageConnection {
+public class Location extends Location_Level {
 
     /**
      *  Create <i>locations</i> table when it does not exist.
