@@ -5,13 +5,13 @@ import java.util.Scanner;
 public class Navigation{
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
-    public static void navigateToHome() throws Exception {
-        System.out.println("\t\t\t\t Good management is the art of making problems so interesting\n" +
-                    "\t\t\t\t and their solutions so constructive that everyone wants to get\n" +
-                    " \t\t\t\t to work and deal with them.");
+    public static void navigateToHome() {
+        System.out.println("""
+                \t\t\t\t Good management is the art of making problems so interesting
+                \t\t\t\t and their solutions so constructive that everyone wants to get
+                 \t\t\t\t to work and deal with them.""");
         System.out.println("\t\t\t\t welcome to spiral app’s management module");
     }
-
 
 //=================================================================================================
 //=======================              SPOTS RELATED           ====================================
@@ -49,7 +49,7 @@ public class Navigation{
         System.out.println("\t\t\t|| 1.  Number of registered spots          ||");
         System.out.println("\t\t\t|| 2.  Number of active spots              ||");
         System.out.println("\t\t\t|| 3.  Number of inactive spots            ||");
-        System.out.println("\t\t\t|| 4.  Number of HIghly visited spots      ||");
+        System.out.println("\t\t\t|| 4.  Number of Highly visited spots      ||");
         System.out.println("\t\t\t|| 5.  Back                                ||");
         System.out.println("\t\t\t|| 6.  Exit                                ||");
         System.out.println("\t\t\t============================================ ");
@@ -263,5 +263,5 @@ public class Navigation{
 
 
 
-
 }
+

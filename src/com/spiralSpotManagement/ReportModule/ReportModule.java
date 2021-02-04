@@ -1,7 +1,7 @@
 package com.spiralSpotManagement.ReportModule;
 import java.util.Scanner;
 
-public class ReportModule extends Navigation{
+public class ReportModule extends Navigation {
     public static String toContinue;
     public static void reportDashboard() throws Exception {
         Scanner scanner = new Scanner(System.in);

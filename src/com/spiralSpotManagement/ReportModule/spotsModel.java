@@ -53,7 +53,9 @@ public class spotsModel {
     public String getSpot_name() {
         return spot_name;
     }
-
+    public String getSpot_description() {
+        return spot_description;
+    }
     public String getuser_name() {
         return user_name;
     }
@@ -86,7 +88,11 @@ public class spotsModel {
         this.spot_name = spot_name;
     }
 
-    public void setuser_name(String user_name) {
+    public void setSpot_description(String spot_description) {
+        this.spot_description = spot_description;
+    }
+
+    public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
 
@@ -97,4 +103,6 @@ public class spotsModel {
     public void setViews(double views) {
         this.views = views;
     }
+
+
 }
