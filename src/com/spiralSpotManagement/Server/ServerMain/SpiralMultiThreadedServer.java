@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Server class
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
 public class SpiralMultiThreadedServer {
     public static void main(String[] args)
     {

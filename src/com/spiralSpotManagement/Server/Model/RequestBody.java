@@ -1,6 +1,12 @@
 package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
 
 public class RequestBody implements Serializable {
     private String url; // /users

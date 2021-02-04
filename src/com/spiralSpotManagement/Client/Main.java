@@ -7,6 +7,12 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+            @author : Ntwari Egide - Scrum Master
+            USER CONTROLLER  - SERVER CONTROLLER
+            Sychronizing all the methods on the
+ */
+
 public class Main {
 
     public static void ExampleOfUsageOfClientServerConnector()throws Exception{
