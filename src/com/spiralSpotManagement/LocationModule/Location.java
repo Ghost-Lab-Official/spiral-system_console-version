@@ -1,9 +1,7 @@
 package com.spiralSpotManagement.LocationModule;
-import com.spiralSpotManagement.LocationModule.Location_Level;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -20,17 +18,17 @@ public class Location extends Location_Level {
      * @version 1.0
      * @return boolean indicating if the query was ok, i.e true/false
      */
-    public boolean createTable(){
+    public boolean createLocationsTable(){
         boolean query_ok = false;
-        String sql = "CREATE TABLE `locations` (" +
+        String sql = "CREATE TABLE IF NOT EXISTS `locations` (" +
                 "`location_id` varchar(255) NOT NULL," +
                 "`level_id` varchar(255) NOT NULL," +
                 "`parent_id` varchar(255)," +
                 "`location_name` varchar(255) NOT NULL," +
                 "`location_GPS` varchar(255) NOT NULL," +
                 "`description` TEXT NOT NULL," +
-                "PRIMARY KEY (`location_id`)," +
-                "FOREIGN KEY (`parent_id`) REFERENCES `locations`(`location_id`)," +
+                "CONSTRAINT `FK_location_idfk2` PRIMARY KEY (`location_id`)," +
+                "CONSTRAINT `FK_parent_idfk3` FOREIGN KEY (`parent_id`) REFERENCES `locations`(`location_id`)," +
                 "FOREIGN KEY (`level_id`) REFERENCES `location_levels`(`level_id`)" +
                 ")";
         try{
@@ -44,7 +42,7 @@ public class Location extends Location_Level {
     }
 
     /**
-     * Registering a new location. This function will take:
+     * Registering a new location. It has to be called only when location_levels table exists. This function will take:
      * @param location_name the new location name
      * @param location_GPS the new location GPS coordinates
      * @param description the new location description

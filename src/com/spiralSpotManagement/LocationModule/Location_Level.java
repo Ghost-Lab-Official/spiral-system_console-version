@@ -24,7 +24,7 @@ public class Location_Level extends CloudStorageConnection{
      * @version 1.0
      * @return boolean indicating if the query was ok, i.e true/false
      */
-    public boolean createTable(){
+    public boolean createLocationLevelsTable(){
         boolean query_ok = false;
         String sql = "CREATE TABLE IF NOT EXISTS `location_levels` (" +
                 "`level_id` VARCHAR(255) NOT NULL, `level_name` VARCHAR(255) NOT NULL," +
@@ -41,13 +41,13 @@ public class Location_Level extends CloudStorageConnection{
 
     /**
      *  Register a new location level. It will take a level name and
-     *  return a HashMap of strings containing a created location
+     *  return a new location level id or false in case of query failure
      * @author Harerimana Egide
      * @version 1.0
      * @param level_name the name for new level
      * @return String the new location level id or false in case of query failure.
      */
-    public String newLevel(String level_name){
+    public String newLocationLevel(String level_name){
         String res = "false";
         String level_id = UUID.randomUUID().toString();
         try{
@@ -78,7 +78,7 @@ public class Location_Level extends CloudStorageConnection{
      * @param level_id the id of the level to update
      * @return boolean indicating whether the query is ok
      */
-    public boolean updateLevel(String level_id, String level_name){
+    public boolean updateLocationLevel(String level_id, String level_name){
         boolean ok = false;
         String sql = "UPDATE location_levels SET level_name=? WHERE level_id=?";
         Connection conn = null;
@@ -105,7 +105,7 @@ public class Location_Level extends CloudStorageConnection{
      * @param level_id id of the level to delete
      * @return boolean indicating whether the query is ok
      */
-    public boolean deleteLevel(String level_id){
+    public boolean deleteLocationLevel(String level_id){
         boolean ok = false;
         String sql = "DELETE FROM location_levels WHERE level_id=?";
         Connection conn = null;
@@ -131,7 +131,7 @@ public class Location_Level extends CloudStorageConnection{
      * @param level_id id of the level to get
      * @return HashMap of Strings that contains levels data
      */
-    public HashMap<String, String> getLevel(String level_id){
+    public HashMap<String, String> getLocationLevel(String level_id){
         HashMap<String, String> level_map = new HashMap<>();
         String sql = "SELECT * FROM location_levels WHERE level_id=?";
         Connection conn = null;
@@ -160,9 +160,8 @@ public class Location_Level extends CloudStorageConnection{
      * @version 1.0
      * @return List of HashMaps that contains levels data
      */
-    public List<HashMap> getAllLevels(){
+    public List<HashMap> getAllLocationsLevels(){
         List<HashMap> list = new ArrayList<>();
-        HashMap<String, String> map = new HashMap<>();
         String sql = "SELECT * FROM location_levels";
         Connection conn = null;
         try {
@@ -170,6 +169,7 @@ public class Location_Level extends CloudStorageConnection{
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
+                HashMap<String, String> map = new HashMap<>();
                 map.put("level_id", rs.getString("level_id"));
                 map.put("level_name", rs.getString("level_name"));
                 list.add(map);
