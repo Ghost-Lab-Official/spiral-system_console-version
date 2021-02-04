@@ -15,6 +15,26 @@ public class ReportOperation {
 
     /**
      * @author Ntezirizaza Erneste
+     * description This method generates the number of highly visited spots
+     * @throws Exception
+     */
+
+    public static void getTheTotalNumberOfHighlyVisitedSpots() throws Exception {
+        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        Connection connection= cloudStorageConnection.getConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table  where views>10 ");
+        while(rs.next()){
+            System.out.println( "\t\t\t||  Number of highly visited spots :         "+ rs.getInt(1)+"||");
+        }
+        connection.close();
+
+    }
+
+
+
+    /**
+     * @author Ntezirizaza Erneste
      * @description This method generates the number of registered spots
      * @throws Exception
      */
@@ -28,7 +48,6 @@ public class ReportOperation {
             System.out.println( "\t\t\t||  Number of registered spots :         "+ rs.getInt(1)+"||");
         }
         connection.close();
-
 
     }
 
@@ -67,6 +86,5 @@ public class ReportOperation {
             System.out.println( "\t\t\t||  Number of Inactive spots :         "+ rs.getInt(1)+"||");
         }
         connection.close();
-
     }
 }

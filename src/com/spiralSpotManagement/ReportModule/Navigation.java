@@ -68,7 +68,7 @@ public class Navigation extends ReportOperation{
             case 1 -> reportOperation.getTheTotalNumberOfRegisteredSpots();
             case 2 -> reportOperation.getTheTotalNumberOfActiveSpots();
             case 3 -> reportOperation.getTheTotalNumberOfInactiveSpots();
-            case 4 -> getTheNumberOfHighlyVisitedSpots();
+            case 4 -> reportOperation.getTheTotalNumberOfHighlyVisitedSpots();
             case 5 -> navigateToSpotsManagement();
             case 6 -> System.exit(0);
             default -> System.out.println("\t\t\t\t Invalid input");
@@ -105,13 +105,13 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
     }
 
-    public static void getTheNumberOfHighlyVisitedSpots(){
+    public static void getTheNumberOfHighlyVisitedSpots() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||    Number of trending spots               ||");
 
-//        calculateTheTotalNumberOfHighlyVisitedSpots();
+        ReportOperation.getTheTotalNumberOfHighlyVisitedSpots();
         System.out.println("\t\t\t============================================= ");
     }
 
@@ -119,7 +119,7 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All            = ");
         System.out.println("\t\t\t============================================= ");
-        ReportOperation.viewAllSpots();
+//        ReportOperation.viewAllSpots();
     }
 
     public static void viewSpotsByStatus() throws Exception {
@@ -140,10 +140,10 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-                ReportOperation.viewAllActiveSpots();
+//                ReportOperation.viewAllActiveSpots();
                 break;
             case 2:
-                ReportOperation.viewAllArchivedSpots();
+//                ReportOperation.viewAllArchivedSpots();
                 break;
             case 3:
 //                highlyVisitedSpots();
