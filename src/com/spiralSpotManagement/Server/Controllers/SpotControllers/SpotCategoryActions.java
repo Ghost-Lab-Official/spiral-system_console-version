@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Server.Controllers.SpotControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.SpotCategory;
 
@@ -17,6 +18,7 @@ import java.util.List;
  */
 public class SpotCategoryActions {
     String registerSpotCategoryQuery = "INSERT INTO spot_category(user_id,category_name,description,status) VALUES (?,?,?,?)";
+    String updateStatusQuery = "UPDATE spot_category SET status=? WHERE category_id=?";
 
     public ResponseStatus addNewSpotCategory(SpotCategory spotCategoryToAdd) throws Exception {
 
@@ -87,5 +89,24 @@ public class SpotCategoryActions {
          catch (Exception e) {
             return spotCategoryList;
         }
+    }
+
+    public ResponseStatus updateStatus(SpotCategory spotCategory)throws Exception{
+        try {
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
+            Connection connection = cloudStorageConnection.getConnection();
+            PreparedStatement statement = connection.prepareStatement(updateStatusQuery);
+            statement.setString(1, spotCategory.getStatus());
+            statement.setInt(2, spotCategory.getCategoryId());
+            int updated = statement.executeUpdate();
+
+            if (updated == 1) {
+                return new ResponseStatus(200, "SPOT STATUS UPDATED", "Spot Category is now updated");
+            }
+        } catch (Exception e) {
+            return new ResponseStatus(500, "EXCEPTION ERROR", e.getMessage());
+        }
+
+        return null;
     }
 }

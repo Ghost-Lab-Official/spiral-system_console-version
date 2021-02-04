@@ -115,58 +115,35 @@ public class SpotCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
 
-//        try {
-//            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
-//            Connection connection = cloudStorageConnection.getConnection();
-//            String sql = "SELECT * FROM spot_category";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            ResultSet result = statement.executeQuery(sql);
-//
-//            while (result.next()) {
-//                int category_id = result.getInt("category_id");
-//                int user_id = result.getInt("user_id");
-//                String category_name = result.getString("category_name");
-//                String description = result.getString("description");
-//                String status = result.getString("status");
-//                System.out.format("\n %s,%s,%s,%s,%s \n", category_id, user_id, category_name, description, status);
-//
-//            }
-//        } catch (
-//                SQLException ex) {
-//            System.out.println("Sorry! Try again Later");
-//            ex.printStackTrace();
-//        }
-
 
     }
-//
-//    public void Changespotstatus() throws Exception {
-//
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        System.out.println("\t\t\t Enter category_id: ");
-//        int category_id = parseInt(reader.readLine());
-//        System.out.println("\t\t\t Enter the status: ");
-//        String status = reader.readLine();
-//
-//
-//        try {
-//
-//
-//            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
-//            Connection connection = cloudStorageConnection.getConnection();
-//            String sql = "UPDATE spot_category SET status=? WHERE category_id=?";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setString(1, status);
-//            statement.setInt(2, category_id);
-//            statement.executeUpdate();
-//
-//
-//        } catch (
-//                SQLException ex) {
-//            System.out.println("Sorry! Try again Later");
-//            ex.printStackTrace();
-//        }
 
+    public void ChangeSpotStatus() throws Exception {
 
-//    }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t Enter category_id: ");
+        int categoryId  = scanner.nextInt();
+        System.out.println("\t\t\t Enter the status: ");
+        String status = scanner.nextLine();
+
+        SpotCategory spotCategory = new SpotCategory();
+        spotCategory.setCategoryId(categoryId);
+        spotCategory.setStatus(status);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/sportCategory");
+        requestBody.setAction("updateStatus");
+        requestBody.setObject(spotCategory);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
 }

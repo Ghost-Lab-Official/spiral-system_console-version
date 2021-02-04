@@ -82,9 +82,9 @@ public class Main {
             case 3 :
                 new SpotCategoryView().GetSpotCategory();
                 break;
-//            case 4 :
-//                Changespotstatus();
-//                break;
+            case 4 :
+                new SpotCategoryView().ChangeSpotStatus();
+                break;
             default :
                 System.out.println("Invalid choice");
         }

@@ -36,6 +36,12 @@ public class SpotCategoryController {
 
                 return  usersObject;
 
+            case "updateStatus":
+                ResponseStatus updatedStatus = new SpotCategoryActions().updateSpotCategory((SpotCategory) requestBody.getObject());
+                usersObject.add((Object) updatedStatus);
+
+                return  usersObject;
+
             default:
                 return usersObject;
         }
