@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.SpotControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
@@ -124,7 +125,8 @@ public class SpiralMultiThreadedServer {
 
                             break;
 
-                        case "sport-category":
+                        case "/sportCategory":
+                            responseObject = new SpotCategoryController().mainMethod(requestBody);
                             break;
 
                         case "/search":
