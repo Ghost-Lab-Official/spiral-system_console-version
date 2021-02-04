@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
 //        System.out.println("HELLO SPIRAL SYSTEM\n\n ");
 //        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
-//        cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+//        cloudStorageConnection.   checkDbWorking(cloudStorageConnection.getConnection());
 
         Server newServer = new Server();
         newServer.startServer();
