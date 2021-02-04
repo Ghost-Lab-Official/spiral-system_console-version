@@ -119,7 +119,7 @@ public class Navigation extends ReportOperation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-All            = ");
         System.out.println("\t\t\t============================================= ");
-//        ReportOperation.viewAllSpots();
+        ReportOperation.viewAllSpots();
     }
 
     public static void viewSpotsByStatus() throws Exception {
@@ -140,10 +140,10 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-//                ReportOperation.viewAllActiveSpots();
+                ReportOperation.viewAllActiveSpots();
                 break;
             case 2:
-//                ReportOperation.viewAllArchivedSpots();
+                ReportOperation.viewAllArchivedSpots();
                 break;
             case 3:
 //                highlyVisitedSpots();

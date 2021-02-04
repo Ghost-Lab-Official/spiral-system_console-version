@@ -13,6 +13,12 @@ import java.util.stream.Stream;
 
 public class ReportOperation {
 
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method generates the number of registered spots
+     * @throws Exception
+     */
+
     public static void getTheTotalNumberOfRegisteredSpots() throws Exception {
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         Connection connection= cloudStorageConnection.getConnection();
@@ -26,11 +32,17 @@ public class ReportOperation {
 
     }
 
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method generates the number of active spots
+     * @throws Exception
+     */
+
     public static void getTheTotalNumberOfActiveSpots() throws Exception {
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status='active'");
+        ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status=1");
 
         while(rs.next()){
             System.out.println( "\t\t\t||  Number of Active spots :         "+ rs.getInt(1)+"||");
@@ -39,11 +51,17 @@ public class ReportOperation {
 
     }
 
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method generates the number of inactive spots
+     * @throws Exception
+     */
+
     public static void getTheTotalNumberOfInactiveSpots() throws Exception {
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status='inactive'");
+        ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status=0");
 
         while(rs.next()){
             System.out.println( "\t\t\t||  Number of Inactive spots :         "+ rs.getInt(1)+"||");
