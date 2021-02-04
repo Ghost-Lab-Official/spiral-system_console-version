@@ -2,6 +2,13 @@ package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
 
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
+ */
+
 public class ResponseStatus implements Serializable {
     private Integer status;
     private String message;
