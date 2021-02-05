@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -25,9 +26,9 @@ public class UserCategoryView {
             case "1":
                 createCategory();
                 break;
-//            case "2":
-//                UpdateCategory(cloudStorageConnection.getConnection());
-//                break;
+            case "2":
+                updateUserCategories();
+                break;
             case "3":
                 selectUserCategories();
                 break;
@@ -80,4 +81,30 @@ public class UserCategoryView {
         }
     }
 
+    public static void updateUserCategories() throws Exception{
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the category id to update");
+        String categoryId = scan.nextLine();
+        System.out.println("Enter the Category Name to update");
+        String category =scan.nextLine();
+
+        UserCategory userCategoryToUpdate = new UserCategory();
+        userCategoryToUpdate.setCatId(1);
+        userCategoryToUpdate.setCatName(category);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/user-category");
+        requestBody.setAction("updateUserCategory");
+        requestBody.setObject(userCategoryToUpdate);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
 }

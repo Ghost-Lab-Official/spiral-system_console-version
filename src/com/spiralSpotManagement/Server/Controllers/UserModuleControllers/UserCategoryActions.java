@@ -37,7 +37,7 @@ public class UserCategoryActions {
     public List<Object> selectCategories() throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         Statement state= connection.createStatement();
-        ResultSet result =state.executeQuery("SELECT * FROM users_categories");
+        ResultSet result =state.executeQuery(selectSQL);
         List<Object> userCategories = new ArrayList<>();
 
         while (result.next()){
@@ -47,5 +47,24 @@ public class UserCategoryActions {
            userCategories.add((Object) userCategory);
         }
         return  userCategories;
+    }
+    public ResponseStatus updateCategory(UserCategory userCategoryToUpdate) throws Exception {
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateSql)){
+            preparedStatement.setInt(2,userCategoryToUpdate.getCatId());
+            preparedStatement.setString(1,userCategoryToUpdate.getCatName());
+            int updated = preparedStatement.executeUpdate();
+
+            if(updated == 1){
+                return new ResponseStatus(200,"USER CATEGORY UPDATED","You have updated the user category");
+            }
+        }
+        catch (SQLException e){
+            return  new ResponseStatus(400,"BAD REQUEST",e.getMessage());
+        }
+        catch (Exception e){
+            new ResponseStatus(500,"SERVER ERROR",e.getMessage());
+        }
+        return new ResponseStatus(500,"SERVER ERROR","e.getMessage()");
     }
 }

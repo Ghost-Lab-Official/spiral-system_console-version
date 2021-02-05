@@ -21,7 +21,10 @@ public class UserCategoryController {
             case "getUserCategories":
                 usersObject = new UserCategoryActions().selectCategories();
                 return  usersObject;
-
+            case "updateUserCategory":
+                ResponseStatus responseStatus2 = new UserCategoryActions().updateCategory((UserCategory) requestBody.getObject());
+                usersObject.add((Object) responseStatus2);
+                return usersObject;
         }
 
         return null;
