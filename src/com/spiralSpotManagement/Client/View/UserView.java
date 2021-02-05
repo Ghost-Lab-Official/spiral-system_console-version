@@ -1,10 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
-import com.spiralSpotManagement.Server.Model.User;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.Scanner;
 
@@ -93,6 +90,8 @@ public class UserView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+            System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
+
         }
     }
 
