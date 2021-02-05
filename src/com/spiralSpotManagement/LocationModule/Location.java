@@ -87,6 +87,5 @@ public class Location extends Location_Level {
 
     public static void main(String[] args) {
         Location level = new  Location();
-        level.createLocationsTable();
     }
 }

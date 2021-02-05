@@ -5,6 +5,7 @@ import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,6 +125,38 @@ public class Location_Level extends CloudStorageConnection{
         return ok;
     }
 
+    /*
+     *location management class. Method CheckLocationLevel for checking parent before inserting,updating location
+     * @author Felix DUSENGIMANA
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  05-02-2021
+     * @param locationId {string} the id of existing parent id.
+     * return boolean to indicated the success or fail to update.
+     */
+
+    protected boolean CheckLocationLevelExistence(String locationId){
+
+        String query = "SELECT level_id FROM `location_levels` WHERE level_id =?";
+        boolean checkResult = false;
+        Connection connection = null;
+        try {
+            connection= getConnection();
+            PreparedStatement checkStatment = connection.prepareStatement(query);
+            checkStatment.setString(1,locationId);
+
+            ResultSet rs = checkStatment.executeQuery();
+            while (rs.next()){
+                checkResult = true;
+            }
+        }catch (SQLException e){
+            System.out.println("Error Message: "+e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkResult;
+    }
+
     /**
      * This function retrieves a single location level from the <i>location_levels</i> table
      * @author Harerimana Egide
@@ -189,3 +222,4 @@ public class Location_Level extends CloudStorageConnection{
         level.createLocationLevelsTable();
     }
 }
+
