@@ -2,13 +2,18 @@ package com.spiralSpotManagement.SearchModule;
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
 import java.io.IOException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class SearchMain {
     public static CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
     public static Scanner scanner = new Scanner(System.in);
+    //static Statement stmt = cloudStorageConnection.getConnection().createStatement();
 
- public  static void searchCategories(){
+
+
+    public  static void searchCategories(){
+
      int searchCategory;
         System.out.println("|----------------------------------------------------------------|");
         System.out.println("|-----------------       SPIRAL SEARCH        -------------------|");
@@ -23,10 +28,13 @@ public class SearchMain {
  }
 
 
+    /*This is the entry of search module. It is the main function for search module where all function
+     * are being called from the SearchModule class
+     * @Bethiane*/
 
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         int choice;
-
+        SearchModule searchModuleMethods =new SearchModule();
         System.out.println("|----------------------------------------------------------------|");
         System.out.println("|-----------------     WELCOME TO SPIRAL      -------------------|");
         System.out.println("|----------------------------------------------------------------|");
@@ -44,8 +52,7 @@ public class SearchMain {
             case 1:
                 searchCategories();
             case 2:
-                System.out.println("Ndaje");
-                //searchText();
+                //searchModuleMethods.popularityByRatesArray(stmt);
             case 3:
                 System.out.println("Ndaje");
                 //searchPopular();
