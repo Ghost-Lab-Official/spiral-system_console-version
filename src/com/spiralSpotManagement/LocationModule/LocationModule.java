@@ -48,10 +48,8 @@ public class LocationModule {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             int updated = preparedStatement.executeUpdate();
             if(updated==1){
-                System.out.println("Location name updated successfully");
                 return  true;
             }else {
-                System.out.println("Error while updating location");
                 return  false;
             }
         }
@@ -64,8 +62,12 @@ public class LocationModule {
 
         LocationModule location = new LocationModule();
         boolean verify = location.UpdateLocation(connection.getConnection(),updateLocationData);
-        if(!verify) System.out.println("error occured");
-        System.out.println("Locations module");
+        if(!verify){
+            System.out.println("Error occurred");
+        }else{
+            System.out.println("Location updating Successfully");
+        }
+
     }
 
 }
