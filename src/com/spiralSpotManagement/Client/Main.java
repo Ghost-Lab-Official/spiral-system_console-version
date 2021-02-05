@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.View.CommentView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
@@ -55,7 +56,11 @@ public class Main {
 //        new UserView().registerUser();
 //        new UserView().loginUser();
 //       spotCategoryModuleMain();
-        spotMainContent();
+//        spotMainContent();
+//        new CommentView().makeComment();
+//        new CommentView().updateTheComment();
+//        new CommentView().makeReplyComment();
+        new CommentView().updateCommentStatus();
     }
 
 

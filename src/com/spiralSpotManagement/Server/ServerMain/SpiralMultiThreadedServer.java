@@ -1,10 +1,12 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
+import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -127,6 +129,9 @@ public class SpiralMultiThreadedServer {
 
                         case "/sportCategory":
                             responseObject = new SpotCategoryController().mainMethod(requestBody);
+                            break;
+                        case "/spot-comment":
+                            responseObject = new SpotCommentController().mainMethod(requestBody);
                             break;
 
                         case "/search":
