@@ -12,17 +12,8 @@ public class Main {
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
         cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
 
-        ReportModule reportModule = new ReportModule();
-        reportModule.reportDashboard();
-
-//        cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
-
-
-
-        UsersModule usersModule=new UsersModule();
-      //   usersModule.getUsersList(cloudStorageConnection.getConnection());
-        usersModule.sendNotification("sagemuho@gmail.com","***************","mugaboverite@gmail.com","testing notification","this is small notification checking system");
-
+        new ReportModule();
+        ReportModule.printDashboard();
     }
 
 }

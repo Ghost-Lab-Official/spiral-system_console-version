@@ -1,30 +1,41 @@
 package com.spiralSpotManagement.ReportModule;
-
 import java.util.Scanner;
 
-public class ReportModule extends Navigation{
+public class ReportModule extends Navigation {
+    public static String toContinue;
     public static void reportDashboard() throws Exception {
-        loop: do {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("\t\t\t============================================= ");
-            System.out.println("\t\t\t=                ADMIN DASHBOARD            = ");
-            System.out.println("\t\t\t============================================= ");
-            System.out.println("\t\t\t|| 1.  Home                                ||");
-            System.out.println("\t\t\t|| 2.  Spot Management                     ||");
-            System.out.println("\t\t\t|| 3.  Users Management                    ||");
-            System.out.println("\t\t\t|| 4.  Settings                            ||");
-            System.out.println("\t\t\t============================================ ");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t=                ADMIN DASHBOARD            = ");
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t|| 1.  Home                                ||");
+        System.out.println("\t\t\t|| 2.  Spot Management                     ||");
+        System.out.println("\t\t\t|| 3.  Users Management                    ||");
+        System.out.println("\t\t\t|| 4.  Exit                                ||");
+        System.out.println("\t\t\t============================================ ");
 
-            System.out.println("Make a choice ");
-            int choice = scanner.nextInt();
+        System.out.println("Make a choice ");
+        int choice = scanner.nextInt();
 
-            switch (choice) {
-                case 1 -> navigateToHome();
-                case 2 -> navigateToSpotsManagement();
-                case 3 -> navigateToUsersManagement();
-                default -> System.out.println("Invalid choice");
-            }
-        }while(choice!=4);
+        switch (choice) {
+            case 1 -> navigateToHome();
+            case 2 -> navigateToSpotsManagement();
+            case 3 -> navigateToUsersManagement();
+            case 4-> System.exit(0);
+            default -> System.out.println("Invalid choice");
+        }
+    }
+
+
+    public static void printDashboard()throws Exception{
+        do{
+            reportDashboard();
+
+            System.out.println("Do you want to continue ? ");
+            Scanner scanToContinue=new Scanner(System.in);
+            toContinue=scanToContinue.nextLine();
+        }while(toContinue.equals("Y") || toContinue.equals("y"));
+
     }
 
 
