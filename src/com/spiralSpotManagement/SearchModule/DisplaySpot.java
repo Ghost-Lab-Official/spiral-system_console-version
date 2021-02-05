@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.SearchModule;
 import java.io.IOException;
 import java.util.Scanner;
+import com.spiralSpotManagement.SearchModule.DisplaySpot;
 
 
 /* this is class to display search result to the user. It has two levels; levelOne which include
@@ -31,6 +32,11 @@ public class DisplaySpot {
         return special;
 
     }
+
+
+
+
+
 
     public static int filter() {
         System.out.println("The filtered result is:\n");

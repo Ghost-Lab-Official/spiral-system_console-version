@@ -1,8 +1,11 @@
 package com.spiralSpotManagement.SearchModule;
+import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class SearchMain {
+    public static CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
     public static Scanner scanner = new Scanner(System.in);
 
  public  static void searchCategories(){
@@ -18,6 +21,8 @@ public class SearchMain {
         System.out.println("|  Enter  category of your search to use                                     |");
         searchCategory = scanner.nextInt();
  }
+
+
 
     public static void main(String[] args) {
         int choice;

@@ -6,15 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class SearchModule {
+//Authors: Abizera Oreste and Kwizera Emmanuel
+
+public class Filter {
 
     //method to display results
     public void displayResults (ArrayList<Map> searchResults){
         Scanner choiceScanner = new Scanner(System.in);
-        System.out.print("\t\tEnter your Choice: ");
+        System.out.print("Enter your Choice: ");
         Integer choice = choiceScanner.nextInt();
         if(choice > searchResults.size()){
-            System.out.println("\t\tInvalid Choice");
+            System.out.println("Invalid Choice");
         }else {
             Map<String, String> selectedResult = searchResults.get(choice - 1);
             System.out.println("=================== " + selectedResult.get("name") + " =============");
@@ -80,7 +82,6 @@ public class SearchModule {
         System.out.println("Now we start");
     }
 
-
-
-
 }
+
+
