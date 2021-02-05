@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.BillingControllers.BillingController;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
 import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
@@ -143,6 +144,7 @@ public class SpiralMultiThreadedServer {
                             break;
 
                         case "/billing":
+                            responseObject = new BillingController().mainMethod(requestBody);
                             break;
 
                         default:

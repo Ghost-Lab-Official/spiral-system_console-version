@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.View.BillingView;
 import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
@@ -51,7 +52,8 @@ public class Main {
 //        registerUser();
 //        loginUser();
 //        new LocationLevelsView().registerLocationLevels();
-          new LocationView().registerLocation();
+//        new LocationView().registerLocation();
+          new BillingView().registerBillingPlan();
     }
 
     public static void registerUser()throws Exception{
