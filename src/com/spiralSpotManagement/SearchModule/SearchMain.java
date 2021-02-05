@@ -2,6 +2,7 @@ package com.spiralSpotManagement.SearchModule;
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
 import java.io.IOException;
+import java.sql.Statement;
 import java.util.Scanner;
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
@@ -11,7 +12,6 @@ public class SearchMain {
     SearchModule searchModuleMethods = new SearchModule();
 
     public  static void searchCategories(){
-        int searchCategory;
         System.out.println("|----------------------------------------------------------------|");
         System.out.println("|-----------------       SPIRAL SEARCH        -------------------|");
         System.out.println("|----------------------------------------------------------------|");
@@ -21,16 +21,15 @@ public class SearchMain {
         System.out.println("|------------------          3.Users               --------------|");
         System.out.println("|----------------------------------------------------------------|");
         System.out.println("|  Enter  category of your search to use                                     |");
-        searchCategory = scanner.nextInt();
     }
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         int choice;
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        Statement stmt = cloudStorageConnection.getConnection().createStatement();
         SearchModule searchModuleMethods = new SearchModule();
-//        SearchByPopularity popularSpots = new SearchByPopularity();
 
         System.out.println("|----------------------------------------------------------------|");
         System.out.println("|-----------------     WELCOME TO SPIRAL      -------------------|");
@@ -47,19 +46,18 @@ public class SearchMain {
 
         switch (choice) {
             case 1:
-                searchModuleMethods.SearchByCategory();
+                searchModuleMethods.SearchByCategory(stmt);
                 break;
             case 2:
-                System.out.println("Ndaje");
+                System.out.println("Here");
                 //searchText();
                 break;
             case 3:
-                System.out.println("Ndaje");
+                System.out.println("Here");
                 break;
 
             case 4:
-                System.out.println("Ndaje");
-                // searchRecents();
+                searchModuleMethods.showRecentSearchDialog(stmt);
                 break;
             default:
                 break;

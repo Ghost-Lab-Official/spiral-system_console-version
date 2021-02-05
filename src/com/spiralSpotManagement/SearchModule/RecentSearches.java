@@ -52,7 +52,6 @@ public class RecentSearches {
                 System.out.println(" 1.view all recent searches \n 2.Exit \n");
                 System.out.println("Enter your choice");
                 choice = Integer.parseInt(reader.readLine());
-
                 switch (choice) {
 
                     case 1:
