@@ -1,19 +1,23 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
 import com.spiralSpotManagement.Server.Controllers.BillingControllers.BillingController;
+import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
 import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.Users;
+import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 // Server class
@@ -30,7 +34,15 @@ public class SpiralMultiThreadedServer {
 /*
 * This method is called once to set the db configurations
 */
-
+//
+//    public void startServer()throws Exception{
+//    String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
+//    String username = "2YQ7auowc7";
+//    String password = "R2IMVJC67L";
+//
+//    PropertyVariables propertyVariables = new PropertyVariables(url,username,password,3306l,1000l);
+//    propertyVariables.setPropertiesInFile();
+//  }
 
     public void startServer()throws Exception{
     String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
@@ -122,12 +134,22 @@ public class SpiralMultiThreadedServer {
 
                             responseObject =  new UserController().mainMethod(requestBody);
                             break;
-
+                        case"/user-category":
+                            responseObject = new UserCategoryController().mainMethod(requestBody);
+                            break;
                         case "/spot":
+                            responseObject = new SpotController().mainSpotController(requestBody);
 
                             break;
 
-                        case "sport-category":
+                        case "/sportCategory":
+                            responseObject = new SpotCategoryController().mainMethod(requestBody);
+                            break;
+                        case "/spot-comment":
+                            responseObject = new SpotCommentController().mainMethod(requestBody);
+                            break;
+                        case "/spot-reaction":
+                            responseObject = new SpotCommentReactionController().mainMethod(requestBody);
                             break;
 
                         case "/search":
