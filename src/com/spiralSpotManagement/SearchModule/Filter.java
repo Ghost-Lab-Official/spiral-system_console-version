@@ -15,7 +15,7 @@ public class Filter {
         Scanner choiceScanner = new Scanner(System.in);
         System.out.print("Enter your Choice: ");
         Integer choice = choiceScanner.nextInt();
-        if(choice > searchResults.size()){
+        if(choice-1 > searchResults.size()){
             System.out.println("Invalid Choice");
         }else {
             Map<String, String> selectedResult = searchResults.get(choice - 1);
@@ -35,7 +35,7 @@ public class Filter {
         return searchKey;
     }
 
-    //method to search a spot
+    //method to search for a spot
     public void spotFilter(Statement stmt) throws Exception {
         Boolean loggedIn = false;
         ArrayList<Map> searchResults = new ArrayList();
@@ -46,6 +46,8 @@ public class Filter {
         if(!loggedIn){
             //changing sql query when user is not logged in
             sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY registration_date DESC LIMIT 10";
+
+        }else {
 
         }
         ResultSet rs = stmt.executeQuery(sql);
