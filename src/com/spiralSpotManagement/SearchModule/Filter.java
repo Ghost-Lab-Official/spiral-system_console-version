@@ -15,7 +15,7 @@ public class Filter {
         Scanner choiceScanner = new Scanner(System.in);
         System.out.print("Enter your Choice: ");
         Integer choice = choiceScanner.nextInt();
-        if(choice-1 > searchResults.size()){
+        if(choice > searchResults.size()){
             System.out.println("Invalid Choice");
         }else {
             Map<String, String> selectedResult = searchResults.get(choice - 1);
@@ -75,7 +75,7 @@ public class Filter {
 
 
     public void peopleFilter(){
-
+        String searchKey = scanSearchKey("a person");
         System.out.println("Now we start");
     }
     public void messageFilter(){
