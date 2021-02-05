@@ -4,6 +4,7 @@ import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotC
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
@@ -130,7 +131,9 @@ public class SpiralMultiThreadedServer {
 
                             responseObject =  new UserController().mainMethod(requestBody);
                             break;
-
+                        case"/user-category":
+                            responseObject = new UserCategoryController().mainMethod(requestBody);
+                            break;
                         case "/spot":
                             responseObject = new SpotController().mainSpotController(requestBody);
 
