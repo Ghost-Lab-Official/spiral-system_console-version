@@ -57,9 +57,7 @@ public class SearchByPopularity {
 		}
 	}
 
-	//Main file of the program
-	public static void main(String[] args) throws Exception {
-
+	public static void popularityEntry() throws Exception {
 		Scanner scanner=new Scanner(System.in);
 		// TODO Auto-generated method stub
 		ArrayList<String> popularSpots= new ArrayList<String>();
@@ -83,6 +81,13 @@ public class SearchByPopularity {
 			System.out.println("result :" +spotDescription );
 		}
 
+
+	}
+
+
+	//Main file of the program
+	public static void main(String[] args) throws Exception {
+		popularityEntry();
 
 	}
 

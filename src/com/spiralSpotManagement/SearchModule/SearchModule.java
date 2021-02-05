@@ -1,6 +1,10 @@
 package com.spiralSpotManagement.SearchModule;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
@@ -8,6 +12,7 @@ import java.sql.ResultSet;
 
 
 //this is the main class of the search module where all methods will go
+
 
 public class SearchModule {
 //	public void tester(){
@@ -66,7 +71,10 @@ public class SearchModule {
             System.out.println("\t\tInvalid Choice");
         } else {
             Map<String, String> selectedResult = searchResults.get(choice - 1);
-            System.out.println("=================== " + selectedResult.get("name") + " =============");
+            System.out.println("|-------------------------------------------------------|");
+            System.out.println("|---------------    SPOTS SEARCHING       --------------|");
+            System.out.println("|---------------        " + selectedResult.get("name") + " ------------------");
+            System.out.println("|-------------------------------------------------------|");
             for (Map.Entry<String, String> element : selectedResult.entrySet()) {
                 System.out.println("\t\t" + element.getKey() + ":\t  " + element.getValue());
             }
@@ -92,11 +100,9 @@ public class SearchModule {
 
         String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%" + searchKey + "%' OR spot_description LIKE '%" + searchKey + "%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
 
-        if (!loggedIn) {
-            //changing sql query when user is not logged in
-            sql = "SELECT * from Spot_table WHERE spot_name LIKE '%" + searchKey + "%' OR spot_description LIKE '%" + searchKey + "%' AND status = 1 ORDER BY registration_date DESC LIMIT 10";
+        //changing sql query when user is not logged in
+        sql = "SELECT * from Spot_table WHERE spot_name LIKE '%" + searchKey + "%' OR spot_description LIKE '%" + searchKey + "%' AND status = 1 ORDER BY registration_date DESC LIMIT 10";
 
-        }
         Boolean found;
         Integer results;
         ResultSet rs = stmt.executeQuery(sql);
@@ -118,8 +124,8 @@ public class SearchModule {
 
         if (!found) {
             System.out.println("No results Found.");
-        } else {
-            System.out.println("===========" + results + " results shown ===============");
+        }else {
+            System.out.println("---------------" + results + " results shown ------------------");
             displayResults(searchResults);
         }
     }
@@ -150,7 +156,7 @@ public class SearchModule {
                 switch (choice) {
 
                     case 1:
-                        viewAll(stmt);
+                        viewAllRecentSearches(stmt);
                         break;
                     case 2:
                         System.out.println("program terminated");
@@ -164,7 +170,7 @@ public class SearchModule {
         }
     }
 
-    public static void viewAll(Statement stmt) throws SQLException {
+    public static void viewAllRecentSearches(Statement stmt) throws SQLException {
         ArrayList<String> resultArray = new ArrayList<String>();
         String sql = "select distinct searched_query,search_date from searchHistory where user_id =1 LIMIT 10";
         ResultSet resultSet = stmt.executeQuery(sql);
@@ -180,6 +186,78 @@ public class SearchModule {
         for(int i=0;i<resultArray.size();i++) {
             System.out.println(resultArray.get(i));
         }
+    }
+
+        public static ArrayList<String> popularityByRatesArray(java.sql.Connection connection) throws SQLException {
+            var spots=new ArrayList<String>();
+            var SelectRatesquery="select *from Spot_table order by rates desc limit 5";
+            String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
+        PreparedStatement ptRates=connection.prepareStatement(SelectRatesquery);
+            String SelectViewsquery = "select *from Spot_table order by views desc limit 5";
+            PreparedStatement ptViews=connection.prepareStatement(SelectViewsquery);
+        PreparedStatement sq = connection.prepareStatement(SelectMostSearchedQuery);
+        ResultSet Ratesresults=ptRates.executeQuery();
+        ResultSet Viewsresults=ptViews.executeQuery();
+        ResultSet searchResults = sq.executeQuery();
+
+        while( Ratesresults.next()) {
+            String spotName= Ratesresults.getString("spot_name");
+            if(!spots.contains(spotName)) {
+                spots.add(spotName);
+            }
+
+        }
+        while(  Viewsresults.next() ) {
+            String spotName= Viewsresults.getString("spot_name");
+
+
+            if(!spots.contains(spotName)) {
+                spots.add(spotName);
+            }
+        }
+
+        while (searchResults.next()){
+
+            String searchedSpot = searchResults.getString("searched_query");
+            spots.add(searchedSpot);
+        }
+
+        return spots;
+
+    }
+
+    //Method used to display popular spots in the console
+    public static void DisplayPopularSpots(ArrayList<String> popularSpots) {
+        for(int i=0;i<popularSpots.size();i++) {
+            System.out.println(i+1+"."+popularSpots.get(i));
+        }
+    }
+
+    public void popularityEntry() throws Exception {
+        Scanner scanner=new Scanner(System.in);
+        // TODO Auto-generated method stub
+        ArrayList<String> popularSpots= new ArrayList<String>();
+        System.out.print("==== Search by popularity =====\n");
+
+        //connect to the db
+        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        // cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
+        popularityByRatesArray(cloudStorageConnection.getConnection());
+        popularSpots.addAll(popularityByRatesArray(cloudStorageConnection.getConnection()));
+        DisplayPopularSpots(popularSpots);
+        int NO;
+        System.out.print("choose on one");
+        NO=scanner.nextInt();
+
+        PreparedStatement ps=cloudStorageConnection.getConnection().prepareStatement("select spot_description from Spot_table where spot_name =?" );
+        ps.setString(1,popularSpots.get(NO-1));
+        ResultSet results=ps.executeQuery();
+        while(results.next()) {
+            String spotDescription=results.getString("spot_description");
+            System.out.println("result :" +spotDescription );
+        }
+
+
     }
 }
 
