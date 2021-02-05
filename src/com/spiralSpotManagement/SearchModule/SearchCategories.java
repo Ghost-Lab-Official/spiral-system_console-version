@@ -16,7 +16,7 @@ public class SearchCategories {
 
         String cont = "";
         do {
-            Filter filter = new Filter();
+            SearchModule filter = new SearchModule();
             System.out.println("\t\t\t============================================= ");
             System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
             System.out.println("\t\t\t============================================= ");
