@@ -108,11 +108,13 @@ public class SpotCategoryView {
         ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
 
         for (Object response: responseBody.getResponse()){
-            ResponseStatus responseStatus = (ResponseStatus) response;
-            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
-            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
-            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
-            System.out.println("\t\t ------------------------------------------------------------------------------");
+            SpotCategory spotCategory = (SpotCategory) response;
+            System.out.println("\t\t-----------------------------------------------------------------------------------");
+            System.out.println("\t\t---Category Id: "+spotCategory.getCategoryId());
+            System.out.println("\t\t---User Id: "+spotCategory.getUserId());
+            System.out.println("\t\t---Name: "+spotCategory.getCategoryName());
+            System.out.println("\t\t---Description: "+spotCategory.getDescription());
+            System.out.println("\t\t-----------------------------------------------------------------------------------");
         }
 
 

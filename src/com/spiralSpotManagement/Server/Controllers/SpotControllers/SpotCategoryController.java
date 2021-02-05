@@ -1,13 +1,11 @@
 package com.spiralSpotManagement.Server.Controllers.SpotControllers;
-
-import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersActions;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.SpotCategory;
-import com.spiralSpotManagement.Server.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /*
         @author : NTWARI Egide
         @Description: spot category controller for synchronizing the spot methods
@@ -37,7 +35,7 @@ public class SpotCategoryController {
                 return  usersObject;
 
             case "updateStatus":
-                ResponseStatus updatedStatus = new SpotCategoryActions().updateSpotCategory((SpotCategory) requestBody.getObject());
+                ResponseStatus updatedStatus = new SpotCategoryActions().updateStatus((SpotCategory) requestBody.getObject());
                 usersObject.add((Object) updatedStatus);
 
                 return  usersObject;
