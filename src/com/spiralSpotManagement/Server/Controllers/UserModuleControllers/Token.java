@@ -1,4 +1,4 @@
-package com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersModule;
+package com.spiralSpotManagement.Server.Controllers.UserModuleControllers;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;

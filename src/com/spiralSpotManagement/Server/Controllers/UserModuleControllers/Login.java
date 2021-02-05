@@ -1,9 +1,9 @@
 /**
  * @author Mutoni Uwingeneye Denyse
- *
+ * @version 1.0.0
  *
  */
-package com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersModule;
+package com.spiralSpotManagement.Server.Controllers.UserModuleControllers;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -53,7 +53,6 @@ public class Login {
      * @param password password that is not hashed, of String type
      * @param hash hashed password , of String hash;
      * @return decoded string, of String type
-     *
      * @throws IllegalArgumentException invalid password
      */
     public boolean checkIfPasswordsAreEqual(String password, String hash){

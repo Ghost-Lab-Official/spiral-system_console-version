@@ -1,22 +1,11 @@
-package com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersModule;
+package com.spiralSpotManagement.Server.Controllers.UserModuleControllers;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.InvalidKeyException;
-import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.Instant;
-import java.time.temporal.TemporalUnit;
-import java.util.Base64;
-import java.util.Date;
-import java.util.Map;
-import java.util.TreeMap;
+
 
 /**
  * @author Mutoni Uwingeneye Denyse
@@ -25,6 +14,19 @@ import java.util.TreeMap;
  */
 
 public class Register {
+    /**
+     * @author Mutoni Uwingeneye Denyse
+     * registerUser method is the function used for registering users
+     * @param firstName first name , of type String
+     * @param lastName last name , of type String
+     * @param userName user name , of type String
+     * @param email email, of type String
+     * @param  gender gender, of type String
+     * @param birthDate date of the user, of type String
+     * @param password password of the user, of type String
+     * @param  location location of the user, of the type String
+     *
+     */
     public void  registerUser(Connection connection,String firstName,String lastName,String userName, String email,
                               String gender,String birthDate,String password,String location) throws Exception{
         if(checkIfUserExist(connection,email)){
@@ -56,12 +58,25 @@ public class Register {
             System.out.println("an error occurred");
         }
     }
+    /**
+     * @author Mutoni Uwingeneye Denyse
+     * hashPassword function is used for hashing passwords
+     * @param password password, of type String,
+     * @return hashedPassword, of type String
+     * */
     private String hashPassword(String password){
         System.out.println(BCrypt.gensalt(12));
         return BCrypt.hashpw(password,BCrypt.gensalt(12));
 
     }
-
+    /**
+     * @author Mutoni Uwingeneye Denyse
+     * checkIfUserExist used for checking if the email is already registered in the system thus
+        if the user already exist you get the boolean value
+     * @param connection, of type Connection
+     * @param email, of type String
+     * @return checkUser , of type boolean
+     * */
     public static boolean checkIfUserExist(Connection connection,String email) throws Exception {
         String sql = "SELECT * FROM users_table WHERE email = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
