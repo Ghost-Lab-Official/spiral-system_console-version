@@ -72,7 +72,7 @@ public class Navigation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t Number of registered spots                   ");
+//        System.out.println("\t\t\t Number of registered spots                   ");
 
         spotReportController.getTheTotalNumberOfRegisteredSpots();
 
@@ -82,7 +82,7 @@ public class Navigation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t   Number of Active spots                     ");
+//        System.out.println("\t\t\t   Number of Active spots                     ");
 
         spotReportController.getTheTotalNumberOfActiveSpots();
     }
@@ -91,7 +91,7 @@ public class Navigation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t    Number of Inactive spots               ");
+//        System.out.println("\t\t\t    Number of Inactive spots               ");
         spotReportController.getTheTotalNumberOfInactiveSpots();
     }
 
@@ -99,7 +99,7 @@ public class Navigation{
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t    Number of trending spots                  ");
+//        System.out.println("\t\t\t    Number of trending spots                  ");
 
         spotReportController.getTheTotalNumberOfHighlyVisitedSpots();
     }
