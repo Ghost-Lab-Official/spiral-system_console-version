@@ -4,12 +4,9 @@ import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotC
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
-<<<<<<< HEAD
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
 import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
-=======
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
->>>>>>> 7fc2781b4158ebe484a3c6c5480bb6fa4facfc1d
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;

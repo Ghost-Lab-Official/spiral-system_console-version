@@ -5,17 +5,7 @@ import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.TokenIssued;
 import com.spiralSpotManagement.Server.Model.User;
-<<<<<<< HEAD
-//import io.jsonwebtoken.JwtBuilder;
-//import io.jsonwebtoken.Jwts;
-//import io.jsonwebtoken.SignatureAlgorithm;
-=======
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.mindrot.jbcrypt.BCrypt;
->>>>>>> 7fc2781b4158ebe484a3c6c5480bb6fa4facfc1d
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

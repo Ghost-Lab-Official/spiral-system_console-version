@@ -61,13 +61,10 @@ public class Main {
 //        new CommentView().makeReplyComment();
 //        new CommentView().updateCommentStatus();
 //        new CommentReactionView().insertCommentReaction();
-<<<<<<< HEAD
 //        loginUser();
 //        new LocationLevelsView().registerLocationLevels();
-          new LocationView().registerLocation();
-=======
+//          new LocationView().registerLocation();
         new UserCategoryView().mainMethod();
->>>>>>> 7fc2781b4158ebe484a3c6c5480bb6fa4facfc1d
     }
 
 
