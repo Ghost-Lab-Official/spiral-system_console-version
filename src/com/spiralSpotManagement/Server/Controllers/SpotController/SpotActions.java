@@ -73,4 +73,25 @@ public class SpotActions {
 
         return null;
     }
+
+    public ResponseStatus deleteSpot(Spot spotToDelete)throws Exception{
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try (PreparedStatement deleteConnection = connection.prepareStatement(deleteSpotQuery)) {
+          deleteConnection.setString(1, spotToDelete.getSpotId().toString());
+          int deleted = deleteConnection.executeUpdate();
+
+          if (deleted == 1) {
+                return new ResponseStatus(200, "SPOT DELETED", "Spot is now Inactive");
+            }
+
+        } catch (SQLException e) {
+            return new ResponseStatus(404, "BAD REQUEST", e.getMessage());
+        }
+
+        catch (Exception e){
+            return new ResponseStatus(505,"SERVER ERROR",e.getMessage());
+        }
+
+        return null;
+    }
 }

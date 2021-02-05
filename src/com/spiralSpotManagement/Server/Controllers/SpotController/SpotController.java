@@ -26,12 +26,9 @@ public class SpotController {
                 usersObject.add((Object) updatedStatus);
                 return  usersObject;
 
-            case "getAll":
-                List<SpotCategory> spotCategoryList = new SpotCategoryActions().getAllSpotCategories();
-                for (SpotCategory spotCategory:spotCategoryList){
-                    usersObject.add((Object) spotCategory);
-                }
-
+            case "delete":
+                ResponseStatus deleteStatus = new SpotActions().deleteSpot((Spot) requestBody.getObject());
+                usersObject.add((Object) deleteStatus);
                 return  usersObject;
 
             case "updateStatus":

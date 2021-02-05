@@ -71,7 +71,26 @@ public class SpotView {
     }
 
     public void deleteSpotContent()throws Exception{
-        
+        Integer id =8;
+
+        Spot spotToDelete = new Spot();
+        spotToDelete.setSpotId(id);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/spot");
+        requestBody.setAction("delete");
+        requestBody.setObject(spotToDelete);
+
+        ClientServerConnector  clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
     }
 
 }

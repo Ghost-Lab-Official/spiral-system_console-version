@@ -112,10 +112,10 @@ public class Main {
                 break;
           case "2":
                 new SpotView().updateSpot();
-//        break;
-//      case "3":
-//        deleteSpot(cloudStorageConnection.getConnection());
-//        break;
+            break;
+          case "3":
+            new SpotView().deleteSpotContent();
+            break;
             case "4":
                 System.exit(0);
             default:
