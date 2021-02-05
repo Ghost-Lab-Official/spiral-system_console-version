@@ -26,15 +26,20 @@ public class Filter {
         }
     };
 
+    public String scanSearchKey(String type){
+        Scanner scanInput=new Scanner(System.in);
+        String searchKey;
+        System.out.print("\n\t\t\t Search " + type +": ");
+        searchKey = scanInput.nextLine();
+
+        return searchKey;
+    }
+
     //method to search a spot
     public void spotFilter(Statement stmt) throws Exception {
         Boolean loggedIn = false;
         ArrayList<Map> searchResults = new ArrayList();
-        Scanner scanInput=new Scanner(System.in);
-        String searchKey;
-
-        System.out.print("\n\t\t\t Search a spot: ");
-        searchKey = scanInput.nextLine();
+        String searchKey = scanSearchKey("a spot");
 
         String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
 
@@ -55,6 +60,7 @@ public class Filter {
             singleResult.put("views", String.valueOf(rs.getInt("views")));
             singleResult.put("ratings", String.valueOf(rs.getInt("rates")));
             singleResult.put("viewers", String.valueOf(rs.getInt("viewers")));
+            singleResult.put("registered At", rs.getString("registration_date"));
             searchResults.add(singleResult);
             System.out.println(results + ". " + singleResult.get("name"));
         }
@@ -69,6 +75,7 @@ public class Filter {
 
 
     public void peopleFilter(){
+
         System.out.println("Now we start");
     }
     public void messageFilter(){
