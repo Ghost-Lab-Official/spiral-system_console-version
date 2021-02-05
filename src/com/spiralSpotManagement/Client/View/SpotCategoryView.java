@@ -34,7 +34,6 @@ public class SpotCategoryView {
         spotCategoryToInsert.setDescription(description);
         spotCategoryToInsert.setStatus(status);
 
-
         /*
                Define Request Body
          */

@@ -1,4 +1,4 @@
-package com.spiralSpotManagement.Server.Controllers.SpotControllers;
+package com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.SpotCategory;

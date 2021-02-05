@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
+import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
@@ -53,13 +54,14 @@ public class Main {
 //        registerUser();
 //        new UserView().registerUser();
 //        new UserView().loginUser();
-       spotModuleMain();
+//       spotCategoryModuleMain();
+        spotMainContent();
     }
 
 
 
 
-    public static void spotModuleMain()throws Exception{
+    public static void spotCategoryModuleMain()throws Exception{
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t============================================= ");
@@ -87,6 +89,37 @@ public class Main {
                 break;
             default :
                 System.out.println("Invalid choice");
+        }
+    }
+
+
+    public static void spotMainContent()throws Exception{
+        Scanner input = new Scanner(System.in);
+        System.out.println("==============================");
+        System.out.println("||\t\tSpot  Section\t\t||");
+        System.out.println("==============================\n");
+        System.out.println("||\t\t1.Create Spot\t\t||\n");
+        System.out.println("||\t\t2.Edit Spot\t\t\t||\n");
+        System.out.println("||\t\t3.Delete Spot\t\t||\n");
+        System.out.println("||\t\t4.Exit         \t\t||\n");
+        System.out.println("==============================");
+        String choose = input.nextLine();
+
+
+        switch (choose) {
+            case "1":
+                new SpotView().createSpot();
+                break;
+          case "2":
+                new SpotView().updateSpot();
+//        break;
+//      case "3":
+//        deleteSpot(cloudStorageConnection.getConnection());
+//        break;
+            case "4":
+                System.exit(0);
+            default:
+                System.out.println("Incorrect Input!!");
         }
     }
 
