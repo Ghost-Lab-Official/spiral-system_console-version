@@ -1,16 +1,19 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.Users;
+import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 
 // Server class
@@ -129,10 +132,18 @@ public class SpiralMultiThreadedServer {
                             break;
 
                         case "/spot":
+                            responseObject = new SpotController().mainSpotController(requestBody);
 
                             break;
 
-                        case "sport-category":
+                        case "/sportCategory":
+                            responseObject = new SpotCategoryController().mainMethod(requestBody);
+                            break;
+                        case "/spot-comment":
+                            responseObject = new SpotCommentController().mainMethod(requestBody);
+                            break;
+                        case "/spot-reaction":
+                            responseObject = new SpotCommentReactionController().mainMethod(requestBody);
                             break;
 
                         case "/search":
