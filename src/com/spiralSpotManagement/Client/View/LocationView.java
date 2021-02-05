@@ -7,7 +7,11 @@ import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.util.Scanner;
-
+/*
+            @author : Gervais Ishimwe
+            LCOATION CONTROLLER  - SERVER CONTROLLER
+            Synchronizing all the methods
+ */
 public class LocationView {
 
     public void registerLocation()throws Exception{
@@ -55,12 +59,6 @@ public class LocationView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
 
         }
-
-
-
-
-
-
 
 
     }

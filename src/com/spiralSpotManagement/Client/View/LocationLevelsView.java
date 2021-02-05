@@ -8,6 +8,12 @@ import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.util.Scanner;
 
+/*
+            @author : Gervais Ishimwe
+            LCOATION LEVELS CONTROLLER  - SERVER CONTROLLER
+            Synchronizing all the methods
+ */
+
 public class LocationLevelsView {
 
     public void registerLocationLevels()throws Exception{

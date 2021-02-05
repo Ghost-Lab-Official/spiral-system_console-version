@@ -41,5 +41,8 @@ public class LocationActions {
         return new ResponseStatus(200,"CREATED","Location level registered");
     }
 
+//    OTHER METHODS TO GO HERE
+//    ---------------------------------------
+
 
 }

@@ -48,10 +48,8 @@ public class LocationLevelsActions {
            return new ResponseStatus(200,"CREATED","Location level registered");
     }
 
-    
-
-
 
 
 //    ADD YOUR OTHER METHODS TO DEAL WITH HERE
+//    ---------------------------------------------------
 }
