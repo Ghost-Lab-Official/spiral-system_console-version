@@ -12,8 +12,7 @@ public class UserCategoryActions {
     String InsertSql = "INSERT INTO users_categories (user_category) VALUES(?)";
     String UpdateSql = "UPDATE users_categories SET user_category=?,category_status=? WHERE category_id=?";
     String UpdateUserStatus = "UPDATE users_table SET user_status=? WHERE category_id=?";
-    String DeactivateUserCategories = "UPDATE users_table SET user_status=? WHERE category_id=?";
-    String deleteSQL = "UPDATE users_categories SET user_status=? where category_id=?";
+    String deleteSQL = "UPDATE users_categories SET category_status=? where user_category=?";
     String selectSQL = "SELECT * FROM users_categories";
 
     public ResponseStatus createUserCategory(UserCategory userCategoryToRegister)throws Exception{
@@ -71,15 +70,18 @@ public class UserCategoryActions {
     public ResponseStatus deleteUserCategory(UserCategory userCategoryToDelete) throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try(PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)){
-            preparedStatement.setInt(1, userCategoryToDelete.getCatId());
-            preparedStatement.setString(2,"Inactive");
+            preparedStatement.setInt(2, userCategoryToDelete.getCatId());
+            preparedStatement.setString(1,"inactive");
             int deleted = preparedStatement.executeUpdate();
             if(deleted == 1){
-                ResponseStatus responseReturned =  updateStatus(userCategoryToDelete.getCatId(),userCategoryToDelete.getCatName());
-                return new ResponseStatus(200,"USER CATEGORY DELETED",responseReturned,"You have updated the user category");
+                System.out.println("reached");
+                updateStatus(userCategoryToDelete.getCatId(),"inactive");
+                System.out.println("hjjjjj");
+                return new ResponseStatus(200,"USER CATEGORY DELETED","You have updated the user category");
             }
         }
         catch (SQLException e){
+            System.out.println(e.getMessage());
             return  new ResponseStatus(400,"BAD REQUEST",e.getMessage());
         }
         catch (Exception e){
@@ -92,12 +94,13 @@ public class UserCategoryActions {
         Connection connection = cloudStorageConnection.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(UpdateUserStatus)) {
             statement.setInt(2, categoryId);
-            statement.setString(1, "inactive");
+            statement.setString(1, categoryName);
             int updated = statement.executeUpdate();
             if (updated == 1) {
                 return new ResponseStatus(200, "USERS WITH THE SAME STATUS UPDATED", "User with the same changes is now updated");
             }
         }  catch (SQLException e){
+            System.out.println(e.getMessage());
             return  new ResponseStatus(400,"BAD REQUEST",e.getMessage());
         } catch (Exception e){
             new ResponseStatus(500,"SERVER ERROR",e.getMessage());
