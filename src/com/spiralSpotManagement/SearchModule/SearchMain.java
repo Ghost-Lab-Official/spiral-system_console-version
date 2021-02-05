@@ -4,6 +4,7 @@ import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
 public class SearchMain {
     public static Scanner scanner = new Scanner(System.in);
+    SearchModule searchModuleMethods = new SearchModule();
 
     public  static void searchCategories(){
         int searchCategory;
@@ -22,7 +23,7 @@ public class SearchMain {
     public static void main(String[] args) {
         int choice;
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
-        SearchModule search2 = new SearchModule();
+        SearchModule searchModuleMethods = new SearchModule();
 //        SearchByPopularity popularSpots = new SearchByPopularity();
 
         System.out.println("|----------------------------------------------------------------|");
@@ -40,8 +41,7 @@ public class SearchMain {
 
         switch (choice) {
             case 1:
-
-                search2.tester();
+                searchModuleMethods.SearchByCategory();
                 break;
             case 2:
                 System.out.println("Ndaje");
