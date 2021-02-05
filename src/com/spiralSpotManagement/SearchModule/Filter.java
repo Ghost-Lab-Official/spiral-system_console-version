@@ -28,6 +28,7 @@ public class Filter {
 
     //method to search a spot
     public void spotFilter(Statement stmt) throws Exception {
+        Boolean loggedIn = true;
         ArrayList<Map> searchResults = new ArrayList();
         Scanner scanInput=new Scanner(System.in);
         String searchKey;
@@ -37,6 +38,10 @@ public class Filter {
 
         String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY registration_date DESC LIMIT 10";
 
+        if(!loggedIn){
+            //changing sql query when user is not logged in
+            //sql = "SELECT * FROM Spot_table LIMIT 10";
+        }
         ResultSet rs = stmt.executeQuery(sql);
         Boolean found = false;
         Integer results = 0;
