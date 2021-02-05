@@ -7,6 +7,18 @@ import java.util.Map;
 
 public class LocationModule extends Location_Level{
 
+
+    /*
+     *location management class. Method updating for updating given location
+     * @author Felix DUSENGIMANA
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  04-02-2021
+     * @param parentId {String} for new data to update existing ones.
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
     protected  boolean CheckParentId(String parentId){
         String query = "SELECT location_id FROM `locations` WHERE location_id =?";
         boolean checkResult = false;
