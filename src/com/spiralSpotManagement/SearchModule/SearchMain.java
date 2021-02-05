@@ -9,7 +9,6 @@ import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 public class SearchMain {
     public static CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
     public static Scanner scanner = new Scanner(System.in);
-    SearchModule searchModuleMethods = new SearchModule();
 
     public  static void searchCategories(){
         System.out.println("|----------------------------------------------------------------|");
