@@ -13,13 +13,13 @@ public class Filter {
     //method to display results
     public void displayResults (ArrayList<Map> searchResults){
         Scanner choiceScanner = new Scanner(System.in);
-        System.out.println("Enter your Choice: ");
+        System.out.print("Enter your Choice: ");
         Integer choice = choiceScanner.nextInt();
         if(choice-1 > searchResults.size()){
             System.out.println("Invalid Choice");
         }else {
             Map<String, String> selectedResult = searchResults.get(choice - 1);
-            System.out.println("===================" + selectedResult.get("name") + "=============");
+            System.out.println("=================== " + selectedResult.get("name") + " =============");
             for (Map.Entry<String, String> element : selectedResult.entrySet()) {
                 System.out.println("\t\t" + element.getKey() + ":\t  " + element.getValue());
             }
@@ -28,7 +28,7 @@ public class Filter {
 
     //method to search a spot
     public void spotFilter(Statement stmt) throws Exception {
-        Boolean loggedIn = true;
+        Boolean loggedIn = false;
         ArrayList<Map> searchResults = new ArrayList();
         Scanner scanInput=new Scanner(System.in);
         String searchKey;
@@ -36,11 +36,12 @@ public class Filter {
         System.out.print("\n\t\t\t Search a spot: ");
         searchKey = scanInput.nextLine();
 
-        String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY registration_date DESC LIMIT 10";
+        String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
 
         if(!loggedIn){
             //changing sql query when user is not logged in
-            //sql = "SELECT * FROM Spot_table LIMIT 10";
+            sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY registration_date DESC LIMIT 10";
+
         }
         ResultSet rs = stmt.executeQuery(sql);
         Boolean found = false;
