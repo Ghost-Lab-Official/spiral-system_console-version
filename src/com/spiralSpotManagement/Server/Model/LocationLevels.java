@@ -8,23 +8,23 @@ import java.io.Serializable;
  */
 
 public class LocationLevels implements Serializable {
-  private Integer level_id;
+  private String level_id;
   private String level_name;
   private String description;
 
   public LocationLevels(){}
 
-    public LocationLevels(Integer level_id, String level_name, String description) {
+    public LocationLevels(String level_id, String level_name, String description) {
         this.level_id = level_id;
         this.level_name = level_name;
         this.description = description;
     }
 
-    public Integer getLevel_id() {
+    public String  getLevel_id() {
         return level_id;
     }
 
-    public void setLevel_id(Integer level_id) {
+    public void setLevel_id(String level_id) {
         this.level_id = level_id;
     }
 

@@ -1,6 +1,8 @@
 package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.View.LocationLevelsView;
+import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
@@ -47,7 +49,9 @@ public class Main {
     public static void main(String[] args) throws Exception{
         new SpiralMultiThreadedServer().startServer();
 //        registerUser();
-        loginUser();
+//        loginUser();
+//        new LocationLevelsView().registerLocationLevels();
+          new LocationView().registerLocation();
     }
 
     public static void registerUser()throws Exception{
