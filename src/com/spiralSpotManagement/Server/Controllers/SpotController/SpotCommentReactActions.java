@@ -6,8 +6,9 @@ import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import static com.spiralSpotManagement.SpotModule.Comment.toDateTime;
 
 /**
  * Spot Comment Reaction This is a class for Spot Reviews (comments) reactions actions
@@ -40,5 +41,10 @@ public class SpotCommentReactActions {
         }
 
         return null;
+    }
+
+    public static String toDateTime(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
     }
 }
