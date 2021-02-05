@@ -183,4 +183,9 @@ public class Location_Level extends CloudStorageConnection{
         }
         return list;
     }
+
+    public static void main(String[] args) {
+        Location_Level level = new  Location_Level();
+        level.createLocationLevelsTable();
+    }
 }

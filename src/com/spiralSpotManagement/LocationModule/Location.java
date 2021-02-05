@@ -14,19 +14,20 @@ public class Location extends Location_Level {
 
     /**
      *  Create <i>locations</i> table when it does not exist.
-     * @author Harerimana Egide
+     * @author Harerimana Egide, Felix Dusengimana
      * @version 1.0
      * @return boolean indicating if the query was ok, i.e true/false
      */
     public boolean createLocationsTable(){
         boolean query_ok = false;
-        String sql = "CREATE TABLE IF NOT EXISTS `Locations` (" +
+        String sql = "CREATE TABLE IF NOT EXISTS `locations` (" +
                 "`location_id` varchar(255) NOT NULL," +
                 "`level_id` varchar(255) NOT NULL," +
                 "`parent_id` varchar(255)," +
                 "`location_name` varchar(255) NOT NULL," +
                 "`location_GPS` varchar(255) NOT NULL," +
                 "`description` TEXT NOT NULL," +
+                "`status` VARCHAR(255) NOT NULL," +
                 "PRIMARY KEY (`location_id`)," +
                 "CONSTRAINT `location_fk0` FOREIGN KEY (`parent_id`) REFERENCES `locations`(`location_id`)," +
                 "CONSTRAINT  `location_fk1` FOREIGN KEY (`level_id`) REFERENCES `location_levels`(`level_id`)" +
@@ -82,5 +83,10 @@ public class Location extends Location_Level {
             System.out.println(e.getMessage());
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        Location level = new  Location();
+        level.createLocationsTable();
     }
 }
