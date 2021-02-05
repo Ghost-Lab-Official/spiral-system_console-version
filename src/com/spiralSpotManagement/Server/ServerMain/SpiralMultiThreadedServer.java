@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Server.ServerMain;
 
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
@@ -132,6 +133,9 @@ public class SpiralMultiThreadedServer {
                             break;
                         case "/spot-comment":
                             responseObject = new SpotCommentController().mainMethod(requestBody);
+                            break;
+                        case "/spot-reaction":
+                            responseObject = new SpotCommentReactionController().mainMethod(requestBody);
                             break;
 
                         case "/search":

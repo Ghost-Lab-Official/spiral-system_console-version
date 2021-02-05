@@ -6,9 +6,13 @@ import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+/**
+ * Spot Comment actions for managing all spot comment related work
+ * @author ntwari egide
+ * */
+
 
 public class SpotCommentActions {
     String InsertCommentQuery =

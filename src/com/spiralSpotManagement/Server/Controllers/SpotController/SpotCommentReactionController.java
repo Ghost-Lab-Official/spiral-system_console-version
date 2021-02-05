@@ -1,23 +1,26 @@
 package com.spiralSpotManagement.Server.Controllers.SpotController;
 
-import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryActions;
-import com.spiralSpotManagement.Server.Model.*;
+import com.spiralSpotManagement.Server.Model.Comment;
+import com.spiralSpotManagement.Server.Model.CommentReactions;
+import com.spiralSpotManagement.Server.Model.RequestBody;
+import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Spot Comment Controller for managing all spot comment related work
+ * Spot Comment Reaction This is a class for handling Spot Reviews (comments) reactions actions
+ *
  * @author ntwari egide
- * */
-
-public class SpotCommentController {
+ *
+ */
+public class SpotCommentReactionController {
     public List<Object> mainMethod(RequestBody requestBody)throws Exception{
         String action = requestBody.getAction();
         List<Object> usersObject = new ArrayList<>();
         switch (action){
             case "register":
-                ResponseStatus registeredStatus = new SpotCommentActions().insertComment((Comment) requestBody.getObject());
+                ResponseStatus registeredStatus = new SpotCommentReactActions().addCommentReaction((CommentReactions) requestBody.getObject());
                 usersObject.add((Object) registeredStatus);
                 return  usersObject;
 
@@ -41,4 +44,5 @@ public class SpotCommentController {
                 return usersObject;
         }
     }
+
 }

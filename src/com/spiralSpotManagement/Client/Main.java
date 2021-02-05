@@ -1,10 +1,7 @@
 package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Client.View.CommentView;
-import com.spiralSpotManagement.Client.View.SpotCategoryView;
-import com.spiralSpotManagement.Client.View.SpotView;
-import com.spiralSpotManagement.Client.View.UserView;
+import com.spiralSpotManagement.Client.View.*;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
@@ -60,7 +57,8 @@ public class Main {
 //        new CommentView().makeComment();
 //        new CommentView().updateTheComment();
 //        new CommentView().makeReplyComment();
-        new CommentView().updateCommentStatus();
+//        new CommentView().updateCommentStatus();
+        new CommentReactionView().insertCommentReaction();
     }
 
 
