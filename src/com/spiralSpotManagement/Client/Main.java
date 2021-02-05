@@ -51,14 +51,14 @@ public class Main {
         new SpiralMultiThreadedServer().startServer();
 //        registerUser();
 //        new UserView().registerUser();
-//        new UserView().loginUser();
+        new UserView().loginUser();
 //       spotCategoryModuleMain();
 //        spotMainContent();
 //        new CommentView().makeComment();
 //        new CommentView().updateTheComment();
 //        new CommentView().makeReplyComment();
 //        new CommentView().updateCommentStatus();
-        new CommentReactionView().insertCommentReaction();
+//        new CommentReactionView().insertCommentReaction();
     }
 
 
