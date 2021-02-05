@@ -13,5 +13,6 @@
     <orderEntry type="library" name="java-jwt-3.12.1" level="project" />
     <orderEntry type="library" name="jjwt-0.9.1" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.494" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.12.11" level="project" />
   </component>
 </module>

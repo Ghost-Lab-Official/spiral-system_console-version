@@ -1,15 +1,27 @@
-package com.spiralSpotManagement.UsersModule;
+package com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersModule;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.InvalidKeyException;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.Instant;
+import java.time.temporal.TemporalUnit;
+import java.util.Base64;
+import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * @author Mutoni Uwingeneye Denyse
  * Registering user controller
  * @version 1.0
- * @since
  */
 
 public class Register {
@@ -61,5 +73,6 @@ public class Register {
         }
         return checkUser;
     }
+
 }
 

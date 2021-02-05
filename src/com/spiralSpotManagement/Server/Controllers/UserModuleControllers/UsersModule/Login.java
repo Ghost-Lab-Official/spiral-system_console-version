@@ -3,7 +3,7 @@
  *
  *
  */
-package com.spiralSpotManagement.UsersModule;
+package com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersModule;
 
 import org.mindrot.jbcrypt.BCrypt;
 

@@ -1,4 +1,4 @@
-//package com.spiralSpotManagement.UsersModule;
+//package com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UsersModule;
 //
 //import java.net.PasswordAuthentication;
 //import java.sql.Connection;
