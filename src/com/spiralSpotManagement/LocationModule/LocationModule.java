@@ -46,7 +46,6 @@ public class LocationModule extends Location_Level{
     * @powered by Rwanda Coding Academy
     * instructor Donatien MASHENGESHO
     * @since  04-02-2021
-    * @param connection {Connection} provide connection to database
     * @param data {Hashmap} for new data to update existing ones.
     * return boolean to indicated the success or fail to update.
     *
