@@ -150,8 +150,8 @@ public class Spot {
   //    Update Spot function
   public static void UpdateSpot(Connection connection) throws Exception {
     Scanner scan = new Scanner(System.in);
-    String spot_id = "6", user_id = "1", category_id = "45", location_id =
-      "5655", spot_name = "Table", spot_description =
+    String spot_id = "10", user_id = "1", category_id = "1", location_id =
+      "1", spot_name = "Table", spot_description =
       "Black and brown table found in Ouuaagaadouuguuu", update_date =
       "2021-01-31", status = "1";
     Spot spot = new Spot(
