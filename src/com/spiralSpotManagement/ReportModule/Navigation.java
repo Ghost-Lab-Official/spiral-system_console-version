@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
-public class Navigation extends ReportOperation{
+public class Navigation{
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
     public static void navigateToHome() throws Exception {
@@ -78,7 +78,7 @@ public class Navigation extends ReportOperation{
 
         System.out.println("Make a choice ");
         int choice = scanInput.nextInt();
-        ReportOperation reportOperation = new ReportOperation();
+        SpotReportController reportOperation = new SpotReportController();
         switch (choice) {
             case 1 ->
                 getTheTotalNumberOfRegisteredSpots();
@@ -149,14 +149,14 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-                ReportOperation.viewAllActiveSpots();
+                SpotReportController.viewAllActiveSpots();
                 break;
             case 2:
-                viewAllInactiveSpots();
+                SpotReportController.viewAllInactiveSpots();
 
                 break;
             case 3:
-                highlyVisitedSpots();
+                SpotReportController.highlyVisitedSpots();
                 break;
             case 4:
                 navigateToSpotsManagement();
@@ -198,9 +198,9 @@ public class Navigation extends ReportOperation{
         }
     }
 
-    private static void viewUserStatistics() {
+    private static void viewUserStatistics() throws Exception {
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t= ADMIN DASHBOARD/Users/STATISTICS          = ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/USERS/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t|| 1.  Number of registered Users          ||");
         System.out.println("\t\t\t|| 2.  Number of active users              ||");
@@ -216,13 +216,13 @@ public class Navigation extends ReportOperation{
 
         switch (choice) {
             case 1:
-                //get the number of registered users method
+                UserReportController.numberOfAllRegisteredUsers();
                 break;
             case 2:
-                //get the number of active users method
+                UserReportController.numberOfAllActiveUsers();
                 break;
             case 3:
-                //get the number of inactive users method
+                UserReportController.numberOfAllInactiveUsers();
                 break;
             case 4:
                 //settings
