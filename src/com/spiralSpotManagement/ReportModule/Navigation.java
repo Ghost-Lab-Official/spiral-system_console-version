@@ -166,6 +166,41 @@ public class Navigation{
 //=================================================================================================
 //=======================              USERS RELATED           ====================================
 
+    public static void viewUsersByStatus() throws Exception {
+
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t= ADMIN DASHBOARD/SPOTS/View-by-status      = ");
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t|| 1.  View all active users              ||");
+        System.out.println("\t\t\t|| 2.  View all disabled users            ||");
+        System.out.println("\t\t\t|| 3.  View all guest users               ||");
+        System.out.println("\t\t\t|| 4.  Back                               ||");
+        System.out.println("\t\t\t|| 5.  Exit                               ||");
+        System.out.println("\t\t\t============================================ ");
+
+
+        System.out.println("Make a choice ");
+        int choice = scanInput.nextInt();
+
+        switch (choice) {
+            case 1:
+                viewAllActiveUsers();
+                break;
+            case 2:
+                viewAllDisabledUsers();
+                break;
+            case 3:
+                viewAllGuestUsers();
+                break;
+            case 4:
+//                navigateToSpotsManagement();
+                break;
+            case 5:
+                System.exit(0);
+                break;
+        }
+    }
+
     public static void navigateToUsersManagement() throws Exception {
         Scanner scanInput=new Scanner(System.in);
         System.out.println("\t\t\t============================================= ");
@@ -174,8 +209,9 @@ public class Navigation{
         System.out.println("\t\t\t|| 1.  View user Statistics                ||");
         System.out.println("\t\t\t|| 2.  View all users                      ||");
         System.out.println("\t\t\t|| 3.  View user activities                ||");
-        System.out.println("\t\t\t|| 4.  Back                                ||");
-        System.out.println("\t\t\t|| 5.  Exit                                ||");
+        System.out.println("\t\t\t|| 4.  View user by status                 ||");
+        System.out.println("\t\t\t|| 5.  Back                                ||");
+        System.out.println("\t\t\t|| 6.  Exit                                ||");
         System.out.println("\t\t\t============================================ ");
 
         System.out.println("\t\t\t Make a choice: ");
@@ -185,20 +221,20 @@ public class Navigation{
             case 1 -> viewUserStatistics();
             case 2 -> viewAllUsers();
             case 3 -> viewUserActivities();
-            case 4 -> navigateToHome();
-            case 5 -> System.exit(0);
+            case 4 -> viewUsersByStatus();
+            case 6 -> System.exit(0);
             default -> System.out.println("\t\t\t\t Invalid input");
         }
     }
 
-    private static void viewUserStatistics() {
+    private static void viewUserStatistics() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t= ADMIN DASHBOARD/Users/STATISTICS          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t|| 1.  Number of registered Users          ||");
         System.out.println("\t\t\t|| 2.  Number of active users              ||");
-        System.out.println("\t\t\t|| 3.  Number of inactive users            ||");
-        System.out.println("\t\t\t|| 4.  settings                            ||");
+        System.out.println("\t\t\t|| 3.  Number of disabled users            ||");
+        System.out.println("\t\t\t|| 4.  Number of guest users               ||");
         System.out.println("\t\t\t|| 5.  Back                                ||");
         System.out.println("\t\t\t|| 6.  Exit                                ||");
         System.out.println("\t\t\t============================================ ");
@@ -209,16 +245,16 @@ public class Navigation{
 
         switch (choice) {
             case 1:
-                //get the number of registered users method
+//                viewAllUsers();
                 break;
             case 2:
-                //get the number of active users method
+//                viewAllActiveUsers();
                 break;
             case 3:
-                //get the number of inactive users method
+//                viewAllDisabledUsers();
                 break;
             case 4:
-                //settings
+//                viewAllGuestUsers();
                 break;
             case 5:
                 //back
@@ -231,13 +267,43 @@ public class Navigation{
         }
     }
 
-    public static void viewAllUsers() {
+    public static void viewAllUsers() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
         System.out.println("\t\t\t============================================= ");
 
-        //viewAllUsers();
+        userReportController.viewAllUsers();
     }
+
+    public static void viewAllActiveUsers() throws Exception {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+        System.out.println("\t\t\t============================================= ");
+
+        userReportController.viewAllActiveUsers();
+    }
+
+    public static void viewAllDisabledUsers() throws Exception {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+        System.out.println("\t\t\t============================================= ");
+
+        userReportController.viewAllDisabledUsers();
+    }
+
+    public static void viewAllGuestUsers() throws Exception {
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+        System.out.println("\t\t\t============================================= ");
+
+        userReportController.viewAllGuestUsers();
+    }
+
+
+
+
+
+
 
     public static void viewUserActivities() throws Exception {
         System.out.println("\t\t\t=============================================");

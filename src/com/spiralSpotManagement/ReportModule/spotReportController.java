@@ -105,7 +105,7 @@ public class spotReportController {
                     rs.getString("spot_id"),
                     rs.getString("user_name"),
                     rs.getString("category_name"),
-                    rs.getString("locationId"),
+                    rs.getString("location_id"),
                     rs.getString("spot_name"),
                     rs.getString("spot_description"),
                     rs.getDouble("views"),
@@ -132,7 +132,7 @@ public class spotReportController {
         Statement stmt = connection.createStatement();
         String query= "SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
                 " Spot_table.status , Spot_table.views  , Spot_table.registration_date ," +
-                " users_table.user_name , locations.locationName , spot_category.category_name from Spot_table " +
+                " users_table.user_name , locations.location_name , spot_category.category_name from Spot_table " +
                 "left join users_table on Spot_table.spot_id= users_table.user_id" +
                 " left join locations on Spot_table.location_id = locations.locationId" +
                 " left join spot_category on Spot_table.category_id = spot_category.category_id " +
@@ -144,7 +144,7 @@ public class spotReportController {
                     result.getString("spot_id"),
                     result.getString("user_name"),
                     result.getString("category_name"),
-                    result.getString("locationName"),
+                    result.getString("location_name"),
                     result.getString("spot_name"),
                     result.getString("spot_description"),
                     result.getDouble("views"),
@@ -177,7 +177,7 @@ public class spotReportController {
         Statement stmnt = connection.createStatement();
         String squery= "SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
                 " Spot_table.status , Spot_table.views  , Spot_table.registration_date ," +
-                " users_table.user_name , locations.locationName , spot_category.category_name from Spot_table " +
+                " users_table.user_name , locations.location_name , spot_category.category_name from Spot_table " +
                 "left join users_table on Spot_table.spot_id= users_table.user_id" +
                 " left join locations on Spot_table.location_id = locations.locationId" +
                 " left join spot_category on Spot_table.category_id = spot_category.category_id " +
@@ -189,7 +189,7 @@ public class spotReportController {
                     result.getString("spot_id"),
                     result.getString("user_name"),
                     result.getString("category_name"),
-                    result.getString("locationName"),
+                    result.getString("location_name"),
                     result.getString("spot_name"),
                     result.getString("spot_description"),
                     result.getDouble("views"),
@@ -213,7 +213,7 @@ public class spotReportController {
         Statement stment = connection.createStatement();
         String querry = "SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
                 " Spot_table.status , Spot_table.views  , Spot_table.registration_date ," +
-                " users_table.user_name , locations.locationName , spot_category.category_name from Spot_table " +
+                " users_table.user_name , locations.location_name , spot_category.category_name from Spot_table " +
                 "left join users_table on Spot_table.spot_id= users_table.user_id" +
                 " left join locations on Spot_table.location_id = locations.locationId" +
                 " left join spot_category on Spot_table.category_id = spot_category.category_id " +
@@ -225,7 +225,7 @@ public class spotReportController {
                     resultset.getString("spot_id"),
                     resultset.getString("user_name"),
                     resultset.getString("category_name"),
-                    resultset.getString("locationName"),
+                    resultset.getString("location_name"),
                     resultset.getString("spot_name"),
                     resultset.getString("spot_description"),
                     resultset.getDouble("views"),

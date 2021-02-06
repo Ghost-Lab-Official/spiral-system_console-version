@@ -6,7 +6,7 @@ public class spotsModel {
     private String spot_id;
     private String user_name;
     private String category_name;
-    private String locationName;
+    private String location_name;
     private String spot_name;
     public String spot_description;
     private double views;
@@ -16,7 +16,7 @@ public class spotsModel {
     public spotsModel(String spot_id,
                       String user_name,
                       String category_name,
-                      String locationName,
+                      String location_name,
                       String spot_name,
                       String spot_description,
                       double views,
@@ -25,7 +25,7 @@ public class spotsModel {
         this.spot_id=spot_id;
         this.user_name=user_name;
         this.category_name=category_name;
-        this.locationName=locationName;
+        this.location_name=location_name;
         this.spot_name=spot_name;
         this.spot_description=spot_description;
         this.views=views;
@@ -39,7 +39,7 @@ public class spotsModel {
     }
 
     public String getLocationName() {
-        return locationName;
+        return location_name;
     }
 
     public Date getRegistration_date() {
@@ -73,7 +73,7 @@ public class spotsModel {
     }
 
     public void setLocationName(String locationName) {
-        this.locationName = locationName;
+        this.location_name = location_name;
     }
 
     public void setSpot_id(String spot_id) {
