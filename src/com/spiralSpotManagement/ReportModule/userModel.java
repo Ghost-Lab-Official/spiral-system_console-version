@@ -1,4 +1,4 @@
-package com.spiralSpotManagement.ReportModule; // user model by
+package com.spiralSpotManagement.ReportModule; // user model by Nicole
 
 import java.util.Date;
 

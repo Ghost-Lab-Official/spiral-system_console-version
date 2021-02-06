@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
-import javax.swing.plaf.nimbus.State;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -64,9 +64,8 @@ public class SpotReportController {
         }
 
 //    Inactive spots and highly visited spots created by Ange Nicole
-//    The Vector class implements a growable array of objects. Vectors basically fall in legacy classes
-//    but now it is fully compatible with collections. It is found in the java.util package and implements
-//    the List interface, so we can use all the methods of List interface here.
+//    The Vector class implements a growable array of objects. That's why
+//    I used it in here. hehehe!!
 
     public static void viewAllInactiveSpots() throws Exception{
         CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
