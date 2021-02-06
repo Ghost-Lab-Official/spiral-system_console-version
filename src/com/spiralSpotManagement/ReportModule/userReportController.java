@@ -12,7 +12,7 @@ import java.util.Vector;
 public class userReportController {
     /**
      * @author Ntezirizaza Erneste
-     * @description This method list of all registered users
+     * @description This method shows the list of all registered users
      * @throws Exception
      */
     public static void viewAllUsers() throws Exception {
@@ -56,7 +56,7 @@ public class userReportController {
 
     /**
      * @author Ntezirizaza Erneste
-     * @description This method list of all active users
+     * @description This method shows the list of all active users
      * @throws Exception
      */
 
@@ -102,7 +102,7 @@ public class userReportController {
 
     /**
      * @author Ntezirizaza Erneste
-     * @description This method list of all guest users
+     * @description This method shows the list of all guest users
      * @throws Exception
      */
 
@@ -148,7 +148,7 @@ public class userReportController {
 
     /**
      * @author Ntezirizaza Erneste
-     * @description This method list of all disabled users
+     * @description This method shows the list of all disabled users
      * @throws Exception
      */
 
