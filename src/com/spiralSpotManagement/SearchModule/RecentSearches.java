@@ -25,7 +25,7 @@ public class RecentSearches {
         ArrayList<String> resultArray = new ArrayList<String>();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
-                "select distinct searched_query,search_date from searchHistory where user_id =1 LIMIT 10");
+                "select DISTINCT searched_query,search_date from searchHistory where user_id =2");
         while (rs.next()) {
             String searchedQuery = rs.getString("searched_query");
             String queryDate = rs.getString("search_date");
