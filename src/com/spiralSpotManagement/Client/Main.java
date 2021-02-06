@@ -8,8 +8,6 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
