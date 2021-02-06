@@ -1,28 +1,26 @@
 package com.spiralSpotManagement.SpotModule;
+
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 
+import java.io.InputStreamReader;
 import java.net.ConnectException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.io.BufferedReader;
+
+import static java.lang.Integer.parseInt;
 
 public class SpotRatings {
-    private String rating_id;
-    private String user_id;
+    private Integer user_id;
     private String spot_id;
     private Integer rating;
 
-    public String getRating_id() {
-        return rating_id;
-    }
-
-    public void setRating_id(String rating_id) {
-        this.rating_id = rating_id;
-    }
-
-    public String getUser_id() {
+    public Integer getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(Integer user_id) {
         this.user_id = user_id;
     }
 
@@ -42,12 +40,49 @@ public class SpotRatings {
         this.rating = rating;
     }
 
-    private static final String Add_spot_rating() throws Exception{
-        //try and catch
+    private static final String INSERT_SPORT_RATING = "INSERT INTO spot_ratings (user_id, spot_id, rating) VALUES(?,?,?) ";
+    private static final String UPDATE_SPORT_RATING = "UPDATE spot_ratings set user_id=?, spot_id=?, rating=? WHERE rating_id=?";
+    //private static final String REPORT_SPORT_RATING = "";
+
+
+    public void Add_spot_rating() throws Exception {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("\t\t\tEnter User id");
+        user_id = parseInt(reader.readLine());
+        System.out.println("\t\t\t Enter spot_id: ");
+        spot_id = reader.readLine();
+        System.out.println("\t\t\t Enter rating(1-5): ");
+        rating = parseInt(reader.readLine());
+
         try{
             CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
             Connection connection = cloudStorageConnection.getConnection();
-            String sql = "INSERT INTO spot_rating"
+            String sql = "INSERT INTO spot_ratings (user_id,spot_id,rating)";
+            PreparedStatement statement = connection.prepareStatement(INSERT_SPORT_RATING);
+            statement.setInt(1,user_id);
+            statement.setString(2,spot_id);
+            statement.setInt(3,rating);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
         }
     }
+
+    public void update_spot_rating() throws Exception{
+        try{
+            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            Connection connection = cloudStorageConnection.getConnection();
+            String sql = "UPDATE spot_ratings SET rating=? WHERE spot_id = ?";
+            PreparedStatement statement = connection.prepareStatement(INSERT_SPORT_RATING);
+            statement.setInt(1,rating);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+//    private static final void update_spot_rating() throws Exception{
+//
+//    }
 }
