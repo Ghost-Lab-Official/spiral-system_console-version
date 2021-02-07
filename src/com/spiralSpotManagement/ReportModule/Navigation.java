@@ -167,6 +167,11 @@ public class Navigation{
 
 //=================================================================================================
 //=======================              USERS RELATED           ====================================
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method shows menu about displaying users according to their statuses
+     * @throws Exception
+     */
 
     public static void viewUsersByStatus() throws Exception {
 
