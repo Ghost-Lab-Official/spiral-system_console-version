@@ -35,13 +35,18 @@ public class SearchView {
     }
 
     public static void searchSpot() throws Exception{
+        Scanner scanner = new Scanner(System.in);
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
         requestBody.setAction("getSpots");
-        requestBody.setObject(null);
+
+        Spot spotToSend = new Spot();
+        System.out.print("Search a spot: ");
+        spotToSend.setSpotName(scanner.nextLine());
+        requestBody.setObject(spotToSend);
 
         ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-
+        System.out.println(responseBody.getResponse());
         for (Object response: responseBody.getResponse()){
             Spot spot = (Spot) response;
             System.out.println(spot.getSpotId() + ". " + spot.getSpotName());
