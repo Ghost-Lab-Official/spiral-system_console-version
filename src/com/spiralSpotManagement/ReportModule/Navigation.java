@@ -2,6 +2,8 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.ReportModule.userReportController.viewAllUsersByStatus;
+
 public class Navigation{
     public static Scanner scanInput=new Scanner(System.in);
     public static  int choice;
@@ -184,13 +186,13 @@ public class Navigation{
 
         switch (choice) {
             case 1:
-                viewAllActiveUsers();
+                viewAllUsersByStatus("active");
                 break;
             case 2:
-                viewAllDisabledUsers();
+                viewAllUsersByStatus("disabled");
                 break;
             case 3:
-                viewAllGuestUsers();
+                viewAllUsersByStatus("guest");
                 break;
             case 4:
 //                navigateToSpotsManagement();
@@ -275,29 +277,36 @@ public class Navigation{
         userReportController.viewAllUsers();
     }
 
-    public static void viewAllActiveUsers() throws Exception {
+    public static void view() throws Exception {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
         System.out.println("\t\t\t============================================= ");
 
-        userReportController.viewAllActiveUsers();
     }
 
-    public static void viewAllDisabledUsers() throws Exception {
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
-        System.out.println("\t\t\t============================================= ");
-
-        userReportController.viewAllDisabledUsers();
-    }
-
-    public static void viewAllGuestUsers() throws Exception {
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
-        System.out.println("\t\t\t============================================= ");
-
-        userReportController.viewAllGuestUsers();
-    }
+//    public static void viewAllActiveUsers(String s) throws Exception {
+//        System.out.println("\t\t\t============================================= ");
+//        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+//        System.out.println("\t\t\t============================================= ");
+//
+//        viewAllUsersByStatus("");
+//    }
+//
+//    public static void viewAllDisabledUsers(String s) throws Exception {
+//        System.out.println("\t\t\t============================================= ");
+//        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+//        System.out.println("\t\t\t============================================= ");
+//
+//        userReportController.viewAllDisabledUsers("");
+//    }
+//
+//    public static void viewAllGuestUsers(String s) throws Exception {
+//        System.out.println("\t\t\t============================================= ");
+//        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
+//        System.out.println("\t\t\t============================================= ");
+//
+//        userReportController.viewAllGuestUsers();
+//    }
 
 
 
