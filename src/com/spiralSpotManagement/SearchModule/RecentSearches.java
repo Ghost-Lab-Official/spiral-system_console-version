@@ -53,10 +53,8 @@ public class RecentSearches {
          PreparedStatement stmt = con.prepareStatement("DELETE FROM searchHistory WHERE history_id=?");
          stmt.setInt(1, query_id);
          boolean records = stmt.execute();
-         System.out.println(records);
-         System.out.println(query_id);
        if(records==false){
-           System.out.println("Query OK"+ " "+ "200");
+           System.out.println("Query deleted successfully"+ " "+ "200");
        }
        else{
            System.out.println("Deletion Failed"+ " "+ "404");
