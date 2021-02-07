@@ -181,7 +181,7 @@ public class Spot {
     }
   }
 
-  //delete function
+  //    delete function
   public static void deleteSpot(Connection connection) throws Exception {
     String id = "1";
     try (PreparedStatement sql = connection.prepareStatement(deleteSQL)) {
