@@ -1,8 +1,8 @@
 package com.spiralSpotManagement;
 
 import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
-import com.spiralSpotManagement.SpotModule.SpotCategory;
 import com.spiralSpotManagement.SpotModule.SpotRatings;
+import com.spiralSpotManagement.Server.Server;
 
 public class Main {
 
@@ -14,6 +14,12 @@ public class Main {
 //       category.theMainMethod();
         SpotRatings spotRating = new SpotRatings();
         spotRating.Add_spot_rating();
+//        System.out.println("HELLO SPIRAL SYSTEM\n\n ");
+//        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+//        cloudStorageConnection.   checkDbWorking(cloudStorageConnection.getConnection());
+
+        Server newServer = new Server();
+        newServer.startServer();
     }
 
 }
