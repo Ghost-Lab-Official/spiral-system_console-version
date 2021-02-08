@@ -30,8 +30,8 @@ public class Main {
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t||------------------    1.LOGIN                    ------------------||");
         System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
-        System.out.println("\t\t\t||------------------    3.CREATE A SPOT            ------------------||");
-        System.out.println("\t\t\t||------------------    4.CREATE A SPOT CATEGORY   ------------------||");
+        System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
+        System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
         System.out.println("\t\t\t||------------------    5.SEARCH                   ------------------||");
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t\t  Enter your choice                                              ");
@@ -47,7 +47,7 @@ public class Main {
                 spotForms.createSpot();
                 break;
             case 4:
-                spotCategories.CreateCategory();
+                spotCategories.SpotCategoryMenu();
                 break;
             case 5:
                 searchForms.mainMethod();

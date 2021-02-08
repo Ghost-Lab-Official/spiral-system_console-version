@@ -149,4 +149,34 @@ public class SpotCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
-}
+
+   public void SpotCategoryMenu() throws Exception {
+       int choice;
+       Scanner scanner = new Scanner(System.in);
+       System.out.println("\t\t\t||-------------------------------------------------------------------||");
+       System.out.println("\t\t\t||------------------    1.CREATE A CATEGORY        ------------------||");
+       System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
+       System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
+       System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
+       System.out.println("\t\t\t||-------------------------------------------------------------------||");
+       System.out.println("\t\t\t\t  Enter your choice                                              ");
+       choice = scanner.nextInt();
+       switch (choice){
+           case 1 :
+               CreateCategory();
+               break;
+           case 2:
+              UpdateCategory();
+               break;
+           case 3:
+              GetSpotCategory();
+               break;
+           case 4:
+               ChangeSpotStatus();
+               break;
+           default:
+               System.out.println("Invalid input");
+       }
+   }
+   }
+
