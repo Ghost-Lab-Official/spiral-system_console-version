@@ -1,4 +1,5 @@
 package com.spiralSpotManagement.Client.View;
+import java.util.UUID;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Model.*;
@@ -18,7 +19,9 @@ import java.util.Scanner;
 
 
 public class CommentView {
-    public void makeComment()throws Exception{
+    public void makeComment(Spot spot)throws Exception{
+
+
 
         Scanner commentIng = new Scanner(System.in);
         Comment comment = new Comment();
@@ -52,7 +55,7 @@ public class CommentView {
 
     public void updateTheComment()throws Exception{
         Comment comment = new Comment();
-        comment.setComment_id(1);
+        comment.setComment_id("03a1e527-f2db-442f-91d6-ddac501fff9a");
         comment.setContent("Updated my comment is registered now");
         comment.setSpotId(1);
         comment.setCreated_at(new Date());
@@ -79,7 +82,7 @@ public class CommentView {
 
     public void makeReplyComment()throws Exception{
         Comment comment = new Comment();
-        comment.setComment_id(19);
+        comment.setComment_id("03a1e527-f2db-442f-91d6-ddac501fff9a");
         comment.setContent("my reply on comment is registered now");
         comment.setSpotId(1);
         comment.setCreated_at(new Date());
@@ -107,7 +110,7 @@ public class CommentView {
 
     public void updateCommentStatus()throws Exception {
         Comment comment = new Comment();
-        comment.setComment_id(19);
+        comment.setComment_id("yooo");
         comment.setStatus("inactive");
         comment.setUpdatedAt(new Date());
 

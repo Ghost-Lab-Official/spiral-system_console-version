@@ -1,4 +1,5 @@
 package com.spiralSpotManagement.Client.View;
+import java.io.BufferedReader;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
@@ -16,21 +17,24 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SpotCategoryView {
-    public void CreateCategory() throws Exception {
 
-        Scanner reader = new Scanner(System.in);
-        System.out.println("\t\t\t Enter User id: ");
-        int userId = reader.nextInt();
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader entered = new BufferedReader(isr);
+    Scanner scanner = new Scanner(System.in);
+
+    public void CreateCategory() throws Exception {
+        System.out.println("\t\t\tEnter User id: ");
+        int userId = scanner.nextInt();
         System.out.println("\t\t\t Enter category name: ");
-        String categoryName = reader.nextLine();
+        String categoryName = entered.readLine();
         System.out.println("\t\t\t  Enter category description: ");
-        String description = reader.nextLine();
+        String description = entered.readLine();
         System.out.println("\t\t\t Enter the status: ");
-        String status = reader.nextLine();
+        String status = entered.readLine();
 
         SpotCategory spotCategoryToInsert = new SpotCategory();
         spotCategoryToInsert.setUserId(userId);
-        spotCategoryToInsert.setCategoryName("category Name 1");
+        spotCategoryToInsert.setCategoryName(categoryName);
         spotCategoryToInsert.setDescription(description);
         spotCategoryToInsert.setStatus(status);
 
@@ -60,16 +64,14 @@ public class SpotCategoryView {
     }
 
     public void UpdateCategory() throws Exception {
-
-        Scanner read = new Scanner(System.in);
-        System.out.println("\t\t\t Enter category ID: ");
-        int categoryId = read.nextInt();
+        System.out.println("\t\t\t Enter category id to be updated: ");
+        int categoryId = scanner.nextInt();
         System.out.println("\t\t\t Enter category name: ");
-        String categoryName = read.nextLine();
+        String categoryName = entered.readLine();
         System.out.println("\t\t\t  Enter category description: ");
-        String description = read.nextLine();
+        String description = entered.readLine();
         System.out.println("\t\t\t Enter the status: ");
-        String status = read.nextLine();
+        String status = entered.readLine();
 
         SpotCategory spotCategoryToInsert = new SpotCategory();
         spotCategoryToInsert.setCategoryName(categoryName);
