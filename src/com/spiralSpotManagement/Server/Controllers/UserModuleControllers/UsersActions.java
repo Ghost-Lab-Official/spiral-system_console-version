@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UsersActions {
     String createUserQuery = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location,user_status) values (?,?,?,?,?,?,?,?,?,?)";
@@ -37,15 +39,26 @@ public class UsersActions {
     }
 
     public ResponseStatus registerUserInDb(User userToRegister)throws Exception{
+        final String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+
+
         ResponseStatus responseStatus = new ResponseStatus(200,"OK","CREATED THE USER");
         Connection connection = new CloudStorageConnectionHandler().getConnection();
 
+        System.out.print(userToRegister.getEmail());
+
         if(checkIfUserExist(connection,userToRegister.getEmail())){
-            return new ResponseStatus(200,"USER FOUND","User email is found, try another ");
+           return  new ResponseStatus(400,"USER FOUND","User email is found, try another ");
         }
 
         String securePassword = hashPassword(userToRegister.getPassword());
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(userToRegister.getEmail());
+        System.out.println(matcher.matches());
 
+        if(!matcher.matches()){
+            return  new ResponseStatus(400,"INVALID EMAIL","Invalid email please try another ");
+        }
 
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(createUserQuery);
