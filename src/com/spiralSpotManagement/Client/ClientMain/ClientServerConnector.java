@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /*
 
@@ -35,7 +35,7 @@ public class ClientServerConnector {
                     = new ObjectInputStream(socket.getInputStream());
 
             // object of scanner class
-            Scanner sc = new Scanner(System.in);
+//            Scanner sc = new Scanner(System.in);
             String line = null;
 
 //            while (!"exit".equalsIgnoreCase(line)) {
@@ -65,7 +65,7 @@ public class ClientServerConnector {
 //            }
 
             // closing the scanner object
-            sc.close();
+//            sc.close();
 
             ResponseBody responseBody = new ResponseBody(dataReturned);
 

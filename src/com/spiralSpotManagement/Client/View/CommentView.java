@@ -19,13 +19,18 @@ import java.util.Scanner;
 
 public class CommentView {
     public void makeComment()throws Exception{
+
+        Scanner commentIng = new Scanner(System.in);
         Comment comment = new Comment();
-        comment.setComment_id(1);
-        comment.setContent("my comment is registered now");
+        System.out.println("\tSPOT COMMENTING");
+        System.out.println("\t-----------------------");
+        System.out.println("Enter your comment");
+        String content = commentIng.nextLine();
         comment.setSpotId(1);
-        comment.setCreated_at(new Date());
-        comment.setStatus("active");
         comment.setUserId(3);
+        comment.setContent(content);
+        comment.setStatus("active");
+        comment.setCreated_at(new Date());
         comment.setUpdatedAt(new Date());
 
         RequestBody requestBody = new RequestBody();
