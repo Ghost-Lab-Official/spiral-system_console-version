@@ -44,18 +44,16 @@ public class SearchActions {
         }
     }
 
-    //Authors: by Blessing and Izere Kerie
-//This class is used to fetch recent searched query from the search history table and then return top 10 most popular
-//searches. Popular searches will be determined by spots with most ratings,views,and most searched spot query.
+    /**
+     *
+     * @author: by Blessing and Izere Kerie
+     * @return Array of Popular spots
+     * @description  method to  make array of all popular stops to be displayed  and return it
+     *@throws Exception
+     */
 
     public  ArrayList<String> popularityArray() throws Exception {
-        /**
-         *@description   method to  make array of all popular stops to be displayed
-         * @param connection
-         *
-         * @return Array of Popular spots
-         * @throws SQLException
-         */
+        
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         ArrayList<String> spots = new ArrayList<String>();
         try {
