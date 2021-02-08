@@ -303,8 +303,9 @@ public class Navigation{
         System.out.println("\t\t\t|| 1.  View Locations Statistics           ||");
         System.out.println("\t\t\t|| 2.  View all Locations                  ||");
         System.out.println("\t\t\t|| 3.  View Locations by status            ||");
-        System.out.println("\t\t\t|| 4.  Back                                ||");
-        System.out.println("\t\t\t|| 5.  Exit                                ||");
+        System.out.println("\t\t\t|| 4.  View spots in a location            ||");
+        System.out.println("\t\t\t|| 5.  Back                                ||");
+        System.out.println("\t\t\t|| 6.  Exit                                ||");
         System.out.println("\t\t\t============================================ ");
 
         System.out.println("\t\t\t Make a choice: ");
@@ -314,8 +315,9 @@ public class Navigation{
             case 1 -> viewLocationsStatistics();
             case 2 -> LocationReportController.viewAllLocations();
             case 3 -> locationsByStatus();
-            case 4 -> navigateToHome();
-            case 5 -> System.exit(0);
+            case 4 -> LocationReportController.getSpotsByLocation();
+            case 5 -> navigateToHome();
+            case 6 -> System.exit(0);
             default -> System.out.println("\t\t\t\t Invalid input");
         }
     }
