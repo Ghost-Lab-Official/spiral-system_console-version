@@ -1,9 +1,12 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.SearchControllers.SearchController;
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
+import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
+import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
@@ -150,12 +153,17 @@ public class SpiralMultiThreadedServer {
                             break;
 
                         case "/search":
+                            responseObject = new SearchController().mainMethod(requestBody);
                             break;
 
                         case "/report":
                             break;
 
-                        case "/locations":
+                        case "/location":
+                            responseObject = new LocationController().mainMethod(requestBody);
+                            break;
+                        case "/location-levels":
+                            responseObject = new LocationLevelController().mainMethod(requestBody);
                             break;
 
                         case "/billing":

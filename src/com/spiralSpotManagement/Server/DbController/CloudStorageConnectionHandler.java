@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Server.DbController;
 
 
 
+
 import com.mysql.jdbc.CommunicationsException;
 
 import java.io.FileReader;
@@ -26,7 +27,7 @@ public class CloudStorageConnectionHandler {
 
 
 
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url,username,password);
 //            System.out.println("database connection is done ... ");
             return connection;
