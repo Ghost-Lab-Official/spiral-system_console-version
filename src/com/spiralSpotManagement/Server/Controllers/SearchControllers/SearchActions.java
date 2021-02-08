@@ -11,8 +11,9 @@ import java.util.List;
 
 /**
  * @author: Abizera Oreste
- *
- */
+ * @author: Kwizera Emmanuel
+ **/
+
 public class SearchActions {
 
 
@@ -24,7 +25,7 @@ public class SearchActions {
             System.out.println(searchKey);
             String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
             PreparedStatement stmt = connection.prepareStatement(sql);
-//
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Spot spot1 = new Spot();

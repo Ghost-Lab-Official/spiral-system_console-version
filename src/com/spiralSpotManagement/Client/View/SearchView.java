@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 /**
  * @author Abizera Oreste
+ * @author Kwizera Emmanuel
  */
 
 public class SearchView {
