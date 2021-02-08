@@ -5,15 +5,21 @@ import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
 import java.sql.*;
 import java.util.Scanner;
 
+/*
+BY Aimee Annabelle Ineza
+User category managment class which contains all operations on user category including creating category,
+selecting all categories, updating category and deleting category.
+*/
 
-public class CreateCategory {
+public class Category {
 
     private static int catId;
     private static String catName;
 
-    public CreateCategory(){}
+    public Category(){}
 
-    public CreateCategory(String catName){
+
+    public Category(String catName){
         this.catName=catName;
     }
 
@@ -36,7 +42,7 @@ public class CreateCategory {
         Scanner scan = new Scanner(System.in);
         System.out.println("Insert the Category Name");
         String category =scan.nextLine();
-        CreateCategory category1 = new CreateCategory(category);
+        Category category1 = new Category(category);
         try (PreparedStatement preparedStatement = connection.prepareStatement(InsertSql)){
         preparedStatement.setString(1,category1.getCatName());
         preparedStatement.execute();
@@ -69,7 +75,7 @@ public class CreateCategory {
         String category =scan.nextLine();
         System.out.println("Insert the category Id");
         int id = scan.nextInt();
-        CreateCategory category1 = new CreateCategory(category);
+        Category category1 = new Category(category);
         try (PreparedStatement sql = connection.prepareStatement(UpdateSql)){
             sql.setString(1,category1.getCatName());
             sql.setInt(2,id);
@@ -88,6 +94,7 @@ public class CreateCategory {
     int id = scan.nextInt();
     try (PreparedStatement sql= connection.prepareStatement(deleteSQL)){
     sql.setInt(1,id);
+    System.out.println(sql);
     sql.execute();
     }
     catch (SQLException e){
