@@ -22,7 +22,8 @@ public class SearchController {
                 }
                 return spots;
 
-            case "update":
+            case "searchByPopurarity":
+                ArrayList<String> SpotsList=new SearchActions().popularityArray();
                 break;
 
 //                OTHER ACTIONS SHOULD GO HERE

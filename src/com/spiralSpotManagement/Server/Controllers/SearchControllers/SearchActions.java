@@ -16,17 +16,17 @@ import java.util.List;
 public class SearchActions {
 
 
-    public List<Spot> getSpots(Spot spot) throws Exception{
+    public List<Spot> getSpots(Spot spot) throws Exception {
         List<Spot> spotsList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
-        try{
+        try {
             String searchKey = spot.getSpotName();
             System.out.println(searchKey);
-            String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
+            String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%" + searchKey + "%' OR spot_description LIKE '%" + searchKey + "%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
             PreparedStatement stmt = connection.prepareStatement(sql);
 //
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Spot spot1 = new Spot();
                 spot1.setSpotName(rs.getString("spot_name"));
                 spot1.setSpotDescription(rs.getString("spot_description"));
@@ -39,10 +39,64 @@ public class SearchActions {
                 spotsList.add(spot1);
             }
             return spotsList;
-        }catch (Exception e){
+        } catch (Exception e) {
             return spotsList;
         }
     }
 
+    //Authors: by Blessing and Izere Kerie
+//This class is used to fetch recent searched query from the search history table and then return top 10 most popular
+//searches. Popular searches will be determined by spots with most ratings,views,and most searched spot query.
 
+    public  ArrayList<String> popularityArray() throws Exception {
+        /**
+         *@description   method to  make array of all popular stops to be displayed
+         * @param connection
+         *
+         * @return Array of Popular spots
+         * @throws SQLException
+         */
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        ArrayList<String> spots = new ArrayList<String>();
+        try {
+            String SelectRatesquery = "select *from Spot_table order by rates desc limit 5";
+            String SelectViewsquery = "select *from Spot_table order by views desc limit 5";
+
+            String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
+            PreparedStatement ptRates = connection.prepareStatement(SelectRatesquery);
+            PreparedStatement ptViews = connection.prepareStatement(SelectViewsquery);
+            PreparedStatement sq = connection.prepareStatement(SelectMostSearchedQuery);
+            ResultSet Ratesresults = ptRates.executeQuery();
+            ResultSet Viewsresults = ptViews.executeQuery();
+            ResultSet searchResults = sq.executeQuery();
+
+            while (Ratesresults.next()) {
+                String spotName = Ratesresults.getString("spot_name");
+                if (!spots.contains(spotName)) {
+                    spots.add(spotName);
+                }
+
+
+            }
+            while (Viewsresults.next()) {
+                String spotName = Viewsresults.getString("spot_name");
+
+
+                if (!spots.contains(spotName)) {
+                    spots.add(spotName);
+                }
+            }
+
+            while (searchResults.next()) {
+
+                String searchedSpot = searchResults.getString("searched_query");
+                spots.add(searchedSpot);
+            }
+
+            return spots;
+        } catch (Exception e) {
+            return spots;
+        }
+
+    }
 }
