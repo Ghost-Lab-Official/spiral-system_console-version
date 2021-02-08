@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
-/*
+/**
 
          @author : Ntwari Egide - Scrum Master
          @author : Ishimwe Gervais

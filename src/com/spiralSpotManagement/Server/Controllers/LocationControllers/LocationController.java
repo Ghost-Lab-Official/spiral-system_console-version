@@ -28,7 +28,9 @@ public class LocationController {
                 return  location;
 
             case "delete":
-                break;
+                ResponseStatus deleteLocation = new LocationActions().DeleteLocation((LocationModel) requestBody.getObject());
+                location.add((Object) deleteLocation);
+                return  location;
 
 //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------

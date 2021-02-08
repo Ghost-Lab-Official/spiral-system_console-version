@@ -6,8 +6,10 @@ import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
-/*
+/**
             @author : Gervais Ishimwe
             LCOATION CONTROLLER  - SERVER CONTROLLER
             Synchronizing all the methods
@@ -61,13 +63,12 @@ public class LocationView {
         }
     }
 
-    /*
+    /**
      *location management class. Method updating for updating given location
      * @author Felix DUSENGIMANA
      * @powered by Rwanda Coding Academy
      * instructor Donatien MASHENGESHO
      * @since  04-02-2021
-     * @param data {Hashmap} for new data to update existing ones.
      * return boolean to indicated the success or fail to update.
      *
      */
@@ -75,7 +76,7 @@ public class LocationView {
     public void updateLocation(){
     try {
          LocationModel updateData = new LocationModel();
-         updateData.setDescription("Updated");
+         updateData.setDescription("The best continent where people collaborates");
          updateData.setLocation_id("LOC001HQT");
          updateData.setParent_id("LOC001HQT");
          updateData.setLevel_id("84fc4a8d-9720-406e-9b7b-2c020277f725");
@@ -97,5 +98,42 @@ public class LocationView {
     }catch (Exception e){
         System.out.println("Error Occurred");
     }
+    }
+
+    /**
+     *location management class. Method deleting given location
+     * @author Felix DUSENGIMANA
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  04-08-2021
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
+    public void DeleteLocation(){
+        try {
+            System.out.println("Provide Location ID to delete:: ");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String locationName= reader.readLine();
+
+            LocationModel updateData = new LocationModel();
+            updateData.setLocation_id(locationName);
+            RequestBody updateRequest = new RequestBody();
+            updateRequest.setUrl("/location");
+            updateRequest.setAction("delete");
+            updateRequest.setObject(updateData);
+
+            ClientServerConnector server = new ClientServerConnector();
+            ResponseBody responseBody = server.ConnectToServer(updateRequest);
+
+            for (Object response:responseBody.getResponse()){
+                ResponseStatus responseStatus = (ResponseStatus) response;
+                System.out.println("Update Status:: "+responseStatus.getStatus());
+                System.out.println("Update Message:: "+responseStatus.getMessage());
+                System.out.println("Action To do:: "+responseStatus.getActionToDo());
+            }
+        }catch (Exception e){
+            System.out.println("Error Occurred");
+        }
     }
 }
