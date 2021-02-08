@@ -32,13 +32,17 @@ public class SearchView {
         }
     }
 
+    /**
+     * display a spot
+     */
     public static void displaySpot(List<Object> spotsList) throws Exception{
+        Spot selectedSpot = null;
         System.out.println("Enter your Choice: ");
         int choice = scanner.nextInt();
         if(choice > spotsList.size()){
             System.out.println("Invalid Choice");
         }else {
-            Spot selectedSpot = (Spot) spotsList.get(choice - 1);
+            selectedSpot = (Spot) spotsList.get(choice - 1);
             System.out.println("=================== " + selectedSpot.getSpotName() + " =============");
             System.out.println("\t\t" + "Name" + ":\t  " + selectedSpot.getSpotName());
             System.out.println("\t\t" + "Description" + ":\t  " + selectedSpot.getSpotDescription());
@@ -55,9 +59,32 @@ public class SearchView {
 
         System.out.print("Enter Choice: ");
         Integer action = scanner.nextInt();
-        System.out.println(action);
+        if(action == 1){
+            likeSpot(selectedSpot);
+        }else if (action == 2){
+            commentOnSpot(selectedSpot);
+        }
     }
 
+    /**
+     * Comment on a spot
+     */
+
+    public static void commentOnSpot(Spot spot){
+        System.out.println("Comment on spot " + spot.getSpotId());
+    }
+
+    /**
+     * Like a spot
+     */
+
+    public static void likeSpot(Spot spot){
+
+        System.out.println("Like spot " + spot.getSpotId());
+    }
+    /**
+     * Search a spot
+     */
     public static void searchSpot() throws Exception{
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");

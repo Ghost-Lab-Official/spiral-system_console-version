@@ -33,6 +33,9 @@ public class SearchActions {
                 spot1.setSpotId(rs.getInt("spot_id"));
                 spot1.setStatus((rs.getString("status")));
                 spot1.setRegistrationDate(rs.getString("registration_date"));
+//                spot1.setLocationId(rs.getInt("location_id"));
+                spot1.setCategoryId(rs.getInt("category_id"));
+                spot1.setUserId(rs.getInt("user_id"));
                 spotsList.add(spot1);
             }
             return spotsList;
