@@ -15,6 +15,53 @@ import java.io.*;
 import static com.spiralSpotManagement.ReportModule.Navigation.view;
 
 public class userReportController {
+
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method shows the number of all registered users
+     * @throws Exception
+     */
+
+    public static void getTheTotalNumberOfAllUsersRegistered() throws Exception {
+        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        Connection connection= cloudStorageConnection.getConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT count(*) FROM users_table");
+
+        while(rs.next()){
+                System.out.println( "\t\t\t  Number of Users Registered :         "+ rs.getInt(1)+"");
+        }
+        connection.close();
+
+    }
+
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method shows the number of all users according to their statuses
+     * @param statusValue is taken by this method as a parameter
+     * @throws Exception
+     */
+
+    public static void getTheTotalNumberOfAllUsersByStatus(String statusValue) throws Exception {
+        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        Connection connection= cloudStorageConnection.getConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT count(*) FROM users_table WHERE user_status = '"+statusValue+"'");
+
+        while(rs.next()){
+            if(statusValue == "active")
+                System.out.println( "\t\t\t  Number of Active Users :         "+ rs.getInt(1)+"");
+            else if(statusValue == "disabled")
+                System.out.println( "\t\t\t  Number of Disabled Users :         "+ rs.getInt(1)+"");
+            else if(statusValue == "guest")
+                System.out.println( "\t\t\t  Number of Disabled Users :         "+ rs.getInt(1)+"");
+            else
+                System.out.println( "Invalid status!");
+        }
+        connection.close();
+
+    }
+
     /**
      * @author Ntezirizaza Erneste
      * @description This method shows the list of all registered users

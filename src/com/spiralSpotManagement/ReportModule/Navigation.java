@@ -2,7 +2,7 @@ package com.spiralSpotManagement.ReportModule;
 
 import java.util.Scanner;
 
-import static com.spiralSpotManagement.ReportModule.userReportController.viewAllUsersByStatus;
+import static com.spiralSpotManagement.ReportModule.userReportController.*;
 
 public class Navigation{
     public static Scanner scanInput=new Scanner(System.in);
@@ -233,6 +233,11 @@ public class Navigation{
             default -> System.out.println("\t\t\t\t Invalid input");
         }
     }
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method shows number of users according to their statuses
+     * @throws Exception
+     */
 
     private static void viewUserStatistics() throws Exception {
         System.out.println("\t\t\t============================================= ");
@@ -252,16 +257,16 @@ public class Navigation{
 
         switch (choice) {
             case 1:
-//                viewAllUsers();
+                getTheTotalNumberOfAllUsersRegistered();
                 break;
             case 2:
-//                viewAllActiveUsers();
+                getTheTotalNumberOfAllUsersByStatus("active");
                 break;
             case 3:
-//                viewAllDisabledUsers();
+                getTheTotalNumberOfAllUsersByStatus("disabled");
                 break;
             case 4:
-//                viewAllGuestUsers();
+                getTheTotalNumberOfAllUsersByStatus("guest");
                 break;
             case 5:
                 //back
@@ -273,6 +278,12 @@ public class Navigation{
                 System.out.println("\t\t\t\t Invalid input");
         }
     }
+
+    /**
+     * @author Ntezirizaza Erneste
+     * @description This method shows number of all users registered
+     * @throws Exception
+     */
 
     public static void viewAllUsers() throws Exception {
         System.out.println("\t\t\t============================================= ");
@@ -288,36 +299,6 @@ public class Navigation{
         System.out.println("\t\t\t============================================= ");
 
     }
-
-//    public static void viewAllActiveUsers(String s) throws Exception {
-//        System.out.println("\t\t\t============================================= ");
-//        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
-//        System.out.println("\t\t\t============================================= ");
-//
-//        viewAllUsersByStatus("");
-//    }
-//
-//    public static void viewAllDisabledUsers(String s) throws Exception {
-//        System.out.println("\t\t\t============================================= ");
-//        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
-//        System.out.println("\t\t\t============================================= ");
-//
-//        userReportController.viewAllDisabledUsers("");
-//    }
-//
-//    public static void viewAllGuestUsers(String s) throws Exception {
-//        System.out.println("\t\t\t============================================= ");
-//        System.out.println("\t\t\t=       ADMIN DASHBOARD/USERS/View-All      = ");
-//        System.out.println("\t\t\t============================================= ");
-//
-//        userReportController.viewAllGuestUsers();
-//    }
-
-
-
-
-
-
 
     public static void viewUserActivities() throws Exception {
         System.out.println("\t\t\t=============================================");
@@ -350,12 +331,5 @@ public class Navigation{
     public static void userActivities() {
         //user activities methods
     }
-
-
-    //=================================================================================================
-//=======================              TO CONTINUE STATEMENT           ====================================
-
-
-
 }
 
