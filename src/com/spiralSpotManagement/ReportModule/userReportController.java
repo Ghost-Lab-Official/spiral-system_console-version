@@ -45,14 +45,21 @@ public class userReportController {
             AllUsers.add(myUsers);
         }
         Iterator it = AllUsers.iterator();
-        System.out.println("\t\t\t  #Id" + "\t\t\t First Name" +  "\t\t\t\t Last Name " +  "\t\t\t Username" +  "\t\t\t Email " +
-                "\t\t\t\t Gender" +"\t\t\t\t Birth Date" +  "\t\t\t\t User Category" +  "\t\t\t Location Name " + "\t\t\t User Status " + "\t\t\t Registration Date ");
-        System.out.println("\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        String leftAlignFormat = "| %4d | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |%n";
+
+        System.out.println("\n THE RESULT FROM THE SELECTED TABLE");
+
+        System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+
+        System.out.format("| #Id   | First name      | Last name       | Username       | Email       | Gender       | Birth date       | User category       | Location name       | User status      | Registration date       |%n");
+
+        System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+
         while(it.hasNext()){
             usersModel user = (usersModel)it.next();
-            System.out.println(" \t\t\t\t "+user.getUserId() + " \t\t\t\t " + user.getFirstName()+ " \t\t\t\t " + user.getLastName() +
-                    " \t\t\t\t " + user.getUserName() + " \t\t\t\t " + user.getEmail()+ " \t\t\t\t " +" \t\t\t\t " +user.getGender()
-                    + " \t\t\t\t "+ user.getBirthDate()+" \t\t\t\t " + user.getUserCategoryName()+ " \t\t\t\t " + user.getUserStatus() + " \t\t\t\t " + user.getRegistrationDate());
+            System.out.format(leftAlignFormat, user.getUserId(), user.getFirstName(), user.getLastName(), user.getUserName(), user.getEmail(), user.getGender(),
+                    user.getBirthDate(), user.getUserCategoryName(), user.getUserStatus(), user.getRegistrationDate());
         }
         connection.close();
     }
