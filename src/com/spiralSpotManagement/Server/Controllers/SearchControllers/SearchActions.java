@@ -1,11 +1,12 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
+import com.spiralSpotManagement.Server.Model.User;
+import org.jetbrains.annotations.NotNull;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +45,30 @@ public class SearchActions {
         }
     }
 
+/**
+ *
+ * @Author : Pauline Ishimwe this method will help you to display your recent searches
+ * as a logged in user (last 10 at most)
+ * */
+    public List<Object> DisplayRecentSearches(User user) throws Exception {
 
-}
+        List<Object> recentSearches = new ArrayList<>();
+        Connection con = new CloudStorageConnectionHandler().getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery
+                        ("select DISTINCT searched_query,search_date from searchHistory where user_id ="+user.getUserId());
+        while (rs.next()) {
+            String searchQuery = rs.getString("searched_query");
+            String date = rs.getString("search_date");
+
+            RecentSearch recentSearch = new RecentSearch();
+            recentSearch.setSearchQuery(searchQuery);
+            recentSearch.setDate(date);
+
+            recentSearches.add((Object) recentSearch);
+        }
+
+        return recentSearches;
+    }
+
+  }

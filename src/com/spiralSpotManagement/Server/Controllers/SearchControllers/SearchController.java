@@ -25,8 +25,19 @@ public class SearchController {
             case "update":
                 break;
 
+
 //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
+
+
+            case "viewRecentSearches":
+                List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
+
+                break;
+
+            default :
+
+                System.out.println("the url is wrong");
         }
         return  null;
     }
