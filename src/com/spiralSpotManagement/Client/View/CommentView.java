@@ -3,11 +3,9 @@ package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Model.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * Comment.java This is a class for handling Spot Reviews (comments) view and display from server , to server
@@ -18,14 +16,22 @@ import java.util.Scanner;
 
 
 public class CommentView {
-    public void makeComment()throws Exception{
+    public void makeComment(Spot spot)throws Exception{
+
+        Scanner commentIng = new Scanner(System.in);
         Comment comment = new Comment();
-        comment.setComment_id(1);
-        comment.setContent("my comment is registered now");
-        comment.setSpotId(1);
-        comment.setCreated_at(new Date());
-        comment.setStatus("active");
+        System.out.println("\tSPOT COMMENTING");
+        System.out.println("\t-----------------------");
+        System.out.println("Enter your comment");
+        String content = commentIng.nextLine();
+
+
+        comment.setSpotId(spot.getSpotId());
         comment.setUserId(3);
+        comment.setComment_id(UUID.randomUUID().toString());
+        comment.setContent(content);
+        comment.setStatus("active");
+        comment.setCreated_at(new Date());
         comment.setUpdatedAt(new Date());
 
         RequestBody requestBody = new RequestBody();
@@ -47,7 +53,7 @@ public class CommentView {
 
     public void updateTheComment()throws Exception{
         Comment comment = new Comment();
-        comment.setComment_id(1);
+        comment.setComment_id(UUID.randomUUID().toString());
         comment.setContent("Updated my comment is registered now");
         comment.setSpotId(1);
         comment.setCreated_at(new Date());
@@ -74,7 +80,7 @@ public class CommentView {
 
     public void makeReplyComment()throws Exception{
         Comment comment = new Comment();
-        comment.setComment_id(19);
+        comment.setComment_id(UUID.randomUUID().toString());
         comment.setContent("my reply on comment is registered now");
         comment.setSpotId(1);
         comment.setCreated_at(new Date());
@@ -102,7 +108,7 @@ public class CommentView {
 
     public void updateCommentStatus()throws Exception {
         Comment comment = new Comment();
-        comment.setComment_id(19);
+        comment.setComment_id(UUID.randomUUID().toString());
         comment.setStatus("inactive");
         comment.setUpdatedAt(new Date());
 

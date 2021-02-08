@@ -70,8 +70,10 @@ public class SearchView {
      * Comment on a spot
      */
 
-    public static void commentOnSpot(Spot spot){
+    public static void commentOnSpot(Spot spot) throws Exception {
+
         System.out.println("Comment on spot " + spot.getSpotId());
+        new CommentView().makeComment(spot);
     }
 
     /**
