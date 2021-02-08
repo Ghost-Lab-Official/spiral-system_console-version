@@ -22,6 +22,7 @@ public class Main {
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
         SpotCategoryView spotCategories= new SpotCategoryView();
+        SearchView searchForms = new SearchView();
         int choice;
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
@@ -47,8 +48,8 @@ public class Main {
                 break;
             case 4:
                 spotCategories.CreateCategory();
-                //case 5:
-                //searchForms.searchSpot();
+            case 5:
+                searchForms.mainMethod();
             default:
                 System.out.println("Invalid input");
         }
