@@ -14,7 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UsersActions {
-    String selectQuery = "select * from users_table";
+    String selectQuery = "select user_id, first_name, last_name, user_name,email, gender, birth_date,user_category,location,user_status,registration_date from users_table";
     String createUserQuery = "INSERT INTO users_table(first_name,last_name,user_name,email,gender,birth_date,password,user_category,location,user_status) values (?,?,?,?,?,?,?,?,?,?)";
     String loginUserQuery = "SELECT * FROM users_table WHERE email = ?";
     String secreteKey = "SpiralSystemPrivateKeyForAuthentication";
@@ -134,14 +134,15 @@ public class UsersActions {
             User user = new User();
 //            user.set(result.getInt(1));
 //            userCategory.setCatName(result.getString(2));
-            user.setFirstName(result.getString(1));
-            user.setLastName(result.getString(2));
-            user.setUserName(result.getString(3));
-            user.setEmail(result.getString(4));
-            user.setGender(result.getString(5));
-            user.setUserCategory(result.getString(6));
-            user.setBirthDate(result.getString(7));
-            user.setLocation(result.getString(8));
+            user.setUserId(result.getInt(1));
+            user.setFirstName(result.getString(2));
+            user.setLastName(result.getString(3));
+            user.setUserName(result.getString(4));
+            user.setEmail(result.getString(5));
+            user.setGender(result.getString(6));
+            user.setUserCategory(result.getString(7));
+            user.setBirthDate(result.getString(8));
+            user.setLocation(result.getString(9));
             users.add((Object) user);
         }
         return  users;
@@ -157,4 +158,5 @@ public class UsersActions {
         }
         return rightPassword;
     }
+
 }

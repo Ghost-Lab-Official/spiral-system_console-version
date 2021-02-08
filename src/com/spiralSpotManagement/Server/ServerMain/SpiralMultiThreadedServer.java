@@ -131,7 +131,6 @@ public class SpiralMultiThreadedServer {
                     List<Object> responseObject = null;
                     switch (url){
                         case "/users":
-
                             responseObject =  new UserController().mainMethod(requestBody);
                             break;
                         case"/user-category":

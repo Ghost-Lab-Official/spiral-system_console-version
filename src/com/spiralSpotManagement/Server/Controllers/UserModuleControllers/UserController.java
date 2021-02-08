@@ -26,6 +26,9 @@ public class UserController {
                 ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
                 usersObject.add((Object) loggedInStatus);
                 return  usersObject;
+            case "getUsers":
+                usersObject = new UsersActions().selectUsers();
+                return usersObject;
         }
 
         return null;

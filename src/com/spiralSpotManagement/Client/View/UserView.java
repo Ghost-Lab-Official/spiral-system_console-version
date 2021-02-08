@@ -6,6 +6,53 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.util.Scanner;
 
 public class UserView {
+    public void mainMethod() throws Exception {
+        Scanner input = new Scanner(System.in);
+        System.out.println("==================================");
+        System.out.println("||\t\tUsers Section\t||\n");
+        System.out.println("||\t\t1.Create user\t\t||\n");
+        System.out.println("||\t\t2.Edit user  \t\t||\n");
+        System.out.println("||\t\t3.View users \t\t||\n");
+        System.out.println("||\t\t4.Delete user \t\t||\n");
+        System.out.println("||\t\t5.Exit           \t\t||\n");
+        System.out.println("==================================");
+        Integer choice = input.nextInt();
+        switch(choice) {
+            case 1:
+                registerUser();
+                break;
+            case 2:
+
+                break;
+            case 3:
+                selectUsers();
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                System.out.println("Incorrect input!!");
+        }
+
+    }
+    public static void selectUsers() throws Exception{
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("getUsers");
+        requestBody.setObject(null);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        System.out.println("\t\t\t List of Users\t\n");
+        System.out.println("\t ID \t first name \t last name \t user name \t gender \t email \t birth date \t location\n ");
+        for (Object response: responseBody.getResponse()){
+            User user = (User) response;
+
+            System.out.println("\t "+ user.getUserId() + "\t\t" + user.getFirstName()+" \t\t "+user.getLastName() + "\t\t"
+            + user.getUserName() + "\t\t" + user.getGender() + "\t\t" + user.getEmail() + "\t\t" + user.getBirthDate() + "\t\t"
+            + user.getLocation());
+        }
+    }
     public void registerUser()throws Exception{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your first name ");
@@ -57,7 +104,6 @@ public class UserView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
-
 
     public void loginUser()throws Exception{
         Scanner scanner = new Scanner(System.in);
