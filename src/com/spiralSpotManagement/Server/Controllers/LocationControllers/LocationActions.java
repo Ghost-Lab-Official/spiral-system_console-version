@@ -6,6 +6,7 @@ import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -58,8 +59,21 @@ public class LocationActions {
 
     public  ResponseStatus UpdateLocation (LocationModel location){
 
-        HashMap<String,String> updateLocationData = new HashMap<>();
+        //check new parent_id going to be updated exists
+        if (location.getParent_id()!=null){
+            if (!CheckParentId(location.getParent_id())){
+                return  new ResponseStatus(422,"BAD REQUEST","THE PARENT ID DOESN'T EXISTS");
+            }
+        }
 
+        //chek new level id going to be update exists
+        if(location.getLevel_id()!=null){
+           if (!CheckLevelId(location.getLevel_id())){
+               return  new ResponseStatus(422,"BAD REQUEST","LEVEL ID DOESN'T EXISTS");
+           }
+        }
+
+        HashMap<String,String> updateLocationData = new HashMap<>();
         updateLocationData.put("location_id",location.getLocation_id());
         updateLocationData.put("parent_id",location.getParent_id());
         updateLocationData.put("level_id",location.getLevel_id());
@@ -84,6 +98,8 @@ public class LocationActions {
             }
         }
 
+        System.out.println(attr);
+
         try{
             Connection connection = new CloudStorageConnectionHandler().getConnection();
 
@@ -92,8 +108,7 @@ public class LocationActions {
             }else{
                 String withoutLastComma = attr.substring( 0, attr.length( ) - ",".length( ) );
                 query +="UPDATE locations SET "+withoutLastComma+" "+cond;
-                System.out.println(query);
-
+                System.out.println("Query :: "+query);
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 int updated = preparedStatement.executeUpdate();
                 if(updated==1){
@@ -106,6 +121,73 @@ public class LocationActions {
             return  new ResponseStatus(300,"EXCEPTION ERROR",e.getMessage());
         }
     }
+
+
+    /*
+     *location management class. Method updating for updating given location
+     * @author Felix DUSENGIMANA
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  04-02-2021
+     * @param parentId {String} for new data to update existing ones.
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
+    protected  boolean CheckParentId(String parentId){
+        String query = "SELECT location_id FROM `locations` WHERE location_id =?";
+        boolean checkResult = false;
+        try {
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+
+            PreparedStatement checkStatment = connection.prepareStatement(query);
+            checkStatment.setString(1,parentId);
+
+            ResultSet rs = checkStatment.executeQuery();
+            if (rs.next()){
+                checkResult = true;
+            }
+        }catch (SQLException e){
+            System.out.println("Error Message: "+e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkResult;
+    }
+
+
+    /*
+     *location management class. Method updating for updating given location
+     * @author Felix DUSENGIMANA
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  04-02-2021
+     * @param levelId {String} for new data to update existing ones.
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
+    protected  boolean CheckLevelId(String levelId){
+        String query = "SELECT level_id FROM `location_levels` WHERE level_id =?";
+        boolean checkResult = false;
+        try {
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+
+            PreparedStatement checkStatment = connection.prepareStatement(query);
+            checkStatment.setString(1,levelId);
+
+            ResultSet rs = checkStatment.executeQuery();
+            if (rs.next()){
+                checkResult = true;
+            }
+        }catch (SQLException e){
+            System.out.println("Error Message: "+e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checkResult;
+    }
+
 //    OTHER METHODS TO GO HERE
 //    ---------------------------------------
 

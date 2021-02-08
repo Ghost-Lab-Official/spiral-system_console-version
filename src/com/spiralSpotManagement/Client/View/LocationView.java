@@ -77,6 +77,8 @@ public class LocationView {
          LocationModel updateData = new LocationModel();
          updateData.setDescription("Updated");
          updateData.setLocation_id("LOC001HQT");
+         updateData.setParent_id("LOC001HQT");
+         updateData.setLevel_id("84fc4a8d-9720-406e-9b7b-2c020277f725");
 
          RequestBody updateRequest = new RequestBody();
          updateRequest.setUrl("/location");
@@ -93,7 +95,7 @@ public class LocationView {
              System.out.println("Action To do:: "+responseStatus.getActionToDo());
          }
     }catch (Exception e){
-
+        System.out.println("Error Occurred");
     }
     }
 }
