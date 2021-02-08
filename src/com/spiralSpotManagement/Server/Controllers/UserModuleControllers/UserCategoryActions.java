@@ -11,8 +11,8 @@ import java.util.List;
 public class UserCategoryActions {
     String InsertSql = "INSERT INTO users_categories (user_category) VALUES(?)";
     String UpdateSql = "UPDATE users_categories SET user_category=?,category_status=? WHERE category_id=?";
-    String UpdateUserStatus = "UPDATE users_table SET user_status=? WHERE category_id=?";
-    String deleteSQL = "UPDATE users_categories SET category_status=? where user_category=?";
+    String UpdateUserStatus = "UPDATE users_table SET user_status=? WHERE user_category=?";
+    String deleteSQL = "UPDATE users_categories SET category_status=? where category_id=?";
     String selectSQL = "SELECT * FROM users_categories";
 
     public ResponseStatus createUserCategory(UserCategory userCategoryToRegister)throws Exception{
@@ -75,8 +75,8 @@ public class UserCategoryActions {
             int deleted = preparedStatement.executeUpdate();
             if(deleted == 1){
                 System.out.println("reached");
-                updateStatus(userCategoryToDelete.getCatId(),"inactive");
-                System.out.println("hjjjjj");
+                ResponseStatus updatedUser = updateUserStatus(userCategoryToDelete.getCatId(),"inactive");
+                System.out.println("updated user "+ updatedUser);
                 return new ResponseStatus(200,"USER CATEGORY DELETED","You have updated the user category");
             }
         }
@@ -89,7 +89,7 @@ public class UserCategoryActions {
         }
         return new ResponseStatus(500,"SERVER ERROR","e.getMessage()");
     }
-    public ResponseStatus updateStatus(Integer categoryId,String categoryName) throws Exception {
+    public ResponseStatus updateUserStatus(Integer categoryId,String categoryName) throws Exception {
         CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection = cloudStorageConnection.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(UpdateUserStatus)) {
