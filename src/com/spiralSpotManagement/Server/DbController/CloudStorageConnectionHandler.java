@@ -27,7 +27,7 @@ public class CloudStorageConnectionHandler {
 
 
 
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url,username,password);
 //            System.out.println("database connection is done ... ");
             return connection;
