@@ -48,8 +48,10 @@ public class Main {
                 break;
             case 4:
                 spotCategories.CreateCategory();
+                break;
             case 5:
                 searchForms.mainMethod();
+                break;
             default:
                 System.out.println("Invalid input");
         }
