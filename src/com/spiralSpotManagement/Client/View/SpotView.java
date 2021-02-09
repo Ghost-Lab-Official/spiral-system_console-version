@@ -24,7 +24,7 @@ public class SpotView {
         String status = customSpot.getStatus();
 
 
-        Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,status);
+        Spot spotToCreate = new Spot(user_id,category_id,location_id,spot_name,spot_description,status);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/spot");

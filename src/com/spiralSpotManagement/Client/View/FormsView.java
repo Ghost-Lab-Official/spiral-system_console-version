@@ -10,7 +10,7 @@ public class FormsView {
         System.out.println("Enter user id ");
         Integer userId = scanner.nextInt();
         System.out.println("Enter category id");
-        int categoryId = scanner.nextInt();
+        Integer categoryId = scanner.nextInt();
         System.out.println("Enter your location Id ");
         Integer locationId = scanner.nextInt();
         System.out.println("Enter spot name ");

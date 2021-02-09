@@ -12,7 +12,14 @@ public class Spot implements Serializable {
     private String registrationDate;
     private String status;
 
-    public Spot() {
+    public Spot(){}
+    public Spot( Integer userId, Integer categoryId, Integer locationId, String spotName, String spotDescription, String status) {
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.locationId = locationId;
+        this.spotName = spotName;
+        this.spotDescription = spotDescription;
+        this.status = status;
     }
 
     public Spot( Integer spotId,Integer userId, Integer categoryId, Integer locationId, String spotName, String spotDescription, String status) {
