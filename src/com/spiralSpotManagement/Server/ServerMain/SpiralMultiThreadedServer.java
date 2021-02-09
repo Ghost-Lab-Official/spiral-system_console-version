@@ -61,7 +61,7 @@ public class SpiralMultiThreadedServer {
         try {
 
             // server is listening on port 1234
-            server = new ServerSocket(1234);
+            server = new ServerSocket(1294);
             server.setReuseAddress(true);
 
             // running infinite loop for getting

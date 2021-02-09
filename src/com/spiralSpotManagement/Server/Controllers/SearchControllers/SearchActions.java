@@ -1,11 +1,8 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-<<<<<<< HEAD
-import com.spiralSpotManagement.Server.Model.RecentSearch;
-=======
 import com.spiralSpotManagement.Server.Model.PopularSearch;
->>>>>>> 31c7c92a6c1a10f9053b4a10a34cd5d958ad03dc
+import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 import com.spiralSpotManagement.Server.Model.User;
 
@@ -57,7 +54,6 @@ public class SearchActions {
      *@throws Exception
      */
 
-<<<<<<< HEAD
     public List<User> getPeople(User user) throws Exception{
         List<User> peopleList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -113,8 +109,7 @@ public class SearchActions {
         return recentSearches;
     }
 
-  }
-=======
+
     public  List<Object> popularityArray() throws Exception {
 
         Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -167,4 +162,3 @@ public class SearchActions {
 
     }
 }
->>>>>>> 31c7c92a6c1a10f9053b4a10a34cd5d958ad03dc

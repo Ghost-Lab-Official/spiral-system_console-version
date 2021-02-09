@@ -2,9 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-<<<<<<< HEAD
-    <mapping directory="$PROJECT_DIR$/spiral-system_console-version" vcs="Git" />
-=======
->>>>>>> 50e789c806d1c27454f9b468acdba383917a0fa7
   </component>
 </project>
