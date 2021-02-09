@@ -31,7 +31,10 @@ public class LocationController {
                 ResponseStatus deleteLocation = new LocationActions().DeleteLocation((LocationModel) requestBody.getObject());
                 location.add((Object) deleteLocation);
                 return  location;
-
+            case "recover":
+                ResponseStatus recoverLocation = new LocationActions().RecoverLocation((LocationModel) requestBody.getObject());
+                location.add((Object) recoverLocation);
+                return location;
 //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }

@@ -202,6 +202,39 @@ public class LocationActions {
 
 
 
+    /**
+     *location management class. Method recovering a given location
+     * @author Felix DUSENGIMANA
+     * @copyright  by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  08-02-2021
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
+    public ResponseStatus RecoverLocation(LocationModel location){
+        try {
+            Connection connection= new CloudStorageConnectionHandler().getConnection();
+
+            String status = "active";
+            String sql = "UPDATE locations SET status = ? WHERE location_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1,status);
+            stmt.setString(2,location.getLocation_id());
+            int updated = stmt.executeUpdate();
+            if(updated<1){
+                connection.close();
+                return  new ResponseStatus(500,"SERVER ERROR","Unable to delete, please try again.");
+            }
+            connection.close();
+            return  new ResponseStatus(200,"RECOVERED","Recovered success.");
+
+        } catch (Exception e) {
+            return  new ResponseStatus(500,"SERVER ERROR",e.getMessage());
+        }
+    }
+
+
 //    OTHER METHODS TO GO HERE
 //    ---------------------------------------
 

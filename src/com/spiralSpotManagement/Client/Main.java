@@ -62,7 +62,8 @@ public class Main {
 //        loginUser();
 //        new LocationLevelsView().registerLocationLevels();
 //        new  LocationView().updateLocation();
-        new  LocationView().DeleteLocation();
+//        new  LocationView().DeleteLocation();
+        new LocationView().RecoverLocation();;
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
     }
