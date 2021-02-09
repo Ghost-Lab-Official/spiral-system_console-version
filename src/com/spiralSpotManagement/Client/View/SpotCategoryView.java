@@ -16,13 +16,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+
+/* @author  Bethiane */
+
+
 public class SpotCategoryView {
+    /* This the view for spotCategory */
 
     InputStreamReader isr = new InputStreamReader(System.in);
     BufferedReader entered = new BufferedReader(isr);
     Scanner scanner = new Scanner(System.in);
 
     public void CreateCategory() throws Exception {
+        /* Create category form */
         System.out.println("\t\t\tEnter User id: ");
         int userId = scanner.nextInt();
         System.out.println("\t\t\t Enter category name: ");
@@ -64,6 +70,7 @@ public class SpotCategoryView {
     }
 
     public void UpdateCategory() throws Exception {
+        /* Update category form */
         System.out.println("\t\t\t Enter category id to be updated: ");
         int categoryId = scanner.nextInt();
         System.out.println("\t\t\t Enter category name: ");
@@ -100,6 +107,7 @@ public class SpotCategoryView {
     }
 //
     public void GetSpotCategory() throws Exception {
+        /* Get all registered categories */
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/sportCategory");
         requestBody.setAction("getAll");
@@ -122,6 +130,7 @@ public class SpotCategoryView {
     }
 
     public void ChangeSpotStatus() throws Exception {
+        /* Change category status*/
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t Enter category_id: ");
@@ -151,6 +160,7 @@ public class SpotCategoryView {
     }
 
    public void SpotCategoryMenu() throws Exception {
+       /* SpotcategoryMenu entry  */
        int choice;
        Scanner scanner = new Scanner(System.in);
        System.out.println("\t\t\t||-------------------------------------------------------------------||");
@@ -176,6 +186,7 @@ public class SpotCategoryView {
                break;
            default:
                System.out.println("Invalid input");
+               break;
        }
    }
    }
