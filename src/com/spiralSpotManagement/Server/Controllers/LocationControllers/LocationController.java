@@ -1,7 +1,8 @@
 package com.spiralSpotManagement.Server.Controllers.LocationControllers;
 
-import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelsActions;
-import com.spiralSpotManagement.Server.Model.*;
+import com.spiralSpotManagement.Server.Model.LocationModel;
+import com.spiralSpotManagement.Server.Model.RequestBody;
+import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,9 @@ public class LocationController {
 
             case "update":
                 break;
-
+            case "getLocationsByParent":
+                List<Object> locations = new LocationActions().fetchByParent((String) requestBody.getObject());
+                return locations;
 //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }
