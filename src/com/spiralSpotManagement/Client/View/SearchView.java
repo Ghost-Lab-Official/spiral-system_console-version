@@ -153,8 +153,8 @@ public class SearchView {
         if(choice > popularSearches.size()){
             System.out.println("Invalid Choice.");
         }else{
-            RecentSearch selectedSearch = (RecentSearch) popularSearches.get(choice-1);
-            System.out.println("Search: " + selectedSearch.getSearchQuery());
+            PopularSearch selectedSearch = (PopularSearch) popularSearches.get(choice-1);
+            System.out.println("Search: " + selectedSearch.getSearch());
         }
 
     }
