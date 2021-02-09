@@ -16,6 +16,10 @@ public class SpotActions {
     String deleteSpotQuery =
     "UPDATE Spot_table SET status=0 where spot_id=?";
 
+    /*
+            @author : Cyebukayire Peace
+            @description: This method is used to insert a new spot
+     */
     public ResponseStatus createSpotInDb(Spot spotToRegister)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (
@@ -45,7 +49,10 @@ public class SpotActions {
 
         return null;
     }
-
+    /*
+            @author : Cyebukayire Peace
+            @description: This method is used to update a spot
+     */
     public ResponseStatus updateTheSpot(Spot spotToUpdate)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (PreparedStatement sql = connection.prepareStatement(UpdateSpotQuery)) {
@@ -73,7 +80,10 @@ public class SpotActions {
 
         return null;
     }
-
+    /*
+            @author : Cyebukayire Peace
+            @description: This method is used to de-activate a spot
+     */
     public ResponseStatus deleteSpot(Spot spotToDelete)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (PreparedStatement deleteConnection = connection.prepareStatement(deleteSpotQuery)) {
