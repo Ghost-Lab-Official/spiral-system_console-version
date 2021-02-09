@@ -10,7 +10,7 @@ import java.util.*;
 
 public class ReportsView {
     public  String toContinue;
-    Scanner scanInput = new Scanner(System.in);
+    Scanner scanInput = null;
     int choice;
 
     public ReportsView() { }
@@ -28,6 +28,7 @@ public class ReportsView {
             System.out.println("\t\t\t-------------------------------------------------=");
 
             System.out.println("Make a choice ");
+            scanInput =new Scanner(System.in);
             choice = scanInput.nextInt();
 
             switch (choice) {
@@ -49,11 +50,8 @@ public class ReportsView {
                     System.out.println("Invalid choice");
             }
             System.out.println("Do you want to continue Y/N ? ");
-//                System.out.println("Enter your word");
-
-            if (scanInput.hasNext()) {
-                toContinue = scanInput.next();
-            }
+            Scanner scanner=new Scanner(System.in);
+            toContinue = scanner.next();
         }
         while (toContinue.equals("Y") || toContinue.equals("y")) ;
     }
@@ -448,6 +446,7 @@ try{
             System.out.println("\t\t\t-------------------------------------------- ");
 
             System.out.println("\t\t\t Make a choice: ");
+            scanInput =new Scanner(System.in);
             choice=scanInput.nextInt();
 
             UserLog userLogToInsert = new UserLog();
@@ -593,39 +592,54 @@ try{
 
     public void ViewAllUsers()throws Exception{
         try {
-            System.out.println("\t\t\t---------------------------------------------");
-            System.out.println("\t\t\t=    ADMIN DASHBOARD/USERS/All users        =");
-            System.out.println("\t\t\t---------------------------------------------");
-            RequestBody request=new RequestBody();
-            request.setUrl("/report");
-            request.setAction("getAllUsers");
-            request.setObject(null);
 
-            ResponseBody responseBody = new ClientServerConnector().ConnectToServer(request);
-            System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+                    System.out.println("Starting");
+                    System.out.println("\t\t\t---------------------------------------------");
+                    System.out.println("\t\t\t=    ADMIN DASHBOARD/USERS/All users        =");
+                    System.out.println("\t\t\t---------------------------------------------");
+                    RequestBody request=new RequestBody();
+                    request.setUrl("/report");
+                    request.setAction("getAllUsers");
+                    request.setObject(null);
 
-            System.out.println(String.format("| %20s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-15s | %-25s | %-25s | %-25s |","#Id ","First name", "Last name","Username","Email","Gender","Birth date","User category","Location name","User status","Registration date"));
-            System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+                    ResponseBody responseBody = null;
+                    try{
+                        responseBody = new ClientServerConnector().ConnectToServer(request);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
 
-            for(Object Response: responseBody.getResponse()){
-                UsersReport usersReport = (UsersReport) Response;
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
 
-                    System.out.println(
-                            String.format("| %25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
-                                    usersReport.getUser_id(),
-                                   usersReport.getFirst_name(),
-                                   usersReport.getLast_name(),
-                                   usersReport.getUser_name(),
-                                   usersReport.getEmail(),
-                                   usersReport.getGender(),
-                                   usersReport.getBirth_date(),
-                                   usersReport.getUser_category(),
-                                   usersReport.getLocation(),
-                                   usersReport.getUser_status(),
-                                   usersReport.getRegistration_date())
-                    );
-            }
+                    System.out.println(String.format("| %20s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-15s | %-25s | %-25s | %-25s |","#Id ","First name", "Last name","Username","Email","Gender","Birth date","User category","Location name","User status","Registration date"));
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
 
+                    for(Object Response: responseBody.getResponse()){
+                        UsersReport usersReport = (UsersReport) Response;
+
+                        System.out.println(
+                                String.format("| %25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
+                                        usersReport.getUser_id(),
+                                        usersReport.getFirst_name(),
+                                        usersReport.getLast_name(),
+                                        usersReport.getUser_name(),
+                                        usersReport.getEmail(),
+                                        usersReport.getGender(),
+                                        usersReport.getBirth_date(),
+                                        usersReport.getUser_category(),
+                                        usersReport.getLocation(),
+                                        usersReport.getUser_status(),
+                                        usersReport.getRegistration_date())
+                        );
+                    }
+                    System.out.println("helllo");
+//                }
+//            }).start();
+
+           System.out.println("hey");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

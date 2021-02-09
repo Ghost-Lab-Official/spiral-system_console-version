@@ -24,7 +24,7 @@ import java.util.TimeZone;
 
 public class UserLogsActions {
     String getAllUserLogsQuery = "select * from user_logs";
-    public  List<Object> getAllUserLogs()throws Exception{
+    public synchronized List<Object> getAllUserLogs()throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(getAllUserLogsQuery);
