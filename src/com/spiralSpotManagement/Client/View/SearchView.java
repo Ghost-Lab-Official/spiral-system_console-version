@@ -17,20 +17,24 @@ public class SearchView {
     public void mainMethod() throws Exception{
         String cont = "";
         do {
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t|| 1.  SEARCH SPOT                         ||");
-        System.out.println("\t\t\t|| 2.  SEARCH PEOPLE                       ||");
-        System.out.println("\t\t\t|| 3.  SEARCH MESSAGE                      ||");
-        System.out.println("\t\t\t============================================= ");
-        System.out.print("Enter Your choice: ");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    1.SEARCH SPOT              ------------------||");
+            System.out.println("\t\t\t||------------------    2.SEARCH PEOPLE            ------------------||");
+            System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
+            System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
+            System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t\t  Enter your choice ");
         int option = scanner.nextInt();
 
         switch (option) {
             case 1 -> searchSpot();
             case 2 -> searchPeople();
             case 3 -> searchMessages();
+            case 4 -> PopularSearch();
+            case 5 -> RecentSearch();
             default -> System.out.println("Invalid option");
         }
 
@@ -188,5 +192,12 @@ public class SearchView {
 
     public static void searchMessages(){
 
+    }
+
+    public void RecentSearch(){
+        System.out.println("Hello recents");
+    }
+    public void PopularSearch(){
+        System.out.println("Hello Popular");
     }
 }

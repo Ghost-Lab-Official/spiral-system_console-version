@@ -32,7 +32,9 @@ import java.util.Scanner;
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
+        UserCategoryView userCategoryForms = new UserCategoryView();
         SpotCategoryView spotCategories= new SpotCategoryView();
+        LocationView locationForms = new LocationView();
         SearchView searchForms = new SearchView();
         String toContinue;
         do {
@@ -45,10 +47,11 @@ import java.util.Scanner;
             System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
             System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
-            System.out.println("\t\t\t||------------------    5.SEARCH                   ------------------||");
+            System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
+            System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
-            choice = scanner.nextInt(); System.out.println("");
+            choice = scanner.nextInt();
             switch (choice){
                 case 1 :
                     userForms.loginUser();
@@ -67,9 +70,13 @@ import java.util.Scanner;
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    spotCategories.SpotCategoryMenu();
+                    //spotCategories.SpotCategoryMenu();
+                    userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
+                    locationForms.LocationViewMenu();
+
+                case 6:
                     searchForms.mainMethod();
                     break;
                 default:

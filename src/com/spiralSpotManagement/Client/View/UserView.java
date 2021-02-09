@@ -3,7 +3,9 @@ import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Model.*;
 import java.util.Scanner;
 public class UserView {
+
     public void registerUser()throws Exception{
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("\tUSER REGISTER");
         System.out.println("\t-----------------------");
@@ -53,6 +55,7 @@ public class UserView {
         }
     }
     public void loginUser()throws Exception{
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("\tUSER LOGIN");
         System.out.println("\t-----------------------");
