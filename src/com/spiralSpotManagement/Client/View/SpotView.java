@@ -11,14 +11,14 @@ import java.util.Scanner;
 
 public class SpotView {
     public void createSpot()throws Exception{
-        Integer spot_id = 8;
+        Integer spot_id = 13;
         Integer user_id = 1;
         Integer category_id = 45;
         Integer location_id =5655;
         String spot_name = "Mouse";
         String spot_description = "Black and brown mouse found in class B";
         String registration_date = "2021-09-21";
-        String status = "active";
+        String status ="1";
 
 
         Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,registration_date,status);
@@ -42,14 +42,14 @@ public class SpotView {
 
     public void updateSpot()throws Exception{
         Scanner scan = new Scanner(System.in);
-        Integer spot_id = 8;
+        Integer spot_id = 12;
         Integer user_id = 1;
         Integer category_id = 45;
         Integer location_id =5655;
-        String spot_name = "Updated mouse";
+        String spot_name = "jacket";
         String spot_description = "Black and brown mouse found in class A";
         String registration_date = "2021-01-31";
-        String status = "active";
+        String status = "1";
 
         Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,registration_date,status);
 
@@ -71,7 +71,7 @@ public class SpotView {
     }
 
     public void deleteSpotContent()throws Exception{
-        Integer id =8;
+        Integer id =12;
 
         Spot spotToDelete = new Spot();
         spotToDelete.setSpotId(id);
