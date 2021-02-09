@@ -16,6 +16,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+/**
+ * userLogs actions  (recording and getting user activities related reports)
+ * @author Best Verie Iradukunda
+ */
+
+
 public class UserLogsActions {
     String getAllUserLogsQuery = "select * from user_logs";
     public List<Object> getAllUserLogs()throws Exception{
@@ -40,7 +46,7 @@ public class UserLogsActions {
 
      public static String dateParser(){
          TimeZone tz = TimeZone.getTimeZone("UTC");
-         DateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss"); // Quoted "Z" to indicate UTC, no timezone offset
+         DateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
          df.setTimeZone(tz);
          String nowAsISO = df.format(new Date());
 
@@ -56,18 +62,18 @@ public class UserLogsActions {
         while (rs.next()){
            if(userLog.getAction().equals("logIn")){
                System.out.println("Reached here");
-               int loginCurrentTotalIn = rs.getInt("Total_in");
-               int logoutCurrentTotalOut = rs.getInt("Total_out");
-               userLog.setTotalIn(loginCurrentTotalIn+1);
-               userLog.setTotalOut(logoutCurrentTotalOut);
+               int currentTotalIn = rs.getInt("Total_in");
+               int currentTotalOut = rs.getInt("Total_out");
+               userLog.setTotalIn(currentTotalIn+1);
+               userLog.setTotalOut(currentTotalOut);
            }
            else if(userLog.getAction().equals("logOut")){
-               int loginCurrentTotalIn = rs.getInt("Total_in");
-               int logoutCurrentTotalOut = rs.getInt("Total_out");
+               int currentTotalIn = rs.getInt("Total_in");
+               int currentTotalOut = rs.getInt("Total_out");
                System.out.println("date: "+dateParser());
                userLog.setDateTimeLoggedOut(dateParser());
-               userLog.setTotalIn(loginCurrentTotalIn-1);
-               userLog.setTotalOut(logoutCurrentTotalOut+1);
+               userLog.setTotalIn(currentTotalIn-1);
+               userLog.setTotalOut(currentTotalOut+1);
            }
            else{
                userLog.setTotalIn(rs.getInt("Total_in"));
