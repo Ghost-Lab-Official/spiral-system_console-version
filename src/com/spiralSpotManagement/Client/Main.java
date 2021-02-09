@@ -28,6 +28,7 @@ import java.util.Scanner;
         SpotView spotForms = new SpotView();
         UserCategoryView userCategoryForms = new UserCategoryView();
         SpotCategoryView spotCategories= new SpotCategoryView();
+        LocationView locationForms = new LocationView();
         SearchView searchForms = new SearchView();
         String toContinue;
         do {
@@ -40,7 +41,8 @@ import java.util.Scanner;
             System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
             System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
-            System.out.println("\t\t\t||------------------    5.SEARCH                   ------------------||");
+            System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
+            System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt(); System.out.println("");
@@ -59,6 +61,8 @@ import java.util.Scanner;
                     userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
+
+                case 6:
                     searchForms.mainMethod();
                     break;
                 default:

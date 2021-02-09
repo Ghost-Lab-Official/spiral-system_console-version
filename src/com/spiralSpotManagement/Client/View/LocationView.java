@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Main;
 import com.spiralSpotManagement.Server.Model.LocationModel;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
@@ -61,5 +62,33 @@ public class LocationView {
         }
 
 
+    }
+
+    public void LocationViewMenu() throws Exception {
+        /*@Bethiane
+         * This is the entry of spotView */
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t\t  Enter your choice                                              ");
+        choice = scanner.nextInt();
+        switch (choice){
+            case 1 :
+                CreateSpot();
+                break;
+            case 2:
+                UpdateSpot();
+                break;
+            case 3:
+                DeleteSpotContent();
+                break;
+            default:
+                System.out.println("Invalid input");
+                break;
+        }
     }
 }
