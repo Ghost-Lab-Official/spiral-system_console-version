@@ -1,18 +1,19 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
+import com.spiralSpotManagement.Server.Model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author: Abizera Oreste
- *
- */
+ * @author: Kwizera Emmanuel
+ **/
+
 public class SearchActions {
 
 
@@ -24,7 +25,7 @@ public class SearchActions {
             System.out.println(searchKey);
             String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
             PreparedStatement stmt = connection.prepareStatement(sql);
-//
+
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
                 Spot spot1 = new Spot();
@@ -45,4 +46,59 @@ public class SearchActions {
     }
 
 
-}
+    public List<User> getPeople(User user) throws Exception{
+        List<User> peopleList = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try{
+            String searchKey = user.getUserName();
+            System.out.println(searchKey);
+            String sql = "SELECT * from users_table WHERE user_name LIKE '%"+searchKey+"%' OR first_name LIKE '%"+searchKey+"%' OR last_name LIKE '%"+searchKey+"%' LIMIT 10";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                User user1 = new User();
+                user1.setFirstName(rs.getString("first_name"));
+                user1.setLastName(rs.getString("last_name"));
+                user1.setUserName(rs.getString("user_name"));
+                user1.setEmail((rs.getString("email")));
+                user1.setGender(rs.getString("gender"));
+                user1.setLocation(rs.getString("location"));
+                user1.setUserId(rs.getInt("user_id"));
+                user1.setBirthDate(rs.getString("birth_date"));
+                user1.setUserCategory(rs.getString("user_category"));
+                peopleList.add(user1);
+            }
+            return peopleList;
+        }catch (Exception e){
+            return peopleList;
+        }
+    }
+
+/**
+ *
+ * @Author : Pauline Ishimwe this method will help you to display your recent searches
+ * as a logged in user (last 10 at most)
+ * */
+    public List<Object> DisplayRecentSearches(User user) throws Exception {
+
+        List<Object> recentSearches = new ArrayList<>();
+        Connection con = new CloudStorageConnectionHandler().getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery
+                        ("select DISTINCT searched_query,search_date from searchHistory where user_id ="+user.getUserId());
+        while (rs.next()) {
+            String searchQuery = rs.getString("searched_query");
+            String date = rs.getString("search_date");
+
+            RecentSearch recentSearch = new RecentSearch();
+            recentSearch.setSearchQuery(searchQuery);
+            recentSearch.setDate(date);
+
+            recentSearches.add((Object) recentSearch);
+        }
+
+        return recentSearches;
+    }
+
+  }
