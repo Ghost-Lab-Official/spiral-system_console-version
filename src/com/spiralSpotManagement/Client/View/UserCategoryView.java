@@ -55,7 +55,8 @@ public class UserCategoryView {
         requestBody.setAction("register");
         requestBody.setObject(userCategoryToInsert);
 
-        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        ResponseBody responseBody =
+                new ClientServerConnector().ConnectToServer(requestBody);
 
         for (Object response: responseBody.getResponse()){
             ResponseStatus responseStatus = (ResponseStatus) response;

@@ -3,7 +3,8 @@ package com.spiralSpotManagement.Server.DbController;
 
 
 
-import com.mysql.jdbc.CommunicationsException;
+
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 import java.io.FileReader;
 import java.sql.*;
