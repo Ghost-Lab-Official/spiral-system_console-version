@@ -82,7 +82,7 @@ public class LocationView {
         String locId = scanner.nextLine();
         //chek location id going to be update exists
         if (!location.CheckLocationId(locId)){
-            System.out.println("The location doesn't exists.\nRegister it now!\n");
+            System.out.println("The location doesn't exists.\n1. Register it now!\n2. Try again.\n0. Exit.");
             System.exit(1);
         }
         System.out.print("New Level ID: ");
