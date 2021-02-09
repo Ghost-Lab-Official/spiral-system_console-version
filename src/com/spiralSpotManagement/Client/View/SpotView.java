@@ -42,7 +42,7 @@ public class SpotView {
 
     public void updateSpot()throws Exception{
         Scanner scan = new Scanner(System.in);
-        Integer spot_id = 12;
+        Integer spot_id = 8;
         Integer user_id = 1;
         Integer category_id = 45;
         Integer location_id =5655;
