@@ -17,6 +17,7 @@ import java.util.Scanner;
             WELCOME!
  */
 public class Main {
+
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
@@ -64,7 +65,4 @@ public class Main {
 
     }
 
-    public void main() {
-        System.out.println("HELLO");
-    }
 }
