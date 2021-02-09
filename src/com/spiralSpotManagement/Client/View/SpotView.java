@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Main;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -10,18 +11,21 @@ import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class SpotView {
+    FormsView formClient = new FormsView();
+
     public void createSpot()throws Exception{
-        Integer spot_id = 8;
-        Integer user_id = 1;
-        Integer category_id = 45;
-        Integer location_id =5655;
-        String spot_name = "Computer";
-        String spot_description = "Balck and brown table found in Ouuaagaadouuguuu";
-        String registration_date = "2021-01-31";
-        String status = "active";
+        Spot customSpot = new Spot();
+        customSpot = formClient.createSpotViewForm();
+//        Integer spot_id= customSpot.getSpotId();
+        Integer user_id = customSpot.getUserId();
+        Integer category_id = customSpot.getCategoryId();
+        Integer location_id = customSpot.getLocationId();
+        String spot_name = customSpot.getSpotName();
+        String spot_description = customSpot.getSpotDescription();
+        Integer status = customSpot.getStatus();
 
 
-        Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,registration_date,status);
+        Spot spotToCreate = new Spot(user_id,category_id,location_id,spot_name,spot_description,status);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/spot");
@@ -41,17 +45,29 @@ public class SpotView {
     }
 
     public void updateSpot()throws Exception{
-        Scanner scan = new Scanner(System.in);
-        Integer spot_id = 8;
-        Integer user_id = 1;
-        Integer category_id = 45;
-        Integer location_id =5655;
-        String spot_name = "Updated Computer";
-        String spot_description = "Balck and brown table found in Ouuaagaadouuguuu";
-        String registration_date = "2021-01-31";
-        String status = "active";
+        Spot spotToUpdate = new Spot();
+        spotToUpdate = formClient.updateSpotViewForm();
 
-        Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,registration_date,status);
+        Integer spot_id;
+        spot_id = spotToUpdate.getSpotId();
+        Integer user_id = spotToUpdate.getUserId();
+        Integer category_id = spotToUpdate.getCategoryId();
+        Integer location_id = spotToUpdate.getLocationId();
+        String spot_name = spotToUpdate.getSpotName();
+        String spot_description = spotToUpdate.getSpotDescription();
+        Integer status = spotToUpdate.getStatus();
+
+        Scanner scan = new Scanner(System.in);
+//        Integer spot_id = 8;
+//        Integer user_id = 1;
+//        Integer category_id = 45;
+//        Integer location_id =5655;
+//        String spot_name = "Updated Computer";
+//        String spot_description = "Balck and brown table found in Ouuaagaadouuguuu";
+//        String registration_date = "2021-01-31";
+//        String status = "active";
+
+        Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,status);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/spot");
@@ -71,10 +87,10 @@ public class SpotView {
     }
 
     public void deleteSpotContent()throws Exception{
-        Integer id =8;
+        Integer spotIdToDelete = formClient.deleteSpotViewForm();
 
         Spot spotToDelete = new Spot();
-        spotToDelete.setSpotId(id);
+        spotToDelete.setSpotId(spotIdToDelete);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/spot");
@@ -93,4 +109,27 @@ public class SpotView {
         }
     }
 
+    public void spotViewMenu() throws Exception {
+        Main systemEntry=new Main();
+        /*@Bethiane
+         * This is the entry of spotView */
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        SpotView formClient = new SpotView();
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t\t  Enter your choice                                              ");
+        choice = scanner.nextInt();
+        switch (choice) {
+            case 1 -> formClient.createSpot();
+            case 2 -> formClient.updateSpot();
+            case 3 -> formClient.deleteSpotContent();
+            default -> System.out.println("Invalid input");
+        }
+    }
 }
+
+
