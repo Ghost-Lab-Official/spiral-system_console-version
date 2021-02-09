@@ -1,6 +1,9 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
-import com.spiralSpotManagement.Server.Model.*;
+
+import com.spiralSpotManagement.Server.Model.RequestBody;
+import com.spiralSpotManagement.Server.Model.Spot;
+import com.spiralSpotManagement.Server.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +34,9 @@ public class SearchController {
 
 
             case "viewRecentSearches":
-                List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
-
-                break;
-
+           spots= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
+//                spots.add(recentSearchesList);
+                    return spots;
             default :
 
                 System.out.println("the url is wrong");

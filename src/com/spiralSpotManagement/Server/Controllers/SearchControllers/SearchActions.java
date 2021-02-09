@@ -4,7 +4,6 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 import com.spiralSpotManagement.Server.Model.User;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,7 +55,8 @@ public class SearchActions {
         Connection con = new CloudStorageConnectionHandler().getConnection();
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery
-                        ("select DISTINCT searched_query,search_date from searchHistory where user_id ="+user.getUserId());
+                        ("select searched_query,search_date from searchHistory where user_id ="+user.getUserId()+" order by search_date DESC LIMIT 10");
+
         while (rs.next()) {
             String searchQuery = rs.getString("searched_query");
             String date = rs.getString("search_date");
@@ -67,6 +67,7 @@ public class SearchActions {
 
             recentSearches.add((Object) recentSearch);
         }
+
 
         return recentSearches;
     }

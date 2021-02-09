@@ -64,6 +64,8 @@ public class Main {
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
         new SearchView().mainMethod();
+
+        
     }
 
 
