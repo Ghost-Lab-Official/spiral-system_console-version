@@ -49,10 +49,12 @@ public class Main {
     }
     public static void main(String[] args) throws Exception{
         new SpiralMultiThreadedServer().startServer();
+        new UserView().mainMethod();
 //        registerUser();
 //        new UserView().registerUser();
 //        new UserView().loginUser();
-          UserView.selectUsers();
+//          new  UserView().selectUsers();
+//          new UserView().updateUserSettings();
 //       spotCategoryModuleMain();
 //        spotMainContent();
 //        new CommentView().makeComment();
@@ -60,7 +62,6 @@ public class Main {
 //        new CommentView().makeReplyComment();
 //        new CommentView().updateCommentStatus();
 //        new CommentReactionView().insertCommentReaction();
-//        loginUser();
 //        new LocationLevelsView().registerLocationLevels();
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();

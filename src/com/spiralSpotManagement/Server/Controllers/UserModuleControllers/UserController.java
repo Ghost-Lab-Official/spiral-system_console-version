@@ -29,6 +29,14 @@ public class UserController {
             case "getUsers":
                 usersObject = new UsersActions().selectUsers();
                 return usersObject;
+            case "update-user-settings":
+                ResponseStatus updatedStatus = new UsersActions().updateUserSettings((User) requestBody.getObject());
+                usersObject.add((Object) updatedStatus);
+                return usersObject;
+            case "view-user-profile":
+                 usersObject = new UsersActions().ViewUserProfile((User) requestBody.getObject());
+
+                return usersObject;
         }
 
         return null;

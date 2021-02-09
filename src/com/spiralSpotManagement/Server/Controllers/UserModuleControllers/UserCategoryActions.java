@@ -48,6 +48,7 @@ public class UserCategoryActions {
         }
         return  userCategories;
     }
+
     public ResponseStatus updateCategory(UserCategory userCategoryToUpdate) throws Exception {
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateSql)){
