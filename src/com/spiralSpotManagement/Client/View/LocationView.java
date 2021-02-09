@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 /**
             @author : Gervais Ishimwe
+            @outhor : EGIDE Harerimana
             LCOATION CONTROLLER  - SERVER CONTROLLER
             Synchronizing all the methods
  */
@@ -65,7 +66,7 @@ public class LocationView {
     }
 
     /**
-     *location management class. Method updating for updating given location
+     *location management class. Method updateLocation for updating given location
      * @author Felix DUSENGIMANA
      * @powered by Rwanda Coding Academy
      * instructor Donatien MASHENGESHO
@@ -85,7 +86,7 @@ public class LocationView {
             System.out.println("The location doesn't exists.\n1. Register it now!\n2. Try again.\n0. Exit.");
             System.exit(1);
         }
-        System.out.println("\nIf you don't want to update the some fields.\nEnter -1 in that input\n\n");
+        System.out.println("\nIf you don't want to update some fields.\nEnter -1 in that input\n\n");
         System.out.print("New Level ID: ");
         String levelID = scanner.nextLine();
         //check new level going to be updated exists
@@ -134,6 +135,7 @@ public class LocationView {
          ClientServerConnector server = new ClientServerConnector();
          ResponseBody responseBody = server.ConnectToServer(updateRequest);
 
+         System.out.println("\n\n");
          for (Object response:responseBody.getResponse()){
              ResponseStatus responseStatus = (ResponseStatus) response;
              System.out.println("Update Status:: "+responseStatus.getStatus());
@@ -181,8 +183,6 @@ public class LocationView {
             System.out.println("Error Occurred");
         }
     }
-}
-
 
 /**
  *location management class. Method Recovering a deleted given location
@@ -196,8 +196,35 @@ public class LocationView {
 
 public  void RecoverLocation(){
     try{
+        LocationActions location = new LocationActions();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Location ID::  ");
+        String locId = scanner.nextLine();
+
+        //chek location id going to be update exists
+        if (!location.CheckLocationId(locId)){
+            System.out.println("The location was deleted permanently.\n1. Register it now!\n2. Try again.\n0. Exit.");
+        }
+
+        LocationModel RecoverData = new LocationModel();
+        RecoverData.setLocation_id(locId);
+        RequestBody recoverRequest = new RequestBody();
+        recoverRequest.setUrl("/location");
+        recoverRequest.setAction("recover");
+        recoverRequest.setObject(RecoverData);
+
+        ClientServerConnector server = new ClientServerConnector();
+        ResponseBody responseBody = server.ConnectToServer(recoverRequest);
+
+        for (Object response:responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("Recover Status:: "+responseStatus.getStatus());
+            System.out.println("Recover Message:: "+responseStatus.getMessage());
+            System.out.println("Action To do:: "+responseStatus.getActionToDo());
+        }
 
     }catch (Exception e){
         System.out.println("Error message:: "+e.getMessage());
     }
+}
 }

@@ -193,7 +193,7 @@ public class LocationActions {
                             return  new ResponseStatus(500,"SERVER ERROR","Unable to delete, please try again.");
                         }
                         connection.close();
-            return  new ResponseStatus(200,"UPDATED","updated successfully.");
+            return  new ResponseStatus(200,"DELETED","Delete success.");
 
         } catch (Exception e) {
             return  new ResponseStatus(500,"SERVER ERROR",e.getMessage());
