@@ -30,8 +30,14 @@ public class SearchController {
                 }
                 return results;
 
+<<<<<<< HEAD
+=======
+            case "searchByPopularity":
+                List<Object> popularSpots=new SearchActions().popularityArray();
+               return popularSpots;
+>>>>>>> 31c7c92a6c1a10f9053b4a10a34cd5d958ad03dc
 
-//                OTHER ACTIONS SHOULD GO HERE
+            //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
 
 

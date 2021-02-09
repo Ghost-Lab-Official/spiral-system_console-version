@@ -17,7 +17,7 @@ public class SpotActions {
     "UPDATE Spot_table SET status=0 where spot_id=?";
 
     /*
-            @author : Cyebukayire Peace
+            @author : Cyebukayire Peace, Blessing Hirwa
             @description: This method is used to insert a new spot
      */
     public ResponseStatus createSpotInDb(Spot spotToRegister)throws Exception{
@@ -50,7 +50,7 @@ public class SpotActions {
         return null;
     }
     /*
-            @author : Cyebukayire Peace
+            @author : Cyebukayire Peace, Blessing Hirwa
             @description: This method is used to update a spot
      */
     public ResponseStatus updateTheSpot(Spot spotToUpdate)throws Exception{
@@ -81,8 +81,8 @@ public class SpotActions {
         return null;
     }
     /*
-            @author : Cyebukayire Peace
-            @description: This method is used to de-activate a spot
+            @author : Cyebukayire Peace, Blessing Hirwa
+            @description: This method is used to de-activate/delete a spot
      */
     public ResponseStatus deleteSpot(Spot spotToDelete)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();

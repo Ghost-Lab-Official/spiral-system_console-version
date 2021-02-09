@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 /*
-            @author : Anne Bethiane
+            @author : Anne Bethiane, Blessing Hirwa
             This is the entry of Spiral;
             WELCOME!
  */
@@ -74,7 +74,12 @@ import java.util.Scanner;
                     userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
                     locationForms.LocationViewMenu();
+                    else{
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
 
                 case 6:
                     searchForms.mainMethod();
