@@ -18,20 +18,19 @@ public class LocationLevelController {
      List<Object> locationLevels = new ArrayList<>();
      switch (action){
          case "register":
-         ResponseStatus  registerLocationLevel = new LocationLevelsActions().registerLocationLevel((LocationLevels) requestBody.getObject());
-         locationLevels.add((Object)registerLocationLevel);
-         return locationLevels;
+             ResponseStatus  registerLocationLevel = new LocationLevelsActions().registerLocationLevel((LocationLevels) requestBody.getObject());
+             locationLevels.add((Object)registerLocationLevel);
+             return locationLevels;
 
          case "update":
-// call action method here
-             break;
+             ResponseStatus updateLocationLevelResponse = new LocationLevelsActions().updateLocationLevel((LocationLevels) requestBody.getObject());
+             locationLevels.add((Object) updateLocationLevelResponse);
+             return locationLevels;
 
-         case "get":
-
-
-             break;
-//  Add more cases to deal with
-//         ------------------------------------
+         case "delete":
+             ResponseStatus deleteLocationLevelResponse = new LocationLevelsActions().deleteLocationLevel((LocationLevels) requestBody.getObject());
+             locationLevels.add((Object) deleteLocationLevelResponse);
+             return locationLevels;
 
      }
      return null;
