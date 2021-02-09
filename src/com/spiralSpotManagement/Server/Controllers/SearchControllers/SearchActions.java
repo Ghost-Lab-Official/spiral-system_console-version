@@ -32,7 +32,7 @@ public class SearchActions {
                 spot1.setSpotName(rs.getString("spot_name"));
                 spot1.setSpotDescription(rs.getString("spot_description"));
                 spot1.setSpotId(rs.getInt("spot_id"));
-                spot1.setStatus((rs.getString("status")));
+                spot1.setStatus((rs.getInt("status")));
                 spot1.setRegistrationDate(rs.getString("registration_date"));
 //                spot1.setLocationId(rs.getInt("location_id"));
                 spot1.setCategoryId(rs.getInt("category_id"));

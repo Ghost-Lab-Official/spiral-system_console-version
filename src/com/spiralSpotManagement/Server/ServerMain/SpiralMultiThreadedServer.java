@@ -124,6 +124,7 @@ public class SpiralMultiThreadedServer {
                 in = new ObjectInputStream(clientSocket.getInputStream());
 
                 RequestBody requestBody;
+                
                 while ((requestBody = (RequestBody) in.readObject()) != null) {
                     //Reading the url
                     String url = requestBody.getUrl();
