@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-
 public class LocationActions {
 
     public ResponseStatus registerLocation(LocationModel location){
@@ -49,20 +48,6 @@ public class LocationActions {
 
     public  ResponseStatus UpdateLocation (LocationModel location){
 
-        //check new parent_id going to be updated exists
-        if (location.getParent_id()!=null){
-            if (!CheckParentId(location.getParent_id())){
-                return  new ResponseStatus(422,"BAD REQUEST","THE PARENT ID DOESN'T EXISTS");
-            }
-        }
-
-        //chek new level id going to be update exists
-        if(location.getLevel_id()!=null){
-           if (!CheckLevelId(location.getLevel_id())){
-               return  new ResponseStatus(422,"BAD REQUEST","LEVEL ID DOESN'T EXISTS");
-           }
-        }
-
         HashMap<String,String> updateLocationData = new HashMap<>();
         updateLocationData.put("location_id",location.getLocation_id());
         updateLocationData.put("parent_id",location.getParent_id());
@@ -88,7 +73,6 @@ public class LocationActions {
             }
         }
 
-        System.out.println(attr);
 
         try{
             Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -98,7 +82,8 @@ public class LocationActions {
             }else{
                 String withoutLastComma = attr.substring( 0, attr.length( ) - ",".length( ) );
                 query +="UPDATE locations SET "+withoutLastComma+" "+cond;
-                System.out.println("Query :: "+query);
+                System.out.println("Queryy::: "+query);
+
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 int updated = preparedStatement.executeUpdate();
                 if(updated==1){
@@ -126,7 +111,7 @@ public class LocationActions {
      *
      */
 
-    protected  boolean CheckParentId(String parentId){
+    public   boolean CheckLocationId(String parentId){
         String query = "SELECT location_id FROM `locations` WHERE location_id =?";
         boolean checkResult = false;
         try {
@@ -160,7 +145,7 @@ public class LocationActions {
      *
      */
 
-    protected  boolean CheckLevelId(String levelId){
+    public   boolean CheckLevelId(String levelId){
         String query = "SELECT level_id FROM `location_levels` WHERE level_id =?";
         boolean checkResult = false;
         try {
@@ -194,7 +179,7 @@ public class LocationActions {
         try {
             Connection connection= new CloudStorageConnectionHandler().getConnection();
 
-                if(!CheckParentId(location.getLocation_id())){
+                if(!CheckLocationId(location.getLocation_id())){
                     return new ResponseStatus(400,"BAD REQUEST","Oops,Entered location doesn't exists");
                 }
                         String status = "inactive";

@@ -61,8 +61,8 @@ public class Main {
 //        new CommentReactionView().insertCommentReaction();
 //        loginUser();
 //        new LocationLevelsView().registerLocationLevels();
-//        new  LocationView().updateLocation();
-        new  LocationView().DeleteLocation();
+        new  LocationView().updateLocation();
+//        new  LocationView().DeleteLocation();
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
     }

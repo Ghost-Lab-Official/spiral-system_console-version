@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationActions;
 import com.spiralSpotManagement.Server.Model.LocationModel;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
@@ -75,11 +76,55 @@ public class LocationView {
 
     public void updateLocation(){
     try {
+        LocationActions location = new LocationActions();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Location ID::  ");
+        String locId = scanner.nextLine();
+        //chek location id going to be update exists
+        if (!location.CheckLocationId(locId)){
+            System.out.println("The location doesn't exists.\nRegister it now!\n");
+            System.exit(1);
+        }
+        System.out.print("New Level ID: ");
+        String levelID = scanner.nextLine();
+        if(locId.equals("-1")) levelID=null;
+        //check new level going to be updated exists
+
+        if (!levelID.equals(null) &&!location.CheckLevelId(levelID)){
+            System.out.println("The location level doesn't exists.\n");
+            System.exit(1);
+        }
+
+        System.out.print("New Parent ID: ");
+        String parentId = scanner.nextLine();
+        if(parentId.equals("-1")) parentId=null;
+        //chek new location parent id going to be update exists
+        if (!parentId.equals(null) && !location.CheckLocationId(parentId)){
+            System.out.println("The location doesn't exists.\n Register it now!\n");
+            System.exit(1);
+        }
+
+
+        System.out.print("New Location Name: ");
+        String locname = scanner.nextLine();
+        if(locname.equals("-1")) locname=null;
+
+        System.out.print("New GPS Coordinate: ");
+        String gps = scanner.nextLine();
+        if(gps.equals("-1")) gps=null;
+
+        System.out.print("New Description: ");
+        String decript = scanner.nextLine();
+        if(decript.equals("-1")) decript=null;
+
          LocationModel updateData = new LocationModel();
          updateData.setDescription("The best continent where people collaborates");
-         updateData.setLocation_id("LOC001HQT");
-         updateData.setParent_id("LOC001HQT");
-         updateData.setLevel_id("84fc4a8d-9720-406e-9b7b-2c020277f725");
+         updateData.setLocation_id(locId);
+         updateData.setParent_id(parentId);
+         updateData.setLevel_id(levelID);
+         updateData.setLocation_name(locname);
+         updateData.setDescription(decript);
+         updateData.setLocation_GPS(gps);
 
          RequestBody updateRequest = new RequestBody();
          updateRequest.setUrl("/location");
@@ -96,7 +141,7 @@ public class LocationView {
              System.out.println("Action To do:: "+responseStatus.getActionToDo());
          }
     }catch (Exception e){
-        System.out.println("Error Occurred");
+        System.out.println("Error Occurred "+e.getMessage());
     }
     }
 
