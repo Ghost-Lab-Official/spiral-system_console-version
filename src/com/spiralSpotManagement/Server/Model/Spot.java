@@ -1,3 +1,9 @@
+
+/*
+        @author : Cyebukayire Peace
+        @Description: the model for the Spot class
+ */
+
 package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
