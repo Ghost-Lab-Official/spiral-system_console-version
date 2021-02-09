@@ -24,7 +24,7 @@ import java.util.TimeZone;
 
 public class UserLogsActions {
     String getAllUserLogsQuery = "select * from user_logs";
-    public List<Object> getAllUserLogs()throws Exception{
+    public  List<Object> getAllUserLogs()throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(getAllUserLogsQuery);
@@ -33,7 +33,7 @@ public class UserLogsActions {
             UserLog userLog = new UserLog();
             userLog.setId(result.getInt("id"));
             userLog.setUser_id(result.getInt("user_id"));
-            userLog.setDateTimeLoggedIn(result.getString("date_Time_logged_Out"));
+            userLog.setDateTimeLoggedIn(result.getString("date_Time_logged_In"));
             userLog.setAction(result.getString("action"));
             userLog.setDateTimeLoggedOut(result.getString("date_Time_logged_Out"));
             userLog.setTotalIn(result.getInt("Total_in"));

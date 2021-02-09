@@ -63,7 +63,7 @@ public class Main {
 //        new LocationLevelsView().registerLocationLevels();
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
-        new ReportsView().printDashboard();
+        new ReportsView().reportDashboard();
     }
 
 

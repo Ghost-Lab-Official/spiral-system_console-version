@@ -36,6 +36,9 @@ public class ReportController {
             case "getTotalNumberOfActiveUsers":
                 List<Object> numberofAllActiveUsers = new UsersReportActions().getTheTotalNumberOfAllUsersByStatus("active");
                 return numberofAllActiveUsers;
+            case "getTotalNumberOfInactiveUsers":
+                List<Object> getTotalNumberOfInactiveUsers = new UsersReportActions().getTheTotalNumberOfAllUsersByStatus("inactive");
+                return getTotalNumberOfInactiveUsers;
             case "getAllLocations":
                 List<Object> AllLocations = new LocationsReportsActions().viewAllLocations();
                 return AllLocations;
