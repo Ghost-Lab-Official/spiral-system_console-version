@@ -10,6 +10,8 @@ import java.util.Scanner;
 /**
  * @author Abizera Oreste
  * @author Kwizera Emmanuel
+ *
+ * SearchView class is defined for handling Search Views (Search on the client)
  */
 
 public class SearchView {
@@ -71,6 +73,8 @@ public class SearchView {
             likeSpot(selectedSpot);
         }else if (action == 2){
             commentOnSpot(selectedSpot);
+        }else if(action == 3){
+            new CommentView().viewComments(selectedSpot);
         }
     }
 
@@ -117,7 +121,7 @@ public class SearchView {
 
 
     /**
-     * Search a spot
+     * this method is used to Search a spot
      */
     public static void searchSpot() throws Exception{
         RequestBody requestBody = new RequestBody();
