@@ -2,7 +2,6 @@ package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.PopularSearch;
-import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.sql.Connection;
