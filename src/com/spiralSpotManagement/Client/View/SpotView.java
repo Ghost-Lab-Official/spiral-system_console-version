@@ -20,6 +20,8 @@ import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class SpotView {
+
+    //Creating a spot
     public void createSpot()throws Exception{
         Integer spot_id = 13;
         Integer user_id = 1;
@@ -50,6 +52,7 @@ public class SpotView {
         }
     }
 
+    //Updating Spot Information
     public void updateSpot()throws Exception{
         Scanner scan = new Scanner(System.in);
         Integer spot_id = 8;
@@ -80,6 +83,7 @@ public class SpotView {
         }
     }
 
+    //Changing the status of the spot
     public void deleteSpotContent()throws Exception{
         Integer id =12;
 
