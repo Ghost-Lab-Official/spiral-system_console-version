@@ -41,6 +41,7 @@ public class SpotCategoryView {
         String status = entered.readLine();
 
         SpotCategory spotCategoryToInsert = new SpotCategory();
+
         spotCategoryToInsert.setUserId(userId);
         spotCategoryToInsert.setCategoryName(categoryName);
         spotCategoryToInsert.setDescription(description);
@@ -163,7 +164,6 @@ public class SpotCategoryView {
 
    public void SpotCategoryMenu() throws Exception {
       /* SpotcategoryMenu entry  */
-       Main systemEntry=new Main();
        String toContinue;
        do{
             int choice;

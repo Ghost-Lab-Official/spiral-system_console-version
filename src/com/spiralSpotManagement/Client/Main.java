@@ -26,6 +26,7 @@ import java.util.Scanner;
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
+        UserCategoryView userCategoryForms = new UserCategoryView();
         SpotCategoryView spotCategories= new SpotCategoryView();
         SearchView searchForms = new SearchView();
         String toContinue;
@@ -54,7 +55,8 @@ import java.util.Scanner;
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    spotCategories.SpotCategoryMenu();
+                    //spotCategories.SpotCategoryMenu();
+                    userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
                     searchForms.mainMethod();

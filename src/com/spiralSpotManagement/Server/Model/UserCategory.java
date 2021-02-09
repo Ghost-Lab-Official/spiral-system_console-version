@@ -43,4 +43,6 @@ public class UserCategory implements Serializable {
     public void setCatName(String catName) {
         this.catName = catName;
     }
+
+
 }
