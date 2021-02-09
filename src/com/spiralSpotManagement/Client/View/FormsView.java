@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.io.BufferedReader;
 
+//@authors: Blessing Hirwa
 public class FormsView {
     public Spot createSpotViewForm() throws IOException {
         Scanner scanner = new Scanner(System.in);

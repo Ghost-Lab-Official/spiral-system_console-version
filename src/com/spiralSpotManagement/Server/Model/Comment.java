@@ -5,9 +5,7 @@ import java.util.Date;
 
 /**
  * Comment.java This is a class for handling Spot Reviews (comments)
- *
  * @author Cedric Izabayo
- *
  */
 
 public class Comment implements Serializable {
@@ -24,12 +22,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    /**
-     * Constructor in which id and timestamps auto generated
-     * @author Cedric Izabayo
-     */
-
-    public Comment(String comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
+    public Comment(Integer comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
         this.comment_id = comment_id;
         this.spotId = spotId;
         this.userId = userId;

@@ -6,9 +6,7 @@ import java.util.UUID;
 
 /**
  * CommentReactions.java This is a class for handling Spot Reviews Reactions (likes and dislikes)
- *
  * @author Cedric Izabayo
- *
  */
 
 public class CommentReactions implements Serializable {
