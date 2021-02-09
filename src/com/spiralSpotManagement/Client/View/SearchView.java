@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
     public void mainMethod() throws Exception{
+        String cont = "";
+        do {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
         System.out.println("\t\t\t============================================= ");
@@ -31,6 +33,10 @@ public class SearchView {
             case 3 -> searchMessages();
             default -> System.out.println("Invalid option");
         }
+
+        System.out.print("Do you want to continue searching? (y/n): ");
+        cont = scanner.next();
+        }while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"));
     }
 
     /**
@@ -56,7 +62,8 @@ public class SearchView {
         System.out.println("\n\t\t Actions");
         System.out.println("\t\t 1. Like");
         System.out.println("\t\t 2. Comment");
-        System.out.println("\t\t 3. Skip");
+        System.out.println("\t\t 3. View Comments");
+        System.out.println("\t\t 4. Skip");
 
         System.out.print("Enter Choice: ");
         Integer action = scanner.nextInt();
