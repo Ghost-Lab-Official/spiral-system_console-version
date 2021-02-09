@@ -1,15 +1,18 @@
 package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.*;
+import com.spiralSpotManagement.Client.View.SpotView;
+import com.spiralSpotManagement.Server.Model.RequestBody;
+import com.spiralSpotManagement.Server.Model.ResponseBody;
+import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Server.Model.Users;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
 import java.util.List;
 import java.util.Scanner;
+
+//import com.spiralSpotManagement.Client.View.SpotCategoryView;
 
 /*
             @author : Ntwari Egide - Scrum Master
@@ -59,46 +62,47 @@ public class Main {
 //        new CommentView().makeReplyComment();
 //        new CommentView().updateCommentStatus();
 //        new CommentReactionView().insertCommentReaction();
-//        loginUser();
+ //       new UserView().loginUser();
 //        new LocationLevelsView().registerLocationLevels();
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
-        new SearchView().mainMethod();
+//        new SearchView().mainMethod();
+        new LocationView().registerLocation();
     }
 
 
 
 
-    public static void spotCategoryModuleMain()throws Exception{
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t=                SPOT CATEGORY DASHBOARD          = ");
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t|| 1.  create spot category                                ||");
-        System.out.println("\t\t\t|| 2.  update spot category                     ||");
-        System.out.println("\t\t\t|| 3.  select all categories                    ||");
-        System.out.println("\t\t\t|| 4.  change spot status                            ||");
-        System.out.println("\t\t\t============================================ ");
-        System.out.println("\t\t\tEnter your choice: ");
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1 :
-                new SpotCategoryView().CreateCategory();
-                break;
-            case 2:
-                new SpotCategoryView().UpdateCategory();
-                break;
-            case 3 :
-                new SpotCategoryView().GetSpotCategory();
-                break;
-            case 4 :
-                new SpotCategoryView().ChangeSpotStatus();
-                break;
-            default :
-                System.out.println("Invalid choice");
-        }
-    }
+//    public static void spotCategoryModuleMain()throws Exception{
+//
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("\t\t\t============================================= ");
+//        System.out.println("\t\t\t=                SPOT CATEGORY DASHBOARD          = ");
+//        System.out.println("\t\t\t============================================= ");
+//        System.out.println("\t\t\t|| 1.  create spot category                                ||");
+//        System.out.println("\t\t\t|| 2.  update spot category                     ||");
+//        System.out.println("\t\t\t|| 3.  select all categories                    ||");
+//        System.out.println("\t\t\t|| 4.  change spot status                            ||");
+//        System.out.println("\t\t\t============================================ ");
+//        System.out.println("\t\t\tEnter your choice: ");
+//        int choice = scanner.nextInt();
+//        switch (choice) {
+//            case 1 :
+//                new SpotCategoryView().CreateCategory();
+//                break;
+//            case 2:
+//                new SpotCategoryView().UpdateCategory();
+//                break;
+//            case 3 :
+//                new SpotCategoryView().GetSpotCategory();
+//                break;
+//            case 4 :
+//                new SpotCategoryView().ChangeSpotStatus();
+//                break;
+//            default :
+//                System.out.println("Invalid choice");
+//        }
+//    }
 
 
     public static void spotMainContent()throws Exception{

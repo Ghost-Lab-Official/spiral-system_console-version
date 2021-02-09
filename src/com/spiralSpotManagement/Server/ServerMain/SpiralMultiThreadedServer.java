@@ -1,17 +1,16 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
+import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
 import com.spiralSpotManagement.Server.Controllers.SearchControllers.SearchController;
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
-import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
-import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
 import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
