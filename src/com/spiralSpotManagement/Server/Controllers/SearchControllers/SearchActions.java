@@ -4,7 +4,6 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 import com.spiralSpotManagement.Server.Model.User;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.ArrayList;
