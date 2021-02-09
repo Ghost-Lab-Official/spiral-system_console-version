@@ -60,15 +60,12 @@ public List<Object> fetchByParent(String parent) throws Exception {
     String query = "select * from locations where parent_id ='"+locId+"' and status='active'";
     PreparedStatement selectStmt = connection.prepareStatement(query);
     result2 = selectStmt.executeQuery();
-    //System.out.println("Locations in "+parent+": ");
     while(result2.next()){
         List<Object> list = new ArrayList<>();
         list.add(result2.getString("location_name"));
         list.add(result2.getString("location_GPS"));
         list.add(result2.getString("description"));
         locations.add(list);
-//        child = result2.getString("locationName");
-//        System.out.println("\t*"+child+"\n");
     }
     return locations;
 }
