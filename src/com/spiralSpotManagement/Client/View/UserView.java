@@ -1,30 +1,28 @@
 package com.spiralSpotManagement.Client.View;
-
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Model.*;
-
 import java.util.Scanner;
-
 public class UserView {
     public void registerUser()throws Exception{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your first name ");
+        System.out.println("\tUSER REGISTER");
+        System.out.println("\t-----------------------");
+        System.out.println("\tEnter your first name ");
         String firstName = scanner.nextLine();
-        System.out.println("Enter your last name ");
+        System.out.println("\tEnter your last name ");
         String lastName = scanner.nextLine();
-        System.out.println("Enter your user name ");
+        System.out.println("\tEnter your user name ");
         String userName = scanner.nextLine();
-        System.out.println("Enter your email ");
+        System.out.println("\tEnter your email ");
         String email = scanner.nextLine();
-        System.out.println("Enter your gender ");
+        System.out.println("\tEnter your gender ");
         String gender = scanner.nextLine();
-        System.out.println("Enter your birthDate");
+        System.out.println("\tEnter your birthDate");
         String birthDate = scanner.nextLine();
-        System.out.println("Enter your password ");
+        System.out.println("\tEnter your password ");
         String password = scanner.nextLine();
-        System.out.println("Enter your location ");
+        System.out.println("\tEnter your location ");
         String location = scanner.next();
-
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -34,7 +32,6 @@ public class UserView {
         user.setBirthDate(birthDate);
         user.setPassword(password);
         user.setLocation(location);
-
         /*
                Define Request Body
          */
@@ -42,13 +39,11 @@ public class UserView {
         requestBody.setUrl("/users");
         requestBody.setAction("register");
         requestBody.setObject(user);
-
         /*
             Send Request Body
          */
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
-
         for (Object response: responseBody.getResponse()){
             ResponseStatus responseStatus = (ResponseStatus) response;
             System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
@@ -57,19 +52,17 @@ public class UserView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
-
-
     public void loginUser()throws Exception{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your email ");
+        System.out.println("\tUSER LOGIN");
+        System.out.println("\t-----------------------");
+        System.out.println("\tEnter your email ");
         String email = scanner.nextLine();
-        System.out.println("Enter your password ");
+        System.out.println("\tEnter your password ");
         String password = scanner.nextLine();
-
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-
         /*
                Define Request Body
          */
@@ -77,13 +70,11 @@ public class UserView {
         requestBody.setUrl("/users");
         requestBody.setAction("login");
         requestBody.setObject(user);
-
         /*
             Send Request Body
          */
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
-
         for (Object response: responseBody.getResponse()){
             ResponseStatus responseStatus = (ResponseStatus) response;
             System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
@@ -91,9 +82,6 @@ public class UserView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
             System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
-
         }
     }
-
-
 }
