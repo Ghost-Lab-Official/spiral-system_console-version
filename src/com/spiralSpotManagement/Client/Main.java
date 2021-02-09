@@ -53,7 +53,7 @@ public class Main {
 //        new UserView().registerUser();
 //        new UserView().loginUser();
 //       spotCategoryModuleMain();
-//        spotMainContent();
+        spotMainContent();
 //        new CommentView().makeComment();
 //        new CommentView().updateTheComment();
 //        new CommentView().makeReplyComment();
@@ -63,7 +63,7 @@ public class Main {
 //        new LocationLevelsView().registerLocationLevels();
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
-        new SearchView().mainMethod();
+//        new SearchView().mainMethod();
     }
 
 
