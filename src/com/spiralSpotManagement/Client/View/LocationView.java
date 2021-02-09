@@ -85,6 +85,7 @@ public class LocationView {
             System.out.println("The location doesn't exists.\n1. Register it now!\n2. Try again.\n0. Exit.");
             System.exit(1);
         }
+        System.out.println("\nIf you don't want to update the some fields.\nEnter -1 in that input\n\n");
         System.out.print("New Level ID: ");
         String levelID = scanner.nextLine();
         //check new level going to be updated exists
