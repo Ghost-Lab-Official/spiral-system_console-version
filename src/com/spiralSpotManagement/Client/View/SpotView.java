@@ -1,3 +1,13 @@
+
+/*
+            @author : Cyebukayire Peace
+            Created on: 2021 Jan 25
+            What these codes are doing:
+            . Inserting Spot : This means creating a new spot into the database
+            . Updating Spot: Editing information about the spot
+            . Changing Spot Status (Deleting): We just change the status from active to inactive instead of deleting
+                                               permanently because we don't want to loose any data.
+ */
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
