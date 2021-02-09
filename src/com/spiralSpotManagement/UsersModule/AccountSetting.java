@@ -1,6 +1,11 @@
 /*
 @author:Twizeyimana Elissa
-
+class contain methods
+ 1.update settings
+ 2.delete account
+ 3.view profile
+ 4.reset password
+ 5.update user category
  */
 package com.spiralSpotManagement.UsersModule;
 import java.io.BufferedReader;
@@ -58,10 +63,9 @@ public class AccountSetting {
         }
     }
     // this is method is to help user to delete his /her account in case she/he want
-
     public static void DeleteProfile(Connection con)throws Exception{
         Scanner scanner=new Scanner(System.in);
-        System.out.print("Enter Your user Name:\t");
+        System.out.println("Enter your user name");
         String oldUserName = scanner.nextLine();
         Statement stmt = con.createStatement();
         ResultSet check = stmt.executeQuery("SELECT * from users_table WHERE user_name='" + oldUserName + "'");
@@ -78,8 +82,8 @@ public class AccountSetting {
             System.out.println("Account  was deleted successful");
         }
     }
-    // this is method is for viewing user profile information like user name email ...
 
+    // this is method is for viewing user profile information like user name email ...
     public static void ViewProfile(Connection con)throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter user name!");
@@ -108,6 +112,7 @@ public class AccountSetting {
             System.out.println("user name:" + user_name);
             System.out.println("email:" + email);
             System.out.println("gender:" + gender);
+            System.out.println("Birth day:"+birth_date);
             System.out.println("location:" + location);
             System.out.println("----------------------------------");
         }
@@ -151,30 +156,56 @@ public class AccountSetting {
             System.out.println("Enter new password");
             String password=scanner.nextLine();
 
-
             String securePassword = hashPassword(password);
 
-                PreparedStatement updateSql=con.prepareStatement("Update users_table SET password=? where email=?");
-                updateSql.setString(1,securePassword);
-                updateSql.setString(2,email);
-                int PassUpdate=updateSql.executeUpdate();
-                if (PassUpdate>0){
-                    System.out.println("Password reset successful");
-                }
+            PreparedStatement updateSql=con.prepareStatement("Update users_table SET password=? where email=?");
+            updateSql.setString(1,securePassword);
+            updateSql.setString(2,email);
+            int PassUpdate=updateSql.executeUpdate();
+            if (PassUpdate>0){
+                System.out.println("Password reset successful");
+            }
 
         }
         else {
             System.out.println("Try to Enter sent verification code");
         }
     }
-    //
+    // for hashing and encrypt password
     protected static String hashPassword(String password){
         return BCrypt.hashpw(password,BCrypt.gensalt(12));
 
     }
+    // method to update user category
+    public static void UpdateUserCategory(Connection con) throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter user name");
+        String user_name=scanner.nextLine();
+        Statement CheckUser = con.createStatement();
+        ResultSet check =CheckUser.executeQuery("SELECT * from users_table WHERE user_name='" + user_name + "'");
+        if(check.next()) {
+            System.out.println("User "+check.getString("user_name")+" Found!");
 
+
+        }else {
+            System.out.println("sorry, requested user name not found!");
+            return;
+        }
+
+        System.out.println("Enter new  user category[1 || 2]");
+        int userCategory=scanner.nextInt();
+        PreparedStatement updateUserCategory= con.prepareStatement("UPDATE users_table  SET user_category=? WHERE " +
+                "user_name=?");
+        updateUserCategory.setInt(1,userCategory);
+        updateUserCategory.setString(2,user_name);
+
+        int PassUpdate=updateUserCategory.executeUpdate();
+        if(PassUpdate>0){
+            System.out.println("user category updated successful!");
+        }
+    }
     protected static Connection getConnection() throws SQLException{
-        Connection con=null;
+        Connection con;
         String url="jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
         String name="2YQ7auowc7";
         String pass="R2IMVJC67L";
@@ -197,6 +228,7 @@ public class AccountSetting {
                 System.out.println("  2.Delete Account                    ");
                 System.out.println("  3.View Profile                      ");
                 System.out.println("  4.Reset Password                    ");
+                System.out.println("  5.Update user category              ");
                 System.out.println("--------------------------------------");
                 System.out.println("Enter your choice");
                 choice=Integer.parseInt(reader.readLine());
@@ -212,6 +244,9 @@ public class AccountSetting {
                         break;
                     case 4:
                         ResetPassword(getConnection());
+                        break;
+                    case 5:
+                        UpdateUserCategory(getConnection());
                         break;
                     default:
                         System.out.println("Invalid please");
