@@ -87,23 +87,22 @@ public class LocationView {
         }
         System.out.print("New Level ID: ");
         String levelID = scanner.nextLine();
-        if(locId.equals("-1")) levelID=null;
         //check new level going to be updated exists
 
-        if (!levelID.equals(null) &&!location.CheckLevelId(levelID)){
+        if (!levelID.equals("-1") &&!location.CheckLevelId(levelID)){
             System.out.println("The location level doesn't exists.\n");
             System.exit(1);
         }
+        if(levelID.equals("-1")) levelID=null;
 
         System.out.print("New Parent ID: ");
         String parentId = scanner.nextLine();
-        if(parentId.equals("-1")) parentId=null;
         //chek new location parent id going to be update exists
-        if (!parentId.equals(null) && !location.CheckLocationId(parentId)){
+        if (!parentId.equals("-1") && !location.CheckLocationId(parentId)){
             System.out.println("The location doesn't exists.\n Register it now!\n");
             System.exit(1);
         }
-
+        if(parentId.equals("-1")) parentId=null;
 
         System.out.print("New Location Name: ");
         String locname = scanner.nextLine();
