@@ -16,13 +16,13 @@ public class SpotView {
     public void createSpot()throws Exception{
         Spot customSpot = new Spot();
         customSpot = formClient.createSpotViewForm();
-        Integer spot_id= customSpot.getSpotId();
+//        Integer spot_id= customSpot.getSpotId();
         Integer user_id = customSpot.getUserId();
         Integer category_id = customSpot.getCategoryId();
         Integer location_id = customSpot.getLocationId();
         String spot_name = customSpot.getSpotName();
         String spot_description = customSpot.getSpotDescription();
-        String status = customSpot.getStatus();
+        Integer status = customSpot.getStatus();
 
 
         Spot spotToCreate = new Spot(user_id,category_id,location_id,spot_name,spot_description,status);
@@ -55,7 +55,7 @@ public class SpotView {
         Integer location_id = spotToUpdate.getLocationId();
         String spot_name = spotToUpdate.getSpotName();
         String spot_description = spotToUpdate.getSpotDescription();
-        String status = spotToUpdate.getStatus();
+        Integer status = spotToUpdate.getStatus();
 
         Scanner scan = new Scanner(System.in);
 //        Integer spot_id = 8;
@@ -115,6 +115,7 @@ public class SpotView {
          * This is the entry of spotView */
         int choice;
         Scanner scanner = new Scanner(System.in);
+        SpotView formClient = new SpotView();
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
@@ -122,21 +123,13 @@ public class SpotView {
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t\t  Enter your choice                                              ");
         choice = scanner.nextInt();
-        switch (choice){
-            case 1 :
-                CreateSpot();
-                break;
-            case 2:
-               UpdateSpot();
-                break;
-            case 3:
-                DeleteSpotContent();
-                break;
-            default:
-                System.out.println("Invalid input");
-                break;
+        switch (choice) {
+            case 1 -> formClient.createSpot();
+            case 2 -> formClient.updateSpot();
+            case 3 -> formClient.deleteSpotContent();
+            default -> System.out.println("Invalid input");
         }
     }
-    }
+}
 
 

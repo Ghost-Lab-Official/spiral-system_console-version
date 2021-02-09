@@ -2,11 +2,17 @@ package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Server.Model.Spot;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.io.BufferedReader;
 
 public class FormsView {
-    public Spot createSpotViewForm(){
+    public Spot createSpotViewForm() throws IOException {
         Scanner scanner = new Scanner(System.in);
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader entered = new BufferedReader(isr);
+
         System.out.println("Enter user id ");
         Integer userId = scanner.nextInt();
         System.out.println("Enter category id");
@@ -14,11 +20,11 @@ public class FormsView {
         System.out.println("Enter your location Id ");
         Integer locationId = scanner.nextInt();
         System.out.println("Enter spot name ");
-        String spotName = scanner.nextLine();
+        String spotName = entered.readLine();
         System.out.println("Enter spot description ");
-        String spotDescription = scanner.nextLine();
+        String spotDescription = entered.readLine();
         System.out.println("Enter spot status ");
-        String spotStatus = scanner.nextLine();
+        Integer spotStatus = scanner.nextInt();
 
         Spot spot = new Spot();
         spot.setUserId(userId);
@@ -46,7 +52,7 @@ public class FormsView {
         System.out.println("Enter spot description ");
         String spotDescription = scanner.nextLine();
         System.out.println("Enter spot status ");
-        String spotStatus = scanner.nextLine();
+        Integer spotStatus = scanner.nextInt();
 
         Spot spot = new Spot();
         spot.setSpotId(spotId);

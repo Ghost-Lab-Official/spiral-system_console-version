@@ -27,8 +27,8 @@ public class SpotActions {
           preparedStatement.setString(4, spotToRegister.getSpotName());
           preparedStatement.setString(5, spotToRegister.getSpotDescription());
 //          preparedStatement.setString(6, spotToRegister.getRegistrationDate());
-          preparedStatement.setString(6, spotToRegister.getStatus());
-          preparedStatement.setString(8, spotToRegister.getSpotId().toString());
+          preparedStatement.setString(6, spotToRegister.getStatus().toString());
+//          preparedStatement.setString(7, spotToRegister.getSpotId().toString());
           int inserted = preparedStatement.executeUpdate();
 
             if (inserted == 1) {
@@ -55,7 +55,7 @@ public class SpotActions {
             sql.setString(4, spotToUpdate.getSpotName());
             sql.setString(5, spotToUpdate.getSpotDescription());
 //            sql.setString(6, spotToUpdate.getRegistrationDate());
-            sql.setString(6, spotToUpdate.getStatus());
+            sql.setString(6, spotToUpdate.getStatus().toString());
             sql.setString(7, spotToUpdate.getSpotId().toString());
             int updated = sql.executeUpdate();
 
