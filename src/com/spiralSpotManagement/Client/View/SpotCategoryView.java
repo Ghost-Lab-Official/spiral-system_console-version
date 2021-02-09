@@ -23,7 +23,8 @@ import java.util.Scanner;
 
 
 public class SpotCategoryView {
-    /* This the view for spotCategory */
+    /* This the view for spotCategory. it has functions for creating,update,
+    view, change status of spot category */
 
     InputStreamReader isr = new InputStreamReader(System.in);
     BufferedReader entered = new BufferedReader(isr);

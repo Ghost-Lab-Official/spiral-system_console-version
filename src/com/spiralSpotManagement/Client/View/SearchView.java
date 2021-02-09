@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
-    public void mainMethod() throws Exception{
+    public void SearchViewMenu() throws Exception{
         String cont = "";
         do {
             System.out.println("\t\t\t||-------------------------------------------------------------------||");

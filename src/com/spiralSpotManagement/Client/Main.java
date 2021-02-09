@@ -64,7 +64,7 @@ import java.util.Scanner;
                     locationForms.LocationViewMenu();
 
                 case 6:
-                    searchForms.mainMethod();
+                    searchForms.SearchViewMenu();
                     break;
                 default:
                     System.out.println("Invalid input");

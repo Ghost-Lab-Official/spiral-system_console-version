@@ -9,7 +9,11 @@ import com.spiralSpotManagement.Server.Model.UserCategory;
 
 import java.util.Scanner;
 
+/* @author  Bethiane */
+
 public class UserCategoryView {
+    /* This the view for spotCategory. it has functions for creating,update,
+    view, change status of user category */
 
 
     public static void createCategory()throws Exception{
