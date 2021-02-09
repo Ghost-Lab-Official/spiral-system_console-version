@@ -15,9 +15,9 @@ public class SpotView {
         Integer user_id = 1;
         Integer category_id = 45;
         Integer location_id =5655;
-        String spot_name = "Computer";
-        String spot_description = "Balck and brown table found in Ouuaagaadouuguuu";
-        String registration_date = "2021-01-31";
+        String spot_name = "Mouse";
+        String spot_description = "Black and brown mouse found in Ouuaagaadouuguuu";
+        String registration_date = "2021-09-21";
         String status = "active";
 
 
@@ -46,8 +46,8 @@ public class SpotView {
         Integer user_id = 1;
         Integer category_id = 45;
         Integer location_id =5655;
-        String spot_name = "Updated Computer";
-        String spot_description = "Balck and brown table found in Ouuaagaadouuguuu";
+        String spot_name = "Updated mouse";
+        String spot_description = "Black and brown mouse found in class A";
         String registration_date = "2021-01-31";
         String status = "active";
 
