@@ -24,12 +24,12 @@ public class LocationLevelsView {
         LocationLevels llevel = new LocationLevels();
         llevel.setLevel_name(locationLevel);
 
-//        Send the data as an object of request body
+        //Send the data as an object of request body
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/location-levels");
         requestBody.setAction("register");
         requestBody.setObject(llevel);
-// send the request body
+        //send the request body
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
 

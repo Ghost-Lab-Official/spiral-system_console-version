@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Location levels (Synchronizing the classes)
  * @author Gervais Ishimwe
+ * @author Harerimana EGide
  */
 public class LocationLevelController {
  public List<Object> mainMethod(RequestBody requestBody)throws Exception
@@ -23,7 +24,6 @@ public class LocationLevelController {
              return locationLevels;
 
          case "update":
-<<<<<<< HEAD
              ResponseStatus updateLocationLevelResponse = new LocationLevelsActions().updateLocationLevel((LocationLevels) requestBody.getObject());
              locationLevels.add((Object) updateLocationLevelResponse);
              return locationLevels;
@@ -32,18 +32,10 @@ public class LocationLevelController {
              ResponseStatus deleteLocationLevelResponse = new LocationLevelsActions().deleteLocationLevel((LocationLevels) requestBody.getObject());
              locationLevels.add((Object) deleteLocationLevelResponse);
              return locationLevels;
-=======
-// call action method here
-             break;
-
-         case "get":
-
-
-             break;
-// ADD CASE TO GO HERE
-//         ------------------------------------
->>>>>>> 218467288a7a24b68d7dc2e19adab6ee203a5662
-
+         case "getLevel":
+             ResponseStatus getLevelResponse = new LocationLevelsActions().getLevel((LocationLevels) requestBody.getObject());
+             locationLevels.add((Object) getLevelResponse);
+             return locationLevels;
      }
      return null;
  }

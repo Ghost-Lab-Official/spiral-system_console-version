@@ -69,4 +69,16 @@ public class LocationModel implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "LocationModel{" +
+                "location_id='" + location_id + '\'' +
+                ", level_id='" + level_id + '\'' +
+                ", parent_id='" + parent_id + '\'' +
+                ", location_name='" + location_name + '\'' +
+                ", location_GPS='" + location_GPS + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -32,9 +32,6 @@ public class LocationActions {
             if(inserted_rec == 1){
                 return new ResponseStatus(200,"CREATED","Location registered");
             }
-            if(connection != null){
-                return new ResponseStatus(500,"SERVER ERROR","Insertion failed, try or contact System Administrator");
-            }
 
         }catch(Exception e){
             return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
