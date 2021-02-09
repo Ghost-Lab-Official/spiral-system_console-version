@@ -4,6 +4,7 @@ import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,8 +34,8 @@ public class SearchView {
             case 1 -> searchSpot();
             case 2 -> searchPeople();
             case 3 -> searchMessages();
-            case 4 -> PopularSearch();
-            case 5 -> RecentSearch();
+            case 4 -> searchPopular();
+//            case 5 -> RecentSearch();
             default -> System.out.println("Invalid option");
         }
 
@@ -159,6 +160,22 @@ public class SearchView {
      * @author: Abizera Oreste
      * This method is used to search people
      */
+
+    /**
+     * @author: Blessing Hirwa
+     * This method is used to get recent searches by a logged in user
+     */
+
+    public static void getRecentSearches() throws Exception{
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("viewRecentSearches");
+
+        User userIdToGetRecentSearches = new User();
+        requestBody.setObject(userIdToGetRecentSearches);
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        System.out.println("response is here : "+ responseBody);
+    }
     public static void searchPeople() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
@@ -193,11 +210,67 @@ public class SearchView {
     public static void searchMessages(){
 
     }
+    /**
+     *location management class. Method Recovering a deleted given location
+     * @author Blessing Hirwa, Izere Kerie
+     * return boolean a list of popular spots in the system
+     *
+     */
+    public static void searchPopular() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("searchByPopularity");
+        requestBody.setObject(null);
+        List<Object> popularSearches = new ArrayList<>();
 
-    public void RecentSearch(){
-        System.out.println("Hello recents");
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+     //   responseBody.getResponse();
+//        for(int i=0;i< responseBody.getResponse().size();i++) {
+//            System.out.println(i+1+"."+popularSpots.get(i));
+//        }
+
+        int i=1;
+        for(Object response: responseBody.getResponse()){
+            PopularSearch search = (PopularSearch) response;
+            System.out.println(i + ". " + search.getSearch());
+            popularSearches.add(search);
+            i++;
+        }
+        System.out.println("Enter choice: ");
+        Integer choice = scanner.nextInt();
+        if(choice > popularSearches.size()){
+            System.out.println("Invalid Choice.");
+        }else{
+            PopularSearch selectedSearch = (PopularSearch) popularSearches.get(choice-1);
+            System.out.println("Search: " + selectedSearch.getSearch());
+
+            RequestBody request = new RequestBody();
+            request.setUrl("/search");
+            request.setAction("getSpots");
+
+            Spot spotToSend = new Spot();
+            spotToSend.setSpotName(selectedSearch.getSearch());
+            request.setObject(spotToSend);
+
+            ResponseBody response = new ClientServerConnector().ConnectToServer(request);
+            boolean found = false;
+            Integer index = 0;
+            List<Object> spotsList = new ArrayList<>();
+            for (Object responseFound: response.getResponse()){
+                index++;
+                found = true;
+                Spot spot = (Spot) responseFound;
+                System.out.println(index + ". " + spot.getSpotName());
+                spotsList.add(spot);
+            }
+
+            if(!found){
+                System.out.println("No spots Found.\n");
+            }else {
+                displaySpot(spotsList);
+            }
+        }
+
     }
-    public void PopularSearch(){
-        System.out.println("Hello Popular");
-    }
+
 }

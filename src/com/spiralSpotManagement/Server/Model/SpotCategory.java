@@ -3,7 +3,7 @@ package com.spiralSpotManagement.Server.Model;
 import java.io.Serializable;
 
 /*
-        @author : NTWARI Egide
+        @author : Nimuhire Ange Constance
         @Description: the model for the SpotCategory class
  */
 public class SpotCategory implements Serializable {

@@ -8,11 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-/**
- * Spot Comment actions for managing all spot comment related work
- * @author ntwari egide
- * */
-
 
 public class SpotCommentActions {
     String InsertCommentQuery =
@@ -23,7 +18,10 @@ public class SpotCommentActions {
             "UPDATE comments  SET spot_id=?, user_id=?, content=?, updated_at=? WHERE comment_id=?";
     String UpdateCommentStatusQuery =
             "UPDATE comments  SET status=?, updated_at=? WHERE comment_id=?";
-
+    /*
+            @author : Izabayo Cedric
+            @description: This method is used to insert a new comment
+     */
     public ResponseStatus insertComment(Comment comment)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try{
@@ -52,7 +50,10 @@ public class SpotCommentActions {
     }
 
 
-
+    /*
+            @author : Izabayo Cedric
+            @description: This method is used to update a comment
+     */
     public ResponseStatus updateComment(Comment comment)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try {
@@ -75,7 +76,10 @@ public class SpotCommentActions {
 
         return null;
     }
-
+    /*
+            @author : Izabayo Cedric
+            @description: This method is used to insert a new commentReply
+     */
     public ResponseStatus makeCommentReply(Comment comment)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try {
@@ -100,6 +104,10 @@ public class SpotCommentActions {
 
         return null;
     }
+    /*
+            @author : Izabayo Cedric
+            @description: This method is used to change a comment's status
+     */
     public ResponseStatus updateCommentStatus(Comment comment)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try {

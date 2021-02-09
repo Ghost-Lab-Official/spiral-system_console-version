@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.PopularSearch;
 import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 import com.spiralSpotManagement.Server.Model.User;
@@ -17,22 +18,22 @@ import java.util.List;
 public class SearchActions {
 
 
-    public List<Spot> getSpots(Spot spot) throws Exception{
+    public List<Spot> getSpots(Spot spot) throws Exception {
         List<Spot> spotsList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
-        try{
+        try {
             String searchKey = spot.getSpotName();
             System.out.println(searchKey);
-            String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%"+searchKey+"%' OR spot_description LIKE '%"+searchKey+"%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
+            String sql = "SELECT * from Spot_table WHERE spot_name LIKE '%" + searchKey + "%' OR spot_description LIKE '%" + searchKey + "%' AND status = 1 ORDER BY viewers DESC LIMIT 10";
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Spot spot1 = new Spot();
                 spot1.setSpotName(rs.getString("spot_name"));
                 spot1.setSpotDescription(rs.getString("spot_description"));
                 spot1.setSpotId(rs.getInt("spot_id"));
-                spot1.setStatus((rs.getString("status")));
+                spot1.setStatus((rs.getInt("status")));
                 spot1.setRegistrationDate(rs.getString("registration_date"));
 //                spot1.setLocationId(rs.getInt("location_id"));
                 spot1.setCategoryId(rs.getInt("category_id"));
@@ -40,11 +41,18 @@ public class SearchActions {
                 spotsList.add(spot1);
             }
             return spotsList;
-        }catch (Exception e){
+        } catch (Exception e) {
             return spotsList;
         }
     }
 
+    /**
+     *
+     * @author: by Blessing and Izere Kerie
+     * @return Array of Popular spots
+     * @description  method to  make array of all popular stops to be displayed  and return it
+     *@throws Exception
+     */
 
     public List<User> getPeople(User user) throws Exception{
         List<User> peopleList = new ArrayList<>();
@@ -101,4 +109,56 @@ public class SearchActions {
         return recentSearches;
     }
 
-  }
+
+    public  List<Object> popularityArray() throws Exception {
+
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        List<String>  PopularSearches = new ArrayList<>();
+        List<Object> popularSearchesObject = new ArrayList<>();
+        try {
+            String SelectRatesquery = "select *from Spot_table order by rates desc limit 5";
+            String SelectViewsquery = "select *from Spot_table order by views desc limit 5";
+
+            String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
+            PreparedStatement ptRates = connection.prepareStatement(SelectRatesquery);
+            PreparedStatement ptViews = connection.prepareStatement(SelectViewsquery);
+            PreparedStatement sq = connection.prepareStatement(SelectMostSearchedQuery);
+            ResultSet Ratesresults = ptRates.executeQuery();
+            ResultSet Viewsresults = ptViews.executeQuery();
+            ResultSet searchResults = sq.executeQuery();
+
+            while (Ratesresults.next()) {
+                String spotName = Ratesresults.getString("spot_name");
+                if (!PopularSearches.contains(spotName)) {
+                    PopularSearches.add(spotName);
+                }
+
+
+            }
+            while (Viewsresults.next()) {
+                String spotName = Viewsresults.getString("spot_name");
+
+
+                if (!PopularSearches.contains(spotName)) {
+                    PopularSearches.add(spotName);
+                }
+            }
+
+            while (searchResults.next()) {
+
+                String searchedSpot = searchResults.getString("searched_query");
+                PopularSearches.add(searchedSpot);
+            }
+
+            for (String popularSearch: PopularSearches){
+                PopularSearch search = new PopularSearch ();
+                search.setSearched(popularSearch);
+                popularSearchesObject.add(search);
+            }
+            return popularSearchesObject;
+        } catch (Exception e) {
+            return popularSearchesObject;
+        }
+
+    }
+}
