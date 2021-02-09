@@ -21,9 +21,10 @@ public class CommentView {
 
         Scanner commentIng = new Scanner(System.in);
         Comment comment = new Comment();
-        System.out.println("\tSPOT COMMENTING");
-        System.out.println("\t-----------------------");
-        System.out.println("Enter your comment");
+        System.out.println("\t\t||--------------------------------------------- ---------------||");
+        System.out.println("\t\t||------------------     SPOT COMMENT        ------------------||");
+        System.out.println("\t\t||-------------------------------------------------------------||");
+        System.out.println("\t Enter your comment");
         String content = commentIng.nextLine();
 
 

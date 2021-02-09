@@ -236,10 +236,12 @@ public  void RecoverLocation(){
             int choice;
             Scanner scanner = new Scanner(System.in);
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------      SPIRAL ~ LOCATION        ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.CREATE A LOCATION        ------------------||");
             System.out.println("\t\t\t||------------------    2.UPDATE LOCATION          ------------------||");
-            System.out.println("\t\t\t||------------------    3.DELETE A LOCATION     ------------------||");
-            System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION   ------------------||");
+            System.out.println("\t\t\t||------------------    3.DELETE A LOCATION        ------------------||");
+            System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION       ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -258,7 +260,6 @@ public  void RecoverLocation(){
                     break;
                 default:
                     System.out.println("Invalid input");
-
                     break;
             }
             System.out.print("\t\tDo you want to continue searching? (y/n): ");

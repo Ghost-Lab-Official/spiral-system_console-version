@@ -18,7 +18,7 @@ public class LocationLevelsView {
 
     public void registerLocationLevels()throws Exception{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Location level name: ");
+        System.out.println("\t\t Enter Location level name: ");
         String locationLevel = scanner.nextLine();
 
         LocationLevels llevel = new LocationLevels();

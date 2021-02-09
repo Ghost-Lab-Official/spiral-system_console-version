@@ -169,6 +169,9 @@ public class SpotCategoryView {
             int choice;
             Scanner scanner = new Scanner(System.in);
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    SPIRAL ~ SPOT CATEGORY     ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.CREATE A CATEGORY        ------------------||");
             System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
             System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
