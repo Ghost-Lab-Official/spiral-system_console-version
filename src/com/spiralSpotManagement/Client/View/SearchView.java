@@ -4,6 +4,7 @@ import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class SearchView {
         System.out.println("\t\t\t|| 1.  SEARCH SPOT                         ||");
         System.out.println("\t\t\t|| 2.  SEARCH PEOPLE                       ||");
         System.out.println("\t\t\t|| 3.  SEARCH MESSAGE                      ||");
+        System.out.println("\t\t\t|| 4.  POPULAR                       ||");
         System.out.println("\t\t\t============================================= ");
         System.out.print("Enter Your choice: ");
         int option = scanner.nextInt();
@@ -28,6 +30,7 @@ public class SearchView {
             case 1 -> searchSpot();
             case 2 -> searchPeople();
             case 3 -> searchMessages();
+             case 4 ->searchPopular();
             default -> System.out.println("Invalid option");
         }
     }
@@ -125,4 +128,35 @@ public class SearchView {
     public static void searchMessages(){
 
     }
+    public static void searchPopular() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("searchByPopularity");
+        requestBody.setObject(null);
+        List<Object> popularSearches = new ArrayList<>();
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+     //   responseBody.getResponse();
+//        for(int i=0;i< responseBody.getResponse().size();i++) {
+//            System.out.println(i+1+"."+popularSpots.get(i));
+//        }
+
+        int i=1;
+        for(Object response: responseBody.getResponse()){
+            PopularSearch search = (PopularSearch) response;
+            System.out.println(i + ". " + search.getSearch());
+            popularSearches.add(search);
+            i++;
+        }
+        System.out.println("Enter choice: ");
+        Integer choice = scanner.nextInt();
+        if(choice > popularSearches.size()){
+            System.out.println("Invalid Choice.");
+        }else{
+            RecentSearch selectedSearch = (RecentSearch) popularSearches.get(choice-1);
+            System.out.println("Search: " + selectedSearch.getSearchQuery());
+        }
+
+    }
+
 }

@@ -22,11 +22,11 @@ public class SearchController {
                 }
                 return spots;
 
-            case "searchByPopurarity":
-                ArrayList<String> SpotsList=new SearchActions().popularityArray();
-                break;
+            case "searchByPopularity":
+                List<Object> popularSpots=new SearchActions().popularityArray();
+               return popularSpots;
 
-//                OTHER ACTIONS SHOULD GO HERE
+            //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }
         return  null;

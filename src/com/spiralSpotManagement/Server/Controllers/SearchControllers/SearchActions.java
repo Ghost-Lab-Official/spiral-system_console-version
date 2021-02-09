@@ -1,6 +1,8 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.PopularSearch;
+import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.sql.Connection;
@@ -52,10 +54,11 @@ public class SearchActions {
      *@throws Exception
      */
 
-    public  ArrayList<String> popularityArray() throws Exception {
-        
+    public  List<Object> popularityArray() throws Exception {
+
         Connection connection = new CloudStorageConnectionHandler().getConnection();
-        ArrayList<String> spots = new ArrayList<String>();
+        List<String>  PopularSearches = new ArrayList<>();
+        List<Object> popularSearchesObject = new ArrayList<>();
         try {
             String SelectRatesquery = "select *from Spot_table order by rates desc limit 5";
             String SelectViewsquery = "select *from Spot_table order by views desc limit 5";
@@ -70,8 +73,8 @@ public class SearchActions {
 
             while (Ratesresults.next()) {
                 String spotName = Ratesresults.getString("spot_name");
-                if (!spots.contains(spotName)) {
-                    spots.add(spotName);
+                if (!PopularSearches.contains(spotName)) {
+                    PopularSearches.add(spotName);
                 }
 
 
@@ -80,20 +83,25 @@ public class SearchActions {
                 String spotName = Viewsresults.getString("spot_name");
 
 
-                if (!spots.contains(spotName)) {
-                    spots.add(spotName);
+                if (!PopularSearches.contains(spotName)) {
+                    PopularSearches.add(spotName);
                 }
             }
 
             while (searchResults.next()) {
 
                 String searchedSpot = searchResults.getString("searched_query");
-                spots.add(searchedSpot);
+                PopularSearches.add(searchedSpot);
             }
 
-            return spots;
+            for (String popularSearch: PopularSearches){
+                PopularSearch search = new PopularSearch ();
+                search.setSearched(popularSearch);
+                popularSearchesObject.add(search);
+            }
+            return popularSearchesObject;
         } catch (Exception e) {
-            return spots;
+            return popularSearchesObject;
         }
 
     }
