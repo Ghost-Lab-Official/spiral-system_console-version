@@ -95,5 +95,12 @@ public class UserView {
         }
     }
 
+    public void updateUserCategory()throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter user name");
+        String user_name=scanner.nextLine();
+
+    }
+
 
 }

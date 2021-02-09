@@ -26,6 +26,10 @@ public class UserController {
                 ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
                 usersObject.add((Object) loggedInStatus);
                 return  usersObject;
+            case "updateUserCategory":
+                ResponseStatus updatedCategoryStatus = new UsersActions().UpdateUserCategory((User) requestBody.getObject());
+                usersObject.add((Object) updatedCategoryStatus);
+                return  usersObject;
         }
 
         return null;

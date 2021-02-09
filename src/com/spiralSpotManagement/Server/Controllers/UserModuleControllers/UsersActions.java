@@ -9,6 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -125,7 +126,28 @@ public class UsersActions {
         return null;
     }
 
-
+//    public ResponseStatus UpdateUserCategory(User userToUpdate) throws Exception{
+//        Connection connection = new CloudStorageConnectionHandler().getConnection();
+//        Statement state = connection.createStatement();
+//        ResultSet check =state.executeQuery("SELECT * from users_table WHERE user_name='" + userToUpdate.getUserName() + "'");
+//        if(check.next()) {
+//            System.out.println("User "+check.getString("user_name")+" Found!");
+//
+//
+//        }else {
+//            System.out.println("sorry, requested user name not found!");
+//        }
+//        PreparedStatement updateUserCategory= connection.prepareStatement("UPDATE users_table  SET user_category=? WHERE " +
+//                "user_name=?");
+//        updateUserCategory.setString(1,userToUpdate.getUserCategory());
+//        updateUserCategory.setString(2,userToUpdate.getUserName());
+//
+//        int PassUpdate=updateUserCategory.executeUpdate();
+//        if(PassUpdate>0){
+//            System.out.println("user category updated successful!");
+//        }
+//        return null;
+//    }
 
     public boolean checkIfPasswordsAreEqual(String password, String hash){
         boolean rightPassword = false;
@@ -137,4 +159,5 @@ public class UsersActions {
         }
         return rightPassword;
     }
+
 }

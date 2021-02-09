@@ -50,7 +50,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
         new SpiralMultiThreadedServer().startServer();
 //        registerUser();
-        new UserView().registerUser();
+//        new UserView().registerUser();
 //        new UserView().loginUser();
 //       spotCategoryModuleMain();
 //        spotMainContent();
@@ -62,7 +62,7 @@ public class Main {
 //        loginUser();
 //        new LocationLevelsView().registerLocationLevels();
 //          new LocationView().registerLocation();
-//        new UserCategoryView().mainMethod();
+        new UserCategoryView().mainMethod();
 //        new SearchView().mainMethod();
     }
 

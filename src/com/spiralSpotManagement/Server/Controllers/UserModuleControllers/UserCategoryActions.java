@@ -16,6 +16,7 @@ public class UserCategoryActions {
     String deleteSQL = "DELETE FROM users_categories WHERE category_id=?";
     String selectSQL = "SELECT * FROM users_categories";
 
+
     public ResponseStatus createUserCategory(UserCategory userCategoryToRegister)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(InsertSql)){
@@ -48,6 +49,23 @@ public class UserCategoryActions {
         }
         return  userCategories;
     }
+
+    public List<Object> selectCategoriesById(UserCategory userCategory) throws Exception{
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        Statement state= connection.createStatement();
+        ResultSet result =state.executeQuery("SELECT * FROM users_categories WHERE category_id="+userCategory.getCatId());
+
+        List<Object> userCategories = new ArrayList<>();
+
+        while (result.next()){
+            UserCategory userCat = new UserCategory();
+            userCat.setCatId(result.getInt(1));
+            userCat.setCatName(result.getString(2));
+            userCategories.add((Object) userCat);
+        }
+        return  userCategories;
+    }
+
     public ResponseStatus updateCategory(UserCategory userCategoryToUpdate) throws Exception {
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateSql)){

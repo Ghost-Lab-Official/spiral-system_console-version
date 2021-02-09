@@ -12,14 +12,14 @@ import java.util.Scanner;
 public class UserCategoryView {
     public void mainMethod()throws Exception{
         Scanner input = new Scanner(System.in);
-        System.out.println("==================================");
-        System.out.println("||\t\tUser Category Section\t||\n");
-        System.out.println("||\t\t1.Create Category\t\t||\n");
-        System.out.println("||\t\t2.Edit Category  \t\t||\n");
-        System.out.println("||\t\t3.View Categories\t\t||\n");
-        System.out.println("||\t\t4.Delete Category\t\t||\n");
-        System.out.println("||\t\t5.Exit           \t\t||\n");
-        System.out.println("==================================");
+        System.out.println("==========================================");
+        System.out.println("||\t\tUser Category Section     \t\t||\n");
+        System.out.println("||\t\t1.Create Category         \t\t||\n");
+        System.out.println("||\t\t2.Edit Category           \t\t||\n");
+        System.out.println("||\t\t3.View Categories         \t\t||\n");
+        System.out.println("||\t\t4.Delete Category         \t\t||\n");
+        System.out.println("||\t\t5.Select category by Id   \t\t||\n");
+        System.out.println("==========================================");
         String choose =input.nextLine();
 
         switch (choose){
@@ -36,7 +36,8 @@ public class UserCategoryView {
                 deleteCategory();
                 break;
             case "5":
-                System.exit(0);
+                selectUserCategoryById();
+                break;
             default:
                 System.out.println("Incorrect Input!!");
         }
@@ -72,11 +73,31 @@ public class UserCategoryView {
         requestBody.setObject(null);
 
         ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-
+        System.out.println("\t\t\t Categories\t\n");
+        System.out.println("\t ID  \t Category name\n");
         for (Object response: responseBody.getResponse()){
             UserCategory userCategory = (UserCategory) response;
-            System.out.println("\t\t\t Categories\t\n");
-            System.out.println("\t ID  \t Category name\n");
+            System.out.println("\t "+userCategory.getCatId()+" \t\t "+userCategory.getCatName());
+        }
+    }
+
+    public static void selectUserCategoryById() throws Exception{
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the category id to select");
+        int categoryId = scan.nextInt();
+        UserCategory userCat = new UserCategory();
+        userCat.setCatId(categoryId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/user-category");
+        requestBody.setAction("selectCategoryById");
+        requestBody.setObject(userCat);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        System.out.println("\t\t\t Categories\t\n");
+        System.out.println("\t ID  \t Category name\n");
+//        System.out.println(responseBody.getResponse());
+        for (Object response: responseBody.getResponse()){
+            UserCategory userCategory = (UserCategory) response;
             System.out.println("\t "+userCategory.getCatId()+" \t\t "+userCategory.getCatName());
         }
     }
