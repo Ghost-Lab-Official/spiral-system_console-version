@@ -182,3 +182,15 @@ public class LocationView {
         }
     }
 }
+
+
+/**
+ *location management class. Method Recovering a deleted given location
+ * @author Felix DUSENGIMANA
+ * @powered by Rwanda Coding Academy
+ * instructor Donatien MASHENGESHO
+ * @since  04-08-2021
+ * return boolean to indicated the success or fail to update.
+ *
+ */
+
