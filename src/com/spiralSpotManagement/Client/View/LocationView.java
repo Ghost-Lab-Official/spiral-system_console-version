@@ -194,3 +194,10 @@ public class LocationView {
  *
  */
 
+public  void RecoverLocation(){
+    try{
+
+    }catch (Exception e){
+        System.out.println("Error message:: "+e.getMessage());
+    }
+}
