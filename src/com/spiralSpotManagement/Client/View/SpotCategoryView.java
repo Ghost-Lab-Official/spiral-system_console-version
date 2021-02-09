@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Client.View;
 import java.io.BufferedReader;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Main;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
@@ -15,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+
 
 
 /* @author  Bethiane */
@@ -160,34 +162,44 @@ public class SpotCategoryView {
     }
 
    public void SpotCategoryMenu() throws Exception {
-       /* SpotcategoryMenu entry  */
-       int choice;
-       Scanner scanner = new Scanner(System.in);
-       System.out.println("\t\t\t||-------------------------------------------------------------------||");
-       System.out.println("\t\t\t||------------------    1.CREATE A CATEGORY        ------------------||");
-       System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
-       System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
-       System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
-       System.out.println("\t\t\t||-------------------------------------------------------------------||");
-       System.out.println("\t\t\t\t  Enter your choice                                              ");
-       choice = scanner.nextInt();
-       switch (choice){
-           case 1 :
-               CreateCategory();
-               break;
-           case 2:
-              UpdateCategory();
-               break;
-           case 3:
-              GetSpotCategory();
-               break;
-           case 4:
-               ChangeSpotStatus();
-               break;
-           default:
-               System.out.println("Invalid input");
-               break;
-       }
+      /* SpotcategoryMenu entry  */
+       Main systemEntry=new Main();
+
+
+       String toContinue;
+       do{
+            int choice;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    1.CREATE A CATEGORY        ------------------||");
+            System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
+            System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
+            System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t\t  Enter your choice                                              ");
+            choice = scanner.nextInt();
+            switch (choice){
+                case 1 :
+                    CreateCategory();
+                    break;
+                case 2:
+                    UpdateCategory();
+                    break;
+                case 3:
+                    GetSpotCategory();
+                    break;
+                case 4:
+                    ChangeSpotStatus();
+                    break;
+                default:
+                    System.out.println("Invalid input");
+
+                    break;
+            }
+            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            toContinue = scanner.next();
+        }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+       systemEntry.main();
    }
    }
 

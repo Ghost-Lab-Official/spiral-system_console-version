@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Main;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -94,6 +95,7 @@ public class SpotView {
     }
 
     public void spotViewMenu() throws Exception {
+        Main systemEntry=new Main();
         /*@Bethiane
          * This is the entry of spotView */
         int choice;

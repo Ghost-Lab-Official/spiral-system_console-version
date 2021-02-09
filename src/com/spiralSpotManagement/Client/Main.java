@@ -60,7 +60,11 @@ public class Main {
             System.out.print("\t\tDo you want to continue searching? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
-        int choice;
 
+
+    }
+
+    public void main() {
+        System.out.println("HELLO");
     }
 }
