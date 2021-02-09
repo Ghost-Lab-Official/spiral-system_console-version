@@ -17,29 +17,85 @@ import java.util.Scanner;
 public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
     public void mainMethod() throws Exception{
-        String cont = "";
-        do {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
         System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t|| 1.  SEARCH SPOT                         ||");
-        System.out.println("\t\t\t|| 2.  SEARCH PEOPLE                       ||");
-        System.out.println("\t\t\t|| 3.  SEARCH MESSAGE                      ||");
+        System.out.println("\t\t\t|| 1.  RECENT SEARCHES                      ||");
+        System.out.println("\t\t\t|| 2.  SEARCH SPOT                          ||");
+        System.out.println("\t\t\t|| 3.  SEARCH PEOPLE                        ||");
+        System.out.println("\t\t\t|| 4.  SEARCH MESSAGE                       ||");
         System.out.println("\t\t\t============================================= ");
         System.out.print("Enter Your choice: ");
         int option = scanner.nextInt();
 
         switch (option) {
-            case 1 -> searchSpot();
-            case 2 -> searchPeople();
-            case 3 -> searchMessages();
+            case 1 -> viewRecentSearches();
+            case 2 -> searchSpot();
+            case 3 -> searchPeople();
+            case 4 -> searchMessages();
             default -> System.out.println("Invalid option");
         }
-
-        System.out.print("Do you want to continue searching? (y/n): ");
-        cont = scanner.next();
-        }while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"));
     }
+
+
+    /**
+     * Method to view recent searches
+     */
+    public static void viewRecentSearches() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("viewRecentSearches");
+
+        User user = new User();
+        user.setUserId(1);
+
+        requestBody.setObject(user);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        int i = 1;
+        List<RecentSearch> recentSearchList = new ArrayList<>();
+        for (Object response : responseBody.getResponse()){
+            RecentSearch recentSearch = (RecentSearch) response;
+            System.out.println(i + ". " + recentSearch.getSearchQuery());
+            recentSearchList.add(recentSearch);
+            i++;
+        }
+        if(recentSearchList.size() == 0){
+            System.out.println("No results found");
+        }else {
+            String delete = "";
+            System.out.println("Do you want to remove a recent research (y/n)");
+            delete = scanner.next();
+            if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
+                System.out.println("Enter Recent Search: ");
+                Integer choice = scanner.nextInt();
+                if (choice > recentSearchList.size()) {
+                    System.out.println("Invalid Choice");
+                } else {
+                    RemoveRecentSearch(recentSearchList.get(choice - 1));
+                }
+            }
+        }
+    }
+
+    public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("RemoveRecentSearch");
+        requestBody.setObject(recentSearch);
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+
 
     /**
      * display a spot
@@ -188,7 +244,6 @@ public class SearchView {
             displayUser(usersList);
         }
     }
-
 
     public static void searchMessages(){
 

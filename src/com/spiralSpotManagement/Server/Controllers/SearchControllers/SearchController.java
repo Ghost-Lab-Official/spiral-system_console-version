@@ -37,8 +37,13 @@ public class SearchController {
 
             case "viewRecentSearches":
                 List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
-
-                break;
+                return recentSearchesList;
+            case "RemoveRecentSearch":
+                User user = new User();
+                user.setUserId(1);
+                ResponseStatus responseStatus = new SearchActions().RemoveRecentSearch(user,(RecentSearch) requestBody.getObject());
+                results.add(responseStatus);
+                return results;
 
             default :
 
