@@ -8,8 +8,6 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
@@ -53,7 +51,7 @@ public class Main {
         new SpiralMultiThreadedServer().startServer();
 //        registerUser();
 //        new UserView().registerUser();
-//        new UserView().loginUser();
+        new UserView().loginUser();
 //       spotCategoryModuleMain();
 //        spotMainContent();
 //        new CommentView().makeComment();
@@ -66,7 +64,7 @@ public class Main {
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
 
-    new BillingView().registerBillingPlan();
+//    new BillingView().registerBillingPlan();
     }
 
 

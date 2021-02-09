@@ -32,9 +32,9 @@ public class UserCategoryView {
             case "3":
                 selectUserCategories();
                 break;
-//            case "4":
-//                deleteCategory(cloudStorageConnection.getConnection());
-//                break;
+            case "4":
+                deleteCategory();
+                break;
             case "5":
                 System.exit(0);
             default:
@@ -55,7 +55,8 @@ public class UserCategoryView {
         requestBody.setAction("register");
         requestBody.setObject(userCategoryToInsert);
 
-        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        ResponseBody responseBody =
+                new ClientServerConnector().ConnectToServer(requestBody);
 
         for (Object response: responseBody.getResponse()){
             ResponseStatus responseStatus = (ResponseStatus) response;
@@ -88,14 +89,39 @@ public class UserCategoryView {
         System.out.println("Enter the Category Name to update");
         String category =scan.nextLine();
 
+        System.out.println("Enter the category status");
+        String categoryStatus = scan.nextLine();
+
         UserCategory userCategoryToUpdate = new UserCategory();
         userCategoryToUpdate.setCatId(1);
         userCategoryToUpdate.setCatName(category);
+        userCategoryToUpdate.setCatStatus(categoryStatus);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/user-category");
         requestBody.setAction("updateUserCategory");
         requestBody.setObject(userCategoryToUpdate);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+    public void deleteCategory() throws Exception{
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the category id to delete");
+        int categoryId = scan.nextInt();
+        UserCategory userCategoryToDelete = new UserCategory();
+        userCategoryToDelete.setCatId(categoryId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/user-category");
+        requestBody.setAction("deleteUserCategory");
+        requestBody.setObject(userCategoryToDelete);
 
         ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
 

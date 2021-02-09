@@ -25,6 +25,10 @@ public class UserCategoryController {
                 ResponseStatus responseStatus2 = new UserCategoryActions().updateCategory((UserCategory) requestBody.getObject());
                 usersObject.add((Object) responseStatus2);
                 return usersObject;
+            case "deleteUserCategory":
+                ResponseStatus responseStatus3 = new UserCategoryActions().deleteUserCategory((UserCategory) requestBody.getObject());
+                usersObject.add((Object) responseStatus3);
+                return usersObject;
         }
 
         return null;

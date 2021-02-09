@@ -75,42 +75,40 @@ public class UsersActions {
 
     public ResponseStatus loginUser(User userToLogin)throws Exception{
         boolean checkUser = false;
-        Connection connection = new CloudStorageConnectionHandler().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(loginUserQuery);
-        preparedStatement.setString(1,userToLogin.getEmail());
-        ResultSet rs = preparedStatement.executeQuery();
+        try {
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(loginUserQuery);
+            preparedStatement.setString(1, userToLogin.getEmail());
+            ResultSet rs = preparedStatement.executeQuery();
 
-        if (rs.next()){
-            System.out.println(rs.getString("email"));
-            System.out.println(checkIfPasswordsAreEqual(userToLogin.getPassword(),rs.getString("password")));
-            if(checkIfPasswordsAreEqual(userToLogin.getPassword(),rs.getString("password"))){
-                checkUser = true;
-                TreeMap<String,String> newPayload = new TreeMap<String,String>();
-                newPayload.put("email",rs.getString("email"));
-                newPayload.put("user_name",rs.getString("user_name"));
-                newPayload.put("user_category",rs.getString("user_Category"));
-                Token loginCredentials = new Token(rs.getString("email"),newPayload);
-                String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
+            if (rs.next()) {
+                System.out.println(rs.getString("email"));
+                System.out.println(checkIfPasswordsAreEqual(userToLogin.getPassword(), rs.getString("password")));
+                if (checkIfPasswordsAreEqual(userToLogin.getPassword(), rs.getString("password"))) {
+                    checkUser = true;
+                    TreeMap<String, String> newPayload = new TreeMap<String, String>();
+                    newPayload.put("email", rs.getString("email"));
+                    newPayload.put("user_name", rs.getString("user_name"));
+                    newPayload.put("user_category", rs.getString("user_Category"));
+                    Token loginCredentials = new Token(rs.getString("email"), newPayload);
+                    String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
 
-                return new ResponseStatus(200,"LOGGED IN",(Object) new TokenIssued(userToken),"You are logged in ");
-            };
+                    return new ResponseStatus(200, "LOGGED IN", (Object) new TokenIssued(userToken), "You are logged in ");
+                }
+                ;
+            } else {
+                return new ResponseStatus(404, "LOGGED FAILED", "Email or password is incorrect");
+            }
+        }catch(Exception e){
+            return new ResponseStatus(404, "LOGGED FAILED", "Email or password is incorrect");
+
         }
-        else{
-            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect");
-        }
 
-//
-//        if (rs.next()){
-//            checkUser = true;
-//        }
-//        else{
-//            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect\n"+token);
-//        }
-//
-//        return new ResponseStatus(200,"LOGGED IN","You are logged in ");
-
-        return null;
+        return new ResponseStatus(200, "LOGGED IN", "You are logged in ");
     }
+
+
+
 
 
 
