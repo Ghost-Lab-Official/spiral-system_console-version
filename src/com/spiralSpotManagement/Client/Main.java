@@ -45,7 +45,7 @@ import java.util.Scanner;
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
-            choice = scanner.nextInt(); System.out.println("");
+            choice = scanner.nextInt();
             switch (choice){
                 case 1 :
                     userForms.loginUser();
@@ -61,6 +61,7 @@ import java.util.Scanner;
                     userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
+                    locationForms.LocationViewMenu();
 
                 case 6:
                     searchForms.mainMethod();

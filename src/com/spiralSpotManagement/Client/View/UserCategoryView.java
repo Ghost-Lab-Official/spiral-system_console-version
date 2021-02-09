@@ -22,7 +22,6 @@ public class UserCategoryView {
         UserCategory userCategoryToInsert = new UserCategory();
         userCategoryToInsert.setCatName(category);
 
-
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/user-category");
         requestBody.setAction("register");
