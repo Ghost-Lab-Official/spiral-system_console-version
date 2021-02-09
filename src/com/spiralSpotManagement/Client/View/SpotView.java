@@ -16,7 +16,7 @@ public class SpotView {
         Integer category_id = 45;
         Integer location_id =5655;
         String spot_name = "Mouse";
-        String spot_description = "Black and brown mouse found in Ouuaagaadouuguuu";
+        String spot_description = "Black and brown mouse found in class B";
         String registration_date = "2021-09-21";
         String status = "active";
 
