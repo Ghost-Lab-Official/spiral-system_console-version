@@ -35,7 +35,10 @@ public class UserController {
                 return usersObject;
             case "view-user-profile":
                  usersObject = new UsersActions().ViewUserProfile((User) requestBody.getObject());
-
+                return usersObject;
+            case "deleteUser":
+                ResponseStatus deleteStatus = new UsersActions().deleteProfile((User) requestBody.getObject());
+                usersObject.add((Object) deleteStatus);
                 return usersObject;
         }
 

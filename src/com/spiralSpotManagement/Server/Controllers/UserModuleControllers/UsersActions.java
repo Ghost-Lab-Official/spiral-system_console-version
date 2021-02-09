@@ -263,7 +263,7 @@ public class UsersActions {
 
         return user;
     }
-    public static ResponseStatus DeleteProfile(User userToDelete)throws Exception{
+    public static ResponseStatus deleteProfile(User userToDelete)throws Exception{
             String deleteSQL = "UPDATE users_table SET user_status= ? WHERE user_id=?";
             Connection connection = new CloudStorageConnectionHandler().getConnection();
             try(PreparedStatement preparedStatement = connection.prepareStatement(deleteSQL)){
