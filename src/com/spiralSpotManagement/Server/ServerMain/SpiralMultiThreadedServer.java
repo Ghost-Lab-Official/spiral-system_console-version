@@ -3,6 +3,7 @@ package com.spiralSpotManagement.Server.ServerMain;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
 import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
 import com.spiralSpotManagement.Server.Controllers.SearchControllers.SearchController;
+import com.spiralSpotManagement.Server.Controllers.BillingControllers.BillingController;
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
@@ -166,6 +167,7 @@ public class SpiralMultiThreadedServer {
                             break;
 
                         case "/billing":
+                            responseObject = new BillingController().mainMethod(requestBody);
                             break;
 
                         default:
