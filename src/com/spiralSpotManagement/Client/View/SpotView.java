@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Main;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -124,9 +125,30 @@ public class SpotView {
         System.out.println("\t\t\t\t  Enter your choice                                              ");
         choice = scanner.nextInt();
         switch (choice) {
-            case 1 -> formClient.createSpot();
-            case 2 -> formClient.updateSpot();
-            case 3 -> formClient.deleteSpotContent();
+            case 1 -> {
+                if(new UserAuthMiddleware().checkForUserExistence() != 0) formClient.createSpot();
+
+            else{
+                System.out.println("You have to login first\n");
+                new UserView().loginUser();
+            }
+            }
+            case 2 -> {
+                if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                formClient.updateSpot();
+                else{
+                    System.out.println("You have to login first\n");
+                    new UserView().loginUser();
+                }
+            }
+            case 3 -> {
+                if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                formClient.deleteSpotContent();
+                else{
+                    System.out.println("You have to login first\n");
+                    new UserView().loginUser();
+                }
+            }
             default -> System.out.println("Invalid input");
         }
     }

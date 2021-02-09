@@ -26,8 +26,9 @@ public class UserController {
                 ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
                 usersObject.add((Object) loggedInStatus);
                 return  usersObject;
-        }
 
-        return null;
+            default:
+                return (List<Object>) new ResponseStatus(500,"SERVER ERROR","Sever failer");
+        }
     }
 }

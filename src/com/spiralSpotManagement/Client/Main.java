@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
 import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
@@ -9,7 +10,11 @@ import com.spiralSpotManagement.Client.View.SpotCategoryView;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 /*
             @author : Anne Bethiane
@@ -21,6 +26,7 @@ import java.util.Scanner;
 //    public void MainMenu(){
 //
 //    }
+
 
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -48,7 +54,14 @@ import java.util.Scanner;
                     userForms.loginUser();
                     break;
                 case 2:
-                    userForms.registerUser();
+//                    System.out.println("here"+userExistence);
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                        userForms.registerUser();
+                    }
+                    else {
+                        System.out.println("You have to login first\n");
+                        userForms.loginUser();
+                    }
                     break;
                 case 3:
                     spotForms.spotViewMenu();

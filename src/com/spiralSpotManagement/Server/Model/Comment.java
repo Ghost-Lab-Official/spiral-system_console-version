@@ -22,7 +22,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Integer comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
+    public Comment(String comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
         this.comment_id = comment_id;
         this.spotId = spotId;
         this.userId = userId;

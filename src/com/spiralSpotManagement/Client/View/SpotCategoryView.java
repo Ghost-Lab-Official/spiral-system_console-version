@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Main;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
@@ -178,16 +179,36 @@ public class SpotCategoryView {
             choice = scanner.nextInt();
             switch (choice){
                 case 1 :
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
                     CreateCategory();
+                    else{
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
                     break;
                 case 2:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0)
                     UpdateCategory();
+                    else{
+                        System.out.println("You have to login first");
+                        new UserView().loginUser();
+                    }
                     break;
                 case 3:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
                     GetSpotCategory();
+                    else{
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
                     break;
                 case 4:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0)
                     ChangeSpotStatus();
+                    else{
+                        System.out.println("You have to login first");
+                        new UserView().loginUser();
+                    }
                     break;
                 default:
                     System.out.println("Invalid input");
