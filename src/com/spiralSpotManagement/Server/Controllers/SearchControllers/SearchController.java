@@ -7,23 +7,28 @@ import java.util.List;
 
 /**
  * @author Abizera Oreste
+ * This is the controller to render different methods according to the action provided in the request
  */
 public class SearchController {
 
     public List<Object> mainMethod(RequestBody requestBody) throws Exception{
         String action = requestBody.getAction();
-        List<Object> spots = new ArrayList<>();
+        List<Object> results = new ArrayList<>();
 
         switch (action){
             case "getSpots":
                 List<Spot> spotsList = new SearchActions().getSpots((Spot) requestBody.getObject());
                 for (Spot spot: spotsList){
-                    spots.add((Object) spot);
+                    results.add((Object) spot);
                 }
-                return spots;
+                return results;
 
-            case "update":
-                break;
+            case "getPeople":
+                List<User> peopleList = new SearchActions().getPeople((User) requestBody.getObject());
+                for (User user: peopleList){
+                    results.add((Object) user);
+                }
+                return results;
 
 
 //                OTHER ACTIONS SHOULD GO HERE

@@ -68,6 +68,28 @@ public class SearchView {
     }
 
     /**
+     * @author: Abizera Oreste
+     * this method is for displaying a single person information
+     */
+    public static void displayUser(List<Object> usersList) throws Exception{
+        User selectedUser = null;
+        System.out.println("Enter your Choice: ");
+        int choice = scanner.nextInt();
+        if(choice > usersList.size()){
+            System.out.println("Invalid Choice");
+        }else {
+            selectedUser = (User) usersList.get(choice - 1);
+            System.out.println("=================== " + selectedUser.getUserName() + " =============");
+            System.out.println("\t\t" + "Names" + ":\t  " + selectedUser.getFirstName() + " " + selectedUser.getLastName());
+            System.out.println("\t\t" + "Email" + ":\t  " + selectedUser.getEmail());
+            System.out.println("\t\t" + "Birthday At" + ":\t  " + selectedUser.getBirthDate());
+            System.out.println("\t\t" + "Location" + ":\t  " + selectedUser.getLocation());
+            System.out.println("\t\t" + "Category" + ":\t  " + selectedUser.getUserCategory());
+            System.out.println("\t\t" + "Gender" + ":\t  " + selectedUser.getGender());
+        }
+    }
+
+    /**
      * Comment on a spot
      */
 
@@ -85,6 +107,8 @@ public class SearchView {
 
         System.out.println("Like spot " + spot.getSpotId());
     }
+
+
     /**
      * Search a spot
      */
@@ -112,7 +136,7 @@ public class SearchView {
         }
 
         if(!found){
-            System.out.println("No results Found.");
+            System.out.println("No spots Found.");
         }else {
             displaySpot(spotsList);
         }
@@ -120,8 +144,38 @@ public class SearchView {
     }
 
 
-    public static void searchPeople(){
+    /**
+     * @author: Abizera Oreste
+     * This method is used to search people
+     */
+    public static void searchPeople() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("getPeople");
 
+        User userToSend = new User();
+        System.out.print("Search a person: ");
+        String searchKey = scanner.next();
+        userToSend.setUserName(searchKey);
+        requestBody.setObject(userToSend);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        boolean found = false;
+        Integer index = 0;
+        List<Object> usersList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            User user = (User) response;
+            System.out.println(index + ". " + user.getUserName());
+            usersList.add(user);
+        }
+
+        if(!found){
+            System.out.println("No people Found.");
+        }else {
+            displayUser(usersList);
+        }
     }
 
 

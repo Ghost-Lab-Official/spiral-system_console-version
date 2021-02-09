@@ -4,7 +4,6 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.RecentSearch;
 import com.spiralSpotManagement.Server.Model.Spot;
 import com.spiralSpotManagement.Server.Model.User;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,6 +42,36 @@ public class SearchActions {
             return spotsList;
         }catch (Exception e){
             return spotsList;
+        }
+    }
+
+
+    public List<User> getPeople(User user) throws Exception{
+        List<User> peopleList = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try{
+            String searchKey = user.getUserName();
+            System.out.println(searchKey);
+            String sql = "SELECT * from users_table WHERE user_name LIKE '%"+searchKey+"%' OR first_name LIKE '%"+searchKey+"%' OR last_name LIKE '%"+searchKey+"%' LIMIT 10";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                User user1 = new User();
+                user1.setFirstName(rs.getString("first_name"));
+                user1.setLastName(rs.getString("last_name"));
+                user1.setUserName(rs.getString("user_name"));
+                user1.setEmail((rs.getString("email")));
+                user1.setGender(rs.getString("gender"));
+                user1.setLocation(rs.getString("location"));
+                user1.setUserId(rs.getInt("user_id"));
+                user1.setBirthDate(rs.getString("birth_date"));
+                user1.setUserCategory(rs.getString("user_category"));
+                peopleList.add(user1);
+            }
+            return peopleList;
+        }catch (Exception e){
+            return peopleList;
         }
     }
 
