@@ -16,7 +16,11 @@ import java.util.Scanner;
             This is the entry of Spiral;
             WELCOME!
  */
-public class Main {
+    public class Main {
+
+//    public void MainMenu(){
+//
+//    }
 
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
