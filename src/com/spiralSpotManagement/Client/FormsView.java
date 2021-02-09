@@ -89,13 +89,13 @@ public class FormsView {
         String choose = input.nextLine();
         switch (choose) {
             case "1":
-                new SpotView().createSpot();
+                new SpotView().CreateSpot();
                 break;
             case "2":
-                new SpotView().updateSpot();
+                new SpotView().UpdateSpot();
                 break;
             case "3":
-                new SpotView().deleteSpotContent();
+                new SpotView().DeleteSpotContent();
                 break;
             case "4":
                 System.exit(0);

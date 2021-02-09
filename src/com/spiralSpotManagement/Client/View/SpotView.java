@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class SpotView {
-    public void createSpot()throws Exception{
+    public void CreateSpot()throws Exception{
         Integer spot_id = 8;
         Integer user_id = 1;
         Integer category_id = 45;
@@ -40,7 +40,7 @@ public class SpotView {
         }
     }
 
-    public void updateSpot()throws Exception{
+    public void UpdateSpot()throws Exception{
         Scanner scan = new Scanner(System.in);
         Integer spot_id = 8;
         Integer user_id = 1;
@@ -70,7 +70,7 @@ public class SpotView {
         }
     }
 
-    public void deleteSpotContent()throws Exception{
+    public void DeleteSpotContent()throws Exception{
         Integer id =8;
 
         Spot spotToDelete = new Spot();
@@ -93,4 +93,33 @@ public class SpotView {
         }
     }
 
-}
+    public void spotViewMenu() throws Exception {
+        /*@Bethiane
+         * This is the entry of spotView */
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t\t  Enter your choice                                              ");
+        choice = scanner.nextInt();
+        switch (choice){
+            case 1 :
+                CreateSpot();
+                break;
+            case 2:
+               UpdateSpot();
+                break;
+            case 3:
+                DeleteSpotContent();
+                break;
+            default:
+                System.out.println("Invalid input");
+                break;
+        }
+    }
+    }
+
+
