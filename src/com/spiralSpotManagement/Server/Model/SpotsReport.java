@@ -1,6 +1,8 @@
 package com.spiralSpotManagement.Server.Model;
 
-public class SpotsReport {
+import java.io.Serializable;
+
+public class SpotsReport implements Serializable {
     private String spot_id;
     private String user_name;
     private String category_name;
