@@ -69,10 +69,10 @@ public class Main {
 
 
 
-    public static void spotCategoryModuleMain()throws Exception{
+    public static void spotCategoryoduleMain()throws Exception{
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t==========M=================================== ");
         System.out.println("\t\t\t=                SPOT CATEGORY DASHBOARD          = ");
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t|| 1.  create spot category                                ||");
