@@ -3,10 +3,7 @@ package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Main;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
-import com.spiralSpotManagement.Server.Model.Spot;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.sql.PreparedStatement;
 import java.util.Scanner;
@@ -117,6 +114,7 @@ public class SpotView {
         int choice;
         Scanner scanner = new Scanner(System.in);
         SpotView formClient = new SpotView();
+        UserLog userLogToInsert = new UserLog();
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
@@ -126,7 +124,17 @@ public class SpotView {
         choice = scanner.nextInt();
         switch (choice) {
             case 1 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0) formClient.createSpot();
+                if(new UserAuthMiddleware().checkForUserExistence() != 0) {
+                    formClient.createSpot();
+
+                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                    userLogToInsert.setAction("created spot");
+                    userLogToInsert.setDateTimeLoggedOut(null);
+                    userLogToInsert.setTotalIn(5);
+                    userLogToInsert.setTotalOut(3);
+                    new ReportsView().createUserlog(userLogToInsert);
+                }
 
             else{
                 System.out.println("You have to login first\n");
@@ -134,16 +142,31 @@ public class SpotView {
             }
             }
             case 2 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                formClient.updateSpot();
+                if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                    userLogToInsert.setAction("updated a spot");
+                    userLogToInsert.setDateTimeLoggedOut(null);
+                    userLogToInsert.setTotalIn(5);
+                    userLogToInsert.setTotalOut(3);
+                    formClient.updateSpot();
+                }
+
                 else{
                     System.out.println("You have to login first\n");
                     new UserView().loginUser();
                 }
             }
             case 3 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                formClient.deleteSpotContent();
+                if(new UserAuthMiddleware().checkForUserExistence() != 0) {
+                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                    userLogToInsert.setAction("Deleted a spot");
+                    userLogToInsert.setDateTimeLoggedOut(null);
+                    userLogToInsert.setTotalIn(5);
+                    userLogToInsert.setTotalOut(3);
+                    formClient.deleteSpotContent();
+                }
                 else{
                     System.out.println("You have to login first\n");
                     new UserView().loginUser();

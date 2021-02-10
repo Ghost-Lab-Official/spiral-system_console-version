@@ -1,7 +1,16 @@
 package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 import java.util.Scanner;
+
+/**
+ *location management class. Method deleting given location
+ * @author Mutoni Denyse
+ * return boolean to indicated the success or fail to update.
+ *
+ */
+
 public class UserView {
 
     public void registerUser()throws Exception{
@@ -70,8 +79,10 @@ public class UserView {
                Define Request Body
          */
 
+//        Create a user log
+
         UserLog userLogToInsert = new UserLog();
-        userLogToInsert.setUser_id(3);
+        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
         userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
         userLogToInsert.setAction("logIn");
         userLogToInsert.setDateTimeLoggedOut(null);

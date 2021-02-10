@@ -109,10 +109,24 @@ public class Main {
                     }
 
                 case 6:
+                    //        create user log
+                    UserLog userLogToInsert = new UserLog();
+                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                    userLogToInsert.setAction("searching");
+                    userLogToInsert.setDateTimeLoggedOut(null);
+                    userLogToInsert.setTotalIn(5);
+                    userLogToInsert.setTotalOut(3);
+                    new ReportsView().createUserlog(userLogToInsert);
                     searchForms.mainMethod();
                     break;
                 case 7:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
                     new ReportsView().reportDashboard();
+                    else {
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
                     break;
                 default:
                     System.out.println("Invalid input");
