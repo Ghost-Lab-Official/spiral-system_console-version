@@ -20,33 +20,29 @@ public class SearchView {
         System.out.println("\t\t\t============================================= ");
         System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
         System.out.println("\t\t\t============================================= ");
-<<<<<<< HEAD
+
         System.out.println("\t\t\t|| 1.  SEARCH SPOT                         ||");
         System.out.println("\t\t\t|| 2.  SEARCH PEOPLE                       ||");
         System.out.println("\t\t\t|| 3.  SEARCH MESSAGE                      ||");
         System.out.println("\t\t\t|| 4.  RECENT SEARCHES                     ||");
-=======
+
         System.out.println("\t\t\t|| 1.  RECENT SEARCHES                      ||");
         System.out.println("\t\t\t|| 2.  SEARCH SPOT                          ||");
         System.out.println("\t\t\t|| 3.  SEARCH PEOPLE                        ||");
         System.out.println("\t\t\t|| 4.  SEARCH MESSAGE                       ||");
->>>>>>> f7ef698bb72af71567e23c67b00d1182f3f1078f
         System.out.println("\t\t\t============================================= ");
         System.out.print("Enter Your choice: ");
         int option = scanner.nextInt();
 
         switch (option) {
-<<<<<<< HEAD
-            case 1 -> searchSpot();
-            case 2 -> searchPeople();
-            case 3 -> searchMessages();
-            case 4 -> recentSearches();
-=======
+
+
+
             case 1 -> viewRecentSearches();
             case 2 -> searchSpot();
             case 3 -> searchPeople();
             case 4 -> searchMessages();
->>>>>>> f7ef698bb72af71567e23c67b00d1182f3f1078f
+
             default -> System.out.println("Invalid option");
         }
     }
@@ -261,35 +257,5 @@ public class SearchView {
 
     public static void searchMessages(){
 
-    }
-
-    public static void recentSearches()throws Exception{
-        RequestBody requestBody = new RequestBody();
-        RecentSearch recentSearch = new RecentSearch();
-//        recentSearch.setUser_id(1);
-        Integer index = 1;
-        Integer userId=1;
-
-        User userToSearch = new User();
-        userToSearch.setUserId(userId);
-        requestBody.setUrl("/search");
-        requestBody.setAction("viewRecentSearches");
-        requestBody.setObject(userToSearch);
-
-        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-
-        List<Object> searches = new ArrayList<>();
-
-        for (Object response: responseBody.getResponse()){
-           RecentSearch rSearch = (RecentSearch) response;
-            System.out.println(index + ". " + response);
-            System.out.println("\t\t\t Recent searches\t\n");
-//            System.out.println("\t search Query  \t date\n");
-            System.out.println("\t "+rSearch.getSearchQuery()+"on"+rSearch.getDate());
-//            searches.add(rSearch);
-//            index++;
-        }
-
-        System.out.println("");
     }
 }

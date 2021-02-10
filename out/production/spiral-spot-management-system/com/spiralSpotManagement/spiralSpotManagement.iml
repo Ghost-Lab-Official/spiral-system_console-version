@@ -7,13 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-<<<<<<< HEAD:out/production/spiral-spot-management-system/com/spiralSpotManagement/spiralSpotManagement.iml
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.49-bin" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
-=======
-    <orderEntry type="library" name="mysql-connector-java-5.1.49" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-8.0.21" level="project" />
->>>>>>> 241a8f98a9bdfcba968837e9985391d3b44b45ad:spiral console.iml
   </component>
 </module>

@@ -22,7 +22,7 @@ import java.util.Scanner;
 //
 //    }
 
-<<<<<<< HEAD
+
         /*
             WORKING ON USER REGISTRATION
         */

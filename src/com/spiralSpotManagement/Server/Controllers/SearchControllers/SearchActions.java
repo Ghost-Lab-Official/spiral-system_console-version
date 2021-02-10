@@ -83,20 +83,6 @@ public class SearchActions {
     public List<Object> DisplayRecentSearches(User user) throws Exception {
 
         List<Object> recentSearches = new ArrayList<>();
-<<<<<<< HEAD
-        Connection con = new CloudStorageConnectionHandler().getConnection();
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery
-                        ("select searched_query,search_date from searchHistory where user_id ="+user.getUserId()+" order by search_date DESC LIMIT 10");
-
-        while (rs.next()) {
-            String searchQuery = rs.getString("searched_query");
-            String date = rs.getString("search_date");
-
-            RecentSearch recentSearch = new RecentSearch();
-            recentSearch.setSearchQuery(searchQuery);
-            recentSearch.setDate(date);
-=======
         try {
             Connection con = new CloudStorageConnectionHandler().getConnection();
             Statement stmt = con.createStatement();
@@ -112,18 +98,11 @@ public class SearchActions {
                 recentSearch.setQueryId(historyId);
                 recentSearches.add((Object) recentSearch);
             }
->>>>>>> f7ef698bb72af71567e23c67b00d1182f3f1078f
 
             return recentSearches;
         }catch (Exception e){
             return recentSearches;
         }
-<<<<<<< HEAD
-
-
-        return recentSearches;
-=======
->>>>>>> f7ef698bb72af71567e23c67b00d1182f3f1078f
     }
 
     /**
@@ -152,4 +131,4 @@ public class SearchActions {
             return new ResponseStatus(500, "EXCEPTION ERROR", ex.getMessage());
         }
     }
-  }
+}
