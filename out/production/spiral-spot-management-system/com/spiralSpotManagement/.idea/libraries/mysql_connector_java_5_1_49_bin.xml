@@ -1,0 +1,14 @@
+<component name="libraryTable">
+<<<<<<< HEAD:.idea/libraries/mysql_connector_java_5_1_492.xml
+  <library name="mysql-connector-java-5.1.49">
+    <CLASSES />
+=======
+  <library name="mysql-connector-java-5.1.49-bin">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/COURSES/JAVA/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar!/" />
+    </CLASSES>
+>>>>>>> e451c66471dbf8aa6af8e7738d956ede14b82c23:out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/mysql_connector_java_5_1_49_bin.xml
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
