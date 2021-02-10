@@ -2,7 +2,6 @@ package com.spiralSpotManagement.Server.Controllers.LocationLevelControllers;
 
 import com.spiralSpotManagement.Server.Model.LocationLevels;
 import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.util.ArrayList;
@@ -32,12 +31,21 @@ public class LocationLevelController {
              ResponseStatus deleteLocationLevelResponse = new LocationLevelsActions().deleteLocationLevel((LocationLevels) requestBody.getObject());
              locationLevels.add((Object) deleteLocationLevelResponse);
              return locationLevels;
+
          case "getLevel":
              ResponseStatus getLevelResponse = new LocationLevelsActions().getLevel((LocationLevels) requestBody.getObject());
              locationLevels.add((Object) getLevelResponse);
              return locationLevels;
+
+         case "getAllLevels":
+             ResponseStatus getAllLevelsResponse = new LocationLevelsActions().getAllLevels();
+             locationLevels.add((Object) getAllLevelsResponse);
+             return locationLevels;
+
+         default:
+             return null;
+
      }
-     return null;
  }
 
 

@@ -7,6 +7,8 @@ import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,6 +22,7 @@ public class LocationLevelsActions {
     String deleteLevelQuery = "DELETE FROM location_levels WHERE level_id=?";
     String updateLevelQuery = "UPDATE location_levels SET level_name=?,description=? WHERE level_id=?";
     String getLevelQuery = "SELECT * FROM location_levels WHERE level_id=?";
+    String getAllLevelsQuery = "SELECT * FROM location_levels";
 
     /**
      *  Register a new location level. It will take a level name and
@@ -114,6 +117,30 @@ public class LocationLevelsActions {
             }
             return new ResponseStatus(200, "LEVEL EXIST", (Object) locationLevel, "Got location level");
         } catch (Exception e) {
+            return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
+        }
+    }
+
+
+    /**
+     * Get All location levels
+     * @author Harerimana Egide
+     */
+    public ResponseStatus getAllLevels()throws Exception {
+        try {
+            List<LocationLevels> list = new ArrayList<>();
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+            PreparedStatement stmt = connection.prepareStatement(getAllLevelsQuery);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                LocationLevels locationLevel = new LocationLevels();
+                locationLevel.setLevel_id(rs.getString("level_id"));
+                locationLevel.setLevel_name(rs.getString("level_name"));
+                locationLevel.setDescription(rs.getString("description"));
+                list.add(locationLevel);
+            }
+            return new ResponseStatus(200, "LEVELS EXIST", (Object) list, "Got location levels");
+        }catch (Exception e){
             return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
         }
     }
