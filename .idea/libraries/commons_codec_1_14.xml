@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="commons-codec-1.14">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../libs/mysql-connector.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/commons-codec-1.14.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
