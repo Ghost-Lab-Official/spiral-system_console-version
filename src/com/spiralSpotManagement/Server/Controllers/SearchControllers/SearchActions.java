@@ -52,7 +52,7 @@ public class SearchActions {
         try{
             String searchKey = user.getUserName();
             System.out.println(searchKey);
-            String sql = "SELECT * from users_table WHERE user_name LIKE '%"+searchKey+"%' OR first_name LIKE '%"+searchKey+"%' OR last_name LIKE '%"+searchKey+"%' LIMIT 10";
+            String sql = "SELECT * from users_table WHERE user_name LIKE '%"+searchKey+"%' OR first_name LIKE '%"+searchKey+"%' OR last_name LIKE '%"+searchKey+"%' OR email LIKE '%"+searchKey+"%' LIMIT 10";
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
