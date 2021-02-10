@@ -188,13 +188,13 @@ public class SearchModule {
         }
     }
 
-        public static ArrayList<String> popularityByRatesArray(java.sql.Connection connection) throws SQLException {
-            var spots=new ArrayList<String>();
-            var SelectRatesquery="select *from Spot_table order by rates desc limit 5";
-            String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
+    public static ArrayList<String> popularityByRatesArray(java.sql.Connection connection) throws SQLException{
+        ArrayList<String> spots=new ArrayList<String>();
+        String SelectRatesquery="select *from Spot_table order by rates desc limit 5";
+        String SelectViewsquery="select *from Spot_table order by views desc limit 5";
+        String SelectMostSearchedQuery = "SELECT searched_query FROM searchHistory GROUP BY searched_query ORDER BY COUNT(searched_query) DESC LIMIT 5";
         PreparedStatement ptRates=connection.prepareStatement(SelectRatesquery);
-            String SelectViewsquery = "select *from Spot_table order by views desc limit 5";
-            PreparedStatement ptViews=connection.prepareStatement(SelectViewsquery);
+        PreparedStatement ptViews=connection.prepareStatement(SelectViewsquery);
         PreparedStatement sq = connection.prepareStatement(SelectMostSearchedQuery);
         ResultSet Ratesresults=ptRates.executeQuery();
         ResultSet Viewsresults=ptViews.executeQuery();
@@ -233,7 +233,7 @@ public class SearchModule {
         }
     }
 
-    public void popularityEntry() throws Exception {
+    public static void popularityEntry() throws Exception {
         Scanner scanner=new Scanner(System.in);
         // TODO Auto-generated method stub
         ArrayList<String> popularSpots= new ArrayList<String>();
