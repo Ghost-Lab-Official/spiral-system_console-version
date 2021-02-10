@@ -66,7 +66,8 @@ public class Main {
 
 //    new BillingView().registerBillingPlan();
 //        new BillingView().updateBillingPlan();
-    new BillingView().previewBillingPlans();
+//    new BillingView().previewBillingPlans();
+        new BillingView().previewBillingPlanById();
     }
 
 

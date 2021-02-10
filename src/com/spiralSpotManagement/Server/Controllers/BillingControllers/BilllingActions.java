@@ -88,16 +88,17 @@ public class BilllingActions {
     public List<Object> getAllBillingPLan()throws Exception{
 
         String query = "SELECT * FROM billing";
+        List<Object> planList = new ArrayList<>();
         try{
             Connection connection = new CloudStorageConnectionHandler().getConnection();
-            List<Object> planList = new ArrayList<>();
+
             Statement stmt = connection.createStatement();
             ResultSet planResult =stmt.executeQuery(query);
 
             while(planResult.next()){
 
                 BillingModel billingPlan = new BillingModel();
-
+                billingPlan.setBilling_id(planResult.getInt(1));
                 billingPlan.setBilling_name(planResult.getString(2));
                 billingPlan.setPrice(planResult.getInt(3));
                 billingPlan.setBilling_period(planResult.getInt(4));
@@ -110,10 +111,43 @@ public class BilllingActions {
 
 
         }catch (Exception e){
-
+            planList.add(e);
         }
     return  null;
 
     }
+
+    public List<Object> getBillingPlanById(BillingModel billingModel)throws Exception{
+
+        String query = "SELECT * FROM billing WHERE billing_id="+billingModel.getBilling_id();
+        List<Object> planList = new ArrayList<>();
+        try{
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+
+            Statement stmt = connection.createStatement();
+            ResultSet planResult =stmt.executeQuery(query);
+
+            while(planResult.next()){
+
+                BillingModel billingPlan = new BillingModel();
+                billingPlan.setBilling_id(planResult.getInt(1));
+                billingPlan.setBilling_name(planResult.getString(2));
+                billingPlan.setPrice(planResult.getInt(3));
+                billingPlan.setBilling_period(planResult.getInt(4));
+                billingPlan.setBilling_status(planResult.getString(5));
+
+                planList.add(billingPlan);
+            }
+
+            return planList;
+
+
+        }catch (Exception e){
+            planList.add(e);
+        }
+        return  null;
+
+    }
+
 
 }

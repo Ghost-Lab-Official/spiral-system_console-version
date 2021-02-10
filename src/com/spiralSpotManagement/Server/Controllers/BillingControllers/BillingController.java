@@ -27,6 +27,10 @@ public class BillingController {
             case "selectAllBillingPlans":
                 plans = new BilllingActions().getAllBillingPLan();
                 return plans;
+
+            case "selectBillingById":
+                plans = new BilllingActions().getBillingPlanById((BillingModel) requestBody.getObject());
+                return plans;
         }
         return  null;
 
