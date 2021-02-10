@@ -86,6 +86,41 @@ public class BilllingActions {
     }
 
     /**
+     *  Activate or deactivate a billing plan.
+     *  The function will receive an object of a plan and update the status of the plan
+     *  This function acts like delete, but not it changes the status from ACTIVE TO INACTIVE and vice versa
+     * @param 'BillingInfo Object'
+     * @return an Object of response
+     * @author Gervais Ishimwe
+
+
+     */
+    public ResponseStatus updateBillingPlanStatus(BillingModel billPlan) throws Exception{
+        String query = "UPDATE billing SET billing_status = ? WHERE billing_id = ? ";
+        try{
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1,billPlan.getBilling_status());
+            stmt.setInt(2,billPlan.getBilling_id());
+
+            int inserted_rec = stmt.executeUpdate();
+            if(inserted_rec == 1){
+                return new ResponseStatus(200,"STATUS CHANGED","Billing plan is now "+billPlan.getBilling_status());
+            }
+            if(connection != null){
+                return new ResponseStatus(500,"SERVER ERROR","[Activation/ Deactivation] failed, try or contact System Administrator");
+            }
+
+
+        }catch(Exception e){
+            return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
+        }
+        return new ResponseStatus(200,"STATUS CHANGED","Billing plan is now "+billPlan.getBilling_status());
+
+    }
+
+
+    /**
      * Select all billing plans.
      *  The function is reserved for getting all billing plans
      * @param *no parameter

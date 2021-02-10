@@ -140,5 +140,39 @@ public class BillingView {
 
     }
 
+//    this method deals with activating or deactivating an existing billing plan
+    public void actionOnBillingPlan()throws Exception {
 
+        BillingModel billingModel = new BillingModel();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the billing ID: ");
+        Integer billId = scanner.nextInt();
+
+        System.out.println("Choose:\n1.ACTIVE\n2.INACTIVE");
+        Integer statusChoice = scanner.nextInt();
+        switch (statusChoice) {
+            case 1 -> billingModel.setBilling_status("ACTIVE");
+            case 2 -> billingModel.setBilling_status("INACTIVE");
+            default -> System.out.println("Invalid choice");
+        }
+
+        billingModel.setBilling_id(billId);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/billing");
+        requestBody.setAction("actionOnStatus");
+        requestBody.setObject(billingModel);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+        for (Object response : responseBody.getResponse()) {
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
+            System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+
+        }
+
+    }
 }

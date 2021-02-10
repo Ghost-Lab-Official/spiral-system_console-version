@@ -31,6 +31,11 @@ public class BillingController {
             case "selectBillingById":
                 plans = new BilllingActions().getBillingPlanById((BillingModel) requestBody.getObject());
                 return plans;
+
+            case "actionOnStatus":
+                ResponseStatus actionOnStatus = new BilllingActions().updateBillingPlanStatus((BillingModel) requestBody.getObject());
+                plans.add((Object) actionOnStatus);
+                return plans;
         }
         return  null;
 

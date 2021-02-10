@@ -64,10 +64,13 @@ public class Main {
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
 
+//        billing methods here
+
 //    new BillingView().registerBillingPlan();
 //        new BillingView().updateBillingPlan();
 //    new BillingView().previewBillingPlans();
-        new BillingView().previewBillingPlanById();
+//        new BillingView().previewBillingPlanById();
+        new BillingView().actionOnBillingPlan();
     }
 
 
