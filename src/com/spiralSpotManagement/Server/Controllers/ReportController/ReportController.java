@@ -124,9 +124,9 @@ public class ReportController {
                 List<Object> thismonthstrendingSpots = new SpotReportsActions().viewThisMonthsTrendingSpots();
                 return thismonthstrendingSpots;
 
-//            case "viewReportForAnotherDay":
-//                List<Object> reportsForAnotherDay = new SpotReportsActions().getReportForAnotherDay();
-//                return reportsForAnotherDay;
+            case "viewReportForAnotherDay":
+                List<Object> reportsForAnotherDay = new SpotReportsActions().getReportForAnotherDay();
+                return reportsForAnotherDay;
             //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }

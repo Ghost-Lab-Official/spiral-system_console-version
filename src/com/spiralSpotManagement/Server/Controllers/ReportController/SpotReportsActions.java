@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class SpotReportsActions {
@@ -455,11 +456,16 @@ public class SpotReportsActions {
             return TodaysNewSpots;
         }
 
-        public List <Object> getReportForAnotherDay(LocalDate date)throws Exception{
+        public List <Object> getReportForAnotherDay()throws Exception{
+            Scanner scanInput=new Scanner(System.in);
             List<Object> reportForAnotherDay=new ArrayList<>();
             try{
                 CloudStorageConnectionHandler cloudStorageConnection=new CloudStorageConnectionHandler();
                 Connection connection=cloudStorageConnection.getConnection();
+                System.out.println("Enter the date that you want to get reports for. eg(February 5, 2021)");
+                String anotherDate=scanInput.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
+                LocalDate myDate = LocalDate.parse(anotherDate, formatter);
 
                 Statement statement=connection.createStatement();
                 String query="SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
@@ -467,7 +473,7 @@ public class SpotReportsActions {
                         " users_table.user_name , locations.location_name , spot_category.category_name from Spot_table " +
                         "left join users_table on Spot_table.user_id=users_table.user_id" +
                         " left join locations on Spot_table.location_id = locations.locationId" +
-                        " left join spot_category on Spot_table.category_id = spot_category.category_id where Spot_table.registration_date = "+"'"+date+"'";
+                        " left join spot_category on Spot_table.category_id = spot_category.category_id where Spot_table.registration_date = "+"'"+myDate+"'";
 
 
                 ResultSet resultSet=statement.executeQuery(query);

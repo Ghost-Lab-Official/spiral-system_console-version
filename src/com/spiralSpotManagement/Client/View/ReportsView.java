@@ -970,12 +970,7 @@ public class ReportsView {
         public  void viewReportForAnotherDay()throws Exception{
 
             try{
-                System.out.println("Enter the date that you want to get reports for. eg(February 5, 2021)");
-                String anotherDate=scanInput.nextLine();
-//            String anotherDate="February 5, 2021";
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
-                LocalDate myDate = LocalDate.parse(anotherDate, formatter);
-                System.out.println(myDate);
+
 //                spotReportController.getReportForAnotherDay(myDate);
 
                 RequestBody request=new RequestBody();
