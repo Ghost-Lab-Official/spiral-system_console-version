@@ -69,6 +69,17 @@ public class UserView {
         /*
                Define Request Body
          */
+
+        UserLog userLogToInsert = new UserLog();
+        userLogToInsert.setUser_id(3);
+        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+        userLogToInsert.setAction("logIn");
+        userLogToInsert.setDateTimeLoggedOut(null);
+        userLogToInsert.setTotalIn(5);
+        userLogToInsert.setTotalOut(3);
+
+        new ReportsView().createUserlog(userLogToInsert);
+
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/users");
         requestBody.setAction("login");

@@ -38,9 +38,19 @@ public class SearchController {
 //            --------------------------------------
 
 
+
             case "viewRecentSearches":
-                List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
+                List<Object> recentSearchesList = new SearchActions()
+                        .DisplayRecentSearches((User) requestBody.getObject());
                 return recentSearchesList;
+            case "RemoveRecentSearch":
+                User user = new User();
+                user.setUserId(1);
+                ResponseStatus responseStatus = new SearchActions().RemoveRecentSearch(user,
+                        (RecentSearch) requestBody.getObject());
+                results.add(responseStatus);
+                return results;
+
             default :
 
                 System.out.println("the url is wrong");

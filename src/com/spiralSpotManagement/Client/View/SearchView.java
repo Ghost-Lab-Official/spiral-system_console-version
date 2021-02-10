@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class SearchView {
             case 2 -> searchPeople();
             case 3 -> searchMessages();
             case 4 -> searchPopular();
-            case 5 -> getRecentSearches();
+            case 5 -> viewRecentSearches();
             default -> System.out.println("Invalid option");
         }
 
@@ -166,16 +167,16 @@ public class SearchView {
      * This method is used to get recent searches by a logged in user
      */
 
-    public static void getRecentSearches() throws Exception{
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/search");
-        requestBody.setAction("viewRecentSearches");
-
-        User userIdToGetRecentSearches = new User();
-        requestBody.setObject(userIdToGetRecentSearches);
-        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-        System.out.println("response is here : "+ responseBody);
-    }
+//    public static void getRecentSearches() throws Exception{
+//        RequestBody requestBody = new RequestBody();
+//        requestBody.setUrl("/search");
+//        requestBody.setAction("viewRecentSearches");
+//
+//        User userIdToGetRecentSearches = new User();
+//        requestBody.setObject(userIdToGetRecentSearches);
+//        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+//        System.out.println("response is here : "+ responseBody);
+//    }
     public static void searchPeople() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
@@ -210,6 +211,65 @@ public class SearchView {
     public static void searchMessages(){
 
     }
+
+    /**
+     * Method to view recent searches
+     */
+    public static void viewRecentSearches() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("viewRecentSearches");
+
+        User user = new User();
+        user.setUserId(new UserAuthMiddleware().checkForUserExistence());
+
+        requestBody.setObject(user);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        int i = 1;
+        List<RecentSearch> recentSearchList = new ArrayList<>();
+        for (Object response : responseBody.getResponse()){
+            RecentSearch recentSearch = (RecentSearch) response;
+            System.out.println(i + ". " + recentSearch.getSearchQuery());
+            recentSearchList.add(recentSearch);
+            i++;
+        }
+        if(recentSearchList.size() == 0){
+            System.out.println("No results found for this user");
+        }else {
+            String delete = "";
+            System.out.println("Do you want to remove a recent research (y/n)");
+            delete = scanner.next();
+            if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
+                System.out.println("Enter Recent Search: ");
+                Integer choice = scanner.nextInt();
+                if (choice > recentSearchList.size()) {
+                    System.out.println("Invalid Choice");
+                } else {
+                    RemoveRecentSearch(recentSearchList.get(choice - 1));
+                }
+            }
+        }
+    }
+
+    public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("RemoveRecentSearch");
+        requestBody.setObject(recentSearch);
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+
     /**
      *location management class. Method Recovering a deleted given location
      * @author Blessing Hirwa, Izere Kerie
