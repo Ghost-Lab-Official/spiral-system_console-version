@@ -2,6 +2,11 @@ package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
 
+
+/**
+@author MANZI Mike
+@description this class is the model for the locations Report
+*/
 public class LocationsReport implements Serializable {
 
     private String locationId;
