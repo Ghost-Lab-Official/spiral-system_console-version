@@ -48,6 +48,7 @@ public class ReportsView {
                     break;
                 case 4:
                     navigateToLocationsManagement();
+                    break;
                 case 5:
                     System.exit(0);
                     break;
