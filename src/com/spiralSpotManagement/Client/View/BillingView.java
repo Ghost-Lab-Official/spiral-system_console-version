@@ -85,4 +85,27 @@ public class BillingView {
         }
 
     }
+
+    public void previewBillingPlans()throws Exception{
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/billing");
+        requestBody.setAction("selectAllBillingPlans");
+        requestBody.setObject(null);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        Integer index = 1;
+        System.out.println("Number\t\t Plan \t\tPrice \t\tPeriod \t\tStatus");
+        for(Object response : responseBody.getResponse()){
+            BillingModel response1 = (BillingModel) response;
+            System.out.println(index+"\t\t | "+response1.getBilling_name()
+                    +" \t\t| "+response1.getPrice()+"\t\t | "
+                    +response1.getBilling_period()
+                    +" \t\t| "+response1.getBilling_status());
+            index++;
+        }
+
+    }
 }

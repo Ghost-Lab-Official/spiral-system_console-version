@@ -4,9 +4,15 @@ import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.BillingModel;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Server.Model.UserCategory;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BilllingActions {
 
@@ -79,8 +85,35 @@ public class BilllingActions {
         return new ResponseStatus(200,"UPDATED","Billing plan updated");
     }
 
+    public List<Object> getAllBillingPLan()throws Exception{
+
+        String query = "SELECT * FROM billing";
+        try{
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+            List<Object> planList = new ArrayList<>();
+            Statement stmt = connection.createStatement();
+            ResultSet planResult =stmt.executeQuery(query);
+
+            while(planResult.next()){
+
+                BillingModel billingPlan = new BillingModel();
+
+                billingPlan.setBilling_name(planResult.getString(2));
+                billingPlan.setPrice(planResult.getInt(3));
+                billingPlan.setBilling_period(planResult.getInt(4));
+                billingPlan.setBilling_status(planResult.getString(5));
+
+                planList.add(billingPlan);
+            }
+
+            return planList;
 
 
+        }catch (Exception e){
 
+        }
+    return  null;
+
+    }
 
 }

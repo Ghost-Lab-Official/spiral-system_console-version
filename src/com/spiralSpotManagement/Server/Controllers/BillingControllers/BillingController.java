@@ -23,6 +23,10 @@ public class BillingController {
                 ResponseStatus updateResponse = new BilllingActions().updateBillingPlan((BillingModel) requestBody.getObject());
                 plans.add((Object) updateResponse);
                 return plans;
+
+            case "selectAllBillingPlans":
+                plans = new BilllingActions().getAllBillingPLan();
+                return plans;
         }
         return  null;
 

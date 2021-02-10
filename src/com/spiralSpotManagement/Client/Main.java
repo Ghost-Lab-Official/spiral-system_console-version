@@ -65,7 +65,8 @@ public class Main {
 //        new UserCategoryView().mainMethod();
 
 //    new BillingView().registerBillingPlan();
-        new BillingView().updateBillingPlan();
+//        new BillingView().updateBillingPlan();
+    new BillingView().previewBillingPlans();
     }
 
 
