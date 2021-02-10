@@ -3,6 +3,7 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
+import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
