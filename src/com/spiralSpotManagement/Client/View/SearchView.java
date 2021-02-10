@@ -96,6 +96,7 @@ public class SearchView {
         }
     }
 
+
     /**
      * display a spot
      */

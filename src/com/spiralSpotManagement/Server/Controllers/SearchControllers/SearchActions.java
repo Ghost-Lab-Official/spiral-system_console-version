@@ -78,8 +78,8 @@ public class SearchActions {
     }
 
     /**
-     * @Author : Pauline Ishimwe this method will help you to display your recent
-     *         searches as a logged in user (last 10 at most)
+     * @Author : Pauline Ishimwe this method will help you to display your recent searches
+     * as a logged in user (last 10 at most)
      */
     public List<Object> DisplayRecentSearches(User user) throws Exception {
 
@@ -87,9 +87,8 @@ public class SearchActions {
         try {
             Connection con = new CloudStorageConnectionHandler().getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "select DISTINCT searched_query,search_date,history_id from searchHistory where user_id ='"
-                            + user.getUserId() + "' ORDER BY search_date DESC LIMIT 10");
+            ResultSet rs = stmt.executeQuery
+                    ("select DISTINCT searched_query,search_date,history_id from searchHistory where user_id ='" + user.getUserId() + "' ORDER BY search_date DESC LIMIT 10");
             while (rs.next()) {
                 String searchQuery = rs.getString("searched_query");
                 String date = rs.getString("search_date");
@@ -102,27 +101,24 @@ public class SearchActions {
             }
 
             return recentSearches;
-        } catch (Exception e) {
+        }catch (Exception e){
             return recentSearches;
         }
     }
 
     /**
      * @Author: MUGISHA ISAAC.
-     * @Comment: this is a method called RemoveRecentSearch which takes id of a
-     *           query to delete and also takes the user_id who is logged in. Then
-     *           this method deletes the query where query_id is the same as That
-     *           stored in the table where the user_id is the same as that of the
-     *           user who is logged in. Thanks for whoever who will use this method
-     *           as well as this class.
+     * @Comment: this is  a method called RemoveRecentSearch which takes id of a query to delete
+     * and also takes the user_id who is logged in. Then this method deletes the query where query_id is the same as
+     * That stored in the table where the user_id is the same as that of the user who is logged in.
+     * Thanks for whoever who will use this method as well as this class.
      * @Date: 9 Feb 2021
      * @copyright all right reserved.
      **/
     public ResponseStatus RemoveRecentSearch(User user, RecentSearch recentSearch) throws Exception {
         try {
             Connection con = new CloudStorageConnectionHandler().getConnection();
-            PreparedStatement statement = con
-                    .prepareStatement("DELETE FROM searchHistory WHERE history_id=? AND user_id=? ");
+            PreparedStatement statement = con.prepareStatement("DELETE FROM searchHistory WHERE history_id=? AND user_id=? ");
             statement.setInt(1, recentSearch.getQueryId());
             statement.setInt(2, user.getUserId());
             int isDeleted = statement.executeUpdate();
@@ -136,4 +132,4 @@ public class SearchActions {
             return new ResponseStatus(500, "EXCEPTION ERROR", ex.getMessage());
         }
     }
-}
+  }
