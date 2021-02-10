@@ -15,6 +15,8 @@ public class SpotCommentActions {
 
   String GetCommentQuery = "Select * FROM comments WHERE spot_id=?";
 
+  String GetCommentReplyQuery = "Select * FROM comments WHERE reply_id=?";
+
   String InsertCommentQuery =
     "INSERT INTO comments (comment_id, spot_id, user_id, content, created_at, updated_at) VALUES(?,?,?,?,?,?)";
   String InsertCommentReplyQuery =
@@ -26,7 +28,7 @@ public class SpotCommentActions {
 
   /*
             @author : Izabayo Cedric
-            @description: This method is used to get comments of
+            @description: This method is used to get comments of a spot
      */
   public List<Comment> GetComments(String spotId) throws Exception {
     List<Comment> commentsList = new ArrayList<>();
@@ -45,6 +47,40 @@ public class SpotCommentActions {
         comment.setUserId(result.getInt("user_id"));
         comment.setStatus(result.getString("status"));
         comment.setContent(result.getString("content"));
+        comment.setCreated_at(new Date(result.getString("created_at")));
+        comment.setUpdatedAt(new Date(result.getString("updated_at")));
+
+        commentsList.add(comment);
+      }
+
+      return commentsList;
+    } catch (Exception e) {
+      return commentsList;
+    }
+  }
+
+  /*
+            @author : Izabayo Cedric
+            @description: This method is used to get replies of a spot comment
+     */
+  public List<Comment> GetCommentReplies(String CommentId) throws Exception {
+    List<Comment> commentsList = new ArrayList<>();
+    Connection connection = new CloudStorageConnectionHandler().getConnection();
+    try {
+      PreparedStatement preparedStatement = connection.prepareStatement(
+              GetCommentReplyQuery
+      );
+      preparedStatement.setString(1, CommentId);
+      ResultSet result = preparedStatement.executeQuery(GetCommentReplyQuery);
+
+      while (result.next()) {
+        Comment comment = new Comment();
+        comment.setComment_id(result.getString("comment_id"));
+        comment.setSpotId(result.getInt("spot_id"));
+        comment.setUserId(result.getInt("user_id"));
+        comment.setStatus(result.getString("status"));
+        comment.setContent(result.getString("content"));
+        comment.setReplyId(result.getInt("reply_id"));
         comment.setCreated_at(new Date(result.getString("created_at")));
         comment.setUpdatedAt(new Date(result.getString("updated_at")));
 
