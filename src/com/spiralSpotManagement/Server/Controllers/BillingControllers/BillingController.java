@@ -18,6 +18,11 @@ public class BillingController {
                 ResponseStatus responseStatus = new BilllingActions().registerBillPlan((BillingModel) requestBody.getObject());
                 plans.add((Object) responseStatus);
                 return plans;
+
+            case "update":
+                ResponseStatus updateResponse = new BilllingActions().updateBillingPlan((BillingModel) requestBody.getObject());
+                plans.add((Object) updateResponse);
+                return plans;
         }
         return  null;
 

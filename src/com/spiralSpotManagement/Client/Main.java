@@ -51,7 +51,7 @@ public class Main {
         new SpiralMultiThreadedServer().startServer();
 //        registerUser();
 //        new UserView().registerUser();
-        new UserView().loginUser();
+//        new UserView().loginUser();
 //       spotCategoryModuleMain();
 //        spotMainContent();
 //        new CommentView().makeComment();
@@ -65,6 +65,7 @@ public class Main {
 //        new UserCategoryView().mainMethod();
 
 //    new BillingView().registerBillingPlan();
+        new BillingView().updateBillingPlan();
     }
 
 
