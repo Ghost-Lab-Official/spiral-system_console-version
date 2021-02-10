@@ -5,9 +5,7 @@ import java.util.Date;
 
 /**
  * Comment.java This is a class for handling Spot Reviews (comments)
- *
  * @author Cedric Izabayo
- *
  */
 
 public class Comment implements Serializable {

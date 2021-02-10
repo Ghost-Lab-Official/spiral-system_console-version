@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- @author: ntwari egide
- @descriptions: all spot category actions goes here
- */
 public class SpotCategoryActions {
     String registerSpotCategoryQuery = "INSERT INTO spot_category(user_id,category_name,description,status) VALUES (?,?,?,?)";
     String updateStatusQuery = "UPDATE spot_category SET status=? WHERE category_id=?";
+
+    /*
+            @author : Nimuhire Ange Constance
+            @description: This method is used to insert a new spotCategory
+     */
 
     public ResponseStatus addNewSpotCategory(SpotCategory spotCategoryToAdd) throws Exception {
 
@@ -39,7 +40,10 @@ public class SpotCategoryActions {
             return new ResponseStatus(300, "EXCEPTIONAL ERROR", e.getMessage());
         }
     }
-
+    /*
+            @author : Nimuhire Ange Constance
+            @description: This method is used to update a spotCategory
+     */
     public ResponseStatus updateSpotCategory(SpotCategory spotCategory) throws Exception {
 
         Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -61,7 +65,10 @@ public class SpotCategoryActions {
         }
         return null;
     }
-
+    /*
+            @author : Nimuhire Ange Constance
+            @description: This method is used to get all spotCategories
+     */
     public List<SpotCategory> getAllSpotCategories() throws Exception {
 
         List<SpotCategory> spotCategoryList = new ArrayList<>();
@@ -88,7 +95,10 @@ public class SpotCategoryActions {
             return spotCategoryList;
         }
     }
-
+    /*
+            @author : Nimuhire Ange Constance
+            @description: This method is used to change spotCategory status
+     */
     public ResponseStatus updateStatus(SpotCategory spotCategory)throws Exception{
         try {
             CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
