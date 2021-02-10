@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportController {
+    /**
+     * @author Best Verie Iradukunda
+     *  @author Erneste Ntezirizaza
+     * @description This controller class is designed to control each and every action that is carried out in our module hwe crate some actions and assign them to the corresponding methods that carry out the operations
+     */
     public List<Object> mainMethod(RequestBody request)throws Exception{
         String action = request.getAction();
         List<Object> userLogsReport = new ArrayList<>();

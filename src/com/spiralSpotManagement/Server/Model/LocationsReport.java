@@ -3,6 +3,7 @@ package com.spiralSpotManagement.Server.Model;
 import java.io.Serializable;
 
 public class LocationsReport implements Serializable {
+
     private String locationId;
     private String location_name;
     private String location_GPS;

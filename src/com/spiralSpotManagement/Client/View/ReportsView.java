@@ -9,6 +9,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ReportsView {
+    /**
+     * @author Best Verie Iradukunda
+     *  @author Mike Manzi
+     * @description This class is designed to facilitate navigation through the admin panel
+     */
     public  String toContinue;
     Scanner scanInput = null;
     int choice;
