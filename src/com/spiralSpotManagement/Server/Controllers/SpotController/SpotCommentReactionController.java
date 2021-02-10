@@ -40,6 +40,13 @@ public class SpotCommentReactionController {
 
                 return  usersObject;
 
+            case "getCommentReactions":
+                List<CommentReactions> commentReactionsList = new SpotCommentReactActions().GetCommentReactions((String) requestBody.getObject());
+                for (CommentReactions commentReaction:commentReactionsList){
+                    usersObject.add((Object) commentReaction);
+                }
+
+                return  usersObject;
             default:
                 return usersObject;
         }
