@@ -13,9 +13,10 @@ public class BilllingActions {
     /**
      *  Register a new billing plan.
      *  The function will receive an object of a plan directly insert into table of billing
-     * @author Gervais Ishimwe
-     * @param 'BillingInfo Object'
      * @return an Object of response
+     * @param 'BillingInfo Object'
+     * @author Gervais Ishimwe
+
      */
 
     public ResponseStatus registerBillPlan(BillingModel billPlan) throws Exception{
@@ -42,7 +43,15 @@ public class BilllingActions {
     }
 
 
+    /**
+     *  Update a billing plan.
+     *  The function will receive an object of a plan and update that plan accordingly
+     * @param 'BillingInfo Object'
+     * @return an Object of response
+     * @author Gervais Ishimwe
 
+
+     */
 
     public ResponseStatus updateBillingPlan(BillingModel billPlan) throws Exception{
         String query = "UPDATE billing SET billing_name = ?, billing_price = ?, billing_period=?, billing_status = ? WHERE billing_id = ? ";
@@ -69,4 +78,9 @@ public class BilllingActions {
         }
         return new ResponseStatus(200,"UPDATED","Billing plan updated");
     }
+
+
+
+
+
 }
