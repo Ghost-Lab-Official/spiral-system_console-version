@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Comment implements Serializable {
 
-    private Integer comment_id;
+    private String comment_id;
     private Integer spotId;
     private Integer userId;
     private Integer replyId;
@@ -22,7 +22,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Integer comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
+    public Comment(String comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
         this.comment_id = comment_id;
         this.spotId = spotId;
         this.userId = userId;
@@ -33,11 +33,11 @@ public class Comment implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public Integer getComment_id() {
+    public String getComment_id() {
         return comment_id;
     }
 
-    public void setComment_id(Integer comment_id) {
+    public void setComment_id(String comment_id) {
         this.comment_id = comment_id;
     }
 

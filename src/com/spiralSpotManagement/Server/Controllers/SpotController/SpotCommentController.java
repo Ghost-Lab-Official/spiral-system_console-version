@@ -36,7 +36,19 @@ public class SpotCommentController {
                 usersObject.add((Object) updatedCommentStatus);
 
                 return  usersObject;
+            case "getComments":
+                List<Comment> spotCommentList = new SpotCommentActions().GetComments((String) requestBody.getObject());
+                for (Comment spotComment:spotCommentList){
+                    usersObject.add((Object) spotComment);
+                }
 
+                return  usersObject;
+            case "getCommentReplies":
+                List<Comment> spotCommentRepliesList = new SpotCommentActions().GetCommentReplies((String) requestBody.getObject());
+                for (Comment spotCommentReply:spotCommentRepliesList){
+                    usersObject.add((Object) spotCommentReply);
+                }
+                return  usersObject;
             default:
                 return usersObject;
         }
