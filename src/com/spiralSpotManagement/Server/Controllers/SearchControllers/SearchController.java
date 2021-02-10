@@ -31,7 +31,7 @@ public class SearchController {
                 return results;
 
             case "searchByPopularity":
-                List<Object> popularSpots=new SearchActions().popularityArray();
+                List<Object> popularSpots=new SearchActions().getMostPopularSearches();
                return popularSpots;
 
             //                OTHER ACTIONS SHOULD GO HERE

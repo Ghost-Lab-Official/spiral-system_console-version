@@ -86,10 +86,6 @@ public class SearchActions {
  * as a logged in user (last 10 at most)
  * */
 
-    /**
-     * @Author : Pauline Ishimwe this method will help you to display your recent
-     *         searches as a logged in user (last 10 at most)
-     */
     public List<Object> DisplayRecentSearches(User user) throws Exception {
 
         List<Object> recentSearches = new ArrayList<>();
@@ -117,7 +113,7 @@ public class SearchActions {
     }
 
     /**
-     * @Author: MUGISHA ISAAC.
+     * @Author: MUGISHA ISAAC
      * @Comment: this is a method called RemoveRecentSearch which takes id of a
      *           query to delete and also takes the user_id who is logged in. Then
      *           this method deletes the query where query_id is the same as That
@@ -146,8 +142,15 @@ public class SearchActions {
         }
     }
 
-
-    public  List<Object> popularityArray() throws Exception {
+    /**
+     * @Author: Blessing Hirwa, Izere kerie
+     * @Comment: this is a method called getMostPopularSearches which will get all popular searches i.e
+     * most searched queries/spots
+     * @ReturnType: list of type object
+     * @Date: 9 Feb 2021
+     * @copyright all rights reserved.
+     **/
+    public  List<Object> getMostPopularSearches() throws Exception {
 
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         List<String>  PopularSearches = new ArrayList<>();

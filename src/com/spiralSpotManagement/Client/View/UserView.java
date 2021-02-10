@@ -81,16 +81,6 @@ public class UserView {
 
 //        Create a user log
 
-        UserLog userLogToInsert = new UserLog();
-        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-        userLogToInsert.setAction("logIn");
-        userLogToInsert.setDateTimeLoggedOut(null);
-        userLogToInsert.setTotalIn(5);
-        userLogToInsert.setTotalOut(3);
-
-        new ReportsView().createUserlog(userLogToInsert);
-
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/users");
         requestBody.setAction("login");
@@ -108,6 +98,15 @@ public class UserView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
             try {
                 System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
+                UserLog userLogToInsert = new UserLog();
+                userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                userLogToInsert.setAction("logIn");
+                userLogToInsert.setDateTimeLoggedOut(null);
+                userLogToInsert.setTotalIn(5);
+                userLogToInsert.setTotalOut(3);
+
+                new ReportsView().createUserlog(userLogToInsert);
             }
             catch (Exception e){
                 System.out.println("No token found");
