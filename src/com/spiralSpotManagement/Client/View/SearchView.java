@@ -35,7 +35,7 @@ public class SearchView {
             case 2 -> searchPeople();
             case 3 -> searchMessages();
             case 4 -> searchPopular();
-//            case 5 -> RecentSearch();
+            case 5 -> getRecentSearches();
             default -> System.out.println("Invalid option");
         }
 

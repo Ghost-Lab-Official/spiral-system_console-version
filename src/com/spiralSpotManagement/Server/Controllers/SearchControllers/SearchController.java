@@ -40,9 +40,7 @@ public class SearchController {
 
             case "viewRecentSearches":
                 List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
-
-                break;
-
+                return recentSearchesList;
             default :
 
                 System.out.println("the url is wrong");

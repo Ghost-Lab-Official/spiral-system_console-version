@@ -11,7 +11,6 @@ public class UserAuthMiddleware {
         Properties properties = new Properties();
         properties.load(inputStream);
         Integer userId = Integer.valueOf(properties.getProperty("UserId"));
-        System.out.println("The user id : "+userId);
 
         return userId;
     }

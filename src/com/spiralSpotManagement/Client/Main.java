@@ -21,11 +21,37 @@ import java.util.Scanner;
             This is the entry of Spiral;
             WELCOME!
  */
-    public class Main {
 
-//    public void MainMenu(){
-//
-//    }
+public class Main {
+    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
+        RequestBody requestBody = new RequestBody();
+
+        Users testingObject = new Users();
+        testingObject.setEmail("ntwari@gmal.test");
+        testingObject.setFullName("ntwari testing");
+        requestBody.setObject(testingObject);
+
+        requestBody.setUrl("/users");
+        requestBody.setAction("register");
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        // depending on clients need you will need to do type casting
+
+        List<Object> usersFoundObject =  responseBody.getResponse();
+
+        for (Object userObject: usersFoundObject){
+            ResponseStatus responseStatus = (ResponseStatus) userObject;
+
+            System.out.println("Server replied "
+                    + (responseStatus.getStatus()));
+        }
+
+        /*
+            WORKING ON USER REGISTRATION
+        */
+    }
 
 
     public static void main(String[] args) throws Exception {
@@ -49,6 +75,7 @@ import java.util.Scanner;
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
+            System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -83,6 +110,9 @@ import java.util.Scanner;
 
                 case 6:
                     searchForms.mainMethod();
+                    break;
+                case 7:
+                    new ReportsView().reportDashboard();
                     break;
                 default:
                     System.out.println("Invalid input");
