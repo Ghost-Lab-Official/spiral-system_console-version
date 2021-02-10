@@ -283,4 +283,56 @@ public class UsersActions {
             }
             return new ResponseStatus(500,"SERVER ERROR","e.getMessage()");
     }
+    public void ResetPassword(Connection con) throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter your email");
+        String email=scanner.nextLine();
+        Statement CheckEmail = con.createStatement();
+        ResultSet check =CheckEmail.executeQuery("SELECT * from users_table WHERE email='" + email + "'");
+        if(check.next()) {
+            System.out.println("code sent to "+check.getString("email"));
+        }else {
+            System.out.println("No email found!");
+            return;
+        }
+
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        int length = 7;
+
+        for(int i = 0; i < length; i++) {
+            int index = random.nextInt(alphabet.length());
+            char randomChar = alphabet.charAt(index);
+            sb.append(randomChar);
+        }
+
+        String randomString = sb.toString();
+
+        new SendEmail().send("tzyelissa90@gmail.com","doordie16","twizelissa@gmail.com",
+                "Verification Code","verification code:"+randomString);
+
+        System.out.println("----------------------------");
+        System.out.println("Enter code we send to "+email);
+        String code=scanner.nextLine();
+        if(code.equals(randomString)){
+            System.out.println("Enter new password");
+            String password=scanner.nextLine();
+
+            String securePassword = hashPassword(password);
+
+            PreparedStatement updateSql=con.prepareStatement("Update users_table SET password=? where email=?");
+            updateSql.setString(1,securePassword);
+            updateSql.setString(2,email);
+            int PassUpdate=updateSql.executeUpdate();
+            if (PassUpdate>0){
+                System.out.println("Password reset successful");
+            }
+
+        }
+        else {
+            System.out.println("Try to Enter sent verification code");
+        }
+    }
+    // for hashing and encrypt password
 }
