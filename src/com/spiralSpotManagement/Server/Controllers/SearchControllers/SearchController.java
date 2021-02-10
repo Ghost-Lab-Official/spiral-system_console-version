@@ -6,11 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Abizera Oreste This is the controller to render different methods
- *         according to the action provided in the request
+ * @author Abizera Oreste
+ * @comment This is the controller to render different methods
+ *          according to the action provided in the request
  */
 public class SearchController {
 
+    /**
+     *
+     * @param requestBody
+     * @return List of Objects which will be sent to the client
+     * @throws Exception
+     * @comment This method checks the action in the requestbody and directs the user to a given action
+     */
     public List<Object> mainMethod(RequestBody requestBody) throws Exception {
         String action = requestBody.getAction();
         List<Object> results = new ArrayList<>();
@@ -29,9 +37,6 @@ public class SearchController {
                     results.add((Object) user);
                 }
                 return results;
-
-            // OTHER ACTIONS SHOULD GO HERE
-            // --------------------------------------
 
             case "viewRecentSearches":
                 List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());

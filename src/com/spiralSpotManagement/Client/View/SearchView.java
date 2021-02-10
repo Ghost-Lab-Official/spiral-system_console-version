@@ -39,7 +39,9 @@ public class SearchView {
 
 
     /**
-     * Method to view recent searches
+     * @return void
+     * @throws Exception
+     * @comment This method requests recent searches from the server and displays them
      */
     public static void viewRecentSearches() throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -80,6 +82,12 @@ public class SearchView {
         }
     }
 
+    /**
+     * @param recentSearch
+     * @throws Exception
+     * @comment This method uses sends a request to delete selected recent search and displays the status
+     */
+
     public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
@@ -98,7 +106,10 @@ public class SearchView {
 
 
     /**
-     * display a spot
+     *
+     * @param spotsList
+     * @throws Exception
+     * @comment This method displays a spot from list of spots
      */
     public static void displaySpot(List<Object> spotsList) throws Exception{
         Spot selectedSpot = null;
@@ -135,8 +146,10 @@ public class SearchView {
     }
 
     /**
-     * @author: Abizera Oreste
-     * this method is for displaying a single person information
+     *
+     * @param usersList
+     * @throws Exception
+     * @comment This method displays a user from users list given
      */
     public static void displayUser(List<Object> usersList) throws Exception{
         User selectedUser = null;
@@ -156,10 +169,13 @@ public class SearchView {
         }
     }
 
-    /**
-     * Comment on a spot
-     */
 
+    /**
+     *
+     * @param spot
+     * @throws Exception
+     * @comment This method calls the Function to comment on a spot
+     */
     public static void commentOnSpot(Spot spot) throws Exception {
 
         System.out.println("Comment on spot " + spot.getSpotId());
@@ -212,8 +228,9 @@ public class SearchView {
 
 
     /**
-     * @author: Abizera Oreste
-     * This method is used to search people
+     *
+     * @throws Exception
+     * @comment This method is used to Send a request to search people
      */
     public static void searchPeople() throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -245,6 +262,9 @@ public class SearchView {
         }
     }
 
+    /**
+     * @comment this method searches comments in the system
+     */
     public static void searchMessages(){
 
     }
