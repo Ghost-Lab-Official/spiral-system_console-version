@@ -18,6 +18,14 @@ import java.util.List;
 
 public class SearchActions {
 
+    /**
+     *
+     * @param spot
+     * @return List of found spots
+     * @throws Exception
+     * @comment This method is used to search spots according to the search query given. It searches according to spot name and spot description
+     * @limit at most 10 spots at a time
+     */
     public List<Spot> getSpots(Spot spot) throws Exception {
         List<Spot> spotsList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -46,6 +54,15 @@ public class SearchActions {
             return spotsList;
         }
     }
+
+    /**
+     *
+     * @param user
+     * @return: list of found users
+     * @throws Exception
+     * @comment: This method is used to search people in the database according to searchKey provided
+     * limit is 10 users at a fetch
+     */
 
     public List<User> getPeople(User user) throws Exception {
         List<User> peopleList = new ArrayList<>();
