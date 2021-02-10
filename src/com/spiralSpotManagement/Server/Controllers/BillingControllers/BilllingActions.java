@@ -85,6 +85,14 @@ public class BilllingActions {
         return new ResponseStatus(200,"UPDATED","Billing plan updated");
     }
 
+    /**
+     * Select all billing plans.
+     *  The function is reserved for getting all billing plans
+     * @param *no parameter
+     * @return a list of fetched rows
+     * @author Gervais Ishimwe
+
+     */
     public List<Object> getAllBillingPLan()throws Exception{
 
         String query = "SELECT * FROM billing";
@@ -116,6 +124,16 @@ public class BilllingActions {
     return  null;
 
     }
+
+
+    /**
+     * Select all billing plans.
+     *  The function is reserved for getting all billing plans
+     *  @param *the billing model
+     * @return a list of fetched row
+     * @author Gervais Ishimwe
+
+     */
 
     public List<Object> getBillingPlanById(BillingModel billingModel)throws Exception{
 
