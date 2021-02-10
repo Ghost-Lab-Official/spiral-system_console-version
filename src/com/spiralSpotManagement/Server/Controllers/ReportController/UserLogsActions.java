@@ -42,7 +42,7 @@ public class UserLogsActions {
             userLog.setAction(result.getString("action"));
             userLog.setDateTimeLoggedOut(result.getString("date_Time_logged_Out"));
             userLog.setTotalIn(result.getInt("Total_in"));
-            userLog.setTotalIn(result.getInt("Total_out"));
+            userLog.setTotalOut(result.getInt("Total_out"));
             userLogList.add((Object) userLog);
         }
 
