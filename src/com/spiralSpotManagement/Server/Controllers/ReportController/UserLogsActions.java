@@ -66,7 +66,6 @@ public class UserLogsActions {
         ResultSet rs=statement.executeQuery(getPreviousRowQuery);
         while (rs.next()){
            if(userLog.getAction().equals("logIn")){
-               System.out.println("Reached here");
                int currentTotalIn = rs.getInt("Total_in");
                int currentTotalOut = rs.getInt("Total_out");
                userLog.setTotalIn(currentTotalIn+1);
