@@ -18,12 +18,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.SendEmail;
 import org.mindrot.jbcrypt.BCrypt;
 
 
 public class AccountSetting {
-    // THis method is to help user to update his account details like user name..
-
+    /**
+     * @author: Twizeyimana Elissa
+     * @param con
+     * @throws Exception
+     */
     public static void UpdateSettings(Connection con)throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.print("Enter Your old user_name Name:\t");
@@ -62,7 +67,12 @@ public class AccountSetting {
             System.out.println("existing user was updated successful");
         }
     }
-    // this is method is to help user to delete his /her account in case she/he want
+
+    /**
+     * @author: Twizeyimana Elissa
+     * @param con
+     * @throws Exception
+     */
     public static void DeleteProfile(Connection con)throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter your user name");
@@ -83,7 +93,11 @@ public class AccountSetting {
         }
     }
 
-    // this is method is for viewing user profile information like user name email ...
+    /**
+     * @author: Twizeyimana Elissa
+     * @param con
+     * @throws Exception
+     */
     public static void ViewProfile(Connection con)throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter user name!");
@@ -120,6 +134,14 @@ public class AccountSetting {
     /* this is method is for resetting password in case user forgot it
     here verification code is sent to his email
      */
+    /**
+     * @author: Twizeyimana Elissa
+     * @param con
+     * @description: for the case use forgot passoword ,he will be able to reset it by
+     * sending verfication code to his email
+     * @throws Exception
+     */
+
     public static void ResetPassword(Connection con) throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter your email");
@@ -171,12 +193,17 @@ public class AccountSetting {
             System.out.println("Try to Enter sent verification code");
         }
     }
-    // for hashing and encrypt password
+
     protected static String hashPassword(String password){
         return BCrypt.hashpw(password,BCrypt.gensalt(12));
 
     }
     // method to update user category
+    /**
+     * @author: Twizeyimana Elissa,update user category by only admin when he want
+     * @param con
+     * @throws Exception
+     */
     public static void UpdateUserCategory(Connection con) throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter user name");
