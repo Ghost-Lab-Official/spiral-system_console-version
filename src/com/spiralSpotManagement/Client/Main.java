@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
@@ -14,7 +15,6 @@ import java.util.List;
 import java.util.Scanner;
 
 //import com.spiralSpotManagement.Client.View.SpotCategoryView;
-
 /*
             @author : Ntwari Egide - Scrum Master
             USER CONTROLLER  - SERVER CONTROLLER
@@ -22,40 +22,40 @@ import java.util.Scanner;
  */
 
 public class Main {
-    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
-        RequestBody requestBody = new RequestBody();
-
-        Users testingObject = new Users();
-        testingObject.setEmail("ntwari@gmal.test");
-        testingObject.setFullName("ntwari testing");
-        requestBody.setObject(testingObject);
-
-        requestBody.setUrl("/users");
-        requestBody.setAction("register");
-
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-
-        // depending on clients need you will need to do type casting
-
-        List<Object> usersFoundObject =  responseBody.getResponse();
-
-        for (Object userObject: usersFoundObject){
-            ResponseStatus responseStatus = (ResponseStatus) userObject;
-
-            System.out.println("Server replied "
-                    + (responseStatus.getStatus()));
-        }
-
-        /*
-            WORKING ON USER REGISTRATION
-        */
-    }
+//    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
+//        RequestBody requestBody = new RequestBody();
+//
+//        Users testingObject = new Users();
+//        testingObject.setEmail("ntwari@gmal.test");
+//        testingObject.setFullName("ntwari testing");
+//        requestBody.setObject(testingObject);
+//
+//        requestBody.setUrl("/users");
+//        requestBody.setAction("register");
+//
+//        ClientServerConnector clientServerConnector = new ClientServerConnector();
+//        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+//
+//        // depending on clients need you will need to do type casting
+//
+//        List<Object> usersFoundObject =  responseBody.getResponse();
+//
+//        for (Object userObject: usersFoundObject){
+//            ResponseStatus responseStatus = (ResponseStatus) userObject;
+//
+//            System.out.println("Server replied "
+//                    + (responseStatus.getStatus()));
+//        }
+//
+//        /*
+//            WORKING ON USER REGISTRATION
+//        */
+//    }
     public static void main(String[] args) throws Exception{
         new SpiralMultiThreadedServer().startServer();
 //        registerUser();
 //        new UserView().registerUser();
-        new UserView().loginUser();
+//        new UserView().loginUser();
 //       spotCategoryModuleMain();
 //        spotMainContent();
 //        new CommentView().makeComment();
@@ -68,7 +68,8 @@ public class Main {
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
 //        new SearchView().mainMethod();
-        new LocationView().registerLocation();
+//        new LocationView().registerLocation();
+        new LocationLevelsView().getAllLocationLevelsView();
     }
 
 
@@ -106,34 +107,34 @@ public class Main {
 //    }
 
 
-    public static void spotMainContent()throws Exception{
-        Scanner input = new Scanner(System.in);
-        System.out.println("==============================");
-        System.out.println("||\t\tSpot  Section\t\t||");
-        System.out.println("==============================\n");
-        System.out.println("||\t\t1.Create Spot\t\t||\n");
-        System.out.println("||\t\t2.Edit Spot\t\t\t||\n");
-        System.out.println("||\t\t3.Delete Spot\t\t||\n");
-        System.out.println("||\t\t4.Exit         \t\t||\n");
-        System.out.println("==============================");
-        String choose = input.nextLine();
-
-
-        switch (choose) {
-            case "1":
-                new SpotView().createSpot();
-                break;
-          case "2":
-                new SpotView().updateSpot();
-            break;
-          case "3":
-            new SpotView().deleteSpotContent();
-            break;
-            case "4":
-                System.exit(0);
-            default:
-                System.out.println("Incorrect Input!!");
-        }
-    }
+//    public static void spotMainContent()throws Exception{
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("==============================");
+//        System.out.println("||\t\tSpot  Section\t\t||");
+//        System.out.println("==============================\n");
+//        System.out.println("||\t\t1.Create Spot\t\t||\n");
+//        System.out.println("||\t\t2.Edit Spot\t\t\t||\n");
+//        System.out.println("||\t\t3.Delete Spot\t\t||\n");
+//        System.out.println("||\t\t4.Exit         \t\t||\n");
+//        System.out.println("==============================");
+//        String choose = input.nextLine();
+//
+//
+//        switch (choose) {
+//            case "1":
+//                new SpotView().createSpot();
+//                break;
+//          case "2":
+//                new SpotView().updateSpot();
+//            break;
+//          case "3":
+//            new SpotView().deleteSpotContent();
+//            break;
+//            case "4":
+//                System.exit(0);
+//            default:
+//                System.out.println("Incorrect Input!!");
+//        }
+//    }
 
 }
