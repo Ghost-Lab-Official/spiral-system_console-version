@@ -17,11 +17,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-/**
- * userLogs actions  (recording and getting user activities related reports)
- * @author Best Verie Iradukunda
- */
 
+    /**
+     * @Author:Best Verie Iradukunda.
+     * @Comment: 
+     * userLogs action: This class helps to Keep track of each and every action that the users does with our system . it has a method which enable
+     * us to get or fetch all user logs in the database and the other method to record user activities which will be called in all modules so as
+     * to get an object some essential information that one can need so as to have this functionality working which are user_id or user_name as well as each action and the
+     * time he logged in and out .
+     * we also compute some operations like totalIn and totalOut which are designed  to show the total number of users that are using the system
+     * at a time (logged in) and the others that have logged out at a time. I think it now makes sense.
+     * @Date: 5 Feb 2021
+     * @copyright all right reserved.
+     **/
+    
 
 public class UserLogsActions {
     String getAllUserLogsQuery = "select * from user_logs";
