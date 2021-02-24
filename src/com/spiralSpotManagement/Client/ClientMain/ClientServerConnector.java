@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
+//import java.util.Scanner;
 
 /*
 
@@ -24,7 +25,7 @@ public class ClientServerConnector {
     {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("localhost", 1234)) {
+        try (Socket socket = new Socket("localhost", 1294)) {
 
             // writing to server
             ObjectOutputStream out = new ObjectOutputStream(
@@ -65,7 +66,6 @@ public class ClientServerConnector {
 //            }
 
             // closing the scanner object
-          //  sc.close();
 
             ResponseBody responseBody = new ResponseBody(dataReturned);
 

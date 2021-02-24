@@ -6,6 +6,8 @@ import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.TokenIssued;
 import com.spiralSpotManagement.Server.Model.User;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -76,29 +78,38 @@ public class UsersActions {
     public ResponseStatus loginUser(User userToLogin)throws Exception{
         boolean checkUser = false;
         Connection connection = new CloudStorageConnectionHandler().getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(loginUserQuery);
-        preparedStatement.setString(1,userToLogin.getEmail());
-        ResultSet rs = preparedStatement.executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement(loginUserQuery);
+            preparedStatement.setString(1,userToLogin.getEmail());
+            ResultSet rs = preparedStatement.executeQuery();
 
-        if (rs.next()){
-            System.out.println(rs.getString("email"));
-            System.out.println(checkIfPasswordsAreEqual(userToLogin.getPassword(),rs.getString("password")));
-            if(checkIfPasswordsAreEqual(userToLogin.getPassword(),rs.getString("password"))){
-                checkUser = true;
-                TreeMap<String,String> newPayload = new TreeMap<String,String>();
-                newPayload.put("email",rs.getString("email"));
-                newPayload.put("user_name",rs.getString("user_name"));
-                newPayload.put("user_category",rs.getString("user_Category"));
-                Token loginCredentials = new Token(rs.getString("email"),newPayload);
-                String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
+            if (rs.next()){
+                System.out.println(rs.getString("email"));
+                System.out.println(checkIfPasswordsAreEqual(userToLogin.getPassword(),rs.getString("password")));
+                if(checkIfPasswordsAreEqual(userToLogin.getPassword(),rs.getString("password"))){
+                    checkUser = true;
+                    TreeMap<String,String> newPayload = new TreeMap<String,String>();
+                    newPayload.put("email",rs.getString("email"));
+                    newPayload.put("user_name",rs.getString("user_name"));
+                    newPayload.put("user_category",rs.getString("user_Category"));
+                    Token loginCredentials = new Token(rs.getString("email"),newPayload);
+                    String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
 
-                return new ResponseStatus(200,"LOGGED IN",(Object) new TokenIssued(userToken),"You are logged in ");
-            };
-        }
-        else{
-            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect");
-        }
+//                    File file;
+                    InputStream inputStream = new FileInputStream("config.properties");
+                    // Writing token and other required credentials
+                    Properties properties = new Properties();
+                    properties.load(inputStream);
+                    properties.setProperty("Token",userToken);
+                    properties.setProperty("UserId",rs.getString("user_id"));
 
+                    properties.store(new FileOutputStream("config.properties"),null);
+
+                    return new ResponseStatus(200,"LOGGED IN",(Object) new TokenIssued(userToken),"You are logged in ");
+                };
+            }
+            else{
+                return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect");
+            }
 //
 //        if (rs.next()){
 //            checkUser = true;

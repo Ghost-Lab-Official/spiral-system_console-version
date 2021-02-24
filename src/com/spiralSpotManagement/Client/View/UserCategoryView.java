@@ -10,42 +10,14 @@ import com.spiralSpotManagement.Server.Model.UserCategory;
 import java.util.Scanner;
 
 public class UserCategoryView {
-    public void mainMethod()throws Exception{
-        Scanner input = new Scanner(System.in);
-        System.out.println("==================================");
-        System.out.println("||\t\tUser Category Section\t||\n");
-        System.out.println("||\t\t1.Create Category\t\t||\n");
-        System.out.println("||\t\t2.Edit Category  \t\t||\n");
-        System.out.println("||\t\t3.View Categories\t\t||\n");
-        System.out.println("||\t\t4.Delete Category\t\t||\n");
-        System.out.println("||\t\t5.Exit           \t\t||\n");
-        System.out.println("==================================");
-        String choose =input.nextLine();
 
-        switch (choose){
-            case "1":
-                createCategory();
-                break;
-            case "2":
-                updateUserCategories();
-                break;
-            case "3":
-                selectUserCategories();
-                break;
-            case "4":
-                deleteCategory();
-                break;
-            case "5":
-                System.exit(0);
-            default:
-                System.out.println("Incorrect Input!!");
-        }
-    }
 
     public static void createCategory()throws Exception{
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Insert the Category Name");
-        String category =scan.nextLine();
+
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t Enter category name: \"");
+        String category =scanner.nextLine();
 
         UserCategory userCategoryToInsert = new UserCategory();
         userCategoryToInsert.setCatName(category);
@@ -85,7 +57,7 @@ public class UserCategoryView {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the category id to update");
         String categoryId = scan.nextLine();
-        System.out.println("Enter the Category Name to update");
+        System.out.println("Enter the Category name to update");
         String category =scan.nextLine();
 
         System.out.println("Enter the category status");
@@ -132,4 +104,38 @@ public class UserCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
+
+    public void UserCategoryMenu()throws Exception{
+
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t||------------------    1.CREATE A USER CATEGORY        ------------------||");
+        System.out.println("\t\t\t||------------------    2.UPDATE USER CATEGORY          ------------------||");
+        System.out.println("\t\t\t||------------------    3.VIEW USER CATEGORIES          ------------------||");
+        System.out.println("\t\t\t||------------------    4.DELETE USER CATEGORY          ------------------||");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t\t  Enter your choice                                              ");
+        choice = scanner.nextInt();
+
+
+        switch (choice){
+            case 1:
+                createCategory();
+                break;
+            case 2:
+                updateUserCategories();
+                break;
+            case 3:
+                selectUserCategories();
+                break;
+            case 4:
+                deleteCategory();
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+
 }

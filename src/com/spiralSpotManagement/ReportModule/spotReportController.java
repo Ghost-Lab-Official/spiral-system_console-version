@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.ReportModule;
 
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.ReportModule.spotsModel;
 
 import java.sql.Connection;
@@ -19,7 +19,7 @@ public class spotReportController {
      */
 
     public static void getTheTotalNumberOfHighlyVisitedSpots() throws Exception {
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table  where views>10 ");
@@ -39,7 +39,7 @@ public class spotReportController {
      */
 
     public static void getTheTotalNumberOfRegisteredSpots() throws Exception {
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table");
@@ -56,7 +56,7 @@ public class spotReportController {
      * @throws Exception
      */
     public static void getTheTotalNumberOfActiveSpots() throws Exception {
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status=1");
@@ -75,7 +75,7 @@ public class spotReportController {
      */
 
     public static void getTheTotalNumberOfInactiveSpots() throws Exception {
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status=0");
@@ -91,7 +91,7 @@ public class spotReportController {
 
 
     public static void viewAllSpots() throws Exception {
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT Spot_table.spot_id,users_table.user_name,spot_category.category_name,"+
@@ -134,7 +134,7 @@ public class spotReportController {
 
     public static void viewAllActiveSpots() throws Exception {
 
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
         Statement stmt = connection.createStatement();
         String query= "SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
@@ -189,7 +189,7 @@ public class spotReportController {
 //    the List interface, so we can use all the methods of List interface here.
 
     public static void viewAllInactiveSpots() throws Exception{
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection= cloudStorageConnection.getConnection();
 
 
@@ -238,7 +238,7 @@ public class spotReportController {
     }
 
     public static void ViewHighlyVisitedSpots() throws Exception{
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Connection connection = cloudStorageConnection.getConnection();
 
         Statement stment = connection.createStatement();

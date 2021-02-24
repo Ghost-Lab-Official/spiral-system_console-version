@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Server.Controllers.ReportController;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Server.Model.User;
 import com.spiralSpotManagement.Server.Model.UserCategory;
 import com.spiralSpotManagement.Server.Model.UserLog;
 

@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.ReportModule;
 
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ public class LocationReportController {
    */
    public static void viewAllLocations() throws Exception {
        try{
-           CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+           CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
            ResultSet resultSet = stmt.executeQuery("SELECT locationId, location_name, location_GPS, description," +
@@ -62,7 +62,7 @@ public class LocationReportController {
 
 
        try{
-           CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+           CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
            ResultSet resultSet = stmt.executeQuery("SELECT locationId, location_name, location_GPS, description," +
@@ -101,7 +101,7 @@ public class LocationReportController {
 
    public static void totalNumberOfRegisteredLocations() throws Exception {
        try{
-           CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+           CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
            ResultSet resultSet = stmt.executeQuery("SELECT count(location_name) from locations");
@@ -121,7 +121,7 @@ public class LocationReportController {
      */
    public static void totalNumberOfLocationsByStatus(String val) throws Exception {
        try{
-           CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+           CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
            ResultSet resultSet = stmt.executeQuery("SELECT count(location_name) from locations WHERE status = " +
@@ -143,7 +143,7 @@ public class LocationReportController {
    public static void getSpotsByLocation() throws Exception{
        try{
            Scanner scan = new Scanner(System.in);
-           CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+           CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
            System.out.println("Enter a location");
@@ -166,7 +166,7 @@ public class LocationReportController {
      */
    public static void printSpots(ResultSet resultSet) throws Exception{
        try{
-           CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+           CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            ArrayList<spotsModel> AllSpots = new ArrayList<spotsModel>();
 

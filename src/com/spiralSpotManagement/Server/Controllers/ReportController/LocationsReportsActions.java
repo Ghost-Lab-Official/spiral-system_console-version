@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Server.Controllers.ReportController;
 
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.CounterResponse;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.LocationsReport;
 import com.spiralSpotManagement.Server.Model.SpotsReport;
@@ -50,8 +51,9 @@ public class LocationsReportsActions {
      * @description This is a method to print locations depending on their status
      * @throws Exception
      */
-    public static void viewLocationsByStatus(String val) throws Exception {
+    public List<Object> viewLocationsByStatus(String val) throws Exception {
 
+        List<Object> AllLocations = new ArrayList<>();
 
         try{
             CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
@@ -59,7 +61,6 @@ public class LocationsReportsActions {
             Statement stmt = connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT location_id, location_name, location_GPS, description," +
                     " status FROM locations WHERE status = '"+val+"'");
-            ArrayList<LocationsReport> AllLocations = new ArrayList<LocationsReport>();
             while(resultSet.next()) {
                 LocationsReport location = new LocationsReport(
                         resultSet.getString("location_id"),
@@ -68,21 +69,13 @@ public class LocationsReportsActions {
                         resultSet.getString("description"),
                         resultSet.getString("status")
                 );
-                AllLocations.add(location);
+                AllLocations.add((Object)location);
             }
 
-            Iterator it = AllLocations.iterator();
-            System.out.println("Id\t Location Name\t Coordinates\t Description\t Status");
-            System.out.println("-----------------------------------------------------------------------");
-            while (it.hasNext()){
-                LocationsReport location = (LocationsReport) it.next();
-                System.out.println(location.getLocationId()+"\t"+location.getLocation_name()+"\t"+
-                        location.getLocation_GPS()+"\t"+ location.getDescription()+"\t"+location.getStatus());
-            }
-            connection.close();
         }catch (Exception e) {
             System.out.println("Error: "+e.getMessage());
         }
+        return AllLocations;
     }
 
     /**
@@ -91,19 +84,33 @@ public class LocationsReportsActions {
      * @throws Exception
      */
 
-    public static void totalNumberOfRegisteredLocations() throws Exception {
+    public List<Object> totalNumberOfRegisteredLocations() throws Exception {
+
+        List<Object> counts = new ArrayList<>();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
+        Connection connection= cloudStorageConnection.getConnection();
         try{
-            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
-            Connection connection= cloudStorageConnection.getConnection();
             Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT count(location_name) from locations");
-            while(resultSet.next()){
-                System.out.println( "\t\t\t  Number of Registered Locations :         "+ resultSet.getInt(1)+"");
+            ResultSet rs = stmt.executeQuery("SELECT count(location_name) from locations");
+
+            int result = 0;
+            while(rs.next()){
+                result=rs.getInt(1);
             }
+
+            CounterResponse counterResponse = new CounterResponse(result);
+            counts.add((Object) counterResponse);
+
             connection.close();
-        }catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
+            return counts;
         }
+
+        catch (Exception e){
+            CounterResponse counterResponse = new CounterResponse(0);
+            counts.add((Object) counterResponse);
+        }
+
+        return counts;
     }
 
     /**
@@ -111,20 +118,31 @@ public class LocationsReportsActions {
      * @description This is a method to print the number of locations depending on their status
      * @throws Exception
      */
-    public static void totalNumberOfLocationsByStatus(String val) throws Exception {
-        try{
-            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
+    public  List<Object> totalNumberOfLocationsByStatus(String val) throws Exception {
+        List<Object> counts = new ArrayList<>();
+
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection= cloudStorageConnection.getConnection();
             Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT count(location_name) from locations WHERE status = " +
+            try{
+                ResultSet rs = stmt.executeQuery("SELECT count(location_name) from locations WHERE status = " +
                     "'"+val+"'");
-            while(resultSet.next()){
-                System.out.println( "\t\t\t  Number of "+val+" Locations :         "+ resultSet.getInt(1)+"");
+                int result = 0;
+                while(rs.next()){
+                    result=rs.getInt(1);
+                }
+
+                CounterResponse counterResponse = new CounterResponse(result);
+                counts.add((Object) counterResponse);
+
+                connection.close();
+                return counts;
+            }catch (Exception e) {
+                    CounterResponse counterResponse = new CounterResponse(0);
+                    counts.add((Object) counterResponse);
             }
-            connection.close();
-        }catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-        }
+
+            return counts;
     }
 
     /**
@@ -132,7 +150,9 @@ public class LocationsReportsActions {
      * @description This is a method to get spots depending on their locations
      * @throws Exception
      */
-    public static void getSpotsByLocation() throws Exception{
+    public List<Object> getSpotsByLocation() throws Exception{
+        List<Object> AllSpots = new ArrayList<>();
+
         try{
             Scanner scan = new Scanner(System.in);
             CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
@@ -145,10 +165,26 @@ public class LocationsReportsActions {
                     "Spot_table.registration_date "+"FROM `Spot_table` LEFT JOIN users_table ON users_table.user_id = Spot_table.user_id " +
                     "LEFT JOIN spot_category ON "+"spot_category.category_id = Spot_table.category_id LEFT JOIN locations on " +
                     "locations.location_id = Spot_table.location_id WHERE locations.location_name = '"+location+"'");
-            printSpots(resultSet);
+
+            while(resultSet.next()) {
+                SpotsReport spot = new SpotsReport(
+                        resultSet.getString("spot_id"),
+                        resultSet.getString("user_name"),
+                        resultSet.getString("category_name"),
+                        resultSet.getString("location_name"),
+                        resultSet.getString("spot_name"),
+                        resultSet.getString("spot_description"),
+                        resultSet.getDouble("views"),
+                        resultSet.getString("status"),
+                        resultSet.getString("registration_date")
+                );
+                AllSpots.add((Object)spot);
+            }
+
         }catch (Exception e) {
             System.out.println("Error: "+e.getMessage());
         }
+        return AllSpots;
     }
 
     /**
