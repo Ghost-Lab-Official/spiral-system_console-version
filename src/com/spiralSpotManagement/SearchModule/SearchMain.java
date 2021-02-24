@@ -1,5 +1,5 @@
 package com.spiralSpotManagement.SearchModule;
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -28,7 +28,7 @@ public class SearchMain {
 
     public static void main(String[] args) throws Exception {
         int choice;
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         Statement stmt = cloudStorageConnection.getConnection().createStatement();
         SearchModule searchModuleMethods = new SearchModule();
 

@@ -1,13 +1,15 @@
 package com.spiralSpotManagement.SearchModule;
 
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 
-import java.util.Collections;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-
-import java.io.*;
-import java.sql.*;
+import java.util.Collections;
 
 /*
   @author Names: - MUGISHA ISAAC
@@ -41,7 +43,7 @@ public class RecentSearches {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int choice;
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         // cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
         if (cloudStorageConnection.getConnection() != null) {
 

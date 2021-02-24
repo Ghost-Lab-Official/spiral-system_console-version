@@ -1,7 +1,7 @@
 package com.spiralSpotManagement.SearchModule;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -240,7 +240,7 @@ public class SearchModule {
         System.out.print("==== Search by popularity =====\n");
 
         //connect to the db
-        CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+        CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
         // cloudStorageConnection.checkDbWorking(cloudStorageConnection.getConnection());
         popularityByRatesArray(cloudStorageConnection.getConnection());
         popularSpots.addAll(popularityByRatesArray(cloudStorageConnection.getConnection()));
