@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,23 +23,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_12_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_49.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_49.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/spiral-system_console-version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spiral-system_console-version.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/libraries/jackson_annotations_2_12_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/libraries/libs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/libraries/mysql_connector_java_5_1_49_bin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/SearchModule/RecentSearches.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/SearchModule/RecentSearches.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/SearchModule/SearchMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/SearchModule/SearchMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/SearchModule/SearchModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/SearchModule/SearchModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Middleware/UserAuthMiddleware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Middleware/UserAuthMiddleware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +57,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.SpiralMultiThreadedServer">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.spiralSpotManagement.Client.Main" />
       <module name="spiral-system_console-version" />
@@ -98,7 +93,9 @@
       <workItem from="1613676571368" duration="4000" />
       <workItem from="1614139678595" duration="2572000" />
       <workItem from="1614145083746" duration="1952000" />
-      <workItem from="1614148475720" duration="560000" />
+      <workItem from="1614257464615" duration="132000" />
+      <workItem from="1614282645588" duration="1921000" />
+      <workItem from="1614321140024" duration="8258000" />
     </task>
     <servers />
   </component>
@@ -118,13 +115,45 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="348" y="86" key="FileChooserDialogImpl" timestamp="1614148795811">
+    <state x="93" y="93" width="1095" height="504" key="DiffContextDialog" timestamp="1614156353287">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="348" y="86" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1614148795811" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1614148800944">
+    <state x="93" y="93" width="1095" height="504" key="DiffContextDialog/0.0.1280.689@0.0.1280.689" timestamp="1614156353287" />
+    <state x="421" y="63" key="FileChooserDialogImpl" timestamp="1614328392414">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1614148800944" />
+    <state x="421" y="63" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1614328392414" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1614368815193">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614368815193" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1614368815192">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614368815192" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1614368815192">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614368815192" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1614368815192">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614368815192" />
+    <state x="315" y="50" width="669" height="590" key="NewModule_or_Project.wizard" timestamp="1614257604522">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="315" y="50" width="669" height="590" key="NewModule_or_Project.wizard/0.0.1280.689@0.0.1280.689" timestamp="1614257604522" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1614328395413">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1614328395413" />
+    <state x="91" y="0" key="new project wizard" timestamp="1614321359142">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="91" y="0" key="new project wizard/0.0.1280.689@0.0.1280.689" timestamp="1614321359142" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1614328493594">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1614328493594" />
   </component>
 </project>

@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
+    UserView userForms = new UserView();
     public void mainMethod() throws Exception{
         String cont = "";
         do {
@@ -36,7 +37,14 @@ public class SearchView {
             case 2 -> searchPeople();
             case 3 -> searchMessages();
             case 4 -> searchPopular();
-            case 5 -> viewRecentSearches();
+            case 5 -> {
+                if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                viewRecentSearches();
+                else
+                    System.out.println("You have to login to access this resource");
+                    userForms.loginUser();
+            }
+
             default -> System.out.println("Invalid option");
         }
 
