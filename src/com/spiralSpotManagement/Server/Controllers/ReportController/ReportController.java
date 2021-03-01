@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportController {
+     /**
+ * ReportController: This class is to controll every action that is done on our module. in this controller class is where cases or actions are switched to return the response 
+ * regarding that kind of action. 
+ * @author Best Verie Iradukunda
+ */
+
     public List<Object> mainMethod(RequestBody request)throws Exception{
         String action = request.getAction();
         List<Object> userLogsReport = new ArrayList<>();
