@@ -24,10 +24,25 @@ public class LocationController {
                 return location;
 
             case "update":
+<<<<<<< HEAD
                 break;
             case "getLocationsByParent":
                 List<Object> locations = new LocationActions().fetchByParent((String) requestBody.getObject());
                 return locations;
+=======
+                ResponseStatus updateLocation = new LocationActions().UpdateLocation((LocationModel) requestBody.getObject());
+                location.add((Object) updateLocation);
+                return  location;
+
+            case "delete":
+                ResponseStatus deleteLocation = new LocationActions().DeleteLocation((LocationModel) requestBody.getObject());
+                location.add((Object) deleteLocation);
+                return  location;
+            case "recover":
+                ResponseStatus recoverLocation = new LocationActions().RecoverLocation((LocationModel) requestBody.getObject());
+                location.add((Object) recoverLocation);
+                return location;
+>>>>>>> 7ba587afdf8e7651dee72448cacac6a475cb9991
 //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }
