@@ -1,13 +1,11 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-<<<<<<< HEAD
-=======
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationActions;
 import com.spiralSpotManagement.Server.Model.LocationModel;
->>>>>>> 7ba587afdf8e7651dee72448cacac6a475cb9991
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
+import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -71,23 +69,6 @@ public class LocationView {
 
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-<<<<<<< HEAD
-        for(Object i: responseBody.getResponse()){
-            System.out.println(i);
-        }
-        if((responseBody.getResponse().isEmpty())){
-            System.out.println("No locations found!");
-        }
-        //System.out.println(responseBody.getResponse());
-//        for(Object response : responseBody.getResponse()){
-//            ResponseStatus responseStatus = (ResponseStatus) response;
-//            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
-//            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
-//            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
-//            System.out.println("\t\t ------------------------------------------------------------------------------");
-//
-//        }
-=======
 
         for(Object response : responseBody.getResponse()) {
             ResponseStatus responseStatus = (ResponseStatus) response;
@@ -151,7 +132,6 @@ public class LocationView {
         System.out.print("New Description: ");
         String decript = scanner.nextLine();
         if(decript.equals("-1")) decript=null;
->>>>>>> 7ba587afdf8e7651dee72448cacac6a475cb9991
 
          LocationModel updateData = new LocationModel();
          updateData.setDescription("The best continent where people collaborates");

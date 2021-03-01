@@ -1,15 +1,12 @@
 package com.spiralSpotManagement.Server.DbController;
 
 
-<<<<<<< HEAD
-=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
->>>>>>> 7ba587afdf8e7651dee72448cacac6a475cb9991
 import com.mysql.jdbc.CommunicationsException;
 
 import java.io.FileReader;
