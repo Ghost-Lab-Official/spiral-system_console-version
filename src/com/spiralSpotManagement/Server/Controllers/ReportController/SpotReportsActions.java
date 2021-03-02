@@ -13,15 +13,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class SpotReportsActions {
 
-        /**
+ /**
          * @author Ange Nicole Mukundwa
          * description This class is intended to define all methods that carry out each and every operation or kind of report that an admin need on spots. he she can need the list of all spots, statistical information , as well as reports according to time
          * so, in this class that's where every kind of report  related to spots is defined.
          * @throws Exception
          * @return
          */
+
+public class SpotReportsActions {
+
 
         public List<Object>  getTheTotalNumbersOfTrendingSpots() throws Exception {
             List<Object> counts = new ArrayList<>();
@@ -52,8 +54,6 @@ public class SpotReportsActions {
         }
 
 
-
-
         public List<Object> getTheTotalNumberOfActiveSpots() throws Exception {
 
 
@@ -82,8 +82,6 @@ public class SpotReportsActions {
 
             return counts;
     }
-
-
 
         public List<Object>  getTheTotalNumberOfInactiveSpots() throws Exception {
             List<Object> counts = new ArrayList<>();
@@ -456,14 +454,11 @@ public class SpotReportsActions {
             return TodaysNewSpots;
         }
 
-        public List <Object> getReportForAnotherDay()throws Exception{
-            Scanner scanInput=new Scanner(System.in);
+        public List <Object> getReportForAnotherDay(String anotherDate)throws Exception{
             List<Object> reportForAnotherDay=new ArrayList<>();
             try{
                 CloudStorageConnectionHandler cloudStorageConnection=new CloudStorageConnectionHandler();
                 Connection connection=cloudStorageConnection.getConnection();
-                System.out.println("Enter the date that you want to get reports for. eg(February 5, 2021)");
-                String anotherDate=scanInput.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
                 LocalDate myDate = LocalDate.parse(anotherDate, formatter);
 
@@ -472,7 +467,7 @@ public class SpotReportsActions {
                         " Spot_table.status , Spot_table.views  , Spot_table.registration_date ," +
                         " users_table.user_name , locations.location_name , spot_category.category_name from Spot_table " +
                         "left join users_table on Spot_table.user_id=users_table.user_id" +
-                        " left join locations on Spot_table.location_id = locations.locationId" +
+                        " left join locations on Spot_table.location_id = locations.location_id" +
                         " left join spot_category on Spot_table.category_id = spot_category.category_id where Spot_table.registration_date = "+"'"+myDate+"'";
 
 

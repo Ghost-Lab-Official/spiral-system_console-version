@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportController {
-    /**
-     * @author Best Verie Iradukunda
-     *  @author Erneste Ntezirizaza
-     * @description This controller class is designed to control each and every action that is carried out in our module hwe crate some actions and assign them to the corresponding methods that carry out the operations
-     */
+     /**
+ * ReportController: This class is to controll every action that is done on our module. in this controller class is where cases or actions are switched to return the response 
+ * regarding that kind of action. 
+ * @author Best Verie Iradukunda
+ *  @author Erneste Ntezirizaza
+ */
+
     public List<Object> mainMethod(RequestBody request)throws Exception{
         String action = request.getAction();
         List<Object> userLogsReport = new ArrayList<>();
@@ -86,7 +88,7 @@ public class ReportController {
                 return new LocationsReportsActions().viewLocationsByStatus("inactive");
 
             case "getSpotsByLocations":
-                return new LocationsReportsActions().getSpotsByLocation();
+                return new LocationsReportsActions().getSpotsByLocation((String) request.getObject());
 
             case "viewTodaysSpots":
                 return new SpotReportsActions().viewTodaysSpots();
@@ -99,7 +101,7 @@ public class ReportController {
                 return new SpotReportsActions().viewThisMonthsTrendingSpots();
 
             case "viewReportForAnotherDay":
-                return new SpotReportsActions().getReportForAnotherDay();
+                return new SpotReportsActions().getReportForAnotherDay((String) request.getObject());
             //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }

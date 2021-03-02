@@ -1,19 +1,33 @@
 package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.CounterResponse;
 import com.spiralSpotManagement.Server.Model.*;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ReportsView {
+    
+    
     /**
-     * @author Best Verie Iradukunda
-     *  @author Mike Manzi
-     * @description This class is designed to facilitate navigation through the admin panel
-     */
+     * @Author:Best Verie Iradukunda.
+     * @Author:Mike Manzi.
+     * @Comment: this class is intended to control the flow of information or operations on the admin panel.
+     *Throught this class the admin will be able to navigate all over our system's admin panel. it contains some menus 
+     *which make it easy for them (admins) to carry out every kind of tasks that are in this module. 
+     *Each and every method contained in this class is to help us navigate throught the panel 
+     *and it's where results from the server, are displayed.
+     * @Date: 9 Feb 2021
+     * @copyright all right reserved.
+     **/
+    
+    
     public  String toContinue;
     Scanner scanInput = null;
     int choice;
@@ -120,40 +134,48 @@ public class ReportsView {
                 case 3 : locationsByStatus();
                     break;
                 case 4 :
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter a location");
+                    String location = bufferedReader.readLine();
+
                     RequestBody myRequest7= new RequestBody();
                     myRequest7.setUrl("/report");
                     myRequest7.setAction("getSpotsByLocations");
-                    myRequest7.setObject(null);
+                    myRequest7.setObject(location);
 
-                    try{
-                        ClientServerConnector  clientServerConnector1 = new ClientServerConnector();
-                        ResponseBody responseBody1 = clientServerConnector1.ConnectToServer(myRequest7);
+                        try {
+                            ClientServerConnector clientServerConnector1 = new ClientServerConnector();
+                            ResponseBody responseBody1 = clientServerConnector1.ConnectToServer(myRequest7);
 
-                        System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
-                        System.out.println(String.format("|%-50s | %-35s | %-35s | %-50s |%-30s |","#Id ", "Location Name","LOcation GPs","Description","Status"));
-                        System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
+                            if((responseBody1.getResponse()).isEmpty()){
+                                System.out.println("NO data found! ");
+                            }
+                            else {
+                                System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
+                                System.out.println(String.format("|%-50s | %-35s | %-35s | %-50s |%-30s |", "#Id ", "Location Name", "LOcation GPs", "Description", "Status"));
+                                System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
 
 
-                        for(Object response:responseBody1.getResponse()){
-                            SpotsReport spotsReport = (SpotsReport) response;
+                                for (Object response : responseBody1.getResponse()) {
+                                    SpotsReport spotsReport = (SpotsReport) response;
 
-                            System.out.println(
-                                    String.format("| %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
-                                            spotsReport.getSpot_id(),
-                                            spotsReport.getSpot_name(),
-                                            spotsReport.getCategory_name(),
-                                            spotsReport.getUser_name(),
-                                            spotsReport.getLocation_name(),
-                                            spotsReport.getSpot_description(),
-                                            spotsReport.getViews(),
-                                            spotsReport.getStatus(),
-                                            spotsReport.getRegistration_date())
-                            );
+                                    System.out.println(
+                                            String.format("| %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
+                                                    spotsReport.getSpot_id(),
+                                                    spotsReport.getSpot_name(),
+                                                    spotsReport.getCategory_name(),
+                                                    spotsReport.getUser_name(),
+                                                    spotsReport.getLocation_name(),
+                                                    spotsReport.getSpot_description(),
+                                                    spotsReport.getViews(),
+                                                    spotsReport.getStatus(),
+                                                    spotsReport.getRegistration_date())
+                                    );
+                                }
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
 
                     break;
 
@@ -970,13 +992,17 @@ public class ReportsView {
         public  void viewReportForAnotherDay()throws Exception{
 
             try{
+                InputStream in;
+                BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+                System.out.println("Enter the date that you want to get reports for. eg(February 5, 2021)");
+                String anotherDate=reader.readLine();
 
-//                spotReportController.getReportForAnotherDay(myDate);
+
 
                 RequestBody request=new RequestBody();
                 request.setUrl("/report");
                 request.setAction("viewReportForAnotherDay");
-                request.setObject(null);
+                request.setObject(anotherDate);
                 ResponseBody responseBody = new ClientServerConnector().ConnectToServer(request);
 
 
@@ -984,10 +1010,10 @@ public class ReportsView {
                     System.out.println("NO data found! ");
                 }
                 else {
-                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+--------------------------------------------+%n");
 
                     System.out.println(String.format("| %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |","#Id ","Spot name", "Category_name","Creator","Location","Description","Views","Status","Location name","status","Registration date"));
-                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+--------------------------------------------+%n");
 
                     for(Object Response: responseBody.getResponse()){
                         SpotsReport SpotsReport = (SpotsReport) Response;
@@ -1261,11 +1287,7 @@ try{
                                         usersReport.getRegistration_date())
                         );
                     }
-                    System.out.println("helllo");
-//                }
-//            }).start();
 
-           System.out.println("hey");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -1384,7 +1406,6 @@ try{
                                 userLog.getTotalOut())
                 );
             }
-
 
 
         }

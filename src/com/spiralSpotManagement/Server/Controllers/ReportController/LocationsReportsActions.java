@@ -150,7 +150,7 @@ public class LocationsReportsActions {
      * @description This is a method to get spots depending on their locations
      * @throws Exception
      */
-    public List<Object> getSpotsByLocation() throws Exception{
+    public List<Object> getSpotsByLocation(String place) throws Exception{
         List<Object> AllSpots = new ArrayList<>();
 
         try{
@@ -158,13 +158,12 @@ public class LocationsReportsActions {
             CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection= cloudStorageConnection.getConnection();
             Statement stmt = connection.createStatement();
-            System.out.println("Enter a location");
-            String location = scan.nextLine();
+
             ResultSet resultSet = stmt.executeQuery("SELECT Spot_table.spot_id,users_table.user_name,spot_category.category_name,"+
                     "Spot_table.spot_name,locations.location_name,Spot_table.spot_description,Spot_table.views,Spot_table.status," +
                     "Spot_table.registration_date "+"FROM `Spot_table` LEFT JOIN users_table ON users_table.user_id = Spot_table.user_id " +
                     "LEFT JOIN spot_category ON "+"spot_category.category_id = Spot_table.category_id LEFT JOIN locations on " +
-                    "locations.location_id = Spot_table.location_id WHERE locations.location_name = '"+location+"'");
+                    "locations.location_id = Spot_table.location_id WHERE locations.location_name = '"+place+"'");
 
             while(resultSet.next()) {
                 SpotsReport spot = new SpotsReport(

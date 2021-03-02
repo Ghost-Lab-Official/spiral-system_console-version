@@ -1,5 +1,5 @@
 package com.spiralSpotManagement.Server.ServerMain;
-
+import com.spiralSpotManagement.Server.Controllers.SearchControllers.SearchController;
 import com.spiralSpotManagement.Server.Controllers.ReportController.ReportController;
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
@@ -62,7 +62,7 @@ SpiralMultiThreadedServer {
         try {
 
             // server is listening on port 1234
-            server = new ServerSocket(1234);
+            server = new ServerSocket(1294);
             server.setReuseAddress(true);
 
             // running infinite loop for getting
@@ -125,6 +125,7 @@ SpiralMultiThreadedServer {
                 in = new ObjectInputStream(clientSocket.getInputStream());
 
                 RequestBody requestBody;
+                
                 while ((requestBody = (RequestBody) in.readObject()) != null) {
                     //Reading the url
                     String url = requestBody.getUrl();
@@ -154,6 +155,7 @@ SpiralMultiThreadedServer {
                             break;
 
                         case "/search":
+                            responseObject = new SearchController().mainMethod(requestBody);
                             break;
 
                         case "/report":
