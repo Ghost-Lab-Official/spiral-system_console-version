@@ -7,6 +7,7 @@ import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
@@ -75,7 +76,8 @@ public class Main {
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
-            System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
+            System.out.println("\t\t\t||------------------    7.Settings                   ----------------||");
+            System.out.println("\t\t\t||------------------    8.REPORT                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -123,6 +125,9 @@ public class Main {
                     searchForms.mainMethod();
                     break;
                 case 7:
+                    UserController userSettings = new UserController();
+                    userSettings.user
+                case 8:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
                     new ReportsView().reportDashboard();
                     else {
