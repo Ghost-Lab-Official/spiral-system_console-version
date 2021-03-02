@@ -21,13 +21,15 @@ public class UserController {
                 ResponseStatus registeredStatus = new UsersActions().registerUserInDb((User) requestBody.getObject());
                 usersObject.add((Object) registeredStatus);
                 return  usersObject;
-
             case "login":
                 ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
                 usersObject.add((Object) loggedInStatus);
                 return  usersObject;
             case "getUsers":
                 usersObject = new UsersActions().selectUsers();
+                return usersObject;
+            case "getUserById":
+                usersObject = new UsersActions().selectUserById((User) requestBody.getObject());
                 return usersObject;
             case "update-user-settings":
                 ResponseStatus updatedStatus = new UsersActions().updateUserSettings((User) requestBody.getObject());
@@ -40,6 +42,7 @@ public class UserController {
                 ResponseStatus deleteStatus = new UsersActions().deleteProfile((User) requestBody.getObject());
                 usersObject.add((Object) deleteStatus);
                 return usersObject;
+
         }
 
         return null;

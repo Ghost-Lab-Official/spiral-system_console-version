@@ -263,6 +263,34 @@ public class UsersActions {
 
         return user;
     }
+    public List<Object> selectUserById(User userToView) throws Exception {
+        Connection con = new CloudStorageConnectionHandler().getConnection();
+        List<Object> user = new ArrayList<>();
+        PreparedStatement state = con.prepareStatement("SELECT user_id, first_name, last_name, user_name,email, gender,user_category,birth_date,location from users_table WHERE user_id= ?");
+        state.setInt(1,userToView.getUserId());
+        ResultSet result = state.executeQuery();
+
+        while (result.next()) {
+            User userObj = new User();
+//            user.set(result.getInt(1));
+//            userCategory.setCatName(result.getString(2));
+            userObj.setUserId(result.getInt(1));
+            userObj.setFirstName(result.getString(2));
+            userObj.setLastName(result.getString(3));
+            userObj.setUserName(result.getString(4));
+            userObj.setEmail(result.getString(5));
+            userObj.setGender(result.getString(6));
+            userObj.setUserCategory(result.getString(7));
+            userObj.setBirthDate(result.getString(8));
+            userObj.setLocation(result.getString(9));
+
+            user.add(userObj);
+
+//            System.out.println("user: "+userObj.getGender());
+        }
+
+        return user;
+    }
     public static ResponseStatus deleteProfile(User userToDelete)throws Exception{
             String deleteSQL = "UPDATE users_table SET user_status= ? WHERE user_id=?";
             Connection connection = new CloudStorageConnectionHandler().getConnection();

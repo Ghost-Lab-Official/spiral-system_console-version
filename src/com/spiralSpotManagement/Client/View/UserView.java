@@ -11,10 +11,13 @@ public class UserView {
         System.out.println("==================================");
         System.out.println("||\t\tUsers Section\t||\n");
         System.out.println("||\t\t1.Create user\t\t||\n");
-        System.out.println("||\t\t2.Edit user  \t\t||\n");
-        System.out.println("||\t\t3.View users \t\t||\n");
-        System.out.println("||\t\t4.Delete user \t\t||\n");
-        System.out.println("||\t\t5.Exit           \t\t||\n");
+        System.out.println("||\t\t2.Get logged user info \t\t||\n");
+        System.out.println("||\t\t3.Get user by id \t\t||\n");
+        System.out.println("||\t\t4.Gell all users \t\t||\n");
+        System.out.println("||\t\t5.Update user \t\t||\n");
+        System.out.println("||\t\t6.Update user settings \t\t||\n");
+        System.out.println("||\t\t7.Delete user      \t\t||\n");
+        System.out.println("||\t\t8.Reset password   \t\t||\n");
         System.out.println("==================================");
         Integer choice = input.nextInt();
         switch(choice) {
@@ -25,13 +28,15 @@ public class UserView {
                 getUserProfile();
                 break;
             case 3:
+                selectUserById();
+            case 4:
                 selectUsers();
                 break;
-            case 4:
+            case 5:
                 updateUserSettings();
                 break;
-            case 5:
-                deleteCategory();
+            case 6:
+                deleteUser();
                 break;
             default:
                 System.out.println("Incorrect input!!");
@@ -53,6 +58,28 @@ public class UserView {
             System.out.println("\t "+ user.getUserId() + "\t\t" + user.getFirstName()+" \t\t "+user.getLastName() + "\t\t"
             + user.getUserName() + "\t\t" + user.getGender() + "\t\t" + user.getEmail() + "\t\t" + user.getBirthDate() + "\t\t"
             + user.getLocation());
+        }
+    }
+    public void selectUserById() throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter user id!");
+        Integer userId = scanner.nextInt();
+        RequestBody requestBody = new RequestBody();
+        User user = new User();
+        user.setUserId(userId);
+        requestBody.setUrl("/users");
+        requestBody.setAction("getUserById");
+        requestBody.setObject(user);
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+
+
+        System.out.println("\t ID \t first name \t last name \t user name \t gender \t email \t birth date \t location\n ");
+        for (Object response: responseBody.getResponse()){
+            User users = (User) response;
+            System.out.println("ON "+users.getUserName()+"'s Desk");
+            System.out.println("\t "+ users.getUserId() + "\t\t" + users.getFirstName()+" \t\t "+users.getLastName() + "\t\t"
+                    + users.getUserName() + "\t\t" + users.getGender() + "\t\t" + users.getEmail() + "\t\t" + users.getBirthDate() + "\t\t"
+                    + users.getLocation());
         }
     }
     public void getUserProfile() throws Exception{
@@ -164,7 +191,7 @@ public class UserView {
 
         }
     }
-    public void deleteCategory() throws Exception{
+    public void deleteUser() throws Exception{
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the user id to delete");
         int categoryId = scan.nextInt();
