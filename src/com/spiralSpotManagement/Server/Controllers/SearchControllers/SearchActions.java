@@ -15,7 +15,7 @@ import java.util.List;
 public class SearchActions {
 
 
-    public List<Spot> getSpots(Spot spot) throws Exception {
+    public List<Spot> getSpots(Spot spot,Integer userId) throws Exception {
         List<Spot> spotsList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try {
@@ -37,6 +37,11 @@ public class SearchActions {
                 spot1.setUserId(rs.getInt("user_id"));
                 spotsList.add(spot1);
             }
+            String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+            PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
+            insertHistorystmt.setString(1,searchKey);
+            insertHistorystmt.setInt(2,userId);
+            insertHistorystmt.executeUpdate();
             return spotsList;
         } catch (Exception e) {
             return spotsList;

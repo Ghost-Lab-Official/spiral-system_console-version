@@ -18,7 +18,9 @@ public class SearchController {
 
         switch (action){
             case "getSpots":
-                List<Spot> spotsList = new SearchActions().getSpots((Spot) requestBody.getObject());
+                User user1 = new User();
+                user1.setUserId(new  UserAuthMiddleware().checkForUserExistence());
+                List<Spot> spotsList = new SearchActions().getSpots((Spot) requestBody.getObject(),user1.getUserId());
                 for (Spot spot: spotsList){
                     results.add((Object) spot);
                 }
