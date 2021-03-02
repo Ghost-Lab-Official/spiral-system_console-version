@@ -14,10 +14,8 @@ import java.util.Scanner;
 //import java.util.Scanner;
 
 /*
-
          @author : Ntwari Egide - Scrum Master
          @author : Ishimwe Gervais
-
  */
 
 public class ClientServerConnector {
@@ -36,11 +34,7 @@ public class ClientServerConnector {
                     = new ObjectInputStream(socket.getInputStream());
 
             // object of scanner class
-<<<<<<< HEAD
-           // Scanner sc = new Scanner(System.in);
-=======
-            Scanner sc = new Scanner(System.in);
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
+            // Scanner sc = new Scanner(System.in);
             String line = null;
 
 //            while (!"exit".equalsIgnoreCase(line)) {
@@ -52,17 +46,16 @@ public class ClientServerConnector {
                         ----------------------------------
                         user: /users
                         response : table of users
-
                         user: /users/1
                         response : user with id that id
                  */
 
-                // sending the user input to server
-                out.writeObject(requestBody);
-                out.flush();
+            // sending the user input to server
+            out.writeObject(requestBody);
+            out.flush();
 
-                // displaying server reply
-                 List<Object> dataReturned = (List<Object>) in.readObject();
+            // displaying server reply
+            List<Object> dataReturned = (List<Object>) in.readObject();
 //                 for (Users user:usersFound){
 //                     System.out.println("Server replied "
 //                             + user.getEmail());

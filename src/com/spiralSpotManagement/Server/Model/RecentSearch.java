@@ -6,14 +6,18 @@ public class RecentSearch implements Serializable {
     private Integer queryId;
     private String searchQuery;
     private String date;
-    public RecentSearch() { }
+
+    public RecentSearch() {
+
+    }
+
     public String getSearchQuery() {
         return searchQuery;
     }
-    public void setSearchQuery(String searchQuery){
+
+    public void setSearchQuery(String searchQuery) {
         this.searchQuery = searchQuery;
     }
-<<<<<<< HEAD
 
     public Integer getQueryId() {
         return queryId;
@@ -23,18 +27,11 @@ public class RecentSearch implements Serializable {
         this.queryId = queryId;
     }
 
-=======
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
     public String getDate() {
         return date;
     }
-    public void setDate(String date){
+
+    public void setDate(String date) {
         this.date = date;
-    }
-    public Integer getQueryId() {
-        return queryId;
-    }
-    public void setQueryId(Integer queryId){
-        this.queryId = queryId;
     }
 }

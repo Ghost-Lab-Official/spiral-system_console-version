@@ -7,11 +7,8 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.io.BufferedReader;
 
-<<<<<<< HEAD
 //@authors: Blessing Hirwa
 //This class is contains required forms to help a user create,update, and delete a spot
-=======
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
 public class FormsView {
     public Spot createSpotViewForm() throws IOException {
         Scanner scanner = new Scanner(System.in);

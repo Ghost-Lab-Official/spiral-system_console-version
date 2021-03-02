@@ -2,15 +2,8 @@ package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Main;
-<<<<<<< HEAD
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
-=======
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
-import com.spiralSpotManagement.Server.Model.Spot;
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
 
 import java.sql.PreparedStatement;
 import java.util.Scanner;
@@ -121,10 +114,7 @@ public class SpotView {
         int choice;
         Scanner scanner = new Scanner(System.in);
         SpotView formClient = new SpotView();
-<<<<<<< HEAD
         UserLog userLogToInsert = new UserLog();
-=======
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
@@ -133,7 +123,6 @@ public class SpotView {
         System.out.println("\t\t\t\t  Enter your choice                                              ");
         choice = scanner.nextInt();
         switch (choice) {
-<<<<<<< HEAD
             case 1 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0) {
                     formClient.createSpot();
@@ -147,10 +136,10 @@ public class SpotView {
                     new ReportsView().createUserlog(userLogToInsert);
                 }
 
-            else{
-                System.out.println("You have to login first\n");
-                new UserView().loginUser();
-            }
+                else{
+                    System.out.println("You have to login first\n");
+                    new UserView().loginUser();
+                }
             }
             case 2 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0){
@@ -183,14 +172,8 @@ public class SpotView {
                     new UserView().loginUser();
                 }
             }
-=======
-            case 1 -> formClient.createSpot();
-            case 2 -> formClient.updateSpot();
-            case 3 -> formClient.deleteSpotContent();
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
             default -> System.out.println("Invalid input");
         }
     }
 }
-
 

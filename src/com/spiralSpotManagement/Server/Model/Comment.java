@@ -22,14 +22,6 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Constructor in which id and timestamps auto generated
-     * @author Cedric Izabayo
-     */
-
->>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
     public Comment(String comment_id, Integer spotId, Integer userId, Integer replyId, String content, String status, Date created_at, Date updatedAt) {
         this.comment_id = comment_id;
         this.spotId = spotId;
