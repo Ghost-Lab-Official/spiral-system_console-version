@@ -36,7 +36,6 @@ public class Login {
                 newPayload.put("user_category",rs.getString("user_Category"));
                 Token loginCredentials = new Token(rs.getString("email"),newPayload);
                 String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
-                System.out.println(userToken);
             };
         }
         else{

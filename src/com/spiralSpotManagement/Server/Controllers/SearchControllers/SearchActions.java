@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 
@@ -94,7 +95,7 @@ public class SearchActions {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(
                     "select DISTINCT searched_query,search_date,history_id from searchHistory where user_id ='"
-                            + user.getUserId() + "' ORDER BY search_date DESC LIMIT 10");
+                            + new UserAuthMiddleware().checkForUserExistence() + "' ORDER BY search_date DESC LIMIT 10");
             while (rs.next()) {
                 String searchQuery = rs.getString("searched_query");
                 String date = rs.getString("search_date");

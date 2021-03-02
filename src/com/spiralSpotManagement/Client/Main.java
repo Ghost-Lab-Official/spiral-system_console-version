@@ -81,6 +81,8 @@ public class Main {
             choice = scanner.nextInt();
             switch (choice){
                 case 1 :
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                        System.out.println("You already logged in, logout before logging in again");
                     userForms.loginUser();
                     break;
                 case 2:
