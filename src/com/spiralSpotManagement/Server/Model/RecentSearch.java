@@ -3,6 +3,7 @@ package com.spiralSpotManagement.Server.Model;
 import java.io.Serializable;
 
 public class RecentSearch implements Serializable {
+    private Integer queryId;
     private String searchQuery;
     private String date;
 
@@ -18,8 +19,15 @@ public class RecentSearch implements Serializable {
         this.searchQuery = searchQuery;
     }
 
+    public Integer getQueryId() {
+        return queryId;
+    }
 
-  public String getDate() {
+    public void setQueryId(Integer queryId) {
+        this.queryId = queryId;
+    }
+
+    public String getDate() {
         return date;
     }
 

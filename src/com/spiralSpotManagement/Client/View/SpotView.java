@@ -3,13 +3,12 @@ package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Main;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
-import com.spiralSpotManagement.Server.Model.Spot;
+import com.spiralSpotManagement.Server.Model.*;
+import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
 
 import java.sql.PreparedStatement;
 import java.util.Scanner;
+import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
 
 public class SpotView {
     FormsView formClient = new FormsView();
@@ -113,45 +112,85 @@ public class SpotView {
     public void spotViewMenu() throws Exception {
         /*@Bethiane
          * This is the entry of spotView */
-        int choice;
-        Scanner scanner = new Scanner(System.in);
-        SpotView formClient = new SpotView();
+        String toContinue;
+        do {
+            int choice;
+            Scanner scanner = new Scanner(System.in);
+            SpotView formClient = new SpotView();
+
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------       SPIRAL ~ SPOTS           ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
             System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
             System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+            System.out.println("\t\t\t||------------------    4. VIEW ALL SPOT           ------------------||");
+            System.out.println("\t\t\t||------------------    5. RETURN HOME             ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
-        choice = scanner.nextInt();
-        switch (choice) {
-            case 1 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0) formClient.createSpot();
 
-            else{
-                System.out.println("You have to login first\n");
-                new UserView().loginUser();
-            }
-            }
-            case 2 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                formClient.updateSpot();
-                else{
-                    System.out.println("You have to login first\n");
-                    new UserView().loginUser();
+            UserLog userLogToInsert = new UserLog();
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1 -> {
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+                        formClient.createSpot();
+
+                        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                        userLogToInsert.setAction("created spot");
+                        userLogToInsert.setDateTimeLoggedOut(null);
+                        userLogToInsert.setTotalIn(5);
+                        userLogToInsert.setTotalOut(3);
+                        new ReportsView().createUserlog(userLogToInsert);
+                    } else {
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
                 }
-            }
-            case 3 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                formClient.deleteSpotContent();
-                else{
-                    System.out.println("You have to login first\n");
-                    new UserView().loginUser();
+                case 2 -> {
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+                        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                        userLogToInsert.setAction("updated a spot");
+                        userLogToInsert.setDateTimeLoggedOut(null);
+                        userLogToInsert.setTotalIn(5);
+                        userLogToInsert.setTotalOut(3);
+                        formClient.updateSpot();
+                    } else {
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
                 }
+                case 3 -> {
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+                        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                        userLogToInsert.setAction("Deleted a spot");
+                        userLogToInsert.setDateTimeLoggedOut(null);
+                        userLogToInsert.setTotalIn(5);
+                        userLogToInsert.setTotalOut(3);
+                        formClient.deleteSpotContent();
+                    } else {
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
+                }
+
+                case 4-> {
+                    System.out.println("All spots registered are:");;
+                }
+
+
+                case 5-> {
+                    ikazeSpiral();
+                }
+
+                default -> System.out.println("Invalid input");
             }
-            default -> System.out.println("Invalid input");
-        }
+            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            toContinue = scanner.next();
+        }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
 }
 

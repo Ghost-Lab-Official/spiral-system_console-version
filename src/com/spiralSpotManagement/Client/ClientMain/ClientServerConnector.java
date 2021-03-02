@@ -25,7 +25,7 @@ public class ClientServerConnector {
     {
         // establish a connection by providing host and port
         // number
-        try (Socket socket = new Socket("localhost", 1234)) {
+        try (Socket socket = new Socket("localhost", 1294)) {
 
             // writing to server
             ObjectOutputStream out = new ObjectOutputStream(
@@ -36,7 +36,7 @@ public class ClientServerConnector {
                     = new ObjectInputStream(socket.getInputStream());
 
             // object of scanner class
-            Scanner sc = new Scanner(System.in);
+           // Scanner sc = new Scanner(System.in);
             String line = null;
 
 //            while (!"exit".equalsIgnoreCase(line)) {
@@ -66,7 +66,6 @@ public class ClientServerConnector {
 //            }
 
             // closing the scanner object
-//            sc.close();
 
             ResponseBody responseBody = new ResponseBody(dataReturned);
 

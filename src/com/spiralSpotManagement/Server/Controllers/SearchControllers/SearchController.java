@@ -31,17 +31,25 @@ public class SearchController {
                 return results;
 
             case "searchByPopularity":
-                List<Object> popularSpots=new SearchActions().popularityArray();
+                List<Object> popularSpots=new SearchActions().getMostPopularSearches();
                return popularSpots;
 
             //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
 
 
-            case "viewRecentSearches":
-                List<Object> recentSearchesList= new SearchActions().DisplayRecentSearches((User) requestBody.getObject());
 
-                break;
+            case "viewRecentSearches":
+                List<Object> recentSearchesList = new SearchActions()
+                        .DisplayRecentSearches((User) requestBody.getObject());
+                return recentSearchesList;
+            case "RemoveRecentSearch":
+                User user = new User();
+                user.setUserId(1);
+                ResponseStatus responseStatus = new SearchActions().RemoveRecentSearch(user,
+                        (RecentSearch) requestBody.getObject());
+                results.add(responseStatus);
+                return results;
 
             default :
 

@@ -9,6 +9,7 @@ import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.SpotCategory;
+import com.spiralSpotManagement.Client.Main;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,6 +18,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+
+import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
 
 
 
@@ -178,6 +181,7 @@ public class SpotCategoryView {
             System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
             System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
             System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
+            System.out.println("\t\t\t||------------------    5.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -214,6 +218,10 @@ public class SpotCategoryView {
                         new UserView().loginUser();
                     }
                     break;
+
+                case 5:
+                    ikazeSpiral();
+
                 default:
                     System.out.println("Invalid input");
 

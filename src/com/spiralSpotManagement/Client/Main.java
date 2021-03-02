@@ -21,14 +21,40 @@ import java.util.Scanner;
             This is the entry of Spiral;
             WELCOME!
  */
-    public class Main {
 
-//    public void MainMenu(){
-//
-//    }
+public class Main {
+    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
+        RequestBody requestBody = new RequestBody();
+
+        Users testingObject = new Users();
+        testingObject.setEmail("ntwari@gmal.test");
+        testingObject.setFullName("ntwari testing");
+        requestBody.setObject(testingObject);
+
+        requestBody.setUrl("/users");
+        requestBody.setAction("register");
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        // depending on clients need you will need to do type casting
+
+        List<Object> usersFoundObject =  responseBody.getResponse();
+
+        for (Object userObject: usersFoundObject){
+            ResponseStatus responseStatus = (ResponseStatus) userObject;
+
+            System.out.println("Server replied "
+                    + (responseStatus.getStatus()));
+        }
+
+        /*
+            WORKING ON USER REGISTRATION
+        */
+    }
 
 
-    public static void main(String[] args) throws Exception {
+    public static void ikazeSpiral() throws Exception {
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -49,6 +75,8 @@ import java.util.Scanner;
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
+            System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
+            System.out.println("\t\t\t||------------------    8.EXIT                     ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -75,23 +103,58 @@ import java.util.Scanner;
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    locationForms.LocationViewMenu();
+                        locationForms.LocationViewMenu();
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
 
                 case 6:
+
                     searchForms.SearchViewMenu();
+
+                    //        create user log
+                    UserLog userLogToInsert = new UserLog();
+                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                    userLogToInsert.setAction("searching");
+                    userLogToInsert.setDateTimeLoggedOut(null);
+                    userLogToInsert.setTotalIn(5);
+                    userLogToInsert.setTotalOut(3);
+                    new ReportsView().createUserlog(userLogToInsert);
+                    searchForms.SearchViewMenu();
+
                     break;
+                case 7:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
+                        new ReportsView().reportDashboard();
+                    else {
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
+                    break;
+
+                case 8 :
+                    System.out.println("-------THANK YOU!------- ");
+                    System.exit(0);
+
+                    break;
+
+
                 default:
                     System.out.println("Invalid input");
             }
-            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            System.out.print("\t\tDo you want to continue? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
 
 
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        System.out.println("SPIRAL");
+      ikazeSpiral();
     }
 
 }

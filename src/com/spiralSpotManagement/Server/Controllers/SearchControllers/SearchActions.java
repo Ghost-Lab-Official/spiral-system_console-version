@@ -1,10 +1,7 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.PopularSearch;
-import com.spiralSpotManagement.Server.Model.RecentSearch;
-import com.spiralSpotManagement.Server.Model.Spot;
-import com.spiralSpotManagement.Server.Model.User;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -88,29 +85,72 @@ public class SearchActions {
  * @Author : Pauline Ishimwe this method will help you to display your recent searches
  * as a logged in user (last 10 at most)
  * */
+
     public List<Object> DisplayRecentSearches(User user) throws Exception {
 
         List<Object> recentSearches = new ArrayList<>();
-        Connection con = new CloudStorageConnectionHandler().getConnection();
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery
-                        ("select DISTINCT searched_query,search_date from searchHistory where user_id ="+user.getUserId());
-        while (rs.next()) {
-            String searchQuery = rs.getString("searched_query");
-            String date = rs.getString("search_date");
+        try {
+            Connection con = new CloudStorageConnectionHandler().getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                    "select DISTINCT searched_query,search_date,history_id from searchHistory where user_id ='"
+                            + user.getUserId() + "' ORDER BY search_date DESC LIMIT 10");
+            while (rs.next()) {
+                String searchQuery = rs.getString("searched_query");
+                String date = rs.getString("search_date");
+                Integer historyId = rs.getInt("history_id");
+                RecentSearch recentSearch = new RecentSearch();
+                recentSearch.setSearchQuery(searchQuery);
+                recentSearch.setDate(date);
+                recentSearch.setQueryId(historyId);
+                recentSearches.add((Object) recentSearch);
+            }
 
-            RecentSearch recentSearch = new RecentSearch();
-            recentSearch.setSearchQuery(searchQuery);
-            recentSearch.setDate(date);
-
-            recentSearches.add((Object) recentSearch);
+            return recentSearches;
+        } catch (Exception e) {
+            return recentSearches;
         }
-
-        return recentSearches;
     }
 
+    /**
+     * @Author: MUGISHA ISAAC
+     * @Comment: this is a method called RemoveRecentSearch which takes id of a
+     *           query to delete and also takes the user_id who is logged in. Then
+     *           this method deletes the query where query_id is the same as That
+     *           stored in the table where the user_id is the same as that of the
+     *           user who is logged in. Thanks for whoever who will use this method
+     *           as well as this class.
+     * @Date: 9 Feb 2021
+     * @copyright all right reserved.
+     **/
+    public ResponseStatus RemoveRecentSearch(User user, RecentSearch recentSearch) throws Exception {
+        try {
+            Connection con = new CloudStorageConnectionHandler().getConnection();
+            PreparedStatement statement = con
+                    .prepareStatement("DELETE FROM searchHistory WHERE history_id=? AND user_id=? ");
+            statement.setInt(1, recentSearch.getQueryId());
+            statement.setInt(2, user.getUserId());
+            int isDeleted = statement.executeUpdate();
+            if (isDeleted == 1) {
+                return new ResponseStatus(200, "OK", "QUERY DELETED SUCCESSFULLY");
+            } else {
+                return new ResponseStatus(400, "BAD REQUEST", "DELETION FAILED");
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return new ResponseStatus(500, "EXCEPTION ERROR", ex.getMessage());
+        }
+    }
 
-    public  List<Object> popularityArray() throws Exception {
+    /**
+     * @Author: Blessing Hirwa, Izere kerie
+     * @Comment: this is a method called getMostPopularSearches which will get all popular searches i.e
+     * most searched queries/spots
+     * @ReturnType: list of type object
+     * @Date: 9 Feb 2021
+     * @copyright all rights reserved.
+     **/
+    public  List<Object> getMostPopularSearches() throws Exception {
 
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         List<String>  PopularSearches = new ArrayList<>();

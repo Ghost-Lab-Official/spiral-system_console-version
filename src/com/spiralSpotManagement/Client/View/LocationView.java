@@ -6,6 +6,7 @@ import com.spiralSpotManagement.Server.Model.LocationModel;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -242,6 +243,7 @@ public  void RecoverLocation(){
             System.out.println("\t\t\t||------------------    2.UPDATE LOCATION          ------------------||");
             System.out.println("\t\t\t||------------------    3.DELETE A LOCATION        ------------------||");
             System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION       ------------------||");
+            System.out.println("\t\t\t||------------------    5.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -258,6 +260,11 @@ public  void RecoverLocation(){
                 case 4:
                     RecoverLocation();
                     break;
+
+                case 5:
+                    ikazeSpiral();
+                    break;
+
                 default:
                     System.out.println("Invalid input");
                     break;
