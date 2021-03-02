@@ -37,11 +37,13 @@ public class SearchActions {
                 spot1.setUserId(rs.getInt("user_id"));
                 spotsList.add(spot1);
             }
-            String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
-            PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
-            insertHistorystmt.setString(1,searchKey);
-            insertHistorystmt.setInt(2,userId);
-            insertHistorystmt.executeUpdate();
+            if(userId > 0) {
+                String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+                PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
+                insertHistorystmt.setString(1, searchKey);
+                insertHistorystmt.setInt(2, userId);
+                insertHistorystmt.executeUpdate();
+            }
             return spotsList;
         } catch (Exception e) {
             return spotsList;
@@ -56,7 +58,7 @@ public class SearchActions {
      *@throws Exception
      */
 
-    public List<User> getPeople(User user) throws Exception{
+    public List<User> getPeople(User user,Integer userId) throws Exception{
         List<User> peopleList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try{
@@ -78,6 +80,13 @@ public class SearchActions {
                 user1.setBirthDate(rs.getString("birth_date"));
                 user1.setUserCategory(rs.getString("user_category"));
                 peopleList.add(user1);
+            }
+            if(userId > 0) {
+                String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+                PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
+                insertHistorystmt.setString(1, searchKey);
+                insertHistorystmt.setInt(2, userId);
+                insertHistorystmt.executeUpdate();
             }
             return peopleList;
         }catch (Exception e){

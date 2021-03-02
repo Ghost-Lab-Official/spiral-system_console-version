@@ -27,7 +27,9 @@ public class SearchController {
                 return results;
 
             case "getPeople":
-                List<User> peopleList = new SearchActions().getPeople((User) requestBody.getObject());
+                User user2 = new User();
+                user2.setUserId(new  UserAuthMiddleware().checkForUserExistence());
+                List<User> peopleList = new SearchActions().getPeople((User) requestBody.getObject(),user2.getUserId());
                 for (User user: peopleList){
                     results.add((Object) user);
                 }
