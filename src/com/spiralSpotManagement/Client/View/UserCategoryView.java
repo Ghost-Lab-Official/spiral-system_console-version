@@ -6,8 +6,9 @@ import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.UserCategory;
+import com.spiralSpotManagement.Server.Utils.UserCategories;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class UserCategoryView {
     public void mainMethod()throws Exception{
@@ -45,11 +46,41 @@ public class UserCategoryView {
 
     public static void createCategory()throws Exception{
         Scanner scan = new Scanner(System.in);
-        System.out.println("Insert the Category Name");
-        String category =scan.nextLine();
+        List<UserCategories> allPossibleUserCategories = new ArrayList<UserCategories>(EnumSet.allOf(UserCategories.class));
+        System.out.println("---- Allowed User Categories ---------");
+        int i=1;
+        for (UserCategories category : allPossibleUserCategories){
+            System.out.println(i+" "+category.toString());
+            i++;
+        }
+
+        System.out.println("Insert the Category you want to create");
+        int category =scan.nextInt();
+        String categoryName;
+        switch (category){
+            case 1:
+                categoryName = UserCategories.NORMAL_USER.toString();
+                break;
+             case 2:
+                categoryName = UserCategories.SUPER_ADMIN.toString();
+                break;
+            case 3:
+                categoryName = UserCategories.ADMIN.toString();
+                break;
+            case 4:
+                categoryName = UserCategories.CONTRIBUTOR.toString();
+                break;
+            case 5:
+                categoryName = UserCategories.EMPLOYEE.toString();
+                break;
+            default:
+                categoryName = null;
+                break;
+        }
+
 
         UserCategory userCategoryToInsert = new UserCategory();
-        userCategoryToInsert.setCatName(category);
+        userCategoryToInsert.setCatName(categoryName);
 
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/user-category");

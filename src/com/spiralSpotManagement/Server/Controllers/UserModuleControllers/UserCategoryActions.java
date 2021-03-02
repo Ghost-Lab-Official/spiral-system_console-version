@@ -15,10 +15,19 @@ public class UserCategoryActions {
     String UpdateUserStatus = "UPDATE users_table SET user_status=? WHERE category_id=?";
     String deleteSQL = "DELETE FROM users_categories WHERE category_id=?";
     String selectSQL = "SELECT * FROM users_categories";
+    String selectToCreateSQL = "Select *from users_categories where user_category=?";
 
 
     public ResponseStatus createUserCategory(UserCategory userCategoryToRegister)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
+
+        PreparedStatement statement = connection.prepareStatement(selectToCreateSQL);
+        statement.setString(1,userCategoryToRegister.getCatName());
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next() == true){
+            return new ResponseStatus(400,"BAD REQUEST","This Category is already registered");
+        }
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(InsertSql)){
             preparedStatement.setString(1,userCategoryToRegister.getCatName());
             int inserted = preparedStatement.executeUpdate();
