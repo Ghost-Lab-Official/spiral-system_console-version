@@ -124,8 +124,7 @@ public class SpotView {
             System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
             System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
             System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
-            System.out.println("\t\t\t||------------------    4. VIEW ALL SPOT           ------------------||");
-            System.out.println("\t\t\t||------------------    5. RETURN HOME             ------------------||");
+            System.out.println("\t\t\t||------------------    4. RETURN HOME             ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
 
@@ -177,12 +176,8 @@ public class SpotView {
                     }
                 }
 
+
                 case 4-> {
-                    System.out.println("All spots registered are:");;
-                }
-
-
-                case 5-> {
                     ikazeSpiral();
                 }
 
