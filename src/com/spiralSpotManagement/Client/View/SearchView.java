@@ -12,11 +12,14 @@ import java.util.Scanner;
 /**
  * @author Abizera Oreste
  * @author Kwizera Emmanuel
+ *
+ * SearchView class is defined for handling Search Views (Search on the client)
  */
 
 public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
     public void mainMethod() throws Exception{
+<<<<<<< HEAD
         String cont = "";
         do {
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
@@ -37,16 +40,101 @@ public class SearchView {
             case 3 -> searchMessages();
             case 4 -> searchPopular();
             case 5 -> viewRecentSearches();
+=======
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
+        System.out.println("\t\t\t============================================= ");
+        System.out.println("\t\t\t|| 1.  RECENT SEARCHES                      ||");
+        System.out.println("\t\t\t|| 2.  SEARCH SPOT                          ||");
+        System.out.println("\t\t\t|| 3.  SEARCH PEOPLE                        ||");
+        System.out.println("\t\t\t|| 4.  SEARCH MESSAGE                       ||");
+        System.out.println("\t\t\t============================================= ");
+        System.out.print("Enter Your choice: ");
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case 1 -> viewRecentSearches();
+            case 2 -> searchSpot();
+            case 3 -> searchPeople();
+            case 4 -> searchMessages();
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
             default -> System.out.println("Invalid option");
         }
+    }
 
-        System.out.print("Do you want to continue searching? (y/n): ");
-        cont = scanner.next();
-        }while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"));
+
+    /**
+     * @return void
+     * @throws Exception
+     * @comment This method requests recent searches from the server and displays them
+     */
+    public static void viewRecentSearches() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("viewRecentSearches");
+
+        User user = new User();
+        user.setUserId(1);
+
+        requestBody.setObject(user);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        int i = 1;
+        List<RecentSearch> recentSearchList = new ArrayList<>();
+        for (Object response : responseBody.getResponse()){
+            RecentSearch recentSearch = (RecentSearch) response;
+            System.out.println(i + ". " + recentSearch.getSearchQuery());
+            recentSearchList.add(recentSearch);
+            i++;
+        }
+        if(recentSearchList.size() == 0){
+            System.out.println("No results found");
+        }else {
+            String delete = "";
+            System.out.println("Do you want to remove a recent research (y/n)");
+            delete = scanner.next();
+            if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
+                System.out.println("Enter Recent Search: ");
+                Integer choice = scanner.nextInt();
+                if (choice > recentSearchList.size()) {
+                    System.out.println("Invalid Choice");
+                } else {
+                    RemoveRecentSearch(recentSearchList.get(choice - 1));
+                }
+            }
+        }
     }
 
     /**
-     * display a spot
+     * @param recentSearch
+     * @throws Exception
+     * @comment This method uses sends a request to delete selected recent search and displays the status
+     */
+
+    public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("RemoveRecentSearch");
+        requestBody.setObject(recentSearch);
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+
+
+    /**
+     *
+     * @param spotsList
+     * @throws Exception
+     * @comment This method displays a spot from list of spots
      */
     public static void displaySpot(List<Object> spotsList) throws Exception{
         Spot selectedSpot = null;
@@ -77,12 +165,16 @@ public class SearchView {
             likeSpot(selectedSpot);
         }else if (action == 2){
             commentOnSpot(selectedSpot);
+        }else if(action == 3){
+            new CommentView().viewComments(selectedSpot);
         }
     }
 
     /**
-     * @author: Abizera Oreste
-     * this method is for displaying a single person information
+     *
+     * @param usersList
+     * @throws Exception
+     * @comment This method displays a user from users list given
      */
     public static void displayUser(List<Object> usersList) throws Exception{
         User selectedUser = null;
@@ -102,10 +194,13 @@ public class SearchView {
         }
     }
 
-    /**
-     * Comment on a spot
-     */
 
+    /**
+     *
+     * @param spot
+     * @throws Exception
+     * @comment This method calls the Function to comment on a spot
+     */
     public static void commentOnSpot(Spot spot) throws Exception {
 
         System.out.println("Comment on spot " + spot.getSpotId());
@@ -123,7 +218,7 @@ public class SearchView {
 
 
     /**
-     * Search a spot
+     * this method is used to Search a spot
      */
     public static void searchSpot() throws Exception{
         RequestBody requestBody = new RequestBody();
@@ -158,8 +253,9 @@ public class SearchView {
 
 
     /**
-     * @author: Abizera Oreste
-     * This method is used to search people
+     *
+     * @throws Exception
+     * @comment This method is used to Send a request to search people
      */
 
     /**
@@ -207,7 +303,9 @@ public class SearchView {
         }
     }
 
-
+    /**
+     * @comment this method searches comments in the system
+     */
     public static void searchMessages(){
 
     }

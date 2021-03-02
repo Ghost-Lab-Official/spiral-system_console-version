@@ -21,6 +21,7 @@ import java.util.Scanner;
             This is the entry of Spiral;
             WELCOME!
  */
+<<<<<<< HEAD
 
 public class Main {
     public static void ExampleOfUsageOfClientServerConnector()throws Exception{
@@ -53,6 +54,13 @@ public class Main {
         */
     }
 
+=======
+    public class Main {
+
+//    public void MainMenu(){
+//
+//    }
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
 
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -73,17 +81,25 @@ public class Main {
             System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
             System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
+<<<<<<< HEAD
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
+=======
+            System.out.println("\t\t\t||------------------    5.SEARCH                   ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t\t  Enter your choice                                              ");
+            choice = scanner.nextInt(); System.out.println("");
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
             switch (choice){
                 case 1 :
                     userForms.loginUser();
                     break;
                 case 2:
+<<<<<<< HEAD
 //                    System.out.println("here"+userExistence);
                     if(new UserAuthMiddleware().checkForUserExistence() != 0){
                         userForms.registerUser();
@@ -92,11 +108,15 @@ public class Main {
                         System.out.println("You have to login first\n");
                         userForms.loginUser();
                     }
+=======
+                    userForms.registerUser();
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
                     break;
                 case 3:
                     spotForms.spotViewMenu();
                     break;
                 case 4:
+<<<<<<< HEAD
                     //spotCategories.SpotCategoryMenu();
                     userCategoryForms.UserCategoryMenu();
                     break;
@@ -128,6 +148,13 @@ public class Main {
                         new UserView().loginUser();
                     }
                     break;
+=======
+                    spotCategories.SpotCategoryMenu();
+                    break;
+                case 5:
+                    searchForms.mainMethod();
+                    break;
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
                 default:
                     System.out.println("Invalid input");
             }
@@ -138,4 +165,8 @@ public class Main {
 
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0

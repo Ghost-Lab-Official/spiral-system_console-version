@@ -36,7 +36,11 @@ public class ClientServerConnector {
                     = new ObjectInputStream(socket.getInputStream());
 
             // object of scanner class
+<<<<<<< HEAD
            // Scanner sc = new Scanner(System.in);
+=======
+            Scanner sc = new Scanner(System.in);
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
             String line = null;
 
 //            while (!"exit".equalsIgnoreCase(line)) {
