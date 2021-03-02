@@ -126,7 +126,7 @@ public class Main {
                     break;
                 case 7:
                     UserController userSettings = new UserController();
-                    userSettings.user
+//                    userSettings.user
                 case 8:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
                     new ReportsView().reportDashboard();
