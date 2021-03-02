@@ -119,10 +119,14 @@ public class ReportsView {
                 case 3 : locationsByStatus();
                     break;
                 case 4 :
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter a location");
+                    String location = bufferedReader.readLine();
+
                     RequestBody myRequest7= new RequestBody();
                     myRequest7.setUrl("/report");
                     myRequest7.setAction("getSpotsByLocations");
-                    myRequest7.setObject(null);
+                    myRequest7.setObject(location);
 
                     try{
                         ClientServerConnector  clientServerConnector1 = new ClientServerConnector();

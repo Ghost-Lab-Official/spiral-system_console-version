@@ -2,207 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_492.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/commons-codec-1.14.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/mysql-connector.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral console/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral console/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral console/com/spiralSpotManagement/DbConnection/mysql-connector-java-5.1.49.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral console/com/spiralSpotManagement/UsersModule/mysql-connector-java-5.1.49.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/jackson_annotations_2_12_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/mysql_connector_java_5_1_49_bin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.class~74e44be3e6d4cdc7b8bc8db079e9929778c9d9e5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchActions.class~31c7c92a6c1a10f9053b4a10a34cd5d958ad03dc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.class~31c7c92a6c1a10f9053b4a10a34cd5d958ad03dc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer$ClientHandler.class~74e44be3e6d4cdc7b8bc8db079e9929778c9d9e5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.class~74e44be3e6d4cdc7b8bc8db079e9929778c9d9e5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/spiralSpotManagement.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spiral-system_console-version" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/libraries/jackson_annotations_2_12_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/libraries/libs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/libraries/mysql_connector_java_5_1_49_bin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/ClientMain/ClientServerConnector.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Middleware/UserAuthMiddleware.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/CommentReactionView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/CommentView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/FormsView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/LocationLevelsView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/LocationView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotCategoryView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserCategoryView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/BillingControllers/BillingController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationLevelControllers/LocationLevelController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationLevelControllers/LocationLevelsActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchActions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentReactActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentReactionController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Login.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Register.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Token.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserCategoryActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserCategoryController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UsersActions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/PropertyVariables.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Comment.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/CommentReactions.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/LocationLevels.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/LocationModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/PopularSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/RecentSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/RequestBody.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/ResponseBody.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/ResponseStatus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Spot.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/SpotCategory.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/TokenIssued.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/UserCategory.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Users.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer$ClientHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/config.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/spiralSpotManagement.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_49.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_49.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spiral-system_console-version.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spiral-system_console-version.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/libs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/libs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/ClientMain/ClientServerConnector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/Middleware/UserAuthMiddleware.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/CommentReactionView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/CommentView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/FormsView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/LocationLevelsView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/LocationView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/ReportsView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/SearchView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/SpotCategoryView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/SpotView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/UserCategoryView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/UserView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/BillingControllers/BillingController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/LocationLevelControllers/LocationLevelController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/LocationLevelControllers/LocationLevelsActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/ReportController/LocationsReportsActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/ReportController/SpotReportsActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/ReportController/UserLogsActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/ReportController/UsersReportActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentReactActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentReactionController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/CounterResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/Token.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserCategoryActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UsersActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/DbController/PropertyVariables.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/Comment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/CommentReactions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/LocationLevels.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/LocationModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/LocationsReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/PopularSearch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/RecentSearch.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/RequestBody.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/ResponseBody.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/ResponseStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/Spot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/SpotCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/SpotsReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/TokenIssued.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/UserCategory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/UserLog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/Users.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/UsersReport.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer$ClientHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral-spot-management-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spiral-spot-management-system.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/ClientMain/ClientServerConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/ClientMain/ClientServerConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/CommentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/CommentView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/LocationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/LocationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/ReportsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/ReportsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotCategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotCategoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserCategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserCategoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/LocationReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/LocationReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/spotReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/spotReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/LocationControllers/LocationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/LocationsReportsActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/LocationsReportsActions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/SpotReportsActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/SpotReportsActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/UserLogsActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/UserLogsActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UsersActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UsersActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/CommentReactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/CommentReactions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/Spot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/SpotCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/SpotCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/SpotsReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/SpotsReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/UserCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Model/UserCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,19 +53,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -276,7 +67,9 @@
       <workItem from="1613479301893" duration="590000" />
       <workItem from="1613676571368" duration="4000" />
       <workItem from="1614139678595" duration="2572000" />
-      <workItem from="1614145083746" duration="1952000" />
+      <workItem from="1614145083746" duration="2737000" />
+      <workItem from="1614159597908" duration="1732000" />
+      <workItem from="1614247027109" duration="12000" />
     </task>
     <servers />
   </component>
