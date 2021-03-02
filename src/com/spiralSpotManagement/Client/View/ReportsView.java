@@ -1069,9 +1069,8 @@ try{
             System.out.println("\t\t\t|| 2.  View all users                      ||");
             System.out.println("\t\t\t|| 3.  View user activities                ||");
             System.out.println("\t\t\t|| 4.  View user by status                 ||");
-            System.out.println("\t\t\t|| 5.  Create user a user log              ||");
-            System.out.println("\t\t\t|| 6.  Back                                ||");
-            System.out.println("\t\t\t|| 7.  Exit                                ||");
+            System.out.println("\t\t\t|| 5.  Back                                ||");
+            System.out.println("\t\t\t|| 6.  Exit                                ||");
             System.out.println("\t\t\t-------------------------------------------- ");
 
             System.out.println("\t\t\t Make a choice: ");
@@ -1099,12 +1098,10 @@ try{
                 case 4 :
                     viewUsersByStatus();
                     break;
+
                 case 5 :
-                    createUserlog(userLogToInsert);
-                    break;
-                case 6 :
                     navigateToUsersManagement();
-                case 7 :
+                case 6 :
                     System.exit(0);
                 default :
                     System.out.println("\t\t\t\t Invalid input");

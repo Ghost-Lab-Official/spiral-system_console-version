@@ -19,114 +19,87 @@ public class ReportController {
 
         switch (action){
             case "getUserLogs":
-                List<Object> allUserLogs = new UserLogsActions().getAllUserLogs();
-                return allUserLogs;
+                return new UserLogsActions().getAllUserLogs();
 
             case "createUserLog":
                 ResponseStatus userLogResponseStatus = new UserLogsActions().recordUserLogs((UserLog) request.getObject());
                 userLogsReport.add((Object) userLogResponseStatus);
                 return userLogsReport;
             case "getTotalNumberOfUsers":
-                List<Object> numberofAllUsers = new UsersReportActions().getTheTotalNumberOfAllUsersRegistered();
-                return numberofAllUsers;
+                return new UsersReportActions().getTheTotalNumberOfAllUsersRegistered();
 
             case "getAllUsers":
-                List<Object> allUsers = new UsersReportActions().viewAllUsers();
-                return allUsers;
+                return new UsersReportActions().viewAllUsers();
 
             case "getAllActiveUsers":
-                List<Object> allActiveUsers = new UsersReportActions().viewAllUsersByStatus("active");
-                return allActiveUsers;
+                return new UsersReportActions().viewAllUsersByStatus("active");
 
             case "getAllInactiveUsers":
-                List<Object> allInActiveUsers = new UsersReportActions().viewAllUsersByStatus("inactive");
-                return allInActiveUsers;
+                return new UsersReportActions().viewAllUsersByStatus("inactive");
 
             case "getTotalNumberOfActiveUsers":
-                List<Object> numberofAllActiveUsers = new UsersReportActions().getTheTotalNumberOfAllUsersByStatus("active");
-                return numberofAllActiveUsers;
+                return new UsersReportActions().getTheTotalNumberOfAllUsersByStatus("active");
 
             case "getTotalNumberOfInactiveUsers":
-                List<Object> getTotalNumberOfInactiveUsers = new UsersReportActions().getTheTotalNumberOfAllUsersByStatus("inactive");
-                return getTotalNumberOfInactiveUsers;
+                return new UsersReportActions().getTheTotalNumberOfAllUsersByStatus("inactive");
 
             case "getAllLocations":
-                List<Object> AllLocations = new LocationsReportsActions().viewAllLocations();
-                return AllLocations;
+                return new LocationsReportsActions().viewAllLocations();
 
 
                 //Spot Cases
 
 
             case "getTotalNumberOfRegisteredSpots":
-                List<Object> getTotalNumberOfRegisteredSpots = new SpotReportsActions().getTheTotalNumbersOfRegisteredSpots();
-                return getTotalNumberOfRegisteredSpots;
+                return new SpotReportsActions().getTheTotalNumbersOfRegisteredSpots();
 
             case "getTotalNumberOfActiveSpots":
-                List<Object> getTotalNumberOfActiveSpots = new SpotReportsActions().getTheTotalNumberOfActiveSpots();
-                return getTotalNumberOfActiveSpots;
+                return new SpotReportsActions().getTheTotalNumberOfActiveSpots();
 
             case "getTotalNumberOfInactiveSpots":
-                List<Object> getTotalNumberOfInactiveSpots = new SpotReportsActions().getTheTotalNumberOfInactiveSpots();
-                return getTotalNumberOfInactiveSpots;
+                return new SpotReportsActions().getTheTotalNumberOfInactiveSpots();
 
             case "getTotalNumberOfTrendingSpots":
-                List<Object> getTotalNumberOfTrendingSpots = new SpotReportsActions().getTheTotalNumbersOfTrendingSpots();
-                return getTotalNumberOfTrendingSpots;
+                return new SpotReportsActions().getTheTotalNumbersOfTrendingSpots();
             case "getAllSpots":
-                List<Object> allSpots = new SpotReportsActions().viewAllSpots();
-                return allSpots;
+                return new SpotReportsActions().viewAllSpots();
             case "getAllActiveSpots":
-                List<Object> allActiveSpots = new SpotReportsActions().viewAllActiveSpots();
-                return allActiveSpots;
+                return new SpotReportsActions().viewAllActiveSpots();
             case "getAllTrendingSpots":
-                List<Object> allTrendingSpots = new SpotReportsActions().ViewHighlyVisitedSpots();
-                return allTrendingSpots;
+                return new SpotReportsActions().ViewHighlyVisitedSpots();
             case "getAllInactiveSpots":
-                List<Object> allInactiveSpots = new SpotReportsActions().viewAllInactiveSpots();
-                return allInactiveSpots;
+                return new SpotReportsActions().viewAllInactiveSpots();
 
             case "getTheNumberOfAllRegisteredLocations":
-                List<Object> getTotalNumberOfAllLocations = new LocationsReportsActions().totalNumberOfRegisteredLocations();
-                return getTotalNumberOfAllLocations;
+                return new LocationsReportsActions().totalNumberOfRegisteredLocations();
 
             case "getTheNumberOfActiveLocations":
-                List<Object> getTheNumberOfActiveLocations = new LocationsReportsActions().totalNumberOfLocationsByStatus("active");
-                return getTheNumberOfActiveLocations;
+                return new LocationsReportsActions().totalNumberOfLocationsByStatus("active");
 
             case "getTheNumberOfInActiveLocations":
-                List<Object> getTheNumberOfInActiveLocations = new LocationsReportsActions().totalNumberOfLocationsByStatus("inactive");
-                return getTheNumberOfInActiveLocations;
+                return new LocationsReportsActions().totalNumberOfLocationsByStatus("inactive");
 
             case "viewAllActiveLocations":
-                List<Object> allActiveLocations = new LocationsReportsActions().viewLocationsByStatus("active");
-                return allActiveLocations;
+                return new LocationsReportsActions().viewLocationsByStatus("active");
 
             case "viewAllInActiveLocations":
-                List<Object> allInactiveLocations = new LocationsReportsActions().viewLocationsByStatus("inactive");
-                return allInactiveLocations;
+                return new LocationsReportsActions().viewLocationsByStatus("inactive");
 
             case "getSpotsByLocations":
-                List<Object> SpotsByLocations = new LocationsReportsActions().getSpotsByLocation();
-                return SpotsByLocations;
+                return new LocationsReportsActions().getSpotsByLocation();
 
             case "viewTodaysSpots":
-                List<Object> todaySpots = new SpotReportsActions().viewTodaysSpots();
-                return todaySpots;
+                return new SpotReportsActions().viewTodaysSpots();
             case "viewTodaysTrendingSpots":
-                List<Object> todayTrendingSpots = new SpotReportsActions().viewTodaysTrendingSpots();
-                return todayTrendingSpots;
+                return new SpotReportsActions().viewTodaysTrendingSpots();
 
             case "viewThisMonthsSpots":
-                List<Object> thismonthsSpots = new SpotReportsActions().viewThisMonthsSpots();
-                return thismonthsSpots;
+                return new SpotReportsActions().viewThisMonthsSpots();
             case "viewThisMonthsTrendingSpots":
-                List<Object> thismonthstrendingSpots = new SpotReportsActions().viewThisMonthsTrendingSpots();
-                return thismonthstrendingSpots;
+                return new SpotReportsActions().viewThisMonthsTrendingSpots();
 
             case "viewReportForAnotherDay":
-                List<Object> reportsForAnotherDay = new SpotReportsActions().getReportForAnotherDay();
-                return reportsForAnotherDay;
+                return new SpotReportsActions().getReportForAnotherDay();
             //                OTHER ACTIONS SHOULD GO HERE
 //            --------------------------------------
         }
