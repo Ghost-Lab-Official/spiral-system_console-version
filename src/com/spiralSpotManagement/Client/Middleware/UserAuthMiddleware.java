@@ -26,7 +26,7 @@ public class UserAuthMiddleware {
             return 0;
         }
         String returnedId = userId.toString();
-    return Integer.parseInt(returnedId);
+        return Integer.parseInt(returnedId);
 
     }
 }

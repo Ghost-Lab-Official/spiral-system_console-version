@@ -1,6 +1,13 @@
 # Compiled class file
 *.class
 
+*.iml
+*.xml
+
+#libraries
+*.jar
+#outpu sourceFolder
+./out
 # Log file
 *.log
 

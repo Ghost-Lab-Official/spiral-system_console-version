@@ -55,8 +55,8 @@ SpiralMultiThreadedServer {
   }
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws Exception {
+        new SpiralMultiThreadedServer().startServer();
         ServerSocket server = null;
 
         try {

@@ -3,6 +3,7 @@ package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
+import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,18 +17,18 @@ import java.util.Scanner;
 
 public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
-    UserView userForms = new UserView();
-    public void mainMethod() throws Exception{
+    public void SearchViewMenu() throws Exception{
         String cont = "";
         do {
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
+            System.out.println("\t\t\t||------------------      SPIRAL ~ SEARCH          ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.SEARCH SPOT              ------------------||");
             System.out.println("\t\t\t||------------------    2.SEARCH PEOPLE            ------------------||");
             System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
             System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
             System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice ");
         int option = scanner.nextInt();
@@ -37,14 +38,8 @@ public class SearchView {
             case 2 -> searchPeople();
             case 3 -> searchMessages();
             case 4 -> searchPopular();
-            case 5 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                viewRecentSearches();
-                else
-                    System.out.println("You have to login to access this resource");
-                    userForms.loginUser();
-            }
-
+            case 5 -> viewRecentSearches();
+            case 6 -> ikazeSpiral();
             default -> System.out.println("Invalid option");
         }
 

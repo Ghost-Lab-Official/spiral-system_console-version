@@ -71,11 +71,12 @@ public class UserView {
     public void loginUser()throws Exception{
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\tUSER LOGIN");
-        System.out.println("\t-----------------------");
-        System.out.println("\tEnter your email ");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t||------------------     SPIRAL ~ USER LOGIN       ------------------||");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\tEnter your email ");
         String email = scanner.nextLine();
-        System.out.println("\tEnter your password ");
+        System.out.println("\t\tEnter your password ");
         String password = scanner.nextLine();
         User user = new User();
         user.setEmail(email);
@@ -102,7 +103,7 @@ public class UserView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
             try {
-                System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
+//                System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
                 UserLog userLogToInsert = new UserLog();
                 userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
                 userLogToInsert.setDateTimeLoggedIn(dateParser());
