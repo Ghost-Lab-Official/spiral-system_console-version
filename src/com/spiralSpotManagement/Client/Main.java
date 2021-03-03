@@ -23,6 +23,9 @@ import java.util.Scanner;
  */
 
 public class Main {
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     public static void ExampleOfUsageOfClientServerConnector()throws Exception{
         RequestBody requestBody = new RequestBody();
 
@@ -53,6 +56,41 @@ public class Main {
         */
     }
 
+    public void loadingPath() throws InterruptedException {
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------");
+        System.out.print("\t\t\t\tSpiraling \t");
+        for (int i = 0; i < 20; i++) {
+            System.out.print(".");
+            Thread.sleep(500);
+
+            if(i==19){
+                System.out.print(".\t\t\t100%");
+            }
+        }
+        System.out.print("\n");
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n\n");
+    }
+
+    public void welcomePageDesign(){
+        System.out.println("\n\n\n                                                                                                       ");
+        System.out.println("\t\t\t\t                                                                                                       ");
+        System.out.println(ANSI_BLUE +"\t\t\t\t    -------------                                                             ----                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |  ----------                                                             |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                               __                                     |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                              |__|                                    |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |   ---------   ----  ---------   ----   ----  -----      ------   --     |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    '--------   |   |  ' '-----.  |   |  |   |  ''_____|    /  ----- \\   |    |  |                    "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    ---------|  |   |  |-----------   |  |   |  |          |  --------   |    |  |_______              "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    ------------'   |  |-----------   ----   ----           \\________,\\__|    '__________            "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    ----                                                                               "+ANSI_RESET);
+    }
+
 
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -66,6 +104,8 @@ public class Main {
         do {
             int choice;
             Scanner scanner = new Scanner(System.in);
+            new Main().welcomePageDesign();
+            new Main().loadingPath();
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
@@ -134,8 +174,6 @@ public class Main {
             System.out.print("\t\tDo you want to continue searching? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
-
-
     }
 
 }
