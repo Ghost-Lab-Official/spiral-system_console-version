@@ -17,12 +17,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 
-// Server class
-/*
-
- @author : Ntwari Egide - Scrum Master
- @author : Ishimwe Gervais
-
+/**
+ * @author : Ntwari Egide - Scrum Master
+ *  @author : Ishimwe Gervais
  */
 public class SpiralMultiThreadedServer {
 
