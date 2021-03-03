@@ -21,6 +21,7 @@ public class UserController {
                 ResponseStatus registeredStatus = new UsersActions().registerUserInDb((User) requestBody.getObject());
                 usersObject.add((Object) registeredStatus);
                 return  usersObject;
+
             case "login":
                 ResponseStatus loggedInStatus = new UsersActions().loginUser((User) requestBody.getObject());
                 usersObject.add((Object) loggedInStatus);
@@ -42,6 +43,7 @@ public class UserController {
                 ResponseStatus deleteStatus = new UsersActions().deleteProfile((User) requestBody.getObject());
                 usersObject.add((Object) deleteStatus);
                 return usersObject;
+
             default:
                 return (List<Object>) new ResponseStatus(500,"SERVER ERROR","Sever failer");
         }
