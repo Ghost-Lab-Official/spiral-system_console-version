@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
 
+#libraries
+*.jar
 #outpu sourceFolder
 ./out
 # Log file
