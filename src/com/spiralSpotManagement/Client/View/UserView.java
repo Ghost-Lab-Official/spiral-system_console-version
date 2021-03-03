@@ -73,8 +73,7 @@ public class UserView {
     }
     public void selectUserById() throws Exception{
         Scanner scanner=new Scanner(System.in);
-        System.out.println("Enter user id!");
-        Integer userId = scanner.nextInt();
+        Integer userId = new UserAuthMiddleware().checkForUserExistence();
         RequestBody requestBody = new RequestBody();
         User user = new User();
         user.setUserId(userId);
@@ -95,8 +94,7 @@ public class UserView {
     }
     public void getUserProfile() throws Exception{
         Scanner scanner=new Scanner(System.in);
-        System.out.println("Enter user id!");
-        Integer userId = scanner.nextInt();
+        Integer userId = new UserAuthMiddleware().checkForUserExistence();
         RequestBody requestBody = new RequestBody();
         User user = new User();
         user.setUserId(userId);
