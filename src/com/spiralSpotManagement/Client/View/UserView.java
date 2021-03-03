@@ -269,7 +269,7 @@ public class UserView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
             try {
-                System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
+//                System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
                 UserLog userLogToInsert = new UserLog();
                 userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
                 userLogToInsert.setDateTimeLoggedIn(dateParser());
