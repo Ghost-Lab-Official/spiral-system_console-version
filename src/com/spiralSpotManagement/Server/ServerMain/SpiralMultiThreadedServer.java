@@ -20,9 +20,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 
-/**
- * @author : Ntwari Egide - Scrum Master
- *  @author : Ishimwe Gervais
+// Server class
+/*
+
+ @author : Ntwari Egide - Scrum Master
+ @author : Ishimwe Gervais
+
  */
 public class
 SpiralMultiThreadedServer {
@@ -130,6 +133,7 @@ SpiralMultiThreadedServer {
                     List<Object> responseObject = null;
                     switch (url){
                         case "/users":
+
                             responseObject =  new UserController().mainMethod(requestBody);
                             break;
                         case"/user-category":

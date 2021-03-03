@@ -6,9 +6,9 @@ import com.spiralSpotManagement.Server.Model.SpotCategory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author : NTWARI Egide
- * @Description: spot category controller for synchronizing the spot methods
+/*
+        @author : NTWARI Egide
+        @Description: spot category controller for synchronizing the spot methods
  */
 
 public class SpotCategoryController {
