@@ -148,7 +148,6 @@ public class UsersActions {
 
     public ResponseStatus updateUserSettings(User userToRegisterUpdate) throws Exception {
 
-//        ResponseStatus responseStatus = new ResponseStatus(200,)
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         String sqlQuery = "UPDATE users_table SET first_name = ? , last_name = ?, gender = ?, birth_date = ? WHERE user_id = ? ";
 
@@ -182,8 +181,7 @@ public class UsersActions {
 
         while (result.next()) {
             User user = new User();
-//            user.set(result.getInt(1));
-//            userCategory.setCatName(result.getString(2));
+
             user.setUserId(result.getInt(1));
             user.setFirstName(result.getString(2));
             user.setLastName(result.getString(3));
@@ -248,8 +246,6 @@ public class UsersActions {
 
         while (result.next()) {
             User userObj = new User();
-//            user.set(result.getInt(1));
-//            userCategory.setCatName(result.getString(2));
             userObj.setUserId(result.getInt(1));
             userObj.setFirstName(result.getString(2));
             userObj.setLastName(result.getString(3));
@@ -262,7 +258,6 @@ public class UsersActions {
 
             user.add(userObj);
 
-//            System.out.println("user: "+userObj.getGender());
         }
 
         return user;
@@ -276,8 +271,7 @@ public class UsersActions {
 
         while (result.next()) {
             User userObj = new User();
-//            user.set(result.getInt(1));
-//            userCategory.setCatName(result.getString(2));
+
             userObj.setUserId(result.getInt(1));
             userObj.setFirstName(result.getString(2));
             userObj.setLastName(result.getString(3));
@@ -290,7 +284,6 @@ public class UsersActions {
 
             user.add(userObj);
 
-//            System.out.println("user: "+userObj.getGender());
         }
 
         return user;

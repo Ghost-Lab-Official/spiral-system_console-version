@@ -23,15 +23,9 @@ public class LocationLevelController {
          return locationLevels;
 
          case "update":
-// call action method here
              break;
-
          case "get":
-
-
              break;
-//  Add more cases to deal with
-//         ------------------------------------
 
      }
      return null;

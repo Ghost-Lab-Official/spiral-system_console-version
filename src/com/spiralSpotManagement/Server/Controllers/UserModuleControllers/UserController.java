@@ -7,10 +7,6 @@ import com.spiralSpotManagement.Server.Model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
-
-            UNTILL HERE LET'S TRY TO SEND SOME LIST OF DATA : USER
- */
 
 public class UserController {
     public List<Object> mainMethod(RequestBody requestBody)throws Exception{

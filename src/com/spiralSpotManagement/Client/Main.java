@@ -91,7 +91,6 @@ public class Main {
                     userForms.loginUser();
                     break;
                 case 2:
-//                    System.out.println("here"+userExistence);
                     if(new UserAuthMiddleware().checkForUserExistence() != 0){
                         userForms.registerUser();
                     }

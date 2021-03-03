@@ -277,9 +277,6 @@ public class UserView {
         requestBody.setAction("update-user-settings");
         requestBody.setObject(user);
 
-        /*
-            Send Request Body
-         */
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
 
