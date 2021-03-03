@@ -9,6 +9,7 @@ import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.SpotCategory;
+import com.spiralSpotManagement.Client.Main;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -18,13 +19,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
+
 
 
 /* @author  Bethiane */
 
 
 public class SpotCategoryView {
-    /* This the view for spotCategory */
+    /* This the view for spotCategory. it has functions for creating,update,
+    view, change status of spot category */
 
     InputStreamReader isr = new InputStreamReader(System.in);
     BufferedReader entered = new BufferedReader(isr);
@@ -170,10 +174,14 @@ public class SpotCategoryView {
             int choice;
             Scanner scanner = new Scanner(System.in);
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    SPIRAL ~ SPOT CATEGORY     ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.CREATE A CATEGORY        ------------------||");
             System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
             System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
             System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
+            System.out.println("\t\t\t||------------------    5.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -210,6 +218,10 @@ public class SpotCategoryView {
                         new UserView().loginUser();
                     }
                     break;
+
+                case 5:
+                    ikazeSpiral();
+
                 default:
                     System.out.println("Invalid input");
 

@@ -9,7 +9,11 @@ import com.spiralSpotManagement.Server.Model.UserCategory;
 
 import java.util.Scanner;
 
+/* @author  Bethiane */
+
 public class UserCategoryView {
+    /* This the view for spotCategory. it has functions for creating,update,
+    view, change status of user category */
 
 
     public static void createCategory()throws Exception{
@@ -105,37 +109,42 @@ public class UserCategoryView {
         }
     }
 
-    public void UserCategoryMenu()throws Exception{
+    public void UserCategoryMenu()throws Exception {
+        String toContinue;
 
-        int choice;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t\t||-------------------------------------------------------------------||");
-        System.out.println("\t\t\t||------------------    1.CREATE A USER CATEGORY        ------------------||");
-        System.out.println("\t\t\t||------------------    2.UPDATE USER CATEGORY          ------------------||");
-        System.out.println("\t\t\t||------------------    3.VIEW USER CATEGORIES          ------------------||");
-        System.out.println("\t\t\t||------------------    4.DELETE USER CATEGORY          ------------------||");
-        System.out.println("\t\t\t||-------------------------------------------------------------------||");
-        System.out.println("\t\t\t\t  Enter your choice                                              ");
-        choice = scanner.nextInt();
+        do {
+            int choice;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\t\t\t||------------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------      SPIRAL ~ USER CATEGORY        ------------------||");
+            System.out.println("\t\t\t||------------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    1.CREATE A USER CATEGORY        ------------------||");
+            System.out.println("\t\t\t||------------------    2.UPDATE USER CATEGORY          ------------------||");
+            System.out.println("\t\t\t||------------------    3.VIEW USER CATEGORIES          ------------------||");
+            System.out.println("\t\t\t||------------------    4.DELETE USER CATEGORY          ------------------||");
+            System.out.println("\t\t\t||------------------------------------------------------------------------||");
+            System.out.println("\t\t\t\t  Enter your choice                                              ");
+            choice = scanner.nextInt();
 
 
-        switch (choice){
-            case 1:
-                createCategory();
-                break;
-            case 2:
-                updateUserCategories();
-                break;
-            case 3:
-                selectUserCategories();
-                break;
-            case 4:
-                deleteCategory();
-                break;
-            default:
-                System.out.println("Invalid input");
-        }
+            switch (choice) {
+                case 1:
+                    createCategory();
+                    break;
+                case 2:
+                    updateUserCategories();
+                    break;
+                case 3:
+                    selectUserCategories();
+                    break;
+                case 4:
+                    deleteCategory();
+                    break;
+                default:
+                    System.out.println("Invalid input");
+            }
+            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            toContinue = scanner.next();
+        } while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
-
-
 }
