@@ -7,10 +7,6 @@ import com.spiralSpotManagement.Server.Model.Users;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
-
-            UNTILL HERE LET'S TRY TO SEND SOME LIST OF DATA : USER
- */
 
 public class UserController {
     public List<Object> mainMethod(RequestBody requestBody)throws Exception{
@@ -29,6 +25,9 @@ public class UserController {
             case "getUsers":
                 usersObject = new UsersActions().selectUsers();
                 return usersObject;
+            case "getUserById":
+                usersObject = new UsersActions().selectUserById((User) requestBody.getObject());
+                return usersObject;
             case "update-user-settings":
                 ResponseStatus updatedStatus = new UsersActions().updateUserSettings((User) requestBody.getObject());
                 usersObject.add((Object) updatedStatus);
@@ -40,8 +39,16 @@ public class UserController {
                 ResponseStatus deleteStatus = new UsersActions().deleteProfile((User) requestBody.getObject());
                 usersObject.add((Object) deleteStatus);
                 return usersObject;
+            case "reset-password":
+                ResponseStatus resetStatus = new UsersActions().resetPasswordFirstStep((User) requestBody.getObject());
+                usersObject.add((Object) resetStatus);
+                return usersObject;
+            case "reset-password-second":
+                ResponseStatus resetStatus1 = new UsersActions().resetPasswordSecondStep((User) requestBody.getObject());
+                usersObject.add((Object) resetStatus1);
+                return usersObject;
+            default:
+                return (List<Object>) new ResponseStatus(500,"SERVER ERROR","Sever failer");
         }
-
-        return null;
     }
 }

@@ -2,8 +2,13 @@ package com.spiralSpotManagement.Server.DbController;
 import java.io.FileWriter;
 import java.util.Properties;
 
+/**
+ * @author : Ntwari Egide
+ * @author : Ishimwe Gervais
+ * @description: database configuration variables
+ */
+
 public class PropertyVariables {
-//    database configuration variables
 
     private String dbUrl;
     private String dbUsername;

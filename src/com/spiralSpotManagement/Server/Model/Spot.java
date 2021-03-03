@@ -1,3 +1,9 @@
+
+/*
+        @author : Cyebukayire Peace
+        @Description: the model for the Spot class
+ */
+
 package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
@@ -10,19 +16,26 @@ public class Spot implements Serializable {
     private String spotName;
     private String spotDescription;
     private String registrationDate;
-    private String status;
+    private Integer status;
 
-    public Spot() {
+    public Spot(){}
+    public Spot( Integer userId, Integer categoryId, Integer locationId, String spotName, String spotDescription, Integer status) {
+        this.userId = userId;
+        this.categoryId = categoryId;
+        this.locationId = locationId;
+        this.spotName = spotName;
+        this.spotDescription = spotDescription;
+        this.status = status;
     }
 
-    public Spot(Integer spotId, Integer userId, Integer categoryId, Integer locationId, String spotName, String spotDescription, String registrationDate, String status) {
+    public Spot( Integer spotId,Integer userId, Integer categoryId, Integer locationId, String spotName, String spotDescription, Integer status) {
         this.spotId = spotId;
         this.userId = userId;
         this.categoryId = categoryId;
         this.locationId = locationId;
         this.spotName = spotName;
         this.spotDescription = spotDescription;
-        this.registrationDate = registrationDate;
+//        this.registrationDate = registrationDate;
         this.status = status;
     }
 
@@ -82,11 +95,11 @@ public class Spot implements Serializable {
         this.registrationDate = registrationDate;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }
