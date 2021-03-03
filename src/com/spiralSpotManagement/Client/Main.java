@@ -54,6 +54,7 @@ public class Main {
     }
 
 
+
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
@@ -76,6 +77,7 @@ public class Main {
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
+            System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -127,6 +129,9 @@ public class Main {
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
+                    break;
+                case 8:
+                    new UserView().mainMethod();
                     break;
                 default:
                     System.out.println("Invalid input");

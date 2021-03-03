@@ -11,6 +11,7 @@ import java.util.List;
 public class UserCategoryActions {
     String InsertSql = "INSERT INTO users_categories (user_category) VALUES(?)";
     String UpdateSql = "UPDATE users_categories SET user_category=?,category_status=? WHERE category_id=?";
+    String updateUserCategory = "UPDATE users_table SET user_category=? WHERE category_id=? ";
     String UpdateUserStatus = "UPDATE users_table SET user_status=? WHERE category_id=?";
     String deleteSQL = "DELETE FROM users_categories WHERE category_id=?";
     String selectSQL = "SELECT * FROM users_categories";
@@ -47,6 +48,7 @@ public class UserCategoryActions {
         }
         return  userCategories;
     }
+
     public ResponseStatus updateCategory(UserCategory userCategoryToUpdate) throws Exception {
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateSql)){
