@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
 
+#outpu sourceFolder
+.out
 # Log file
 *.log
 
