@@ -105,7 +105,6 @@ public class SearchActions {
                 recentSearch.setQueryId(historyId);
                 recentSearches.add((Object) recentSearch);
             }
-
             return recentSearches;
         } catch (Exception e) {
             return recentSearches;
@@ -118,10 +117,7 @@ public class SearchActions {
      *           query to delete and also takes the user_id who is logged in. Then
      *           this method deletes the query where query_id is the same as That
      *           stored in the table where the user_id is the same as that of the
-     *           user who is logged in. Thanks for whoever who will use this method
-     *           as well as this class.
-     * @Date: 9 Feb 2021
-     * @copyright all right reserved.
+     *           user who is logged in.
      **/
     public ResponseStatus RemoveRecentSearch(User user, RecentSearch recentSearch) throws Exception {
         try {

@@ -213,6 +213,38 @@ public class SearchView {
     }
 
     /**
+     * Search with query param
+     */
+    public static void search(String searchQuery) throws Exception{
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("getSpots");
+
+        Spot spotToSend = new Spot();
+        spotToSend.setSpotName(searchQuery);
+        requestBody.setObject(spotToSend);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        boolean found = false;
+        Integer index = 0;
+        List<Object> spotsList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Spot spot = (Spot) response;
+            System.out.println(index + ". " + spot.getSpotName());
+            spotsList.add(spot);
+        }
+
+        if(!found){
+            System.out.println("No spots Found.");
+        }else {
+            displaySpot(spotsList);
+        }
+
+    }
+
+    /**
      * Method to view recent searches
      */
     public static void viewRecentSearches() throws Exception {
@@ -237,20 +269,39 @@ public class SearchView {
             i++;
         }
         if(recentSearchList.size() == 0){
-            System.out.println("No results found for this user");
+            System.out.println("No recent searches for this user, please search something!");
         }else {
-            String delete = "";
-            System.out.println("Do you want to remove a recent research (y/n)");
-            delete = scanner.next();
-            if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
-                System.out.println("Enter Recent Search: ");
-                Integer choice = scanner.nextInt();
-                if (choice > recentSearchList.size()) {
-                    System.out.println("Invalid Choice");
-                } else {
-                    RemoveRecentSearch(recentSearchList.get(choice - 1));
-                }
+            System.out.println("Options");
+            System.out.println("\t 1.Delete The Recent Search \n \t 2.Search Again Using This Query");
+            System.out.println("Enter Your Choice");
+            Scanner sc = new Scanner(System.in);
+           Integer  option = sc.nextInt();
+            switch (option){
+                case 1:
+                    String delete = "";
+                    System.out.println("Do you want to remove a recent research (yes/no)");
+                    delete = scanner.next();
+                    if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
+                        System.out.println("Enter Recent Search To Delete: ");
+                        Integer choice = scanner.nextInt();
+                        if (choice > recentSearchList.size()) {
+                            System.out.println("Invalid Choice. try, again");
+                        } else {
+                            RemoveRecentSearch(recentSearchList.get(choice - 1));
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter ID OF The Query To Search");
+                    Scanner sc2 = new Scanner(System.in);
+                    Integer id = sc2.nextInt();
+                    String selectedSearch = recentSearchList.get(id-1).getSearchQuery();
+                    search(selectedSearch);
+                    break;
+                default:
+                    System.out.println("Invalid Choice, Please Choose Again");
             }
+
         }
     }
 
