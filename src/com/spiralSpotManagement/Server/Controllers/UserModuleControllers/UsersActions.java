@@ -130,15 +130,6 @@ public class UsersActions {
             else{
                 return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect");
             }
-//
-//        if (rs.next()){
-//            checkUser = true;
-//        }
-//        else{
-//            return new ResponseStatus(404,"LOGGED FAILED","Email or password is incorrect\n"+token);
-//        }
-//
-//        return new ResponseStatus(200,"LOGGED IN","You are logged in ");
 
         return null;
     }
