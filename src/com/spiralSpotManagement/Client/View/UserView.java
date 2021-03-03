@@ -310,6 +310,13 @@ public class UserView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
+
+    /**
+     * @author: Elissa Twizeyimana
+     * @description: Resetting user password using mailing system
+     * @throws Exception
+     */
+
     public void updateUserSettings() throws Exception{
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter the new data below");
