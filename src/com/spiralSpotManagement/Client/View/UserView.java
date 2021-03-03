@@ -27,16 +27,18 @@ public class UserView {
 
     public void mainMethod() throws Exception {
         Scanner input = new Scanner(System.in);
-        System.out.println("==================================");
-        System.out.println("||\t\tUsers Section\t||\n");
-        System.out.println("||\t\t1.Create user\t\t||\n");
-        System.out.println("||\t\t2.Get logged user info \t\t||\n");
-        System.out.println("||\t\t3.Get user by id \t\t||\n");
-        System.out.println("||\t\t4.Gell all users \t\t||\n");
-        System.out.println("||\t\t5.Update user settings \t\t||\n");
-        System.out.println("||\t\t6.Delete user      \t\t||\n");
-        System.out.println("||\t\t7.Reset password   \t\t||\n");
-        System.out.println("==================================");
+        System.out.println("====================================");
+        System.out.println("||\t\t\tUSERS SECTION         ||\n");
+        System.out.println("------------------------------------");
+        System.out.println("||\t\t1.CREATE USER             ||\n");
+        System.out.println("||\t\t2.GET LOGGED USER INFO    ||\n");
+        System.out.println("||\t\t3.GET USER BY ID          ||\n");
+        System.out.println("||\t\t4.GET ALL USERS           ||\n");
+        System.out.println("||\t\t5.UPDATE USER             ||\n");
+        System.out.println("||\t\t6.DELETE USER             ||\n");
+        System.out.println("||\t\t7.RESET PASSWORD          ||\n");
+        System.out.println("||\t\t8.USER CATEGORIES         ||\n");
+        System.out.println("====================================");
         Integer choice = input.nextInt();
         switch(choice) {
             case 1:
@@ -58,6 +60,9 @@ public class UserView {
                 break;
             case 7:
                 restPassword();
+                break;
+            case 8:
+                new UserCategoryView().mainMethod();
                 break;
             default:
                 System.out.println("Incorrect input!!");

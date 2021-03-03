@@ -28,7 +28,6 @@
 //    private static final String deleteSQL = "DELETE FROM users_categories where category_id=?";
 //
 //
-//
 ////    Insert category function
 //
 //    public static void insertCategory(Connection connection) throws SQLException{
@@ -59,7 +58,20 @@
 //        }
 //    }
 //
-////    End of select category
+////    select category by id function
+//public static void selectCategoryId(Connection connection)throws Exception{
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("Insert the category Id");
+//        int id = scan.nextInt();
+//        Statement statement= connection.createStatement();
+//        ResultSet result =statement.executeQuery("SELECT FROM users_categories where category_id=id");
+//        System.out.println("\t ID  \t Category name\n");
+//        while (result.next()){
+//            System.out.println("\t "+result.getString(1)+" \t\t "+result.getString(2));
+//        }
+//    }
+//
+////    End of select category by id
 //
 //    //    Update category function
 //    public static void UpdateCategory(Connection connection) throws Exception{
