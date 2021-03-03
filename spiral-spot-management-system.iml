@@ -7,7 +7,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.49" level="project" />
+    <orderEntry type="library" name="mysql-connector" level="project" />
+    <orderEntry type="library" name="commons-codec-1.14" level="project" />
+    <orderEntry type="library" name="java-jwt-3.12.1" level="project" />
+    <orderEntry type="library" name="jjwt-0.9.1" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
+    <orderEntry type="library" name="javax.mail" level="project" />
   </component>
 </module>

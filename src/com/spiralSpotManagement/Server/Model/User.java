@@ -109,4 +109,5 @@ public class User implements Serializable {
     public void setLocation(String location) {
         this.location = location;
     }
+
 }

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="javax.mail">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/javax.mail-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/activation-1.1.jar!/" />
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src" />
+    </SOURCES>
+  </library>
+</component>
