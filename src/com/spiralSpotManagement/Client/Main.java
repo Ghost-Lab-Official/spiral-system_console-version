@@ -16,10 +16,12 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
-/*
-            @author : Anne Bethiane, Blessing Hirwa
-            This is the entry of Spiral;
-            WELCOME!
+
+/**
+ * @author : Anne Bethiane,
+ * @author : Blessing Hirwa
+ * This is the entry of Spiral;
+ * WELCOME!
  */
 
 public class Main {
@@ -103,7 +105,6 @@ public class Main {
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    //spotCategories.SpotCategoryMenu();
                     userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
