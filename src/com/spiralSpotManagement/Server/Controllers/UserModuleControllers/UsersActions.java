@@ -8,6 +8,7 @@ import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -360,4 +361,50 @@ public class UsersActions {
         }
     }
     // for hashing and encrypt password
+
+
+    public ResponseStatus resetPasswordFirstStep(User userToReset)throws Exception{
+        Connection con = new CloudStorageConnectionHandler().getConnection();
+        Statement CheckEmail = con.createStatement();
+        ResultSet check =CheckEmail.executeQuery("SELECT * from users_table WHERE email='" + userToReset.getEmail() + "'");
+        if(check.next() == false) {
+            return new ResponseStatus(400,"BAD REQUEST","you entered invalid email");
+        }else {
+            String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            StringBuilder sb = new StringBuilder();
+            Random random = new Random();
+            int length = 7;
+
+            for(int i = 0; i < length; i++) {
+                int index = random.nextInt(alphabet.length());
+                char randomChar = alphabet.charAt(index);
+                sb.append(randomChar);
+            }
+
+            String randomString = sb.toString();
+
+            new SendEmail().send("tzyelissa90@gmail.com","doordie16",userToReset.getEmail(),
+                    "Spiral Verification Code","verification code: "+randomString);
+
+            ResponseStatus responseStatus = new ResponseStatus(200,"VERIFICATION CODE SENT","Enter verification email set via your email");
+            responseStatus.setObject((Object)randomString);
+
+            return responseStatus;
+        }
+    }
+
+    public ResponseStatus resetPasswordSecondStep(User userUpdated)throws Exception{
+        Connection con = new CloudStorageConnectionHandler().getConnection();
+        String securePassword = hashPassword(userUpdated.getPassword());
+
+            PreparedStatement updateSql=con.prepareStatement("Update users_table SET password=? where email=?");
+            updateSql.setString(1,securePassword);
+            updateSql.setString(2,userUpdated.getPassword());
+            int PassUpdate=updateSql.executeUpdate();
+            if (PassUpdate>0){
+                System.out.println("Password reset successful");
+            }
+
+            return new ResponseStatus(200,"DONE PASSWORD RESET","Password is reset successfully");
+    }
 }
