@@ -1,5 +1,10 @@
 package com.spiralSpotManagement.Client.View;
 
+/**
+ * @Author: Ineza Aimee Annabelle
+ * @Description : client side of the user category actions
+ */
+
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.RequestBody;
@@ -11,7 +16,7 @@ import com.spiralSpotManagement.Server.Utils.UserCategories;
 import java.util.*;
 
 public class UserCategoryView {
-    public void mainMethod()throws Exception{
+  /*  public void mainMethod()throws Exception{
         Scanner input = new Scanner(System.in);
         System.out.println("==========================================");
         System.out.println("||\t\tUser Category Section     \t\t||\n");
@@ -43,7 +48,7 @@ public class UserCategoryView {
                 System.out.println("Incorrect Input!!");
         }
     }
-
+*/
     public static void createCategory()throws Exception{
         Scanner scan = new Scanner(System.in);
         List<UserCategories> allPossibleUserCategories = new ArrayList<UserCategories>(EnumSet.allOf(UserCategories.class));
@@ -137,7 +142,7 @@ public class UserCategoryView {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the category id to update");
         String categoryId = scan.nextLine();
-        System.out.println("Enter the Category Name to update");
+        System.out.println("Enter the Category name to update");
         String category =scan.nextLine();
 
         System.out.println("Enter the category status");
@@ -184,4 +189,42 @@ public class UserCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
+
+    public void UserCategoryMenu()throws Exception{
+
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t||------------------    1.CREATE A USER CATEGORY        ------------------||");
+        System.out.println("\t\t\t||------------------    2.UPDATE USER CATEGORY          ------------------||");
+        System.out.println("\t\t\t||------------------    3.VIEW USER CATEGORIES          ------------------||");
+        System.out.println("\t\t\t||------------------    4.DELETE USER CATEGORY          ------------------||");
+        System.out.println("\t\t\t||------------------    5.VIEW USER CATEGORY BY ID      ------------------||");
+        System.out.println("\t\t\t||-------------------------------------------------------------------||");
+        System.out.println("\t\t\t\t  Enter your choice:                                              ");
+        choice = scanner.nextInt();
+
+
+        switch (choice){
+            case 1:
+                createCategory();
+                break;
+            case 2:
+                updateUserCategories();
+                break;
+            case 3:
+                selectUserCategories();
+                break;
+            case 4:
+                deleteCategory();
+                break;
+            case 5:
+                selectUserCategoryById();
+                break;
+            default:
+                System.out.println("Invalid input");
+        }
+    }
+
+
 }

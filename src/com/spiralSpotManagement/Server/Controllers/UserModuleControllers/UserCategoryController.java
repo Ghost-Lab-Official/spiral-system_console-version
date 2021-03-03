@@ -1,5 +1,10 @@
 package com.spiralSpotManagement.Server.Controllers.UserModuleControllers;
 
+/**
+ * @author : Ineza Aimee Annabelle
+ * @description: This is user category actions controller
+ */
+
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.User;

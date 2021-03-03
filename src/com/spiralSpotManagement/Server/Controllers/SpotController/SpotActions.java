@@ -10,15 +10,18 @@ import java.sql.SQLException;
 
 public class SpotActions {
     String InsertSpotQuery =
-        "INSERT INTO Spot_table (user_id, category_id, location_id, spot_name, spot_description, registration_date, status, spot_id) VALUES(?,?,?,?,?,?,?,?)";
+        "INSERT INTO Spot_table (user_id, category_id, location_id, spot_name, spot_description, status) VALUES(?,?,?,?,?,?)";
     String UpdateSpotQuery =
-    "UPDATE Spot_table SET user_id=?, category_id=?, location_id=?, spot_name=?, spot_description=?, update_date=?, status=? WHERE spot_id=?";
+    "UPDATE Spot_table SET user_id=?, category_id=?, location_id=?, spot_name=?, spot_description=?, status=? WHERE spot_id=?";
     String deleteSpotQuery =
     "UPDATE Spot_table SET status=0 where spot_id=?";
 
-    /*
-            @author : Cyebukayire Peace
-            @description: This method is used to insert a new spot
+    /**
+     * @author : Cyebukayire Peace, Blessing Hirwa
+     * @description: This method is used to insert a new spot
+     * @param spotToRegister
+     * @return
+     * @throws Exception
      */
     public ResponseStatus createSpotInDb(Spot spotToRegister)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -30,9 +33,7 @@ public class SpotActions {
           preparedStatement.setString(3, spotToRegister.getLocationId().toString());
           preparedStatement.setString(4, spotToRegister.getSpotName());
           preparedStatement.setString(5, spotToRegister.getSpotDescription());
-          preparedStatement.setString(6, spotToRegister.getRegistrationDate());
-          preparedStatement.setString(7, spotToRegister.getStatus());
-          preparedStatement.setString(8, spotToRegister.getSpotId().toString());
+          preparedStatement.setString(6, spotToRegister.getStatus().toString());
           int inserted = preparedStatement.executeUpdate();
 
             if (inserted == 1) {
@@ -49,9 +50,13 @@ public class SpotActions {
 
         return null;
     }
-    /*
-            @author : Cyebukayire Peace
-            @description: This method is used to update a spot
+
+    /**
+     *  @author : Cyebukayire Peace, Blessing Hirwa
+     *  @description: This method is used to de-activate/delete a spot
+     * @param spotToUpdate
+     * @return
+     * @throws Exception
      */
     public ResponseStatus updateTheSpot(Spot spotToUpdate)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -61,9 +66,8 @@ public class SpotActions {
             sql.setString(3, spotToUpdate.getLocationId().toString());
             sql.setString(4, spotToUpdate.getSpotName());
             sql.setString(5, spotToUpdate.getSpotDescription());
-            sql.setString(6, spotToUpdate.getRegistrationDate());
-            sql.setString(7, spotToUpdate.getStatus());
-            sql.setString(8, spotToUpdate.getSpotId().toString());
+            sql.setString(6, spotToUpdate.getStatus().toString());
+            sql.setString(7, spotToUpdate.getSpotId().toString());
             int updated = sql.executeUpdate();
 
             if (updated == 1) {
@@ -80,9 +84,13 @@ public class SpotActions {
 
         return null;
     }
-    /*
-            @author : Cyebukayire Peace
-            @description: This method is used to de-activate a spot
+
+    /**
+     *  @author : Cyebukayire Peace, Blessing Hirwa
+     *  @description: This method is used to de-activate/delete a spot
+     * @param spotToDelete
+     * @return
+     * @throws Exception
      */
     public ResponseStatus deleteSpot(Spot spotToDelete)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();

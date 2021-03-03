@@ -1,5 +1,10 @@
 package com.spiralSpotManagement.Server.Controllers.UserModuleControllers;
 
+/**
+ * @author : Ineza Aimee Annabelle
+ * @description: This is where user category actions are executed
+ */
+
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 
@@ -11,7 +16,6 @@ import java.util.List;
 public class UserCategoryActions {
     String InsertSql = "INSERT INTO users_categories (user_category) VALUES(?)";
     String UpdateSql = "UPDATE users_categories SET user_category=?,category_status=? WHERE category_id=?";
-    String updateUserCategory = "UPDATE users_table SET user_category=? WHERE category_id=? ";
     String UpdateUserStatus = "UPDATE users_table SET user_status=? WHERE category_id=?";
     String deleteSQL = "DELETE FROM users_categories WHERE category_id=?";
     String selectSQL = "SELECT * FROM users_categories";
