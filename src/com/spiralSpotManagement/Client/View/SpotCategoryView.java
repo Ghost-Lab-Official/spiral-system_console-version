@@ -1,47 +1,145 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
-import com.spiralSpotManagement.Server.Model.SpotCategory;
+import com.spiralSpotManagement.Server.Model.*;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 
-public class SpotCategoryView {
-    public void CreateCategory() throws Exception {
+public class UserView {
+    public void mainMethod() throws Exception {
+        Scanner input = new Scanner(System.in);
+        System.out.println("==================================");
+        System.out.println("||\t\tUsers Section\t||\n");
+        System.out.println("||\t\t1.Create user\t\t||\n");
+        System.out.println("||\t\t2.Get logged user info \t\t||\n");
+        System.out.println("||\t\t3.Get user by id \t\t||\n");
+        System.out.println("||\t\t4.Gell all users \t\t||\n");
+        System.out.println("||\t\t5.Update user \t\t||\n");
+        System.out.println("||\t\t6.Update user settings \t\t||\n");
+        System.out.println("||\t\t7.Delete user      \t\t||\n");
+        System.out.println("||\t\t8.Reset password   \t\t||\n");
+        System.out.println("==================================");
+        Integer choice = input.nextInt();
+        switch(choice) {
+            case 1:
+                registerUser();
+                break;
+            case 2:
+                getUserProfile();
+                break;
+            case 3:
+                selectUserById();
+            case 4:
+                selectUsers();
+                break;
+            case 5:
+                updateUserSettings();
+                break;
+            case 6:
+                deleteUser();
+                break;
+            default:
+                System.out.println("Incorrect input!!");
+        }
 
-        Scanner reader = new Scanner(System.in);
-        System.out.println("\t\t\t Enter User id: ");
-        int userId = reader.nextInt();
-        System.out.println("\t\t\t Enter category name: ");
-        String categoryName = reader.nextLine();
-        System.out.println("\t\t\t  Enter category description: ");
-        String description = reader.nextLine();
-        System.out.println("\t\t\t Enter the status: ");
-        String status = reader.nextLine();
+    }
+    public void selectUsers() throws Exception{
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("getUsers");
+        requestBody.setObject(null);
 
-        SpotCategory spotCategoryToInsert = new SpotCategory();
-        spotCategoryToInsert.setUserId(userId);
-        spotCategoryToInsert.setCategoryName("category Name 1");
-        spotCategoryToInsert.setDescription(description);
-        spotCategoryToInsert.setStatus(status);
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        System.out.println("\t\t\t List of Users\t\n");
+        System.out.println("\t ID \t first name \t last name \t user name \t gender \t email \t birth date \t location\n ");
+        for (Object response: responseBody.getResponse()){
+            User user = (User) response;
+
+            System.out.println("\t "+ user.getUserId() + "\t\t" + user.getFirstName()+" \t\t "+user.getLastName() + "\t\t"
+                    + user.getUserName() + "\t\t" + user.getGender() + "\t\t" + user.getEmail() + "\t\t" + user.getBirthDate() + "\t\t"
+                    + user.getLocation());
+        }
+    }
+    public void selectUserById() throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter user id!");
+        Integer userId = scanner.nextInt();
+        RequestBody requestBody = new RequestBody();
+        User user = new User();
+        user.setUserId(userId);
+        requestBody.setUrl("/users");
+        requestBody.setAction("getUserById");
+        requestBody.setObject(user);
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+
+
+        System.out.println("\t ID \t first name \t last name \t user name \t gender \t email \t birth date \t location\n ");
+        for (Object response: responseBody.getResponse()){
+            User users = (User) response;
+            System.out.println("ON "+users.getUserName()+"'s Desk");
+            System.out.println("\t "+ users.getUserId() + "\t\t" + users.getFirstName()+" \t\t "+users.getLastName() + "\t\t"
+                    + users.getUserName() + "\t\t" + users.getGender() + "\t\t" + users.getEmail() + "\t\t" + users.getBirthDate() + "\t\t"
+                    + users.getLocation());
+        }
+    }
+    public void getUserProfile() throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter user id!");
+        Integer userId = scanner.nextInt();
+        RequestBody requestBody = new RequestBody();
+        User user = new User();
+        user.setUserId(userId);
+        requestBody.setUrl("/users");
+        requestBody.setAction("view-user-profile");
+        requestBody.setObject(user);
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+
+
+        System.out.println("\t ID \t first name \t last name \t user name \t gender \t email \t birth date \t location\n ");
+        for (Object response: responseBody.getResponse()){
+            User users = (User) response;
+            System.out.println("ON "+users.getUserName()+"'s Desk");
+            System.out.println("\t "+ users.getUserId() + "\t\t" + users.getFirstName()+" \t\t "+users.getLastName() + "\t\t"
+                    + users.getUserName() + "\t\t" + users.getGender() + "\t\t" + users.getEmail() + "\t\t" + users.getBirthDate() + "\t\t"
+                    + users.getLocation());
+        }
+    }
+    public void registerUser()throws Exception{
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your first name ");
+        String firstName = scanner.nextLine();
+        System.out.println("Enter your last name ");
+        String lastName = scanner.nextLine();
+        System.out.println("Enter your user name ");
+        String userName = scanner.nextLine();
+        System.out.println("Enter your email ");
+        String email = scanner.nextLine();
+        System.out.println("Enter your gender ");
+        String gender = scanner.nextLine();
+        System.out.println("Enter your birthDate");
+        String birthDate = scanner.nextLine();
+        System.out.println("Enter your password ");
+        String password = scanner.nextLine();
+        System.out.println("Enter your location ");
+        String location = scanner.next();
+
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setUserName(userName);
+        user.setEmail(email);
+        user.setGender(gender);
+        user.setBirthDate(birthDate);
+        user.setPassword(password);
+        user.setLocation(location);
 
         /*
                Define Request Body
          */
-
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/sportCategory");
+        requestBody.setUrl("/users");
         requestBody.setAction("register");
-        requestBody.setObject(spotCategoryToInsert);
+        requestBody.setObject(user);
 
         /*
             Send Request Body
@@ -56,86 +154,98 @@ public class SpotCategoryView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
-
     }
 
-    public void UpdateCategory() throws Exception {
-
-        Scanner read = new Scanner(System.in);
-        System.out.println("\t\t\t Enter category ID: ");
-        int categoryId = read.nextInt();
-        System.out.println("\t\t\t Enter category name: ");
-        String categoryName = read.nextLine();
-        System.out.println("\t\t\t  Enter category description: ");
-        String description = read.nextLine();
-        System.out.println("\t\t\t Enter the status: ");
-        String status = read.nextLine();
-
-        SpotCategory spotCategoryToInsert = new SpotCategory();
-        spotCategoryToInsert.setCategoryName(categoryName);
-        spotCategoryToInsert.setDescription(description);
-        spotCategoryToInsert.setCategoryId(categoryId);
-        spotCategoryToInsert.setStatus(status);
-
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/sportCategory");
-        requestBody.setAction("update");
-        requestBody.setObject(spotCategoryToInsert);
-
-        /*
-            Send Request Body
-         */
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-
-        for (Object response : responseBody.getResponse()) {
-            ResponseStatus responseStatus = (ResponseStatus) response;
-            System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
-            System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
-            System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
-            System.out.println("\t\t ------------------------------------------------------------------------------");
-        }
-    }
-//
-    public void GetSpotCategory() throws Exception {
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/sportCategory");
-        requestBody.setAction("getAll");
-        requestBody.setObject(null);
-
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
-
-        for (Object response: responseBody.getResponse()){
-            SpotCategory spotCategory = (SpotCategory) response;
-            System.out.println("\t\t-----------------------------------------------------------------------------------");
-            System.out.println("\t\t---Category Id: "+spotCategory.getCategoryId());
-            System.out.println("\t\t---User Id: "+spotCategory.getUserId());
-            System.out.println("\t\t---Name: "+spotCategory.getCategoryName());
-            System.out.println("\t\t---Description: "+spotCategory.getDescription());
-            System.out.println("\t\t-----------------------------------------------------------------------------------");
-        }
-
-
-    }
-
-    public void ChangeSpotStatus() throws Exception {
-
+    public void loginUser()throws Exception{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t\t Enter category_id: ");
-        int categoryId  = scanner.nextInt();
-        System.out.println("\t\t\t Enter the status: ");
-        String status = scanner.nextLine();
+        System.out.println("Enter your email ");
+        String email = scanner.nextLine();
+        System.out.println("Enter your password ");
+        String password = scanner.nextLine();
 
-        SpotCategory spotCategory = new SpotCategory();
-        spotCategory.setCategoryId(categoryId);
-        spotCategory.setStatus(status);
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+
+        /*
+               Define Request Body
+         */
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("login");
+        requestBody.setObject(user);
+
+        /*
+            Send Request Body
+         */
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+            System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
+
+        }
+    }
+    public void deleteUser() throws Exception{
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the user id to delete");
+        int categoryId = scan.nextInt();
+        User userToDelete = new User();
+        userToDelete.setUserId(categoryId);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/users");
+        requestBody.setAction("deleteUser");
+        requestBody.setObject(userToDelete);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+
+        for (Object response: responseBody.getResponse()){
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+            System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+    public void updateUserSettings() throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter the new data below");
+        System.out.println("------------------------\n");
+
+        System.out.println("Enter the user id you want to update");
+        String userId = scanner.nextLine();
+        System.out.print("Enter Your email:\t");
+        String email = scanner.nextLine();
+        System.out.println("Enter your first name");
+        String first_name=scanner.nextLine();
+        System.out.println("Enter your last name");
+        String last_name=scanner.nextLine();
+        System.out.println("Enter gender");
+        String gender=scanner.nextLine();
+        System.out.println("Enter your date of birth");
+        String birth_date=scanner.nextLine();
+        int userIdParsed = Integer.parseInt(userId);
+        User user = new User();
+        user.setUserId(userIdParsed);
+        user.setFirstName(first_name);
+        user.setLastName(last_name);
+        user.setEmail(email);
+        user.setGender(gender);
+        user.setBirthDate(birth_date);
 
         RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/sportCategory");
-        requestBody.setAction("updateStatus");
-        requestBody.setObject(spotCategory);
+        requestBody.setUrl("/users");
+        requestBody.setAction("update-user-settings");
+        requestBody.setObject(user);
 
+        /*
+            Send Request Body
+         */
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
 
@@ -146,5 +256,6 @@ public class SpotCategoryView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
+
     }
 }

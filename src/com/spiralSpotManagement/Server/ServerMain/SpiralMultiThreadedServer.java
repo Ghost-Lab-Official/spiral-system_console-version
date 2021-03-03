@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.Server.ServerMain;
-
 import com.spiralSpotManagement.Server.Controllers.SearchControllers.SearchController;
+import com.spiralSpotManagement.Server.Controllers.ReportController.ReportController;
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
@@ -24,7 +24,8 @@ import java.util.List;
  * @author : Ntwari Egide - Scrum Master
  *  @author : Ishimwe Gervais
  */
-public class SpiralMultiThreadedServer {
+public class
+SpiralMultiThreadedServer {
 
 
 
@@ -58,7 +59,7 @@ public class SpiralMultiThreadedServer {
         try {
 
             // server is listening on port 1234
-            server = new ServerSocket(1234);
+            server = new ServerSocket(1294);
             server.setReuseAddress(true);
 
             // running infinite loop for getting
@@ -121,6 +122,7 @@ public class SpiralMultiThreadedServer {
                 in = new ObjectInputStream(clientSocket.getInputStream());
 
                 RequestBody requestBody;
+                
                 while ((requestBody = (RequestBody) in.readObject()) != null) {
                     //Reading the url
                     String url = requestBody.getUrl();
@@ -153,6 +155,7 @@ public class SpiralMultiThreadedServer {
                             break;
 
                         case "/report":
+                            responseObject = new ReportController().mainMethod(requestBody);
                             break;
 
                         case "/location":

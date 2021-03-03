@@ -2,11 +2,7 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationView;
-import com.spiralSpotManagement.Client.View.SpotView;
-import com.spiralSpotManagement.Client.View.SpotCategoryView;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
 import java.util.List;
 import java.util.Scanner;
