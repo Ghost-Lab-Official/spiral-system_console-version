@@ -1,13 +1,17 @@
 package com.spiralSpotManagement.Server.Controllers.SpotController;
 
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.Comment;
 import com.spiralSpotManagement.Server.Model.CommentReactions;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -17,8 +21,42 @@ import java.util.Date;
  *
  */
 public class SpotCommentReactActions {
+    private static final String SelectCommentReactionQuery =
+            "SELECT * FROM comment_reactions WHERE comment_id=?";
     private static final String InsertCommentReactionQuery =
             "INSERT INTO comment_reactions (comment_reaction_id, comment_id, user_id, liked, created_at, updated_at) VALUES(?,?,?,?,?,?)";
+
+    /*
+              @author : Izabayo Cedric
+              @description: This method is used to get comment reactions of a specific sotcomment
+       */
+    public List<CommentReactions> GetCommentReactions(String commentId) throws Exception {
+        List<CommentReactions> commentReactionList = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    SelectCommentReactionQuery
+            );
+            preparedStatement.setString(1, commentId);
+            ResultSet result = preparedStatement.executeQuery(SelectCommentReactionQuery);
+
+            while (result.next()) {
+                CommentReactions commentReaction = new CommentReactions();
+                commentReaction.setComment_reaction_id(result.getString("comment_reaction_id"));
+                commentReaction.setComment_id(result.getString("comment_id"));
+                commentReaction.setUser_id( result.getString("user_id"));
+                commentReaction.setLiked(result.getBoolean("liked"));
+                commentReaction.setCreated_at(new Date(result.getString("created_at")));
+                commentReaction.setUpdated_at(new Date(result.getString("updated_at")));
+
+                commentReactionList.add(commentReaction);
+            }
+
+            return commentReactionList;
+        } catch (Exception e) {
+            return commentReactionList;
+        }
+    }
 
     public ResponseStatus addCommentReaction(CommentReactions commentReaction)throws Exception{
         Connection connection = new CloudStorageConnectionHandler().getConnection();

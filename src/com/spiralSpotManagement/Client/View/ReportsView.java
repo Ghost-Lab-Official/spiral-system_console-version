@@ -13,6 +13,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class ReportsView {
+    
+    
+    /**
+     * @Author:Best Verie Iradukunda.
+     * @Author:Mike Manzi.
+     * @Comment: this class is intended to control the flow of information or operations on the admin panel.
+     *Throught this class the admin will be able to navigate all over our system's admin panel. it contains some menus 
+     *which make it easy for them (admins) to carry out every kind of tasks that are in this module. 
+     *Each and every method contained in this class is to help us navigate throught the panel 
+     *and it's where results from the server, are displayed.
+     * @Date: 9 Feb 2021
+     * @copyright all right reserved.
+     **/
+    
+    
     public  String toContinue;
     Scanner scanInput = null;
     int choice;

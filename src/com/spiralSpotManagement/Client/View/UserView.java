@@ -2,7 +2,12 @@ package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.TimeZone;
 
 /**
  *location management class. Method deleting given location
@@ -100,11 +105,11 @@ public class UserView {
                 System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
                 UserLog userLogToInsert = new UserLog();
                 userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+                userLogToInsert.setDateTimeLoggedIn(dateParser());
                 userLogToInsert.setAction("logIn");
                 userLogToInsert.setDateTimeLoggedOut(null);
-                userLogToInsert.setTotalIn(5);
-                userLogToInsert.setTotalOut(3);
+                userLogToInsert.setTotalIn(1);
+                userLogToInsert.setTotalOut(0);
 
                 new ReportsView().createUserlog(userLogToInsert);
             }
@@ -114,4 +119,13 @@ public class UserView {
 
         }
     }
+    public static String dateParser(){
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+        df.setTimeZone(tz);
+        String nowAsISO = df.format(new Date());
+
+        return nowAsISO;
+    }
+
 }
