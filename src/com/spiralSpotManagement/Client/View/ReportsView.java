@@ -1409,14 +1409,6 @@ try{
 
         public  void createUserlog(UserLog userLog) throws Exception {
 
-//            UserLog userLogToInsert = new UserLog();
-//            userLogToInsert.setUser_id(3);
-//            userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-//            userLogToInsert.setAction("created spot");
-//            userLogToInsert.setDateTimeLoggedOut(null);
-//            userLogToInsert.setTotalIn(5);
-//            userLogToInsert.setTotalOut(3);
-
             RequestBody request = new RequestBody();
             request.setUrl("/report");
             request.setAction("createUserLog");

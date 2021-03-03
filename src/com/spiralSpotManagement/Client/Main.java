@@ -51,7 +51,7 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(500);
+            Thread.sleep(300);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
@@ -135,7 +135,13 @@ public class Main {
                     }
                     break;
                 case 8:
-                    new UserView().mainMethod();
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                        new UserView().mainMethod();
+                    }
+                    else {
+                        System.out.println("You have to login first\n");
+                        userForms.loginUser();
+                    }
                     break;
                 default:
                     System.out.println("Invalid input");

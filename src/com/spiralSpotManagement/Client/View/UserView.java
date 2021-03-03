@@ -1,11 +1,16 @@
 package com.spiralSpotManagement.Client.View;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
+import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.SendEmail;
 import com.spiralSpotManagement.Server.Model.*;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.TimeZone;
 
@@ -28,10 +33,9 @@ public class UserView {
         System.out.println("||\t\t2.Get logged user info \t\t||\n");
         System.out.println("||\t\t3.Get user by id \t\t||\n");
         System.out.println("||\t\t4.Gell all users \t\t||\n");
-        System.out.println("||\t\t5.Update user \t\t||\n");
-        System.out.println("||\t\t6.Update user settings \t\t||\n");
-        System.out.println("||\t\t7.Delete user      \t\t||\n");
-        System.out.println("||\t\t8.Reset password   \t\t||\n");
+        System.out.println("||\t\t5.Update user settings \t\t||\n");
+        System.out.println("||\t\t6.Delete user      \t\t||\n");
+        System.out.println("||\t\t7.Reset password   \t\t||\n");
         System.out.println("==================================");
         Integer choice = input.nextInt();
         switch(choice) {
@@ -52,11 +56,71 @@ public class UserView {
             case 6:
                 deleteUser();
                 break;
+            case 7:
+                restPassword();
+                break;
             default:
                 System.out.println("Incorrect input!!");
         }
 
     }
+
+    public void restPassword()throws Exception{
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter your email");
+        String email=scanner.nextLine();
+        User user = new User();
+        user.setEmail(email);
+
+        RequestBody requestBody = new RequestBody();
+        requestBody.setObject(user);
+        requestBody.setAction("reset-password");
+        requestBody.setUrl("/users");
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
+
+        String randomString = null;
+        for (Object response: responseBody.getResponse()) {
+            ResponseStatus responseStatus = (ResponseStatus) response;
+            randomString = responseStatus.getObject().toString();
+
+            System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
+            System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
+            System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
+            System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+
+        System.out.println("\t\tEnter VERIFICATION CODE : ");
+        String verificationCode = scanner.nextLine();
+
+        if (verificationCode.equals(randomString)){
+
+            System.out.println("\tEnter new Password : ");
+            String newPassword = scanner.nextLine();
+            requestBody.setAction("reset-password-second");
+            requestBody.setUrl("/users");
+
+            User newUserPassword = new User();
+            newUserPassword.setPassword(newPassword);
+            requestBody.setObject(newUserPassword);
+            ResponseBody secondResponseBody=  clientServerConnector.ConnectToServer(requestBody);
+
+            for (Object response: secondResponseBody.getResponse()) {
+                ResponseStatus responseStatus = (ResponseStatus) response;
+
+                System.out.println("\t\t -------------------------------------- STATUS: " + responseStatus.getStatus() + " ---------------------------");
+                System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
+                System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
+                System.out.println("\t\t ------------------------------------------------------------------------------");
+            }
+
+        }
+        else{
+            System.out.println("You entered wrong verification Code !");
+        }
+    }
+
     public void selectUsers() throws Exception{
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/users");
