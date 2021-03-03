@@ -1262,34 +1262,27 @@ try{
                         e.printStackTrace();
                     }
 
-                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+            System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+            System.out.println(String.format("| %4s | %-15s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-15s | %-15s | %-20s |","#Id ","First name", "Last name","Username","Email","Gender","Birth date","User category","Location name","User status","Registration date"));
+            System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+            for(Object Response: responseBody.getResponse()){
+                UsersReport usersReport = (UsersReport) Response;
+                System.out.println(
+                        String.format("| %4s | %-15s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-15s | %-15s | %-20s |",
+                                usersReport.getUser_id(),
+                                usersReport.getFirst_name(),
+                                usersReport.getLast_name(),
+                                usersReport.getUser_name(),
+                                usersReport.getEmail(),
+                                usersReport.getGender(),
+                                usersReport.getBirth_date(),
+                                usersReport.getUser_category(),
+                                usersReport.getLocation(),
+                                usersReport.getUser_status(),
+                                usersReport.getRegistration_date())
+                );
+            }
 
-                    System.out.println(String.format("| %20s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-15s | %-25s | %-25s | %-25s |","#Id ","First name", "Last name","Username","Email","Gender","Birth date","User category","Location name","User status","Registration date"));
-                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
-
-                    for(Object Response: responseBody.getResponse()){
-                        UsersReport usersReport = (UsersReport) Response;
-
-                        System.out.println(
-                                String.format("| %25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
-                                        usersReport.getUser_id(),
-                                        usersReport.getFirst_name(),
-                                        usersReport.getLast_name(),
-                                        usersReport.getUser_name(),
-                                        usersReport.getEmail(),
-                                        usersReport.getGender(),
-                                        usersReport.getBirth_date(),
-                                        usersReport.getUser_category(),
-                                        usersReport.getLocation(),
-                                        usersReport.getUser_status(),
-                                        usersReport.getRegistration_date())
-                        );
-                    }
-                    System.out.println("helllo");
-//                }
-//            }).start();
-
-           System.out.println("hey");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
