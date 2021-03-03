@@ -18,11 +18,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-
-
-/* @author  Bethiane */
-
-
+/**
+ * @author  Bethiane
+ */
 public class SpotCategoryView {
     /* This the view for spotCategory */
 

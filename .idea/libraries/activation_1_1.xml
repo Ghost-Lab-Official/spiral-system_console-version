@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="activation-1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jackson-annotations-2.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jackson-core-2.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jackson-databind-2.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/javax.mail-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jBCrypt-0.4.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-api-0.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-impl-0.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-jackson-0.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-orgjson-0.11.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/mysql-connector-java-5.1.49.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
