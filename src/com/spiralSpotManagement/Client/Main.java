@@ -23,37 +23,40 @@ import java.util.Scanner;
  */
 
 public class Main {
-    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
-        RequestBody requestBody = new RequestBody();
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
-        Users testingObject = new Users();
-        testingObject.setEmail("ntwari@gmal.test");
-        testingObject.setFullName("ntwari testing");
-        requestBody.setObject(testingObject);
+    public void spiralWelcomePage(){
+       System.out.println("\n\n\n                                                                                                       ");
+       System.out.println("\t\t\t\t                                                                                                       ");
+       System.out.println(ANSI_BLUE +"\t\t\t\t    -------------                                                             ----                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |  ----------                                                             |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                               __                                     |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                              |__|                                    |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |   ---------   ----  ---------   ----   ----  -----      ------   --     |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    '--------   |   |  ' '-----.  |   |  |   |  ''_____|    /  ----- \\   |    |  |                    "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    ---------|  |   |  |-----------   |  |   |  |          |  --------   |    |  |_______              "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    ------------'   |  |-----------   ----   ----           \\________,\\__|    '__________            "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    ----                                                                               "+ANSI_RESET);
+   }
 
-        requestBody.setUrl("/users");
-        requestBody.setAction("register");
-
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-
-        // depending on clients need you will need to do type casting
-
-        List<Object> usersFoundObject =  responseBody.getResponse();
-
-        for (Object userObject: usersFoundObject){
-            ResponseStatus responseStatus = (ResponseStatus) userObject;
-
-            System.out.println("Server replied "
-                    + (responseStatus.getStatus()));
+    public void loadingPageWrapper() throws InterruptedException {
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------");
+        System.out.print("\t\t\t\tSpiraling \t");
+        for (int i = 0; i < 20; i++) {
+            System.out.print(".");
+            Thread.sleep(500);
         }
-
-        /*
-            WORKING ON USER REGISTRATION
-        */
+        System.out.print("\n");
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
+        System.out.println("\n");
     }
-
-
 
     public static void main(String[] args) throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -67,6 +70,8 @@ public class Main {
         do {
             int choice;
             Scanner scanner = new Scanner(System.in);
+            new Main().spiralWelcomePage();
+            new Main().loadingPageWrapper();
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
