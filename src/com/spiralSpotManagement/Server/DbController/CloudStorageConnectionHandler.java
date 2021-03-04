@@ -3,6 +3,11 @@ import java.io.FileReader;
 import java.sql.*;
 import java.util.Properties;
 
+/**
+ * @Author: Ntwari Egide
+ * @Author: Ishimwe Gervais
+ * @description: Setting global settings in config.properties
+ */
 public class CloudStorageConnectionHandler {
     public  Connection getConnection()throws Exception{
         Connection connection = null;
@@ -10,11 +15,6 @@ public class CloudStorageConnectionHandler {
         Properties propertiesStored = new Properties();
         propertiesStored.load(reader);
         try {
-
-//            String url = "jdbc:mysql://remotemysql.com:3306/2YQ7auowc7?" + "autoReconnect=true&useSSL=false";
-//            String username = "2YQ7auowc7";
-//            String password = "R2IMVJC67L";
-
             String url = propertiesStored.getProperty("dbUrl");
             String username = propertiesStored.getProperty("dbUsername");
             String password = propertiesStored.getProperty("dbPassword");

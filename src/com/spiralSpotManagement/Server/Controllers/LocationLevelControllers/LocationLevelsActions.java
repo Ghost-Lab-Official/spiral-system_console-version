@@ -38,7 +38,6 @@ public class LocationLevelsActions {
               return new ResponseStatus(200,"CREATED","Location level registered");
             }
             if(connection != null){
-//                conn.close();
                 return new ResponseStatus(500,"SERVER ERROR","Insertion failed, try or contact System Administrator");
             }
 
@@ -47,9 +46,4 @@ public class LocationLevelsActions {
         }
            return new ResponseStatus(200,"CREATED","Location level registered");
     }
-
-
-
-//    ADD YOUR OTHER METHODS TO DEAL WITH HERE
-//    ---------------------------------------------------
 }

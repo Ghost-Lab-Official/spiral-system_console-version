@@ -19,13 +19,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static com.spiralSpotManagement.Client.Main.ikazeSpiral;
-
-
-
-/* @author  Bethiane */
-
-
+/**
+ * @author  Bethiane
+ */
 public class SpotCategoryView {
     /* This the view for spotCategory. it has functions for creating,update,
     view, change status of spot category */

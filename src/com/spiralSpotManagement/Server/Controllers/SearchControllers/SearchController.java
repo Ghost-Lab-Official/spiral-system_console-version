@@ -1,6 +1,5 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
-import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class SearchController {
                         .DisplayRecentSearches((User) requestBody.getObject());
             case "RemoveRecentSearch":
                 User user = new User();
-                user.setUserId(new UserAuthMiddleware().checkForUserExistence());
+                user.setUserId(1);
                 ResponseStatus responseStatus = new SearchActions().RemoveRecentSearch(user,
                         (RecentSearch) requestBody.getObject());
                 results.add(responseStatus);

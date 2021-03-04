@@ -2,7 +2,7 @@ package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationActions;
-import com.spiralSpotManagement.Server.Model.LocationModel;
+import com.spiralSpotManagement.Server.Model.Location;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -25,11 +25,9 @@ public class LocationView {
         System.out.println("Enter the Location name: ");
         String locationName = scanner.nextLine();
 
-//        CALL API FOR GETTING ALL LEVELS
         System.out.println("Enter the level: ");
         String level_id = scanner.nextLine();
 
-//        CALL API FOR THE PARENT IF AVAILABLE
         System.out.println("Enter the parent: ");
         String parent_id = scanner.nextLine();
 
@@ -39,7 +37,7 @@ public class LocationView {
         System.out.println("Enter the description: ");
         String description = scanner.nextLine();
 
-        LocationModel location = new LocationModel();
+        Location location = new Location();
         location.setLocation_name(locationName);
         location.setDescription(description);
         location.setLocation_GPS(location_GPS);
@@ -119,7 +117,7 @@ public class LocationView {
         String decript = scanner.nextLine();
         if(decript.equals("-1")) decript=null;
 
-         LocationModel updateData = new LocationModel();
+         Location updateData = new Location();
          updateData.setDescription("The best continent where people collaborates");
          updateData.setLocation_id(locId);
          updateData.setParent_id(parentId);
@@ -164,7 +162,7 @@ public class LocationView {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String locationName= reader.readLine();
 
-            LocationModel updateData = new LocationModel();
+            Location updateData = new Location();
             updateData.setLocation_id(locationName);
             RequestBody updateRequest = new RequestBody();
             updateRequest.setUrl("/location");
@@ -207,7 +205,7 @@ public  void RecoverLocation(){
             System.out.println("The location was deleted permanently.\n1. Register it now!\n2. Try again.\n0. Exit.");
         }
 
-        LocationModel RecoverData = new LocationModel();
+        Location RecoverData = new Location();
         RecoverData.setLocation_id(locId);
         RequestBody recoverRequest = new RequestBody();
         recoverRequest.setUrl("/location");
