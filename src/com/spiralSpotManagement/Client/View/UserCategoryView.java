@@ -6,14 +6,16 @@ package com.spiralSpotManagement.Client.View;
  */
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.UserCategory;
 import com.spiralSpotManagement.Server.Utils.UserCategories;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Scanner;
 
 import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
 
@@ -58,7 +60,7 @@ public class UserCategoryView {
             case 1:
                 categoryName = UserCategories.NORMAL_USER.toString();
                 break;
-             case 2:
+            case 2:
                 categoryName = UserCategories.SUPER_ADMIN.toString();
                 break;
             case 3:
@@ -93,7 +95,7 @@ public class UserCategoryView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
-}
+    }
     public static void selectUserCategories() throws Exception{
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/user-category");
