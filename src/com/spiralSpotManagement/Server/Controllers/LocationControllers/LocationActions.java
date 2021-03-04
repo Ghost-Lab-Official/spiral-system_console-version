@@ -82,7 +82,7 @@ public class LocationActions {
             }else{
                 String withoutLastComma = attr.substring( 0, attr.length( ) - ",".length( ) );
                 query +="UPDATE locations SET "+withoutLastComma+" "+cond;
-                System.out.println("Queryy::: "+query);
+                //System.out.println("Queryy::: "+query);
 
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 int updated = preparedStatement.executeUpdate();
