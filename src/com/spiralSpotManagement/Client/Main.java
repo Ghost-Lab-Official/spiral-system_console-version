@@ -47,7 +47,7 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(200);
+            Thread.sleep(100);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
