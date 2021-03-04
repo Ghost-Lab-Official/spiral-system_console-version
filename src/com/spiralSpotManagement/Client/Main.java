@@ -130,7 +130,14 @@ public class Main {
                     break;
                 case 7:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    new ReportsView().reportDashboard();
+                    {
+                        if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                            new ReportsView().reportDashboard();
+                        }
+                        else{
+                            System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
+                        }
+                    }
                     else {
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
