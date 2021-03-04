@@ -56,9 +56,8 @@ public class UserLogsActions {
          TimeZone tz = TimeZone.getTimeZone("UTC");
          DateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
          df.setTimeZone(tz);
-         String nowAsISO = df.format(new Date());
 
-         return nowAsISO;
+         return df.format(new Date());
      }
 
     public ResponseStatus recordUserLogs(UserLog userLog) throws Exception{
