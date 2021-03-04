@@ -102,7 +102,7 @@ public class SpotView {
 
     public void spotViewMenu() throws Exception {
         /*@Bethiane
-         * This is the entry of spotView */
+         * This is the entry of spotView module*/
         String toContinue;
         do {
             int choice;
