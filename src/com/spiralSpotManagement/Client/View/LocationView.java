@@ -311,7 +311,7 @@ public  void RecoverLocation(){
                 System.out.println(i);
             }
             if ((responseBody.getResponse().isEmpty())) {
-                System.out.println("No locations found! "+requestBody);
+                System.out.println("No locations found😀! "+requestBody);
             }
         }catch (Exception e){
             System.out.println("Error Message:: "+e.getMessage());
