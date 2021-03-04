@@ -241,7 +241,8 @@ public  void RecoverLocation(){
             System.out.println("\t\t\t||------------------    2.UPDATE LOCATION          ------------------||");
             System.out.println("\t\t\t||------------------    3.DELETE A LOCATION        ------------------||");
             System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION       ------------------||");
-            System.out.println("\t\t\t||------------------    5.RETURN HOME              ------------------||");
+            System.out.println("\t\t\t||------------------    5.GET BY PARENT            ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -259,6 +260,8 @@ public  void RecoverLocation(){
                     RecoverLocation();
                     break;
                 case 5:
+                    
+                case 6:
                     welcomeToSpiral();
                 default:
                     System.out.println("Invalid input");
