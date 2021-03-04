@@ -6,9 +6,9 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-        @author : ntwari Egide
-        @description: handler controller for the spot actions
+/**
+ *  @author : ntwari Egide
+ *  @description: handler controller for the spot actions
  */
 
 public class SpotController {

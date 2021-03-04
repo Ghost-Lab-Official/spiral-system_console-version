@@ -14,9 +14,12 @@ public class SpotCategoryActions {
     String registerSpotCategoryQuery = "INSERT INTO spot_category(user_id,category_name,description,status) VALUES (?,?,?,?)";
     String updateStatusQuery = "UPDATE spot_category SET status=? WHERE category_id=?";
 
-    /*
-            @author : Nimuhire Ange Constance
-            @description: This method is used to insert a new spotCategory
+    /**
+     * @author : Nimuhire Ange Constance
+     * @description: This method is used to insert a new spotCategory
+     * @param spotCategoryToAdd
+     * @return
+     * @throws Exception
      */
 
     public ResponseStatus addNewSpotCategory(SpotCategory spotCategoryToAdd) throws Exception {
@@ -40,9 +43,13 @@ public class SpotCategoryActions {
             return new ResponseStatus(300, "EXCEPTIONAL ERROR", e.getMessage());
         }
     }
-    /*
-            @author : Nimuhire Ange Constance
-            @description: This method is used to update a spotCategory
+
+    /**
+     * @author : Nimuhire Ange Constance
+     * @description: This method is used to update a spotCategory
+     * @param spotCategory
+     * @return
+     * @throws Exception
      */
     public ResponseStatus updateSpotCategory(SpotCategory spotCategory) throws Exception {
 
@@ -65,9 +72,12 @@ public class SpotCategoryActions {
         }
         return null;
     }
-    /*
-            @author : Nimuhire Ange Constance
-            @description: This method is used to get all spotCategories
+
+    /**
+     * @author : Nimuhire Ange Constance
+     * @description: This method is used to get all spotCategories
+     * @return
+     * @throws Exception
      */
     public List<SpotCategory> getAllSpotCategories() throws Exception {
 
@@ -95,9 +105,13 @@ public class SpotCategoryActions {
             return spotCategoryList;
         }
     }
-    /*
-            @author : Nimuhire Ange Constance
-            @description: This method is used to change spotCategory status
+
+    /**
+     * @author : Nimuhire Ange Constance
+     * @description: This method is used to change spotCategory status
+     * @param spotCategory
+     * @return
+     * @throws Exception
      */
     public ResponseStatus updateStatus(SpotCategory spotCategory)throws Exception{
         try {

@@ -18,11 +18,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
 
-
-/* @author  Bethiane */
-
-
+/**
+ * @author  Bethiane
+ */
 public class SpotCategoryView {
     /* This the view for spotCategory */
 
@@ -174,6 +174,7 @@ public class SpotCategoryView {
             System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
             System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
             System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
+           System.out.println("\t\t\t||------------------     5.RETURN HOME               -----------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -210,6 +211,8 @@ public class SpotCategoryView {
                         new UserView().loginUser();
                     }
                     break;
+                case 5:
+                    welcomeToSpiral();
                 default:
                     System.out.println("Invalid input");
 

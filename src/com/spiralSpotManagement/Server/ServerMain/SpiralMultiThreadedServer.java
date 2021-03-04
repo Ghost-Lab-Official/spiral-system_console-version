@@ -22,12 +22,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 
-// Server class
-/*
-
- @author : Ntwari Egide - Scrum Master
- @author : Ishimwe Gervais
-
+/**
+ *  @author : Ntwari Egide - Scrum Master
+ *  @author : Ishimwe Gervais
  */
 public class
 SpiralMultiThreadedServer {
@@ -181,17 +178,7 @@ SpiralMultiThreadedServer {
                         default:
 
                     }
-                    // writing the received message from
-                    // client
-//                   Users users = new Users();
-//                    users.setEmail(((Users) requestBody.getObject()).getEmail());
-//                    System.out.println(users.getEmail());
-////                    System.out.printf(
-////                            " Sent from the client: %s\n",
-////                            requestBody.getObject());
-//                    List<Users> usersList = new ArrayList<>();
-//                    usersList.add(users);
-//                    usersList.add(users);
+
 
                     out.writeObject(responseObject);
                 }
