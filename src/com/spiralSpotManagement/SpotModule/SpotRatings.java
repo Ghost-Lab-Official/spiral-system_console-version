@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.SpotModule;
 
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 
 import java.io.InputStreamReader;
 import java.net.ConnectException;
@@ -56,7 +56,7 @@ public class SpotRatings {
         rating = parseInt(reader.readLine());
 
         try{
-            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection = cloudStorageConnection.getConnection();
             String sql = "INSERT INTO spot_ratings (user_id,spot_id,rating)";
             PreparedStatement statement = connection.prepareStatement(INSERT_SPORT_RATING);
@@ -71,7 +71,7 @@ public class SpotRatings {
 
     public void update_spot_rating() throws Exception{
         try{
-            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection = cloudStorageConnection.getConnection();
             String sql = "UPDATE spot_ratings SET rating=? WHERE spot_id = ?";
             PreparedStatement statement = connection.prepareStatement(INSERT_SPORT_RATING);

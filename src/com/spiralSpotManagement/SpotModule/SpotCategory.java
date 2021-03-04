@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.SpotModule;
 
-import com.spiralSpotManagement.DbConnection.CloudStorageConnection;
+import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -33,7 +33,7 @@ public class SpotCategory {
         String status = reader.readLine();
 
         try {
-            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection = cloudStorageConnection.getConnection();
             String sql = "INSERT INTO spot_category(user_id,category_name,description,status) VALUES (?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class SpotCategory {
         String status = reader2.readLine();
 
         try {
-            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection = cloudStorageConnection.getConnection();
             String sql = "UPDATE spot_category SET category_name=?,description=?,status=? WHERE category_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -82,7 +82,7 @@ public class SpotCategory {
 
 
         try {
-            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection = cloudStorageConnection.getConnection();
             String sql = "SELECT * FROM spot_category";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -118,7 +118,7 @@ public class SpotCategory {
         try {
 
 
-            CloudStorageConnection cloudStorageConnection = new CloudStorageConnection();
+            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
             Connection connection = cloudStorageConnection.getConnection();
             String sql = "UPDATE spot_category SET status=? WHERE category_id=?";
             PreparedStatement statement = connection.prepareStatement(sql);
