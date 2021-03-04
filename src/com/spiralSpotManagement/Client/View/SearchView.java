@@ -191,6 +191,11 @@ public class SearchView {
 
 
     public static void searchMessages() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("getMessages");
 
+        System.out.print("Search a person: ");
+        String searchKey = scanner.next();
     }
 }

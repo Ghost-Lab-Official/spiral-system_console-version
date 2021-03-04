@@ -75,6 +75,7 @@ public class SearchActions {
         }
     }
 
+
 /**
  *
  * @Author : Pauline Ishimwe this method will help you to display your recent searches
