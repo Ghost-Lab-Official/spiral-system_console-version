@@ -26,11 +26,6 @@ public class LocationLevelController {
              break;
          case "get":
              break;
-<<<<<<< HEAD
-// ADD CASE TO GO HERE
-//         ------------------------------------
-=======
->>>>>>> 4d5cf33725243552fe1a8eee1105460b9b2a3fcb
 
      }
      return null;

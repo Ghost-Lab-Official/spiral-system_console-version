@@ -12,24 +12,6 @@ public class UserAuthMiddleware {
         // Writing token and other required credentials
         Properties properties = new Properties();
         properties.load(inputStream);
-<<<<<<< HEAD
-        Object userId = (Object) properties.getProperty("UserId");
-
-        if(userId == null){
-            InputStream input = new FileInputStream("config.properties");
-            // Writing token and other required credentials
-            Properties props = new Properties();
-            properties.load(input);
-            properties.setProperty("Token","");
-            properties.setProperty("UserId", String.valueOf(0));
-
-            properties.store(new FileOutputStream("config.properties"),null);
-
-            return 0;
-        }
-    return (Integer) userId;
-
-=======
 
         return Integer.valueOf(properties.getProperty("UserId"));
     }
@@ -62,6 +44,5 @@ public class UserAuthMiddleware {
         Integer userRole = Integer.valueOf(properties.getProperty("ROLE"));
 
         return userRole;
->>>>>>> 4d5cf33725243552fe1a8eee1105460b9b2a3fcb
     }
 }
