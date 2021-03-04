@@ -161,44 +161,47 @@ public class SearchView {
      * Search a spot
      */
     public static void searchSpot() throws Exception{
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/search");
-        requestBody.setAction("getSpots");
+        try {
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/search");
+            requestBody.setAction("getSpots");
 
-        Spot spotToSend = new Spot();
-        System.out.print("Search a spot: ");
-        String searchKey = scanner.next();
-        //        create user log
-        UserLog userLogToInsert = new UserLog();
-        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-        userLogToInsert.setAction("searching " + searchKey);
-        userLogToInsert.setDateTimeLoggedOut(null);
-        userLogToInsert.setTotalIn(5);
-        userLogToInsert.setTotalOut(3);
-        new ReportsView().createUserlog(userLogToInsert);
+            Spot spotToSend = new Spot();
+            System.out.print("Search a spot: ");
+            String searchKey = scanner.next();
+            //        create user log
+            UserLog userLogToInsert = new UserLog();
+            userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+            userLogToInsert.setAction("searching " + searchKey);
+            userLogToInsert.setDateTimeLoggedOut(null);
+            userLogToInsert.setTotalIn(5);
+            userLogToInsert.setTotalOut(3);
+            new ReportsView().createUserlog(userLogToInsert);
 
-        spotToSend.setSpotName(searchKey);
-        requestBody.setObject(spotToSend);
+            spotToSend.setSpotName(searchKey);
+            requestBody.setObject(spotToSend);
 
-        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-        boolean found = false;
-        Integer index = 0;
-        List<Object> spotsList = new ArrayList<>();
-        for (Object response: responseBody.getResponse()){
-            index++;
-            found = true;
-            Spot spot = (Spot) response;
-            System.out.println(index + ". " + spot.getSpotName());
-            spotsList.add(spot);
+            ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+            boolean found = false;
+            Integer index = 0;
+            List<Object> spotsList = new ArrayList<>();
+            for (Object response : responseBody.getResponse()) {
+                index++;
+                found = true;
+                Spot spot = (Spot) response;
+                System.out.println(index + ". " + spot.getSpotName() + " : " + spot.getSpotDescription().substring(0,10) + "...");
+                spotsList.add(spot);
+            }
+
+            if (!found) {
+                System.out.println("No spots Found.");
+            } else {
+                displaySpot(spotsList);
+            }
+        }catch (Exception e){
+            System.out.println("Error occured" + e.getMessage());
         }
-
-        if(!found){
-            System.out.println("No spots Found.");
-        }else {
-            displaySpot(spotsList);
-        }
-
     }
 
 
