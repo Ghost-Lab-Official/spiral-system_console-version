@@ -246,6 +246,10 @@ public class SearchView {
 
     /**
      * Method to view recent searches
+     * @author: Mugisha ISaac and Ishimwe Pauline
+     * comment: This is the method which prints recent searches of a logged in user
+     * and then gives the user options to delete a recent search or to search again
+     * using that query.
      */
     public static void viewRecentSearches() throws Exception {
         RequestBody requestBody = new RequestBody();
@@ -305,6 +309,13 @@ public class SearchView {
         }
     }
 
+    /**
+     @uthor: Mugisha isaac
+     comment: This the method which gives the status, message and action if the user
+     deletes a recent search query from history. if status is 200 (ok), then this tells
+     that the query was successfully deleted and the message will be a successfully message of
+     deletion. action to do is to search again
+     */
     public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
