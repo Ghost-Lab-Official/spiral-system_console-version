@@ -11,8 +11,8 @@ import java.time.LocalDate;
 
 public class UserBillingActions {
     /**
-     *  pay for a plan.
-     * @param 'planID and userID',
+     *  checkUserBilling payment status.
+     * @param UserBillingServices project having the UserBilling Object and the service to do,
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
@@ -61,6 +61,12 @@ public class UserBillingActions {
 
         }
     }
+ /**
+     *  pay for a plan.
+     * @param UserBilling Object having user_id and plan id
+     * The function returns the ResponseStatus
+     * @author Gervais Ishimwe
+     */
 
     public ResponseStatus payBilling(UserBilling userBilling)throws Exception{
         String query = "INSERT INTO users_billing(user_id,billing_id,end_date) VALUES (?,?,?)";
