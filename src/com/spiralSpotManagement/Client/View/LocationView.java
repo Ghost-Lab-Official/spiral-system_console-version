@@ -8,6 +8,9 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
             @author : Gervais Ishimwe
             @outhor : EGIDE Harerimana
@@ -22,11 +25,9 @@ public class LocationView {
         System.out.println("Enter the Location name: ");
         String locationName = scanner.nextLine();
 
-//        CALL API FOR GETTING ALL LEVELS
         System.out.println("Enter the level: ");
         String level_id = scanner.nextLine();
 
-//        CALL API FOR THE PARENT IF AVAILABLE
         System.out.println("Enter the parent: ");
         String parent_id = scanner.nextLine();
 
@@ -36,7 +37,7 @@ public class LocationView {
         System.out.println("Enter the description: ");
         String description = scanner.nextLine();
 
-        LocationModel location = new LocationModel();
+        Location location = new Location();
         location.setLocation_name(locationName);
         location.setDescription(description);
         location.setLocation_GPS(location_GPS);
@@ -123,7 +124,7 @@ public class LocationView {
         String decript = scanner.nextLine();
         if(decript.equals("-1")) decript=null;
 
-         LocationModel updateData = new LocationModel();
+         Location updateData = new Location();
          updateData.setDescription("The best continent where people collaborates");
          updateData.setLocation_id(locId);
          updateData.setParent_id(parentId);
@@ -170,7 +171,7 @@ public class LocationView {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String locationName= reader.readLine();
 
-            LocationModel updateData = new LocationModel();
+            Location updateData = new Location();
             updateData.setLocation_id(locationName);
             RequestBody updateRequest = new RequestBody();
             updateRequest.setUrl("/location");
@@ -213,7 +214,7 @@ public  void RecoverLocation(){
             System.out.println("The location was deleted permanently.\n1. Register it now!\n2. Try again.\n0. Exit.");
         }
 
-        LocationModel RecoverData = new LocationModel();
+        Location RecoverData = new Location();
         RecoverData.setLocation_id(locId);
         RequestBody recoverRequest = new RequestBody();
         recoverRequest.setUrl("/location");
@@ -245,8 +246,10 @@ public  void RecoverLocation(){
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.CREATE A LOCATION        ------------------||");
             System.out.println("\t\t\t||------------------    2.UPDATE LOCATION          ------------------||");
-            System.out.println("\t\t\t||------------------    3.DELETE A LOCATION     ------------------||");
-            System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION   ------------------||");
+            System.out.println("\t\t\t||------------------    3.DELETE A LOCATION        ------------------||");
+            System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION       ------------------||");
+            System.out.println("\t\t\t||------------------    5.GET BY PARENT            ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -280,6 +283,10 @@ public  void RecoverLocation(){
 
                     new ReportsView().createUserlog(userLogToInsertOnLocations2);
                     break;
+                case 5:
+
+                case 6:
+                    welcomeToSpiral();
                 default:
                     System.out.println("Invalid input");
 

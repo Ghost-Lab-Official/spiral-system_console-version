@@ -33,17 +33,5 @@ public class CommentReactionView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
-
-//            throws SQLException {
-//        PreparedStatement preparedStatement = connection.prepareStatement(
-//                InsertCommentReactionQuery
-//        );
-//        preparedStatement.setString(1, commentReaction.getComment_reaction_id());
-//        preparedStatement.setString(2, commentReaction.getComment_id());
-//        preparedStatement.setString(3, commentReaction.getUser_id());
-//        preparedStatement.setBoolean(4, commentReaction.getLiked());
-//        preparedStatement.setString(5, toDateTime(commentReaction.getCreated_at()));
-//        preparedStatement.setString(6, toDateTime(commentReaction.getUpdated_at()));
-//        preparedStatement.execute();
     }
 }

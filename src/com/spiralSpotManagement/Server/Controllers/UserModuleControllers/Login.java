@@ -65,9 +65,4 @@ public class Login {
         }
         return rightPassword;
     }
-
-//    public static void main(String[] args) throws Exception{
-//        Login login = new Login();
-//        login.loginUser(new CloudStorageConnection().getConnection();
-//    }
 }

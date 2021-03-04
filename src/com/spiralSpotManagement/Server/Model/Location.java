@@ -2,7 +2,7 @@ package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
 
-public class LocationModel implements Serializable {
+public class Location implements Serializable {
 
     private String location_id;
     private String level_id;
@@ -11,9 +11,9 @@ public class LocationModel implements Serializable {
     private String location_GPS;
     private String description;
 
-    public LocationModel(){}
+    public Location(){}
 
-    public LocationModel(String location_id, String level_id, String parent_id, String location_name, String location_GPS, String description) {
+    public Location(String location_id, String level_id, String parent_id, String location_name, String location_GPS, String description) {
         this.location_id = location_id;
         this.level_id = level_id;
         this.parent_id = parent_id;

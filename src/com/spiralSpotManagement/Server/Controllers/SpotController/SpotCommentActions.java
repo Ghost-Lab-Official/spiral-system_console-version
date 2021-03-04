@@ -26,10 +26,13 @@ public class SpotCommentActions {
   String UpdateCommentStatusQuery =
     "UPDATE comments  SET status=?, updated_at=? WHERE comment_id=?";
 
-  /*
-            @author : Izabayo Cedric
-            @description: This method is used to get comments of a spot
-     */
+  /**
+   * @author : Izabayo Cedric
+   * @description: This method is used to get comments of a spot
+   * @param spotId
+   * @return
+   * @throws Exception
+   */
   public List<Comment> GetComments(String spotId) throws Exception {
     List<Comment> commentsList = new ArrayList<>();
     Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -59,10 +62,13 @@ public class SpotCommentActions {
     }
   }
 
-  /*
-            @author : Izabayo Cedric
-            @description: This method is used to get replies of a spot comment
-     */
+  /**
+   * @author : Izabayo Cedric
+   *  @description: This method is used to get replies of a spot comment
+   * @param CommentId
+   * @return
+   * @throws Exception
+   */
   public List<Comment> GetCommentReplies(String CommentId) throws Exception {
     List<Comment> commentsList = new ArrayList<>();
     Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -93,10 +99,13 @@ public class SpotCommentActions {
     }
   }
 
-  /*
-            @author : Izabayo Cedric
-            @description: This method is used to insert a new comment
-     */
+  /**
+   * @author : Izabayo Cedric
+   * @description: This method is used to insert a new comment
+   * @param comment
+   * @return
+   * @throws Exception
+   */
   public ResponseStatus insertComment(Comment comment) throws Exception {
     Connection connection = new CloudStorageConnectionHandler().getConnection();
     try {
@@ -130,10 +139,13 @@ public class SpotCommentActions {
     return format.format(date);
   }
 
-  /*
-            @author : Izabayo Cedric
-            @description: This method is used to update a comment
-     */
+  /**
+   * @author : Izabayo Cedric
+   * @description: This method is used to update a comment
+   * @param comment
+   * @return
+   * @throws Exception
+   */
   public ResponseStatus updateComment(Comment comment) throws Exception {
     Connection connection = new CloudStorageConnectionHandler().getConnection();
     try {
@@ -163,10 +175,13 @@ public class SpotCommentActions {
     return null;
   }
 
-  /*
-            @author : Izabayo Cedric
-            @description: This method is used to insert a new commentReply
-     */
+  /**
+   *  @author : Izabayo Cedric
+   *  @description: This method is used to insert a new commentReply
+   * @param comment
+   * @return
+   * @throws Exception
+   */
   public ResponseStatus makeCommentReply(Comment comment) throws Exception {
     Connection connection = new CloudStorageConnectionHandler().getConnection();
     try {
@@ -198,10 +213,13 @@ public class SpotCommentActions {
     return null;
   }
 
-  /*
-            @author : Izabayo Cedric
-            @description: This method is used to change a comment's status
-     */
+  /**
+   * @author : Izabayo Cedric
+   * @description: This method is used to change a comment's status
+   * @param comment
+   * @return
+   * @throws Exception
+   */
   public ResponseStatus updateCommentStatus(Comment comment) throws Exception {
     Connection connection = new CloudStorageConnectionHandler().getConnection();
     try {

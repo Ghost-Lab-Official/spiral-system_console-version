@@ -8,13 +8,14 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 public class SpotView {
     FormsView formClient = new FormsView();
 
     public void createSpot()throws Exception{
         Spot customSpot = new Spot();
         customSpot = formClient.createSpotViewForm();
-//        Integer spot_id= customSpot.getSpotId();
         Integer user_id = customSpot.getUserId();
         Integer category_id = customSpot.getCategoryId();
         Integer location_id = customSpot.getLocationId();
@@ -56,14 +57,6 @@ public class SpotView {
         Integer status = spotToUpdate.getStatus();
 
         Scanner scan = new Scanner(System.in);
-//        Integer spot_id = 8;
-//        Integer user_id = 1;
-//        Integer category_id = 45;
-//        Integer location_id =5655;
-//        String spot_name = "Updated Computer";
-//        String spot_description = "Balck and brown table found in Ouuaagaadouuguuu";
-//        String registration_date = "2021-01-31";
-//        String status = "active";
 
         Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,status);
 
@@ -119,6 +112,7 @@ public class SpotView {
         System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    4. RETURN HOME             ------------------||");
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t\t  Enter your choice                                              ");
         choice = scanner.nextInt();
@@ -161,6 +155,7 @@ public class SpotView {
                     new UserView().loginUser();
                 }
             }
+            case 4 -> welcomeToSpiral();
             default -> System.out.println("Invalid input");
         }
     }
