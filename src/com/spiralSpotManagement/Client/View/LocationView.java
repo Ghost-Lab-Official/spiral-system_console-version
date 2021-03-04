@@ -77,6 +77,8 @@ public class LocationView {
      */
 
     public void updateLocation(){
+
+        System.out.println("UPDATING EXISTING LOCATION\n=====================================\n");
     try {
         LocationActions location = new LocationActions();
         Scanner scanner = new Scanner(System.in);
@@ -196,6 +198,7 @@ public class LocationView {
      */
 
     public void DeleteLocation(){
+        System.out.println("DELETING EXISTING LOCATION\n=====================================\n");
         try {
             System.out.println("Provide Location ID to delete:: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -233,6 +236,7 @@ public class LocationView {
  */
 
 public  void RecoverLocation(){
+    System.out.println("RECOVERING A DELETED LOCATION\n=====================================\n");
     try{
         LocationActions location = new LocationActions();
         Scanner scanner = new Scanner(System.in);
