@@ -1,5 +1,9 @@
 package com.spiralSpotManagement.Client.Middleware;
 
+import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.View.ReportsView;
+import com.spiralSpotManagement.Server.Model.*;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -36,13 +40,20 @@ public class UserAuthMiddleware {
         System.out.println("\t\t --------------         Meaning: LOGOUT IS DONE ");
         System.out.println("\t\t --------------         Action: Goodbye , See you later !");
         System.out.println("\t\t ------------------------------------------------------------------------------");
+
+        UserLog userLogToInsert = new UserLog();
+        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        userLogToInsert.setAction("logOut");
+
+
+        new ReportsView().createUserlog(userLogToInsert);
+
     }
     public Integer checkIfIsAdmin()throws Exception{
         InputStream inputStream = new FileInputStream("config.properties");
         Properties properties = new Properties();
         properties.load(inputStream);
-        Integer userRole = Integer.valueOf(properties.getProperty("ROLE"));
 
-        return userRole;
+        return Integer.valueOf(properties.getProperty("ROLE"));
     }
 }

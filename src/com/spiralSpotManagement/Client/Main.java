@@ -2,19 +2,13 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -106,31 +100,36 @@ public class Main {
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    spotCategories.SpotCategoryMenu();
+                    userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+
                         locationForms.LocationViewMenu();
+
+                    }
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
 
                 case 6:
+                    //        create user log
+
                     searchForms.mainMethod();
                     break;
                 case 7:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    {
-                        if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
-                            new ReportsView().reportDashboard();
-                        }
-                        else{
-                            System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
-                        }
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                        UserLog userLogToInsertonReports = new UserLog();
+                        userLogToInsertonReports.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsertonReports.setAction("viewed reports");
+
+                        new ReportsView().createUserlog(userLogToInsertonReports);
+                        new ReportsView().reportDashboard();
+
                     }
                     else {
-                        System.out.println("You have to login first\n");
+                        System.out.println("You have to login as an admin to view reports\n");
                         new UserView().loginUser();
                     }
                     break;
@@ -145,6 +144,7 @@ public class Main {
                     break;
                 case 9:
                     new UserAuthMiddleware().logoutMiddleWare();
+
                     break;
                 default:
                     System.out.println("Invalid input");
