@@ -260,7 +260,7 @@ public  void RecoverLocation(){
                     RecoverLocation();
                     break;
                 case 5:
-                    
+
                 case 6:
                     welcomeToSpiral();
                 default:
