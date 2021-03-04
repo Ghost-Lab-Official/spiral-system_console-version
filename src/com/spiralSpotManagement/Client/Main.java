@@ -149,12 +149,8 @@ public class Main {
                     }
                     break;
                 case 9:
-                    UserLog userLogoutToInsert = new UserLog();
-                    userLogoutToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogoutToInsert.setAction("logOut");
-
-                    new ReportsView().createUserlog(userLogoutToInsert);
                     new UserAuthMiddleware().logoutMiddleWare();
+
                     break;
                 default:
                     System.out.println("Invalid input");

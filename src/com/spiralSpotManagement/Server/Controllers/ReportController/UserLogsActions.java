@@ -68,7 +68,6 @@ public class UserLogsActions {
         ResultSet rs=statement.executeQuery(getPreviousRowQuery);
         while (rs.next()){
            if(userLog.getAction().equals("logIn")){
-               System.out.println("Reached here");
                int currentTotalIn = 0;
                currentTotalIn=rs.getInt("Total_in");
                int currentTotalOut = 0;
@@ -79,6 +78,8 @@ public class UserLogsActions {
            else if(userLog.getAction().equals("logOut")){
                int currentTotalIn = rs.getInt("Total_in");
                int currentTotalOut = rs.getInt("Total_out");
+               userLog.setDateTimeLoggedIn(rs.getString("date_Time_logged_In"));
+
                userLog.setDateTimeLoggedOut(dateParser());
                userLog.setTotalIn(currentTotalIn-1);
                userLog.setTotalOut(currentTotalOut+1);
