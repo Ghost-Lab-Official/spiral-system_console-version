@@ -62,7 +62,12 @@ public class UserView {
                 restPassword();
                 break;
             case 8:
-                new UserCategoryView().mainMethod();
+                if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                    new UserCategoryView().mainMethod();
+                }
+                else{
+                    System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
+                }
                 break;
             default:
                 System.out.println("Incorrect input!!");
