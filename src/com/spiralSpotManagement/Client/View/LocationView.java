@@ -303,7 +303,6 @@ public  void RecoverLocation(){
         String parent;
         System.out.println("Enter the location you want to search by: ");
         parent = scanner.nextLine();
-        System.out.println("we're here"+parent);
         requestBody.setObject(parent);
         try {
             ClientServerConnector clientServerConnector = new ClientServerConnector();
