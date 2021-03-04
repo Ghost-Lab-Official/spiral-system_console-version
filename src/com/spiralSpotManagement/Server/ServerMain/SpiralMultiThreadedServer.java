@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Server.ServerMain;
 
+import com.spiralSpotManagement.Server.Controllers.ReportController.ReportController;
 import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotCategoryController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
@@ -155,6 +156,7 @@ public class SpiralMultiThreadedServer {
                             break;
 
                         case "/report":
+                            responseObject = new ReportController().mainMethod(requestBody);
                             break;
 
                         case "/location":
