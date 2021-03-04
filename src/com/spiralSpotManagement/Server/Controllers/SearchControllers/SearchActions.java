@@ -98,8 +98,50 @@ public class SearchActions {
         }
     }
 
+    /**
+     *
+     * @author: by Abizera Oreste
+     * @return Array of found comments
+     * @description  method to  search people given search criteria
+     *@throws Exception
+     */
 
-/**
+    public List<Comment> getMessages(String searchKey) throws Exception{
+        List<Comment> messagesList = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try{
+            System.out.println(searchKey);
+            String sql = "SELECT * from comments WHERE content LIKE '%"+searchKey+"%' LIMIT 10";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Comment comment = new Comment();
+                comment.setComment_id(rs.getString("comment_id"));
+                comment.setContent(rs.getString("content"));
+                comment.setCreated_at(rs.getDate("created_at"));
+                comment.setUpdatedAt(rs.getDate("updated_at"));
+                comment.setUserId(rs.getInt("user_id"));
+                comment.setSpotId(rs.getInt("spot_id"));
+                comment.setStatus(rs.getString("status"));
+                messagesList.add(comment);
+            }
+            Integer userId = new  UserAuthMiddleware().checkForUserExistence();
+            if(userId > 0) {
+                String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+                PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
+                insertHistorystmt.setString(1, searchKey);
+                insertHistorystmt.setInt(2, userId);
+                insertHistorystmt.executeUpdate();
+            }
+            return messagesList;
+        }catch (Exception e){
+            return messagesList;
+        }
+    }
+
+
+    /**
  *
  * @Author : Pauline Ishimwe this method will help you to display your recent searches
  * as a logged in user (last 10 at most)

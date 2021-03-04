@@ -31,6 +31,13 @@ public class SearchController {
                 }
                 return results;
 
+            case "getMessages":
+                List<Comment> messagesList = new SearchActions().getMessages((String) requestBody.getObject());
+                for (Comment message: messagesList){
+                    results.add((Object) message);
+                }
+                return results;
+
             case "searchByPopularity":
                 List<Object> popularSpots=new SearchActions().getMostPopularSearches();
                return popularSpots;
