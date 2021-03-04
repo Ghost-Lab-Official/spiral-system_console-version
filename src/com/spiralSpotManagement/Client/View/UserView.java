@@ -23,8 +23,6 @@ import java.util.TimeZone;
 
 public class UserView {
 
-
-
     public void mainMethod() throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("====================================");
@@ -143,6 +141,14 @@ public class UserView {
             + user.getLocation());
         }
     }
+
+    /**
+     * @author : Honorine Igiraneza
+     * @description Get a user by id.
+     * @return user information.
+     * @throws Exception
+     */
+
     public void selectUserById() throws Exception{
         Scanner scanner=new Scanner(System.in);
         Integer userId = new UserAuthMiddleware().checkForUserExistence();

@@ -263,6 +263,13 @@ public class UsersActions {
 
         return user;
     }
+    /**
+     * @author : Honorine Igiraneza
+     * Get a user by id.
+     * @param userToView This this user to view.
+     * @return user information.
+     */
+
     public List<Object> selectUserById(User userToView) throws Exception {
         Connection con = new CloudStorageConnectionHandler().getConnection();
         List<Object> user = new ArrayList<>();

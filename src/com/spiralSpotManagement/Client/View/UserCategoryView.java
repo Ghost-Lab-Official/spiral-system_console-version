@@ -82,7 +82,6 @@ public class UserCategoryView {
                 break;
         }
 
-
         UserCategory userCategoryToInsert = new UserCategory();
         userCategoryToInsert.setCatName(categoryName);
 
@@ -224,6 +223,5 @@ public class UserCategoryView {
                 System.out.println("Invalid input");
         }
     }
-
 
 }
