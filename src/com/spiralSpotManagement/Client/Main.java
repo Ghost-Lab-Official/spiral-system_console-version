@@ -78,14 +78,8 @@ public class Main {
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
-<<<<<<< HEAD
-
-            System.out.println("\t\t\t||------------------    8.Pay plan                   ------------------||");
-            System.out.println("\t\t\t||------------------    9. check if user plan is active                   ------------------||");
-=======
             System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
             System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");
->>>>>>> 4d5cf33725243552fe1a8eee1105460b9b2a3fcb
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -134,61 +128,6 @@ public class Main {
                         new UserView().loginUser();
                     }
                     break;
-<<<<<<< HEAD
-
-                case 8:
-                    Integer user_id;
-                    Integer plan_id;
-                    System.out.println("Enter the user ID: ");
-                    user_id= scanner.nextInt();
-                    System.out.println("Enter the plan ID: ");
-                    plan_id = scanner.nextInt();
-                    UserBilling userBilling = new UserBilling(user_id,plan_id);
-
-                    requestBody.setUrl("/users-billing");
-                    requestBody.setAction("pay");
-                    requestBody.setObject(userBilling);
-
-                    ClientServerConnector clientServerConnector = new ClientServerConnector();
-                    ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
-                    for (Object response: responseBody.getResponse()){
-                        ResponseStatus responseStatus = (ResponseStatus) response;
-                        System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
-                        System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
-                        System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
-                        System.out.println("\t\t ------------------------------------------------------------------------------");
-                    }
-
-
-                case 9:
-                    Integer userID;
-                    System.out.println("Enter the user ID: ");
-                    userID= scanner.nextInt();
-                    UserBillingServices userBillingTwo = new UserBillingServices();
-                    UserBilling userBill = new UserBilling();
-                    userBill.setUser_id(userID);
-
-                    userBillingTwo.setUserBilling(userBill);
-                    userBillingTwo.setService("CREATE_SPOT_");
-
-                    requestBody.setUrl("/users-billing");
-                    requestBody.setAction("checkUserPlan");
-                    requestBody.setObject(userBillingTwo);
-
-
-
-                    ClientServerConnector clientServerConnectorTwo = new ClientServerConnector();
-                    ResponseBody responseBodyTwo=  clientServerConnectorTwo.ConnectToServer(requestBody);
-                    for (Object response: responseBodyTwo.getResponse()){
-                        ResponseStatus responseStatus = (ResponseStatus) response;
-                        System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
-                        System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
-                        System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
-                        System.out.println("\t\t ------------------------------------------------------------------------------");
-                    }
-
-
-=======
                 case 8:
                     if(new UserAuthMiddleware().checkForUserExistence() != 0){
                         new UserView().mainMethod();
@@ -201,7 +140,6 @@ public class Main {
                 case 9:
                     new UserAuthMiddleware().logoutMiddleWare();
                     break;
->>>>>>> 4d5cf33725243552fe1a8eee1105460b9b2a3fcb
                 default:
                     System.out.println("Invalid input");
             }
