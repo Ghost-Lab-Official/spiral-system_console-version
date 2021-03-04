@@ -233,4 +233,36 @@ public class LocationActions {
             return  new ResponseStatus(500,"SERVER ERROR",e.getMessage());
         }
     }
+
+    /**
+     * @author: Landrada Iradukunda
+     * get locations by parent
+     * */
+    public List<Object> fetchByParent(String parent) throws Exception {
+        ResultSet result1;
+        ResultSet result2;
+        String locId = null;
+        List<Object> locations = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        String query1 = "select location_id,location_name from locations where location_name =?";
+        PreparedStatement selectStmt1 = connection.prepareStatement(query1);
+        selectStmt1.setString(1,parent);
+        result1 = selectStmt1.executeQuery();
+        while (result1.next()){
+            System.out.println("Searching...");
+            locId = result1.getString("location_id");
+        }
+        String query = "select * from locations where parent_id ='"+locId+"' and status='active'";
+        PreparedStatement selectStmt = connection.prepareStatement(query);
+        result2 = selectStmt.executeQuery();
+        while(result2.next()){
+            List<Object> list = new ArrayList<>();
+            list.add(result2.getString("location_name"));
+            list.add(result2.getString("location_GPS"));
+            list.add(result2.getString("description"));
+            locations.add(list);
+        }
+        return locations;
+    }
+
 }

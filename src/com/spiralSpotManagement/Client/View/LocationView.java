@@ -270,6 +270,41 @@ public  void RecoverLocation(){
     }
 }
 
+    /**
+     *location management class. Method Recovering a deleted given location
+     * @author Felix DUSENGIMANA && landrada iradukunda
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  08-02-2021
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
+
+    public void SearchByParentLocation(){
+        Scanner scanner = new Scanner(System.in);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/location");
+        requestBody.setAction("getLocationsByParent");
+        String parent;
+        System.out.println("Enter the location you want to search by: ");
+        parent = scanner.nextLine();
+        requestBody.setObject(parent);
+        try {
+            ClientServerConnector clientServerConnector = new ClientServerConnector();
+            ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+            for (Object i : responseBody.getResponse()) {
+                System.out.println(i);
+            }
+            if ((responseBody.getResponse().isEmpty())) {
+                System.out.println("No locations found! "+requestBody);
+            }
+        }catch (Exception e){
+            System.out.println("Error Message:: "+e.getMessage());
+        }
+    }
+
+
     public void LocationViewMenu() throws Exception {
         /* LocationView entry  */
 
@@ -301,7 +336,7 @@ public  void RecoverLocation(){
                     RecoverLocation();
                     break;
                 case 5:
-
+                    SearchByParentLocation();
                 case 6:
                     welcomeToSpiral();
                 default:
