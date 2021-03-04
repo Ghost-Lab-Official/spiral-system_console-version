@@ -20,7 +20,7 @@ public class SearchView {
         String cont = "";
         do {
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
+            System.out.println("\t\t\t||------------------    SPIRAL SEARCH              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.SEARCH SPOT              ------------------||");
             System.out.println("\t\t\t||------------------    2.SEARCH PEOPLE            ------------------||");
