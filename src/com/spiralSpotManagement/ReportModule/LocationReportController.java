@@ -39,14 +39,6 @@ public class LocationReportController {
                AllLocations.add(location);
            }
 
-//           Iterator it = AllLocations.iterator();
-//           System.out.println("Id\t Location Name\t Coordinates\t Description\t Status");
-//           System.out.println("-----------------------------------------------------------------------");
-//           while (it.hasNext()){
-//               LocationModel location = (LocationModel) it.next();
-//               System.out.println(location.getLocationId()+"\t"+location.getLocation_name()+"\t"+
-//                       location.getLocation_GPS()+"\t"+ location.getDescription()+"\t"+location.getStatus());
-//           }
            connection.close();
        }catch (Exception e) {
            System.out.println("Error: "+e.getMessage());
@@ -78,15 +70,6 @@ public class LocationReportController {
                );
                AllLocations.add(location);
            }
-
-           Iterator it = AllLocations.iterator();
-           System.out.println("Id\t Location Name\t Coordinates\t Description\t Status");
-           System.out.println("-----------------------------------------------------------------------");
-           while (it.hasNext()){
-               LocationModel location = (LocationModel) it.next();
-               System.out.println(location.getLocationId()+"\t"+location.getLocation_name()+"\t"+
-                       location.getLocation_GPS()+"\t,"+ location.getDescription()+"\t"+location.getStatus());
-           }
            connection.close();
        }catch (Exception e) {
            System.out.println("Error: "+e.getMessage());
@@ -105,9 +88,6 @@ public class LocationReportController {
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
            ResultSet resultSet = stmt.executeQuery("SELECT count(location_name) from locations");
-           while(resultSet.next()){
-               System.out.println( "\t\t\t  Number of Registered Locations :         "+ resultSet.getInt(1)+"");
-           }
            connection.close();
        }catch (Exception e) {
            System.out.println("Error: "+e.getMessage());
@@ -126,9 +106,7 @@ public class LocationReportController {
            Statement stmt = connection.createStatement();
            ResultSet resultSet = stmt.executeQuery("SELECT count(location_name) from locations WHERE status = " +
                    "'"+val+"'");
-           while(resultSet.next()){
-               System.out.println( "\t\t\t  Number of "+val+" Locations :         "+ resultSet.getInt(1)+"");
-           }
+
            connection.close();
        }catch (Exception e) {
            System.out.println("Error: "+e.getMessage());
@@ -184,16 +162,6 @@ public class LocationReportController {
                        resultSet.getDate("registration_date")
                );
                AllSpots.add(mySpots);
-           }
-           Iterator it = AllSpots.iterator();
-           System.out.println("\t\t\t  #Id" + "\t\t\t Creator" +  "\t\t\t\t Category " +  "\t\t\t Location" +  "\t\t\t Spot Name " +
-                   "\t\t\t\t Spot Description" +"\t\t\t\t Views" +  "\t\t\t\t Status" +  "\t\t\t RegistrationDate ");
-           System.out.println("\t\t-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-           while(it.hasNext()){
-               spotsModel spot = (spotsModel)it.next();
-               System.out.println(" \t\t\t\t "+spot.getSpot_id() + " \t\t\t\t " + spot.getuser_name()+ " \t\t\t\t " + spot.getCategory_name()+
-                       " \t\t\t\t " + spot.getLocationName()+ " \t\t\t " + spot.getSpot_name() +" \t\t\t\t " +spot.getSpot_description()
-                       + " \t\t\t\t "+ spot.getViews()+" \t\t\t\t " + spot.getStatus()+ " \t\t\t\t " + spot.getRegistration_date());
            }
            connection.close();
        }catch (Exception e) {
