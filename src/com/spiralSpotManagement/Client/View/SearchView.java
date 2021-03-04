@@ -190,7 +190,7 @@ public class SearchView {
     }
 
 
-    public static void searchMessages(){
+    public static void searchMessages() throws Exception {
 
     }
 }
