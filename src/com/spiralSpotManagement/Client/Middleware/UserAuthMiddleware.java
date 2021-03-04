@@ -17,7 +17,6 @@ public class UserAuthMiddleware {
 
     public Integer checkIfIsAdmin()throws Exception{
         InputStream inputStream = new FileInputStream("config.properties");
-        // Writing token and other required credentials
         Properties properties = new Properties();
         properties.load(inputStream);
         Integer userRole = Integer.valueOf(properties.getProperty("ROLE"));
