@@ -2,6 +2,11 @@ package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
 
+/**
+ * @Author : Pauline Ishimwe
+ * description : this method will help you to deal with a recent searches
+ * */
+
 public class RecentSearch implements Serializable {
     private Integer queryId;
     private String searchQuery;
