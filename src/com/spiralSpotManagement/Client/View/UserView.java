@@ -150,7 +150,8 @@ public class UserView {
     }
     public void selectUserById() throws Exception{
         Scanner scanner=new Scanner(System.in);
-        Integer userId = new UserAuthMiddleware().checkForUserExistence();
+        System.out.println("Enter user id: ");
+        Integer userId = scanner.nextInt();
         RequestBody requestBody = new RequestBody();
         User user = new User();
         user.setUserId(userId);
