@@ -246,7 +246,27 @@ public class SearchView {
 
         System.out.print("Search a comment: ");
         String searchKey = scanner.next();
-        System.out.println(searchKey);
+        requestBody.setObject(searchKey);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        if(responseBody.getResponse() == null){
+            System.out.println("No comments found");
+            return;
+        }
+        boolean found = false;
+        Integer index = 0;
+        List<Object> messagesList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Comment comment = (Comment) response;
+            System.out.println(index + ". " + comment.getContent());
+            messagesList.add(comment);
+        }
+
+        if(!found){
+            System.out.println("No people Found.");
+        }
     }
 
     /**
