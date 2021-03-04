@@ -27,27 +27,18 @@ public class UserCategoryView {
         System.out.println("||\t\t3.View Categories         \t\t||\n");
         System.out.println("||\t\t4.Delete Category         \t\t||\n");
         System.out.println("||\t\t5.Select category by Id   \t\t||\n");
+        System.out.println("||\t\t6.Return Home             \t\t||\n");
         System.out.println("==========================================");
         String choose =input.nextLine();
 
-        switch (choose){
-            case "1":
-                createCategory();
-                break;
-            case "2":
-                updateUserCategories();
-                break;
-            case "3":
-                selectUserCategories();
-                break;
-            case "4":
-                deleteCategory();
-                break;
-            case "5":
-                selectUserCategoryById();
-                break;
-            default:
-                System.out.println("Incorrect Input!!");
+        switch (choose) {
+            case "1" -> createCategory();
+            case "2" -> updateUserCategories();
+            case "3" -> selectUserCategories();
+            case "4" -> deleteCategory();
+            case "5" -> selectUserCategoryById();
+            case "6" -> welcomeToSpiral();
+            default -> System.out.println("Incorrect Input!!");
         }
     }
     public static void createCategory()throws Exception{
