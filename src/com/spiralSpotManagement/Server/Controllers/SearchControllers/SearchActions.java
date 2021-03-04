@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Server.Controllers.SearchControllers;
 
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class SearchActions {
 
 
-    public List<Spot> getSpots(Spot spot,Integer userId) throws Exception {
+    public List<Spot> getSpots(Spot spot) throws Exception {
         List<Spot> spotsList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try {
@@ -37,6 +38,8 @@ public class SearchActions {
                 spot1.setUserId(rs.getInt("user_id"));
                 spotsList.add(spot1);
             }
+
+            Integer userId = new UserAuthMiddleware().checkForUserExistence();
             if(userId > 0) {
                 String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
                 PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
@@ -58,7 +61,7 @@ public class SearchActions {
      *@throws Exception
      */
 
-    public List<User> getPeople(User user,Integer userId) throws Exception{
+    public List<User> getPeople(User user) throws Exception{
         List<User> peopleList = new ArrayList<>();
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         try{
@@ -81,6 +84,7 @@ public class SearchActions {
                 user1.setUserCategory(rs.getString("user_category"));
                 peopleList.add(user1);
             }
+            Integer userId = new  UserAuthMiddleware().checkForUserExistence();
             if(userId > 0) {
                 String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
                 PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);

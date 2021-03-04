@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.Server.Controllers.LocationControllers;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.LocationModel;
+import com.spiralSpotManagement.Server.Model.Location;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.*;
 public class LocationActions {
 
-    public ResponseStatus registerLocation(LocationModel location){
+    public ResponseStatus registerLocation(Location location){
         String location_id = UUID.randomUUID().toString();
 
         try{
@@ -46,7 +46,7 @@ public class LocationActions {
      *
      */
 
-    public  ResponseStatus UpdateLocation (LocationModel location){
+    public  ResponseStatus UpdateLocation (Location location){
 
         HashMap<String,String> updateLocationData = new HashMap<>();
         updateLocationData.put("location_id",location.getLocation_id());
@@ -175,7 +175,7 @@ public class LocationActions {
      * it will change the status of our input to inactive if it exists in our database
      * */
 
-    public ResponseStatus DeleteLocation(LocationModel location){
+    public ResponseStatus DeleteLocation(Location location){
         try {
             Connection connection= new CloudStorageConnectionHandler().getConnection();
 
@@ -212,7 +212,7 @@ public class LocationActions {
      *
      */
 
-    public ResponseStatus RecoverLocation(LocationModel location){
+    public ResponseStatus RecoverLocation(Location location){
         try {
             Connection connection= new CloudStorageConnectionHandler().getConnection();
 
@@ -233,10 +233,4 @@ public class LocationActions {
             return  new ResponseStatus(500,"SERVER ERROR",e.getMessage());
         }
     }
-
-
-//    OTHER METHODS TO GO HERE
-//    ---------------------------------------
-
-
 }

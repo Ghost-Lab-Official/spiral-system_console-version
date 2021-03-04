@@ -18,18 +18,14 @@ public class SearchController {
 
         switch (action){
             case "getSpots":
-                User user1 = new User();
-                user1.setUserId(new  UserAuthMiddleware().checkForUserExistence());
-                List<Spot> spotsList = new SearchActions().getSpots((Spot) requestBody.getObject(),user1.getUserId());
+                List<Spot> spotsList = new SearchActions().getSpots((Spot) requestBody.getObject());
                 for (Spot spot: spotsList){
                     results.add((Object) spot);
                 }
                 return results;
 
             case "getPeople":
-                User user2 = new User();
-                user2.setUserId(new  UserAuthMiddleware().checkForUserExistence());
-                List<User> peopleList = new SearchActions().getPeople((User) requestBody.getObject(),user2.getUserId());
+                List<User> peopleList = new SearchActions().getPeople((User) requestBody.getObject());
                 for (User user: peopleList){
                     results.add((Object) user);
                 }
@@ -50,7 +46,7 @@ public class SearchController {
                 return recentSearchesList;
             case "RemoveRecentSearch":
                 User user = new User();
-                user.setUserId(new UserAuthMiddleware().checkForUserExistence());
+                user.setUserId(1);
                 ResponseStatus responseStatus = new SearchActions().RemoveRecentSearch(user,
                         (RecentSearch) requestBody.getObject());
                 results.add(responseStatus);

@@ -284,10 +284,6 @@ public class SearchView {
         List<Object> popularSearches = new ArrayList<>();
 
         ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-        //   responseBody.getResponse();
-//        for(int i=0;i< responseBody.getResponse().size();i++) {
-//            System.out.println(i+1+"."+popularSpots.get(i));
-//        }
 
         int i=1;
         for(Object response: responseBody.getResponse()){
