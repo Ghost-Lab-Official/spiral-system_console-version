@@ -16,51 +16,45 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
-
-/**
- * @author : Anne Bethiane,
- * @author : Blessing Hirwa
- * This is the entry of Spiral;
- * WELCOME!
+/*
+            @author : Anne Bethiane, Blessing Hirwa
+            This is the entry of Spiral;
+            WELCOME!
  */
 
 public class Main {
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_RESET = "\u001B[0m";
+    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
+        RequestBody requestBody = new RequestBody();
 
-    public void spiralWelcomePage(){
-       System.out.println("\n\n\n                                                                                                       ");
-       System.out.println("\t\t\t\t                                                                                                       ");
-       System.out.println(ANSI_BLUE +"\t\t\t\t    -------------                                                             ----                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |  ----------                                                             |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                               __                                     |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                              |__|                                    |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |   ---------   ----  ---------   ----   ----  -----      ------   --     |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    '--------   |   |  ' '-----.  |   |  |   |  ''_____|    /  ----- \\   |    |  |                    "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    ---------|  |   |  |-----------   |  |   |  |          |  --------   |    |  |_______              "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    ------------'   |  |-----------   ----   ----           \\________,\\__|    '__________            "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    ----                                                                               "+ANSI_RESET);
-   }
+        Users testingObject = new Users();
+        testingObject.setEmail("ntwari@gmal.test");
+        testingObject.setFullName("ntwari testing");
+        requestBody.setObject(testingObject);
 
-    public void loadingPageWrapper() throws InterruptedException {
-        System.out.println("\t\t-------------------------------------------------------------------------------------------------");
-        System.out.print("\t\t\t\tSpiraling \t");
-        for (int i = 0; i < 20; i++) {
-            System.out.print(".");
-            Thread.sleep(300);
+        requestBody.setUrl("/users");
+        requestBody.setAction("register");
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        // depending on clients need you will need to do type casting
+
+        List<Object> usersFoundObject =  responseBody.getResponse();
+
+        for (Object userObject: usersFoundObject){
+            ResponseStatus responseStatus = (ResponseStatus) userObject;
+
+            System.out.println("Server replied "
+                    + (responseStatus.getStatus()));
         }
-        System.out.print("\n");
-        System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
-        System.out.println("\n");
+
+        /*
+            WORKING ON USER REGISTRATION
+        */
     }
 
-    public static void main(String[] args) throws Exception {
+
+    public static void ikazeSpiral() throws Exception {
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -72,8 +66,6 @@ public class Main {
         do {
             int choice;
             Scanner scanner = new Scanner(System.in);
-            new Main().spiralWelcomePage();
-            new Main().loadingPageWrapper();
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
@@ -84,8 +76,7 @@ public class Main {
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
-            System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
-            System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");
+            System.out.println("\t\t\t||------------------    8.EXIT                     ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -94,6 +85,7 @@ public class Main {
                     userForms.loginUser();
                     break;
                 case 2:
+//                    System.out.println("here"+userExistence);
                     if(new UserAuthMiddleware().checkForUserExistence() != 0){
                         userForms.registerUser();
                     }
@@ -106,7 +98,8 @@ public class Main {
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    userCategoryForms.UserCategoryMenu();
+                    spotCategories.SpotCategoryMenu();
+                    //userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
@@ -140,30 +133,28 @@ public class Main {
                         new UserView().loginUser();
                     }
                     break;
-                case 8:
-                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
-                        new UserView().mainMethod();
-                    }
-                    else {
-                        System.out.println("You have to login first\n");
-                        userForms.loginUser();
-                    }
+
+                case 8 :
+                    System.out.println("-------THANK YOU!------- ");
+                    System.exit(0);
+
                     break;
-                case 9:
-                    new UserAuthMiddleware().logoutMiddleWare();
-                    break;
+
+
                 default:
                     System.out.println("Invalid input");
             }
             System.out.print("\t\tDo you want to continue? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+
+
     }
 
 
     public static void main(String[] args) throws Exception {
         System.out.println("SPIRAL");
-      ikazeSpiral();
+        ikazeSpiral();
     }
 
 }

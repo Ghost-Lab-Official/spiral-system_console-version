@@ -35,7 +35,7 @@ public class SearchModule {
 
                 String cont = "";
                 do {
-                    Filter filter = new Filter();
+//                    Filter filter = new Filter();
                     System.out.println("\t\t\t============================================= ");
                     System.out.println("\t\t\t||                SEARCH OPTIONS           || ");
                     System.out.println("\t\t\t============================================= ");

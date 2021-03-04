@@ -216,7 +216,7 @@ public class SpotCategoryView {
                     break;
 
                 case 5:
-                    ikazeSpiral();
+//                    ikazeSpiral();
 
                 default:
                     System.out.println("Invalid input");
