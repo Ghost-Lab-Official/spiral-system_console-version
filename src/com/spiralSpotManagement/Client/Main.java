@@ -53,14 +53,14 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(300);
+            Thread.sleep(200);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
         System.out.println("\n");
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void welcomeToSpiral() throws Exception{
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -110,22 +110,13 @@ public class Main {
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    locationForms.LocationViewMenu();
+                        locationForms.LocationViewMenu();
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
 
                 case 6:
-                    //        create user log
-                    UserLog userLogToInsert = new UserLog();
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("searching");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
                     searchForms.mainMethod();
                     break;
                 case 7:
@@ -161,5 +152,9 @@ public class Main {
             System.out.print("\t\tDo you want to continue searching? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+    }
+
+    public static void main(String[] args) throws Exception {
+        welcomeToSpiral();
     }
 }

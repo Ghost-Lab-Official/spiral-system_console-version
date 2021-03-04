@@ -12,9 +12,8 @@ public class UserAuthMiddleware {
         // Writing token and other required credentials
         Properties properties = new Properties();
         properties.load(inputStream);
-        Integer userId = Integer.valueOf(properties.getProperty("UserId"));
 
-        return userId;
+        return Integer.valueOf(properties.getProperty("UserId"));
     }
 
     /**
