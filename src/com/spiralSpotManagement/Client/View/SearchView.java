@@ -46,6 +46,35 @@ public class SearchView {
     }
 
     /**
+     * Sends a request to display spot comments
+     * @param spotId
+     * @throws Exception
+     */
+    public static void displayComments(Integer spotId) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/spot-comment");
+        requestBody.setAction("getComments");
+
+        requestBody.setObject((Object) spotId);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        boolean found = false;
+        Integer index = 0;
+        List<Object> commentsList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Comment comment = (Comment) response;
+            System.out.println(index + ". " + comment.getContent());
+            commentsList.add(comment);
+        }
+
+        if(!found){
+            System.out.println("No comments Found.");
+        }
+    }
+
+    /**
      * display a spot
      */
     public static void displaySpot(List<Object> spotsList) throws Exception{
@@ -77,6 +106,8 @@ public class SearchView {
             likeSpot(selectedSpot);
         }else if (action == 2){
             commentOnSpot(selectedSpot);
+        }else if(action == 3){
+            displayComments(selectedSpot.getSpotId());
         }
     }
 

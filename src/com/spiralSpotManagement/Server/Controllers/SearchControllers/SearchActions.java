@@ -55,9 +55,9 @@ public class SearchActions {
 
     /**
      *
-     * @author: by Blessing and Izere Kerie
-     * @return Array of Popular spots
-     * @description  method to  make array of all popular stops to be displayed  and return it
+     * @author: by Abizera Oreste and Kwizera Emmanuel
+     * @return Array of found people
+     * @description  method to  search people given search criteria
      *@throws Exception
      */
 

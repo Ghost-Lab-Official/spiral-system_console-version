@@ -33,14 +33,14 @@ public class SpotCommentActions {
    * @return
    * @throws Exception
    */
-  public List<Comment> GetComments(String spotId) throws Exception {
+  public List<Comment> GetComments(Integer spotId) throws Exception {
     List<Comment> commentsList = new ArrayList<>();
     Connection connection = new CloudStorageConnectionHandler().getConnection();
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(
         GetCommentQuery
       );
-      preparedStatement.setString(1, spotId);
+      preparedStatement.setInt(1, spotId);
       ResultSet result = preparedStatement.executeQuery(GetCommentQuery);
 
       while (result.next()) {
