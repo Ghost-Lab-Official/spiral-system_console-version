@@ -53,14 +53,14 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(500);
+            Thread.sleep(200);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
         System.out.println("\n");
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void welcomeToSpiral() throws Exception{
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -85,6 +85,7 @@ public class Main {
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
             System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
+            System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -105,7 +106,7 @@ public class Main {
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    userCategoryForms.UserCategoryMenu();
+                    spotCategories.SpotCategoryMenu();
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
@@ -116,27 +117,34 @@ public class Main {
                     }
 
                 case 6:
-                    //        create user log
-                    UserLog userLogToInsert = new UserLog();
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("searching");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
                     searchForms.mainMethod();
                     break;
                 case 7:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                        new ReportsView().reportDashboard();
+                    {
+                        if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                            new ReportsView().reportDashboard();
+                        }
+                        else{
+                            System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
+                        }
+                    }
                     else {
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
                     break;
                 case 8:
-                    new UserView().mainMethod();
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                        new UserView().mainMethod();
+                    }
+                    else {
+                        System.out.println("You have to login first\n");
+                        userForms.loginUser();
+                    }
+                    break;
+                case 9:
+                    new UserAuthMiddleware().logoutMiddleWare();
                     break;
                 default:
                     System.out.println("Invalid input");
@@ -146,4 +154,7 @@ public class Main {
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
 
+    public static void main(String[] args) throws Exception {
+        welcomeToSpiral();
+    }
 }

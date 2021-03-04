@@ -8,6 +8,8 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 public class SpotView {
     FormsView formClient = new FormsView();
 
@@ -110,6 +112,7 @@ public class SpotView {
         System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    4. RETURN HOME             ------------------||");
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t\t  Enter your choice                                              ");
         choice = scanner.nextInt();
@@ -163,6 +166,7 @@ public class SpotView {
                     new UserView().loginUser();
                 }
             }
+            case 4 -> welcomeToSpiral();
             default -> System.out.println("Invalid input");
         }
     }

@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
  * @author Abizera Oreste
  * @author Kwizera Emmanuel
@@ -27,18 +29,20 @@ public class SearchView {
             System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
             System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
             System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice ");
-            int option = scanner.nextInt();
+        int option = scanner.nextInt();
 
-            switch (option) {
-                case 1 -> searchSpot();
-                case 2 -> searchPeople();
-                case 3 -> searchMessages();
-                case 4 -> searchPopular();
-                case 5 -> viewRecentSearches();
-                default -> System.out.println("Invalid option");
-            }
+        switch (option) {
+            case 1 -> searchSpot();
+            case 2 -> searchPeople();
+            case 3 -> searchMessages();
+            case 4 -> searchPopular();
+            case 5 -> viewRecentSearches();
+            case 6 -> welcomeToSpiral();
+            default -> System.out.println("Invalid option");
+        }
 
             System.out.print("Do you want to continue searching? (y/n): ");
             cont = scanner.next();
@@ -164,6 +168,16 @@ public class SearchView {
         Spot spotToSend = new Spot();
         System.out.print("Search a spot: ");
         String searchKey = scanner.next();
+        //        create user log
+        UserLog userLogToInsert = new UserLog();
+        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+        userLogToInsert.setAction("searching " + searchKey);
+        userLogToInsert.setDateTimeLoggedOut(null);
+        userLogToInsert.setTotalIn(5);
+        userLogToInsert.setTotalOut(3);
+        new ReportsView().createUserlog(userLogToInsert);
+
         spotToSend.setSpotName(searchKey);
         requestBody.setObject(spotToSend);
 
@@ -265,7 +279,7 @@ public class SearchView {
         }
 
         if(!found){
-            System.out.println("No people Found.");
+            System.out.println("No comments Found.");
         }
     }
 
@@ -356,7 +370,6 @@ public class SearchView {
         }else{
             PopularSearch selectedSearch = (PopularSearch) popularSearches.get(choice-1);
             System.out.println("Search: " + selectedSearch.getSearch());
-
             RequestBody request = new RequestBody();
             request.setUrl("/search");
             request.setAction("getSpots");
