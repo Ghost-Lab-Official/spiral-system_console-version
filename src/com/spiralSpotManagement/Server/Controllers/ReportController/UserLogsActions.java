@@ -103,7 +103,7 @@ public class UserLogsActions {
             int inserted =preparedStatement.executeUpdate();
 
             if (inserted == 1){
-                return new ResponseStatus(200,"USER LOG ADDED","You have inserted the user log successfully");
+                return new ResponseStatus(200,"USER LOG ADDED","successfully recorded this activity");
             }
         }
         catch (Exception e){

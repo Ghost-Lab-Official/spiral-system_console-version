@@ -66,6 +66,17 @@ public class UserView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            try {
+//                System.out.println("\t\t --- Token issued: "+ ((TokenIssued) responseStatus.getObject()).getTokenValue());
+                UserLog userLogToInsert = new UserLog();
+                userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                userLogToInsert.setAction("Joined Spiral (register) ");
+                new ReportsView().createUserlog(userLogToInsert);
+            }
+            catch (Exception e){
+                System.out.println("No token found");
+            }
         }
     }
     public void loginUser()throws Exception{

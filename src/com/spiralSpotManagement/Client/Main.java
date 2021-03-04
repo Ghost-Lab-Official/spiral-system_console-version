@@ -97,12 +97,14 @@ public class Main {
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    //spotCategories.SpotCategoryMenu();
                     userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    locationForms.LocationViewMenu();
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+
+                        locationForms.LocationViewMenu();
+
+                    }
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
@@ -110,19 +112,19 @@ public class Main {
 
                 case 6:
                     //        create user log
-                    UserLog userLogToInsert = new UserLog();
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("searching");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
+
                     searchForms.mainMethod();
                     break;
                 case 7:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    new ReportsView().reportDashboard();
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0){
+                        UserLog userLogToInsertonReports = new UserLog();
+                        userLogToInsertonReports.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsertonReports.setAction("viewed reports");
+
+                        new ReportsView().createUserlog(userLogToInsertonReports);
+                        new ReportsView().reportDashboard();
+
+                    }
                     else {
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();

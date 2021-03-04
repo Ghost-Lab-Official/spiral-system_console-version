@@ -1,11 +1,9 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationActions;
-import com.spiralSpotManagement.Server.Model.LocationModel;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -61,6 +59,13 @@ public class LocationView {
             System.out.println("\t\t --------------         Meaning: " + responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+
+            UserLog userLogToInsertOnLocations = new UserLog();
+            userLogToInsertOnLocations.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsertOnLocations.setAction("registered a location");
+
+            new ReportsView().createUserlog(userLogToInsertOnLocations);
 
         }
     }
@@ -145,6 +150,8 @@ public class LocationView {
     }catch (Exception e){
         System.out.println("Error Occurred "+e.getMessage());
     }
+
+
     }
 
     /**
@@ -249,12 +256,29 @@ public  void RecoverLocation(){
                     break;
                 case 2:
                     updateLocation();
+                    UserLog userLogToInsertOnLocations1 = new UserLog();
+                    userLogToInsertOnLocations1.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertOnLocations1.setAction("Updated a location");
+
+                    new ReportsView().createUserlog(userLogToInsertOnLocations1);
                     break;
+
                 case 3:
                     DeleteLocation();
+                    UserLog userLogToInsertOnLocations = new UserLog();
+                    userLogToInsertOnLocations.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertOnLocations.setAction("Deleted a location");
+
+                    new ReportsView().createUserlog(userLogToInsertOnLocations);
+
                     break;
                 case 4:
                     RecoverLocation();
+                    UserLog userLogToInsertOnLocations2 = new UserLog();
+                    userLogToInsertOnLocations2.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertOnLocations2.setAction("recovered a location");
+
+                    new ReportsView().createUserlog(userLogToInsertOnLocations2);
                     break;
                 default:
                     System.out.println("Invalid input");

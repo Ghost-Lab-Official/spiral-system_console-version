@@ -2,6 +2,7 @@ package com.spiralSpotManagement.Client.View;
 import java.util.UUID;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.Date;
@@ -49,6 +50,13 @@ public class CommentView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsertOnSearch = new UserLog();
+            userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            String logAction= "commented on spot" ;
+            userLogToInsertOnSearch.setAction(logAction);
+
+            new ReportsView().createUserlog(userLogToInsertOnSearch);
         }
     }
 
@@ -76,6 +84,13 @@ public class CommentView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsertOnSearch = new UserLog();
+            userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            String logAction= "Updated spot comment " ;
+            userLogToInsertOnSearch.setAction(logAction);
+
+            new ReportsView().createUserlog(userLogToInsertOnSearch);
         }
     }
 
