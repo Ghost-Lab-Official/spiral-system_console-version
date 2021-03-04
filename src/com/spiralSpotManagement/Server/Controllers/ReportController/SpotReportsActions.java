@@ -12,14 +12,17 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.*;
 
-public class SpotReportsActions {
 
-        /**
-         * @author Ntezirizaza Erneste
-         * description This method generates the number of highly visited spots
+ /**
+         * @author Ange Nicole Mukundwa
+         * description This class is intended to define all methods that carry out each and every operation or kind of report that an admin need on spots. he she can need the list of all spots, statistical information , as well as reports according to time
+         * so, in this class that's where every kind of report  related to spots is defined.
          * @throws Exception
          * @return
          */
+
+public class SpotReportsActions {
+
 
         public List<Object>  getTheTotalNumbersOfTrendingSpots() throws Exception {
             List<Object> counts = new ArrayList<>();
@@ -50,12 +53,6 @@ public class SpotReportsActions {
         }
 
 
-
-        /**
-         * @author Ntezirizaza Erneste
-         * @description This method generates the number of registered spots
-         * @throws Exception
-         */
         public List<Object> getTheTotalNumberOfActiveSpots() throws Exception {
 
 
@@ -84,13 +81,6 @@ public class SpotReportsActions {
 
             return counts;
     }
-
-        /**
-         * @author Ntezirizaza Erneste
-         * @description This method generates the number of inactive spots
-         * @throws Exception
-         * @return
-         */
 
         public List<Object>  getTheTotalNumberOfInactiveSpots() throws Exception {
             List<Object> counts = new ArrayList<>();

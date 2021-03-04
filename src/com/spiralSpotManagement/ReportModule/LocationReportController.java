@@ -24,13 +24,13 @@ public class LocationReportController {
            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
-           ResultSet resultSet = stmt.executeQuery("SELECT locationId, location_name, location_GPS, description," +
+           ResultSet resultSet = stmt.executeQuery("SELECT location_id, location_name, location_GPS, description," +
                    " status FROM locations");
 
            ArrayList<LocationModel> AllLocations = new ArrayList<LocationModel>();
            while(resultSet.next()) {
                LocationModel location = new LocationModel(
-                       resultSet.getString("locationId"),
+                       resultSet.getString("location_id"),
                        resultSet.getString("location_name"),
                        resultSet.getString("location_GPS"),
                        resultSet.getString("description"),
@@ -39,14 +39,14 @@ public class LocationReportController {
                AllLocations.add(location);
            }
 
-           Iterator it = AllLocations.iterator();
-           System.out.println("Id\t Location Name\t Coordinates\t Description\t Status");
-           System.out.println("-----------------------------------------------------------------------");
-           while (it.hasNext()){
-               LocationModel location = (LocationModel) it.next();
-               System.out.println(location.getLocationId()+"\t"+location.getLocation_name()+"\t"+
-                       location.getLocation_GPS()+"\t"+ location.getDescription()+"\t"+location.getStatus());
-           }
+//           Iterator it = AllLocations.iterator();
+//           System.out.println("Id\t Location Name\t Coordinates\t Description\t Status");
+//           System.out.println("-----------------------------------------------------------------------");
+//           while (it.hasNext()){
+//               LocationModel location = (LocationModel) it.next();
+//               System.out.println(location.getLocationId()+"\t"+location.getLocation_name()+"\t"+
+//                       location.getLocation_GPS()+"\t"+ location.getDescription()+"\t"+location.getStatus());
+//           }
            connection.close();
        }catch (Exception e) {
            System.out.println("Error: "+e.getMessage());
@@ -65,12 +65,12 @@ public class LocationReportController {
            CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
            Connection connection= cloudStorageConnection.getConnection();
            Statement stmt = connection.createStatement();
-           ResultSet resultSet = stmt.executeQuery("SELECT locationId, location_name, location_GPS, description," +
+           ResultSet resultSet = stmt.executeQuery("SELECT location_id, location_name, location_GPS, description," +
                    " status FROM locations WHERE status = '"+val+"'");
            ArrayList<LocationModel> AllLocations = new ArrayList<LocationModel>();
            while(resultSet.next()) {
                LocationModel location = new LocationModel(
-                       resultSet.getString("locationId"),
+                       resultSet.getString("location_id"),
                        resultSet.getString("location_name"),
                        resultSet.getString("location_GPS"),
                        resultSet.getString("description"),
@@ -85,7 +85,7 @@ public class LocationReportController {
            while (it.hasNext()){
                LocationModel location = (LocationModel) it.next();
                System.out.println(location.getLocationId()+"\t"+location.getLocation_name()+"\t"+
-                       location.getLocation_GPS()+"\t"+ location.getDescription()+"\t"+location.getStatus());
+                       location.getLocation_GPS()+"\t,"+ location.getDescription()+"\t"+location.getStatus());
            }
            connection.close();
        }catch (Exception e) {

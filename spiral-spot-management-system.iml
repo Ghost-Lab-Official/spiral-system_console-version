@@ -6,13 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.49" level="project" />
-    <orderEntry type="library" name="mysql-connector-java-5.1.491" level="project" />
-    <orderEntry type="library" name="mysql-connector" level="project" />
-    <orderEntry type="library" name="commons-codec-1.14" level="project" />
-    <orderEntry type="library" name="java-jwt-3.12.1" level="project" />
-    <orderEntry type="library" name="jjwt-0.9.1" level="project" />
-    <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -22,11 +15,10 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql-connector" level="project" />
-    <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
-    <orderEntry type="library" name="jjwt-api-0.11.2" level="project" />
-    <orderEntry type="library" name="jBCrypt-0.4.3" level="project" />
-    <orderEntry type="library" name="mysql-connector1" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.49" level="project" />
+    <orderEntry type="library" name="jackson-annotations-2.12.1" level="project" />
+    <orderEntry type="library" name="javax.mail-1.6.2" level="project" />
+    <orderEntry type="library" name="activation-1.1" level="project" />
   </component>
 </module>
