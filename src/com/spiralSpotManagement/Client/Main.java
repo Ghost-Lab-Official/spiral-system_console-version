@@ -85,6 +85,7 @@ public class Main {
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
             System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
+            System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -144,6 +145,9 @@ public class Main {
                         userForms.loginUser();
                     }
                     break;
+                case 9:
+                    new UserAuthMiddleware().logoutMiddleWare();
+                    break;
                 default:
                     System.out.println("Invalid input");
             }
@@ -151,5 +155,4 @@ public class Main {
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
-
 }
