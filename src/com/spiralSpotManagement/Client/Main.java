@@ -2,19 +2,13 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 /*
             @author : Anne Bethiane, Blessing Hirwa
@@ -76,6 +70,9 @@ public class Main {
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
+
+            System.out.println("\t\t\t||------------------    8.Pay plan                   ------------------||");
+            System.out.println("\t\t\t||------------------    9. check if user plan is active                   ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -128,6 +125,59 @@ public class Main {
                         new UserView().loginUser();
                     }
                     break;
+
+                case 8:
+                    Integer user_id;
+                    Integer plan_id;
+                    System.out.println("Enter the user ID: ");
+                    user_id= scanner.nextInt();
+                    System.out.println("Enter the plan ID: ");
+                    plan_id = scanner.nextInt();
+                    UserBilling userBilling = new UserBilling(user_id,plan_id);
+
+                    requestBody.setUrl("/users-billing");
+                    requestBody.setAction("pay");
+                    requestBody.setObject(userBilling);
+
+                    ClientServerConnector clientServerConnector = new ClientServerConnector();
+                    ResponseBody responseBody=  clientServerConnector.ConnectToServer(requestBody);
+                    for (Object response: responseBody.getResponse()){
+                        ResponseStatus responseStatus = (ResponseStatus) response;
+                        System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+                        System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+                        System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+                        System.out.println("\t\t ------------------------------------------------------------------------------");
+                    }
+
+
+                case 9:
+                    Integer userID;
+                    System.out.println("Enter the user ID: ");
+                    userID= scanner.nextInt();
+                    UserBillingServices userBillingTwo = new UserBillingServices();
+                    UserBilling userBill = new UserBilling();
+                    userBill.setUser_id(userID);
+
+                    userBillingTwo.setUserBilling(userBill);
+                    userBillingTwo.setService("CREATE_SPOT_");
+
+                    requestBody.setUrl("/users-billing");
+                    requestBody.setAction("checkUserPlan");
+                    requestBody.setObject(userBillingTwo);
+
+
+
+                    ClientServerConnector clientServerConnectorTwo = new ClientServerConnector();
+                    ResponseBody responseBodyTwo=  clientServerConnectorTwo.ConnectToServer(requestBody);
+                    for (Object response: responseBodyTwo.getResponse()){
+                        ResponseStatus responseStatus = (ResponseStatus) response;
+                        System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+                        System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+                        System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+                        System.out.println("\t\t ------------------------------------------------------------------------------");
+                    }
+
+
                 default:
                     System.out.println("Invalid input");
             }

@@ -2,7 +2,7 @@ package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
 
-public class BillingModel implements Serializable {
+public class Billing implements Serializable {
     private Integer billing_id ;
     private String billing_name;
     private Integer price;
@@ -25,7 +25,7 @@ public class BillingModel implements Serializable {
         this.billing_status = billing_status;
     }
 
-    public BillingModel(){}
+    public Billing(){}
 
     public Integer getBilling_id() {
         return billing_id;

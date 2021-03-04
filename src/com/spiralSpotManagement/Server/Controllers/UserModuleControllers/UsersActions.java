@@ -94,7 +94,7 @@ public class UsersActions {
                     Token loginCredentials = new Token(rs.getString("email"),newPayload);
                     String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
 
-                    File file;
+//                    File file;
                     InputStream inputStream = new FileInputStream("config.properties");
                     // Writing token and other required credentials
                     Properties properties = new Properties();

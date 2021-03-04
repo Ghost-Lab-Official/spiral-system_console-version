@@ -1,7 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Server.Model.BillingModel;
+import com.spiralSpotManagement.Server.Model.Billing;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -19,7 +19,7 @@ public class BillingView {
         System.out.println("Enter the period: ");
         Integer period = scanner.nextInt();
 
-        BillingModel billingPlan = new BillingModel();
+        Billing billingPlan = new Billing();
         billingPlan.setBilling_name(planName);
         billingPlan.setPrice(planPrice);
         billingPlan.setBilling_period(period);
@@ -57,7 +57,7 @@ public class BillingView {
         System.out.println("Enter the new status [ACTIVE/INACTIVE]: ");
         String bill_status = scanner.next();
 
-        BillingModel billingPlan = new BillingModel();
+        Billing billingPlan = new Billing();
         billingPlan.setBilling_name(planName);
         billingPlan.setPrice(planPrice);
         billingPlan.setBilling_period(period);
@@ -99,7 +99,7 @@ public class BillingView {
         Integer index = 1;
         System.out.println("Number\t\t Plan \t\tPrice \t\tPeriod \t\tStatus");
         for(Object response : responseBody.getResponse()){
-            BillingModel response1 = (BillingModel) response;
+            Billing response1 = (Billing) response;
             System.out.println(index+"\t\t | "+response1.getBilling_name()
                     +" \t\t| "+response1.getPrice()+"\t\t | "
                     +response1.getBilling_period()
@@ -111,7 +111,7 @@ public class BillingView {
 
     public void previewBillingPlanById()throws Exception{
 
-        BillingModel billingModel = new BillingModel();
+        Billing billingModel = new Billing();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the billing ID: ");
         Integer billId = scanner.nextInt();
@@ -130,7 +130,7 @@ public class BillingView {
         Integer index = 1; // increment index counter for rows
         System.out.println("Number\t\t Plan \t\tPrice \t\tPeriod \t\tStatus");
         for(Object response : responseBody.getResponse()){
-            BillingModel response1 = (BillingModel) response;
+            Billing response1 = (Billing) response;
             System.out.println(index+"\t\t | "+response1.getBilling_name()
                     +" \t\t| "+response1.getPrice()+"\t\t | "
                     +response1.getBilling_period()
@@ -143,7 +143,7 @@ public class BillingView {
 //    this method deals with activating or deactivating an existing billing plan
     public void actionOnBillingPlan()throws Exception {
 
-        BillingModel billingModel = new BillingModel();
+        Billing billingModel = new Billing();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the billing ID: ");
         Integer billId = scanner.nextInt();

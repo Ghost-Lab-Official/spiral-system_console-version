@@ -1,12 +1,9 @@
 package com.spiralSpotManagement.Server.Controllers.BillingControllers;
 
-import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.BillingModel;
+import com.spiralSpotManagement.Server.Model.Billing;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
-import com.spiralSpotManagement.Server.Model.UserCategory;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +22,7 @@ public class BilllingActions {
 
      */
 
-    public ResponseStatus registerBillPlan(BillingModel billPlan) throws Exception{
+    public ResponseStatus registerBillPlan(Billing billPlan) throws Exception{
         String query = "INSERT INTO billing(billing_name,billing_price,billing_period)VALUES(?,?,?)";
         try{
             Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -59,7 +56,7 @@ public class BilllingActions {
 
      */
 
-    public ResponseStatus updateBillingPlan(BillingModel billPlan) throws Exception{
+    public ResponseStatus updateBillingPlan(Billing billPlan) throws Exception{
         String query = "UPDATE billing SET billing_name = ?, billing_price = ?, billing_period=?, billing_status = ? WHERE billing_id = ? ";
         try{
             Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -95,7 +92,7 @@ public class BilllingActions {
 
 
      */
-    public ResponseStatus updateBillingPlanStatus(BillingModel billPlan) throws Exception{
+    public ResponseStatus updateBillingPlanStatus(Billing billPlan) throws Exception{
         String query = "UPDATE billing SET billing_status = ? WHERE billing_id = ? ";
         try{
             Connection connection = new CloudStorageConnectionHandler().getConnection();
@@ -140,7 +137,7 @@ public class BilllingActions {
 
             while(planResult.next()){
 
-                BillingModel billingPlan = new BillingModel();
+                Billing billingPlan = new Billing();
                 billingPlan.setBilling_id(planResult.getInt(1));
                 billingPlan.setBilling_name(planResult.getString(2));
                 billingPlan.setPrice(planResult.getInt(3));
@@ -170,7 +167,7 @@ public class BilllingActions {
 
      */
 
-    public List<Object> getBillingPlanById(BillingModel billingModel)throws Exception{
+    public List<Object> getBillingPlanById(Billing billingModel)throws Exception{
 
         String query = "SELECT * FROM billing WHERE billing_id="+billingModel.getBilling_id();
         List<Object> planList = new ArrayList<>();
@@ -182,7 +179,7 @@ public class BilllingActions {
 
             while(planResult.next()){
 
-                BillingModel billingPlan = new BillingModel();
+                Billing billingPlan = new Billing();
                 billingPlan.setBilling_id(planResult.getInt(1));
                 billingPlan.setBilling_name(planResult.getString(2));
                 billingPlan.setPrice(planResult.getInt(3));

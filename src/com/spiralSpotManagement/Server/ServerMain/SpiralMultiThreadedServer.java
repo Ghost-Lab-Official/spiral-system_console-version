@@ -8,6 +8,7 @@ import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentRea
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
 import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
+import com.spiralSpotManagement.Server.Controllers.UserBilling.UserBillingController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
@@ -174,6 +175,9 @@ SpiralMultiThreadedServer {
                             responseObject = new BillingController().mainMethod(requestBody);
                             break;
 
+                        case "/users-billing":
+                            responseObject = new UserBillingController().mainMethod(requestBody);
+                            break;
                         default:
 
                     }
