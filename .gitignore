@@ -13,6 +13,8 @@
 
 # Package Files #
 *.war
+*.jar
+./out
 *.nar
 *.ear
 *.zip
