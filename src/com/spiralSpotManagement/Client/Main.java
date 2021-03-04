@@ -60,7 +60,7 @@ public class Main {
         System.out.println("\n");
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void welcomeToSpiral() throws Exception{
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -110,27 +110,25 @@ public class Main {
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    locationForms.LocationViewMenu();
+                        locationForms.LocationViewMenu();
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
 
                 case 6:
-                    //        create user log
-                    UserLog userLogToInsert = new UserLog();
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("searching");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
                     searchForms.mainMethod();
                     break;
                 case 7:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    new ReportsView().reportDashboard();
+                    {
+                        if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                            new ReportsView().reportDashboard();
+                        }
+                        else{
+                            System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
+                        }
+                    }
                     else {
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
@@ -154,5 +152,9 @@ public class Main {
             System.out.print("\t\tDo you want to continue searching? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+    }
+
+    public static void main(String[] args) throws Exception {
+        welcomeToSpiral();
     }
 }

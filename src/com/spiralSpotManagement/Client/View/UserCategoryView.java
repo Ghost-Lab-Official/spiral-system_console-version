@@ -15,6 +15,8 @@ import com.spiralSpotManagement.Server.Utils.UserCategories;
 
 import java.util.*;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 public class UserCategoryView {
     public void mainMethod()throws Exception{
         Scanner input = new Scanner(System.in);
@@ -199,6 +201,7 @@ public class UserCategoryView {
         System.out.println("\t\t\t||------------------    3.VIEW USER CATEGORIES          ------------------||");
         System.out.println("\t\t\t||------------------    4.DELETE USER CATEGORY          ------------------||");
         System.out.println("\t\t\t||------------------    5.VIEW USER CATEGORY BY ID      ------------------||");
+        System.out.println("\t\t\t||------------------    6.RETURN HOME                   ------------------||");
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t\t  Enter your choice:                                              ");
         choice = scanner.nextInt();
@@ -219,6 +222,9 @@ public class UserCategoryView {
                 break;
             case 5:
                 selectUserCategoryById();
+                break;
+            case 6:
+                welcomeToSpiral();
                 break;
             default:
                 System.out.println("Invalid input");

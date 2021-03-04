@@ -122,6 +122,7 @@ public class UsersActions {
                     properties.load(inputStream);
                     properties.setProperty("Token",userToken);
                     properties.setProperty("UserId",rs.getString("user_id"));
+                    properties.setProperty("ROLE",rs.getString("user_category"));
 
                     properties.store(new FileOutputStream("config.properties"),null);
 

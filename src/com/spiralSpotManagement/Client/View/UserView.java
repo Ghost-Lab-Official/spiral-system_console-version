@@ -14,6 +14,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.TimeZone;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
  *location management class. Method deleting given location
  * @author Mutoni Denyse
@@ -38,6 +40,7 @@ public class UserView {
         System.out.println("||\t\t6.DELETE USER             ||\n");
         System.out.println("||\t\t7.RESET PASSWORD          ||\n");
         System.out.println("||\t\t8.USER CATEGORIES         ||\n");
+        System.out.println("||\t\t9.RETURN HOME             ||\n");
         System.out.println("====================================");
         Integer choice = input.nextInt();
         switch(choice) {
@@ -62,8 +65,15 @@ public class UserView {
                 restPassword();
                 break;
             case 8:
-                new UserCategoryView().mainMethod();
+                if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                    new UserCategoryView().mainMethod();
+                }
+                else{
+                    System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
+                }
                 break;
+            case 9:
+                welcomeToSpiral();
             default:
                 System.out.println("Incorrect input!!");
         }
