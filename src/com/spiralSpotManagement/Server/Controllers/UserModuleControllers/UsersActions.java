@@ -175,6 +175,13 @@ public class UsersActions {
         }
     }
 
+
+    /**
+     * Get all users
+     * @author Muhodari Sage
+     */
+
+
     public List<Object> selectUsers() throws Exception {
         Connection connection = new CloudStorageConnectionHandler().getConnection();
         Statement state = connection.createStatement();
@@ -198,6 +205,8 @@ public class UsersActions {
         return users;
     }
 
+
+
     public boolean checkIfPasswordsAreEqual(String password, String hash) {
         boolean rightPassword = false;
         try {
@@ -209,6 +218,12 @@ public class UsersActions {
         return rightPassword;
     }
 
+
+
+    /**
+     * Send Notification to Mail
+     * @author Muhodari Sage
+     */
     public void sendNotification(String from, String password, String to, String sub, String msg) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -290,6 +305,7 @@ public class UsersActions {
 
         return user;
     }
+
     public static ResponseStatus deleteProfile(User userToDelete)throws Exception{
             String deleteSQL = "UPDATE users_table SET user_status= ? WHERE user_id=?";
             Connection connection = new CloudStorageConnectionHandler().getConnection();

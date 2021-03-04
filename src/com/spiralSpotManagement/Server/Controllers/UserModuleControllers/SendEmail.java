@@ -4,6 +4,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+
+
+/**
+ * Send Email Notification
+ * @author Muhodari Sage
+ */
+
 public class SendEmail {
     public static void send(String mailFrom, String password, String mailTo, String subject, String msg) {
         Properties props = new Properties();
