@@ -306,9 +306,9 @@ public class UsersActions {
                 return  new ResponseStatus(400,"BAD REQUEST",e.getMessage());
             }
             catch (Exception e){
-                new ResponseStatus(500,"SERVER ERROR",e.getMessage());
+                return new ResponseStatus(500,"SERVER ERROR",e.getMessage());
             }
-            return new ResponseStatus(500,"SERVER ERROR","e.getMessage()");
+            return new ResponseStatus(500,"SERVER ERROR","UNABLE TO DELETE USER PROFILE");
     }
     public void ResetPassword(Connection con) throws Exception{
         Scanner scanner=new Scanner(System.in);

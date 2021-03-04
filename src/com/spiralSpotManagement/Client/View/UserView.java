@@ -35,7 +35,7 @@ public class UserView {
         System.out.println("||\t\t3.GET USER BY ID          ||\n");
         System.out.println("||\t\t4.GET ALL USERS           ||\n");
         System.out.println("||\t\t5.UPDATE USER             ||\n");
-        System.out.println("||\t\t6.DELETE USER             ||\n");
+        System.out.println("||\t\t6.DEACTIVATE ACCOUNT      ||\n");
         System.out.println("||\t\t7.RESET PASSWORD          ||\n");
         System.out.println("||\t\t8.USER CATEGORIES         ||\n");
         System.out.println("====================================");
@@ -301,8 +301,7 @@ public class UserView {
     }
     public void deleteUser() throws Exception{
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the user id to delete");
-        int categoryId = scan.nextInt();
+        int categoryId = new UserAuthMiddleware().checkForUserExistence();
         User userToDelete = new User();
         userToDelete.setUserId(categoryId);
         RequestBody requestBody = new RequestBody();
@@ -331,9 +330,7 @@ public class UserView {
         Scanner scanner=new Scanner(System.in);
         System.out.println("Enter the new data below");
         System.out.println("------------------------\n");
-
-        System.out.println("Enter the user id you want to update");
-        String userId = scanner.nextLine();
+        String userId = new UserAuthMiddleware().checkForUserExistence().toString();
         System.out.print("Enter Your email:\t");
         String email = scanner.nextLine();
         System.out.println("Enter your first name");
