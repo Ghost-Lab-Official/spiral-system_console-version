@@ -245,7 +245,21 @@ public  void RecoverLocation(){
 
         //chek location id going to be update exists
         if (!location.CheckLocationId(locId)){
-            System.out.println("The location was deleted permanently.\n1. Register it now!\n2. Try again.\n0. Exit.");
+
+            System.out.println("The location doesn't exists.\n\t1. TRY AGAIN\n\t2. REGISTER IT NOW.\n\t0. BACK HOME.\n\tEnter your choice here:: ");
+            int userChoose;
+            userChoose = scanner.nextInt();
+            if (userChoose==1){
+                updateLocation();
+            }else if (userChoose==2){
+                registerLocation();
+            }else if(userChoose==0){
+                welcomeToSpiral();
+            }else {
+                System.out.println("Bad choice! you returned to home");
+                welcomeToSpiral();
+            }
+
         }
 
         Location RecoverData = new Location();
