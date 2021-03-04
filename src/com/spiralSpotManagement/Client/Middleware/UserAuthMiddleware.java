@@ -17,6 +17,11 @@ public class UserAuthMiddleware {
         return userId;
     }
 
+    /**
+     * @author : Muhodari Sage
+     * @description: Logout functionality
+     * @throws Exception
+     */
     public void logoutMiddleWare()throws Exception{
         File file;
         InputStream inputStream = new FileInputStream("config.properties");
