@@ -17,9 +17,9 @@ import java.util.UUID;
  */
 
 public class LocationLevelsActions {
-    String createLevelQuery = "INSERT INTO location_levels(level_id,level_name, description) VALUES(?,?,?)";
+    String createLevelQuery = "INSERT INTO location_levels(level_id,level_name,description) VALUES(?,?,?)";
     String deleteLevelQuery = "DELETE FROM location_levels WHERE level_id=?";
-    String updateLevelQuery = "UPDATE location_levels SET level_name=?,description=? WHERE level_id=?";
+    String updateLevelQuery = "UPDATE location_levels SET level_name=? WHERE level_id=?";
     String getLevelQuery = "SELECT * FROM location_levels WHERE level_id=?";
     String getAllLevelsQuery = "SELECT * FROM location_levels";
 
@@ -44,15 +44,13 @@ public class LocationLevelsActions {
             int inserted_rec = stmt.executeUpdate();
             if(inserted_rec == 1){
                 return new ResponseStatus(200,"CREATED","Location level registered");
-            }
-            if(connection != null){
+            }else{
                 return new ResponseStatus(500,"SERVER ERROR","Insertion failed, try or contact System Administrator");
             }
 
         }catch(Exception e){
             return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
         }
-        return new ResponseStatus(200,"CREATED","Location level registered");
     }
 
     /**
@@ -67,9 +65,8 @@ public class LocationLevelsActions {
         try {
             Connection connection = new CloudStorageConnectionHandler().getConnection();
             PreparedStatement stmt = connection.prepareStatement(updateLevelQuery);
-            stmt.setString(3, level.getLevel_id());
+            stmt.setString(2, level.getLevel_id());
             stmt.setString(1, level.getLevel_name());
-            stmt.setString(2, level.getDescription());
             stmt.executeUpdate();
         } catch (Exception e) {
             return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
@@ -112,7 +109,6 @@ public class LocationLevelsActions {
             while (rs.next()){
                 locationLevel.setLevel_id(rs.getString("level_id"));
                 locationLevel.setLevel_name((rs.getString("level_name")));
-                locationLevel.setDescription(rs.getString("description"));
             }
             return new ResponseStatus(200, "LEVEL EXIST", (Object) locationLevel, "Got location level");
         } catch (Exception e) {
@@ -135,7 +131,6 @@ public class LocationLevelsActions {
                 LocationLevels locationLevel = new LocationLevels();
                 locationLevel.setLevel_id(rs.getString("level_id"));
                 locationLevel.setLevel_name(rs.getString("level_name"));
-                locationLevel.setDescription(rs.getString("description"));
                 list.add(locationLevel);
             }
             return new ResponseStatus(200, "LEVELS EXIST", (Object) list, "Got location levels");

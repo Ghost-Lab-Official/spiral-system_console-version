@@ -4,6 +4,8 @@ import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
@@ -19,10 +21,13 @@ public class LocationLevelsView {
     public void registerLocationLevels()throws Exception{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Location level name: ");
-        String locationLevel = scanner.nextLine();
+        String locationLevelName = scanner.nextLine();
+        System.out.println("Enter Location level description: ");
+        String locationLevelDescription = scanner.nextLine();
 
         LocationLevels llevel = new LocationLevels();
-        llevel.setLevel_name(locationLevel);
+        llevel.setLevel_name(locationLevelName);
+        llevel.setDescription(locationLevelDescription);
 
         //Send the data as an object of request body
         RequestBody requestBody = new RequestBody();
@@ -43,6 +48,10 @@ public class LocationLevelsView {
         }
     }
 
+    /**
+     * Getting a list of all location levels
+     * @author: Harerimana Egide
+     */
     public void getAllLocationLevelsView() throws Exception{
         //Send the request
         RequestBody requestBody = new RequestBody();
@@ -50,20 +59,29 @@ public class LocationLevelsView {
         requestBody.setAction("getAllLevels");
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-
+        List<LocationLevels> list = new ArrayList<>();
         for(Object response : responseBody.getResponse()){
             ResponseStatus responseStatus = (ResponseStatus) response;
+            list.addAll((List) responseStatus.getObject());
             System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
 
         }
+        System.out.println("\t\tID\t\t\t\t\t\t\t\t\t\tName");
+        System.out.println("\t\t---------------------------------------------------");
+        for(LocationLevels level : list){
+            System.out.println("\t\t"+level.getLevel_id()+"\t"+level.getLevel_name());
+        }
     }
 
+    /**
+     * Location levels main view entry
+     * @author: Harerimana Egide
+     */
     public void LocationLevelsViewMenu() throws Exception {
         /* LocationLevelsView entry  */
-
         String toContinue;
         do{
             int choice;
@@ -85,7 +103,7 @@ public class LocationLevelsView {
 
                     break;
             }
-            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            System.out.print("\t\tDo you want to continue? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
