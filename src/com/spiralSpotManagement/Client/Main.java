@@ -86,7 +86,7 @@ public class Main {
             System.out.println("\t\t\t||------------------    9.LOCATION LEVELS          ------------------||");
             if(new UserAuthMiddleware().checkForUserExistence() !=0){
             System.out.println("\t\t\t||------------------    10.LOGOUT                   ------------------||");}
-            System.out.println("\t\t\t||--------------------------------------------------------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
             switch (choice){
