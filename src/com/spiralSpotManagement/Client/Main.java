@@ -97,6 +97,11 @@ public class Main {
                     }
                     break;
                 case 3:
+                    Boolean status = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"SPOT_MANAGEMENT");
+                    Thread.sleep(3000);
+                    if(status==false){
+                        welcomeToSpiral();
+                    } else
                     spotForms.spotViewMenu();
                     break;
                 case 4:
@@ -104,7 +109,11 @@ public class Main {
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0) {
-
+                        Boolean statusTwo = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"LOCATION_MANAGEMENT");
+                        Thread.sleep(3000);
+                        if(statusTwo==false){
+                            welcomeToSpiral();
+                        } else
                         locationForms.LocationViewMenu();
 
                     }

@@ -11,10 +11,15 @@ import java.time.LocalDate;
 public class UserBillingActions {
     /**
      *  checkUserBilling payment status.
+<<<<<<< HEAD
+     * @param |UserBillingServices project having the UserBilling Object and the service to do,
+=======
      * @param "UserBillingServices" project having the UserBilling Object and the service to do,
+>>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
+
 
 
     public ResponseStatus checkUserBillingStatus(UserBillingServices userBillingServices)throws Exception{
@@ -38,10 +43,10 @@ public class UserBillingActions {
 
                 PreparedStatement planStatement = connection.prepareStatement(getPlan);
                 planStatement.setInt(1,plan_id);
-                ResultSet resultset1 = planStatement.executeQuery();
+                ResultSet results1 = planStatement.executeQuery();
                 String functionalities = "";
-                while (resultset1.next()){
-                    functionalities = resultset1.getString(6);
+                while (results1.next()){
+                    functionalities = results1.getString(6);
                 }
                 if(functionalities.contains(userBillingServices.getService())){
                     return new ResponseStatus(200,"AUTHORIZED","THIS USER IS AUTHORIZED");
@@ -62,7 +67,11 @@ public class UserBillingActions {
     }
  /**
      *  pay for a plan.
+<<<<<<< HEAD
+     * @param |UserBilling Object having user_id and plan id
+=======
      * @param "UserBilling" Object having user_id and plan id
+>>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
