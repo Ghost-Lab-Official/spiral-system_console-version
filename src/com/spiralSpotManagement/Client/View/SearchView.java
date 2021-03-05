@@ -114,6 +114,7 @@ public class SearchView {
 
         System.out.println("Comment on spot " + spot.getSpotId());
         new CommentView().makeComment(spot);
+
     }
 
     /**
@@ -160,6 +161,8 @@ public class SearchView {
             Spot spot = (Spot) response;
             System.out.println(index + ". " + spot.getSpotName());
             spotsList.add(spot);
+
+
         }
 
         if(!found){
@@ -168,6 +171,12 @@ public class SearchView {
             displaySpot(spotsList);
         }
 
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "Searched " + searchKey;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
 
@@ -219,6 +228,12 @@ public class SearchView {
         }else {
             displayUser(usersList);
         }
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "Searched " + searchKey;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
 
@@ -266,6 +281,13 @@ public class SearchView {
                 }
             }
         }
+
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "viewed recent searches " ;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
     public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
@@ -281,6 +303,13 @@ public class SearchView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsertOnSearch = new UserLog();
+            userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            String logAction= "deleted recent searches " ;
+            userLogToInsertOnSearch.setAction(logAction);
+
+            new ReportsView().createUserlog(userLogToInsertOnSearch);
         }
     }
 
@@ -332,6 +361,12 @@ public class SearchView {
                 Spot spot = (Spot) responseFound;
                 System.out.println(index + ". " + spot.getSpotName());
                 spotsList.add(spot);
+                UserLog userLogToInsertOnSearch = new UserLog();
+                userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                String logAction= "Searched popular " +  spot.getSpotName();
+                userLogToInsertOnSearch.setAction(logAction);
+
+                new ReportsView().createUserlog(userLogToInsertOnSearch);
             }
 
             if(!found){
@@ -339,6 +374,8 @@ public class SearchView {
             }else {
                 displaySpot(spotsList);
             }
+
+
         }
 
     }

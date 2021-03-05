@@ -6,7 +6,9 @@ package com.spiralSpotManagement.Client.View;
  */
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Server.Model.*;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
@@ -93,6 +95,11 @@ public class UserCategoryView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsert = new UserLog();
+            userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsert.setAction("Created user category ");
+            new ReportsView().createUserlog(userLogToInsert);
         }
 }
     public static void selectUserCategories() throws Exception{
@@ -128,6 +135,11 @@ public class UserCategoryView {
         for (Object response: responseBody.getResponse()){
             UserCategory userCategory = (UserCategory) response;
             System.out.println("\t "+userCategory.getCatId()+" \t\t "+userCategory.getCatName());
+
+            UserLog userLogToInsert = new UserLog();
+            userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsert.setAction("viewed user category ");
+            new ReportsView().createUserlog(userLogToInsert);
         }
     }
 
@@ -159,6 +171,11 @@ public class UserCategoryView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsert = new UserLog();
+            userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsert.setAction("Updated user category ");
+            new ReportsView().createUserlog(userLogToInsert);
         }
     }
     public void deleteCategory() throws Exception{
@@ -180,6 +197,11 @@ public class UserCategoryView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsert = new UserLog();
+            userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsert.setAction("Deleted user category ");
+            new ReportsView().createUserlog(userLogToInsert);
         }
     }
 

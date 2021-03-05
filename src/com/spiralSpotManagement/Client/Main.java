@@ -47,7 +47,7 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(200);
+            Thread.sleep(100);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
@@ -97,34 +97,48 @@ public class Main {
                     }
                     break;
                 case 3:
+                    Boolean status = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"SPOT_MANAGEMENT");
+                    Thread.sleep(3000);
+                    if(status==false){
+                        welcomeToSpiral();
+                    } else
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    spotCategories.SpotCategoryMenu();
+                    userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+                        Boolean statusTwo = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"LOCATION_MANAGEMENT");
+                        Thread.sleep(3000);
+                        if(statusTwo==false){
+                            welcomeToSpiral();
+                        } else
                         locationForms.LocationViewMenu();
+
+                    }
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
                     }
 
                 case 6:
+                    //        create user log
+
                     searchForms.mainMethod();
                     break;
                 case 7:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    {
-                        if(new UserAuthMiddleware().checkIfIsAdmin() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
-                            new ReportsView().reportDashboard();
-                        }
-                        else{
-                            System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
-                        }
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                        UserLog userLogToInsertonReports = new UserLog();
+                        userLogToInsertonReports.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsertonReports.setAction("viewed reports");
+
+                        new ReportsView().createUserlog(userLogToInsertonReports);
+                        new ReportsView().reportDashboard();
+
                     }
                     else {
-                        System.out.println("You have to login first\n");
+                        System.out.println("You have to login as an admin to view reports\n");
                         new UserView().loginUser();
                     }
                     break;
@@ -139,6 +153,7 @@ public class Main {
                     break;
                 case 9:
                     new UserAuthMiddleware().logoutMiddleWare();
+
                     break;
                 default:
                     System.out.println("Invalid input");

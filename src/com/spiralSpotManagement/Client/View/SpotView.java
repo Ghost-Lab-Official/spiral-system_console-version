@@ -121,13 +121,10 @@ public class SpotView {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0) {
                     formClient.createSpot();
 
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("created spot");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
+                    UserLog userLogToInsertonSpotCreation = new UserLog();
+                    userLogToInsertonSpotCreation.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertonSpotCreation.setAction("Created spots ");
+                    new ReportsView().createUserlog(userLogToInsertonSpotCreation);
                 }
 
             else{
@@ -138,11 +135,7 @@ public class SpotView {
             case 2 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0){
                     userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
                     userLogToInsert.setAction("updated a spot");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
                     formClient.updateSpot();
                 }
 
@@ -154,11 +147,7 @@ public class SpotView {
             case 3 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0) {
                     userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
                     userLogToInsert.setAction("Deleted a spot");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
                     formClient.deleteSpotContent();
                 }
                 else{

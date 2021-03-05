@@ -34,6 +34,11 @@ public class LocationController {
                 ResponseStatus recoverLocation = new LocationActions().RecoverLocation((Location) requestBody.getObject());
                 location.add((Object) recoverLocation);
                 return location;
+
+            case "getLocationsByParent":
+                System.out.println("dmakldmalkdna;lkd");
+                List<Object> locations = new LocationActions().fetchByParent((String) requestBody.getObject());
+                return locations;
         }
         return  null;
     }
