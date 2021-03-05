@@ -17,6 +17,8 @@ import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
  */
 
 public class SearchView {
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[0m";
     public static final Scanner scanner = new Scanner(System.in);
     public void mainMethod() throws Exception{
         String cont = "";
@@ -190,7 +192,7 @@ public class SearchView {
                 index++;
                 found = true;
                 Spot spot = (Spot) response;
-                System.out.println(index + ". " + spot.getSpotName() + " : " + spot.getSpotDescription().substring(0,10) + "...");
+                System.out.println(index + ". " + spot.getSpotName() + "\n\t\t" + ANSI_BLUE + spot.getSpotDescription().substring(0,10) + "..." + ANSI_RESET);
                 spotsList.add(spot);
             }
 
