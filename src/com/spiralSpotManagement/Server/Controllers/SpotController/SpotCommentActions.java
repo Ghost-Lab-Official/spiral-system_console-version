@@ -33,29 +33,30 @@ public class SpotCommentActions {
    * @return
    * @throws Exception
    */
-  public List<Comment> GetComments(String spotId) throws Exception {
+  public List<Comment> GetComments(Integer spotId) throws Exception {
+    System.out.println(spotId);
     List<Comment> commentsList = new ArrayList<>();
     Connection connection = new CloudStorageConnectionHandler().getConnection();
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(
         GetCommentQuery
       );
-      preparedStatement.setString(1, spotId);
-      ResultSet result = preparedStatement.executeQuery(GetCommentQuery);
+      preparedStatement.setInt(1, spotId);
+      ResultSet result = preparedStatement.executeQuery();
 
       while (result.next()) {
+        System.out.println(result.getString("content"));
         Comment comment = new Comment();
         comment.setComment_id(result.getString("comment_id"));
         comment.setSpotId(result.getInt("spot_id"));
         comment.setUserId(result.getInt("user_id"));
         comment.setStatus(result.getString("status"));
         comment.setContent(result.getString("content"));
-        comment.setCreated_at(new Date(result.getString("created_at")));
-        comment.setUpdatedAt(new Date(result.getString("updated_at")));
+        comment.setCreated_at(result.getDate("created_at"));
+        comment.setUpdatedAt(result.getDate("updated_at"));
 
         commentsList.add(comment);
       }
-
       return commentsList;
     } catch (Exception e) {
       return commentsList;
@@ -77,7 +78,7 @@ public class SpotCommentActions {
               GetCommentReplyQuery
       );
       preparedStatement.setString(1, CommentId);
-      ResultSet result = preparedStatement.executeQuery(GetCommentReplyQuery);
+      ResultSet result = preparedStatement.executeQuery();
 
       while (result.next()) {
         Comment comment = new Comment();
