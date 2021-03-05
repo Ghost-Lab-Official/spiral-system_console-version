@@ -13,9 +13,13 @@ import com.spiralSpotManagement.Server.Model.SpotRatings;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpotRatingActions {
+    String GetSpotRatingsQuery = "SELECT * FROM spot_ratings where spot_id=?";
     String InsertSpotRatingQuery = "INSERT INTO spot_ratings (user_id, spot_id, rating) VALUES(?,?,?) ";
     String UpdateSpotRatingQuery = "UPDATE spot_ratings set user_id=?, spot_id=?, rating=? WHERE rating_id=?";
     String deleteSpotRatingQuery = "UPDATE Spot_table SET status=0 where spot_id=?";
@@ -98,5 +102,29 @@ public class SpotRatingActions {
         }
 
         return null;
+    }
+
+    public List<SpotRatings> getRatings(Integer spotId) throws Exception {
+        List<SpotRatings> ratingsList = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    GetSpotRatingsQuery
+            );
+            preparedStatement.setInt(1, spotId);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                SpotRatings spotRating = new SpotRatings();
+                spotRating.setSpot_id(result.getInt("spot_id"));
+                spotRating.setUser_id(result.getInt("user_id"));
+                spotRating.setRating(result.getInt("rating"));
+
+                ratingsList.add(spotRating);
+            }
+            return ratingsList;
+        } catch (Exception e) {
+            return ratingsList;
+        }
     }
 }
