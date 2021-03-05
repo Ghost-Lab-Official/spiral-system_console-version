@@ -310,7 +310,6 @@ public  void RecoverLocation(){
         String parent;
         System.out.println("Enter the location you want to search by: ");
         parent = scanner.nextLine();
-        System.out.println("we're here"+parent);
         requestBody.setObject(parent);
         try {
             ClientServerConnector clientServerConnector = new ClientServerConnector();
@@ -319,7 +318,7 @@ public  void RecoverLocation(){
                 System.out.println(i);
             }
             if ((responseBody.getResponse().isEmpty())) {
-                System.out.println("No locations found! "+requestBody);
+                System.out.println("No locations found😀! "+requestBody);
             }
         }catch (Exception e){
             System.out.println("Error Message:: "+e.getMessage());

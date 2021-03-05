@@ -36,7 +36,6 @@ public class LocationController {
                 return location;
 
             case "getLocationsByParent":
-                System.out.println("dmakldmalkdna;lkd");
                 List<Object> locations = new LocationActions().fetchByParent((String) requestBody.getObject());
                 return locations;
         }

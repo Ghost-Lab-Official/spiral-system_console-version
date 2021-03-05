@@ -37,7 +37,7 @@ public class SpotCommentController {
 
                 return  usersObject;
             case "getComments":
-                List<Comment> spotCommentList = new SpotCommentActions().GetComments((String) requestBody.getObject());
+                List<Comment> spotCommentList = new SpotCommentActions().GetComments((Integer) requestBody.getObject());
                 for (Comment spotComment:spotCommentList){
                     usersObject.add((Object) spotComment);
                 }

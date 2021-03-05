@@ -39,14 +39,13 @@ public class ClientServerConnector {
                         ----------------------------------
                         user: /users
                         response : table of users
-
                         user: /users/1
                         response : user with id that id
                  */
 
-                // sending the user input to server
-                out.writeObject(requestBody);
-                out.flush();
+            // sending the user input to server
+            out.writeObject(requestBody);
+            out.flush();
 
                 // displaying server reply
                  List<Object> dataReturned = (List<Object>) in.readObject();

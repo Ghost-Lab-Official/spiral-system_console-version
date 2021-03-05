@@ -1,6 +1,5 @@
 package com.spiralSpotManagement.Server.Controllers.UserBilling;
 
-import com.mysql.cj.protocol.Resultset;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
 
@@ -12,7 +11,11 @@ import java.time.LocalDate;
 public class UserBillingActions {
     /**
      *  checkUserBilling payment status.
+<<<<<<< HEAD
      * @param |UserBillingServices project having the UserBilling Object and the service to do,
+=======
+     * @param "UserBillingServices" project having the UserBilling Object and the service to do,
+>>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
@@ -64,7 +67,11 @@ public class UserBillingActions {
     }
  /**
      *  pay for a plan.
+<<<<<<< HEAD
      * @param |UserBilling Object having user_id and plan id
+=======
+     * @param "UserBilling" Object having user_id and plan id
+>>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */

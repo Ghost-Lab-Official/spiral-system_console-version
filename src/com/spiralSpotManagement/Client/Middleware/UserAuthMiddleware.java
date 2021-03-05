@@ -10,6 +10,11 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author : Blessing Hirwa
+ * @description: checking for a logged in user
+ * @throws Exception
+ */
 public class UserAuthMiddleware {
     public Integer checkForUserExistence()throws Exception{
         InputStream inputStream = new FileInputStream("config.properties");
@@ -17,7 +22,23 @@ public class UserAuthMiddleware {
         Properties properties = new Properties();
         properties.load(inputStream);
 
-        return Integer.valueOf(properties.getProperty("UserId"));
+        Object userId = (Object) properties.getProperty("UserId");
+
+        if(userId == null){
+            InputStream input = new FileInputStream("config.properties");
+            // Writing token and other required credentials
+            Properties props = new Properties();
+            properties.load(input);
+            properties.setProperty("Token","");
+            properties.setProperty("UserId", String.valueOf(0));
+
+            properties.store(new FileOutputStream("config.properties"),null);
+
+            return 0;
+        }
+        String ret = userId.toString();
+    return Integer.parseInt(ret);
+
     }
 
     /**

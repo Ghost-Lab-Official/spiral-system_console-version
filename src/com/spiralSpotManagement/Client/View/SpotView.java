@@ -127,10 +127,10 @@ public class SpotView {
                     new ReportsView().createUserlog(userLogToInsertonSpotCreation);
                 }
 
-            else{
-                System.out.println("You have to login first\n");
-                new UserView().loginUser();
-            }
+                else{
+                    System.out.println("You have to login first\n");
+                    new UserView().loginUser();
+                }
             }
             case 2 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0){
@@ -160,5 +160,4 @@ public class SpotView {
         }
     }
 }
-
 

@@ -5,9 +5,7 @@ import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
-import java.util.Date;
-import java.util.Scanner;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Comment.java This is a class for handling Spot Reviews (comments) view and display from server , to server
@@ -142,6 +140,36 @@ public class CommentView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+        }
+    }
+
+    /**
+     * @author: Abizera Oreste
+     * @param spot
+     * This method is used to view comments on a given spot
+     */
+    public void viewComments(Spot spot) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/spot-comment");
+        requestBody.setAction("getComments");
+        requestBody.setObject(spot);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        boolean found = false;
+        Integer index = 0;
+        List<Object> commentsList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Comment comment = (Comment) response;
+            System.out.println(index + ". " + comment.getContent());
+            commentsList.add(spot);
+        }
+
+        if(!found) {
+            System.out.println("No Comments Found.");
         }
     }
 }
