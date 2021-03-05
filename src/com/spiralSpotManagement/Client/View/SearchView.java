@@ -44,8 +44,9 @@ public class SearchView {
             case 3 -> searchMessages();
             case 4 -> searchPopular();
             case 5 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                viewRecentSearches();
+                if(new UserAuthMiddleware().checkForUserExistence() != 0) {
+                    viewRecentSearches();
+                }
                 System.out.println("You have to login first");
                 userForms.loginUser();
             }
@@ -123,6 +124,10 @@ public class SearchView {
         }else if(action == 3){
             displayComments(selectedSpot.getSpotId());
         }
+        else if(action == 4){
+            welcomeToSpiral();
+        }
+        System.out.println("Invalid");
     }
 
     /**
@@ -237,6 +242,35 @@ public class SearchView {
 //        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
 //        System.out.println("response is here : "+ responseBody);
 //    }
+
+    /**
+     * Search with query param
+     */
+    public static void search(String searchQuery) throws Exception{
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("getSpots");
+        Spot spotToSend = new Spot();
+        spotToSend.setSpotName(searchQuery);
+        requestBody.setObject(spotToSend);
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        boolean found = false;
+        Integer index = 0;
+        List<Object> spotsList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Spot spot = (Spot) response;
+            System.out.println(index + ". " + spot.getSpotName());
+            spotsList.add(spot);
+        }
+        if(!found){
+            System.out.println("No spots Found.");
+        }else {
+            displaySpot(spotsList);
+        }
+    }
+
     public static void searchPeople() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
@@ -306,20 +340,20 @@ public class SearchView {
 
     /**
      * Method to view recent searches
+     * @author: Mugisha ISaac and Ishimwe Pauline
+     * comment: This is the method which prints recent searches of a logged in user
+     * and then gives the user options to delete a recent search or to search again
+     * using that query.
      */
     public static void viewRecentSearches() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
         requestBody.setAction("viewRecentSearches");
-
         User user = new User();
         user.setUserId(new UserAuthMiddleware().checkForUserExistence());
-
         requestBody.setObject(user);
-
         ClientServerConnector clientServerConnector = new ClientServerConnector();
         ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-
         int i = 1;
         List<RecentSearch> recentSearchList = new ArrayList<>();
         for (Object response : responseBody.getResponse()){
@@ -329,30 +363,47 @@ public class SearchView {
             i++;
         }
         if(recentSearchList.size() == 0){
-            System.out.println("No results found for this user");
+            System.out.println("No recent searches for this user, please search something!");
         }else {
-            String delete = "";
-            System.out.println("Do you want to remove a recent research (y/n)");
-            delete = scanner.next();
-            if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
-                System.out.println("Enter Recent Search: ");
-                Integer choice = scanner.nextInt();
-                if (choice > recentSearchList.size()) {
-                    System.out.println("Invalid Choice");
-                } else {
-                    RemoveRecentSearch(recentSearchList.get(choice - 1));
-                }
+            System.out.println("Options");
+            System.out.println("\t 1.Delete The Recent Search \n \t 2.Search Again Using This Query");
+            System.out.println("Enter Your Choice");
+            Scanner sc = new Scanner(System.in);
+            Integer  option = sc.nextInt();
+            switch (option){
+                case 1:
+                    String delete = "";
+                    System.out.println("Do you want to remove a recent research (yes/no)");
+                    delete = scanner.next();
+                    if (delete.equalsIgnoreCase("y") || delete.equalsIgnoreCase("yes")) {
+                        System.out.println("Enter Recent Search To Delete: ");
+                        Integer choice = scanner.nextInt();
+                        if (choice > recentSearchList.size()) {
+                            System.out.println("Invalid Choice. try, again");
+                        } else {
+                            RemoveRecentSearch(recentSearchList.get(choice - 1));
+                        }
+                    }
+                    break;
+                case 2:
+                    System.out.println("Enter number of the query to Search");
+                    Scanner sc2 = new Scanner(System.in);
+                    Integer id = sc2.nextInt();
+                    String selectedSearch = recentSearchList.get(id-1).getSearchQuery();
+                    search(selectedSearch);
+                    break;
+                default:
+                    System.out.println("Invalid Choice, Please Choose Again");
             }
         }
-
-        UserLog userLogToInsertOnSearch = new UserLog();
-        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-        String logAction= "viewed recent searches " ;
-        userLogToInsertOnSearch.setAction(logAction);
-
-        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
-
+    /**
+     @uthor: Mugisha isaac
+     comment: This the method which gives the status, message and action if the user
+     deletes a recent search query from history. if status is 200 (ok), then this tells
+     that the query was successfully deleted and the message will be a successfully message of
+     deletion. action to do is to search again
+     */
     public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
@@ -366,13 +417,6 @@ public class SearchView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
-
-            UserLog userLogToInsertOnSearch = new UserLog();
-            userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-            String logAction= "deleted recent searches " ;
-            userLogToInsertOnSearch.setAction(logAction);
-
-            new ReportsView().createUserlog(userLogToInsertOnSearch);
         }
     }
 
