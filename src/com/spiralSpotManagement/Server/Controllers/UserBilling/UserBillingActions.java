@@ -18,6 +18,7 @@ public class UserBillingActions {
      */
 
 
+
     public ResponseStatus checkUserBillingStatus(UserBillingServices userBillingServices)throws Exception{
         String query = "SELECT * FROM users_billing WHERE user_id = ?";
         String getPlan = "SELECT * FROM billing WHERE billing_id = ?";
