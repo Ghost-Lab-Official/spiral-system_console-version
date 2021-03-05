@@ -2,19 +2,13 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -53,14 +47,14 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(300);
+            Thread.sleep(100);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
         System.out.println("\n");
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void welcomeToSpiral() throws Exception{
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -109,8 +103,11 @@ public class Main {
                     userCategoryForms.UserCategoryMenu();
                     break;
                 case 5:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    locationForms.LocationViewMenu();
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+
+                        locationForms.LocationViewMenu();
+
+                    }
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
@@ -118,21 +115,21 @@ public class Main {
 
                 case 6:
                     //        create user log
-                    UserLog userLogToInsert = new UserLog();
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("searching");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
+
                     searchForms.mainMethod();
                     break;
                 case 7:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    new ReportsView().reportDashboard();
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                        UserLog userLogToInsertonReports = new UserLog();
+                        userLogToInsertonReports.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsertonReports.setAction("viewed reports");
+
+                        new ReportsView().createUserlog(userLogToInsertonReports);
+                        new ReportsView().reportDashboard();
+
+                    }
                     else {
-                        System.out.println("You have to login first\n");
+                        System.out.println("You have to login as an admin to view reports\n");
                         new UserView().loginUser();
                     }
                     break;
@@ -147,6 +144,7 @@ public class Main {
                     break;
                 case 9:
                     new UserAuthMiddleware().logoutMiddleWare();
+
                     break;
                 default:
                     System.out.println("Invalid input");
@@ -154,5 +152,9 @@ public class Main {
             System.out.print("\t\tDo you want to continue searching? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
+    }
+
+    public static void main(String[] args) throws Exception {
+        welcomeToSpiral();
     }
 }

@@ -17,7 +17,7 @@ import java.util.TimeZone;
 
 
     /**
-     * @Author: Best Verie Iradukunda.
+     * @author: Best Verie Iradukunda.
      * @Comment: 
      * userLogs action: This class helps to Keep track of each and every action that the users perform on our system . it has a method which enable
      * us to get or fetch all user logs in the database and the other method to record user activities which will be called in all modules so as
@@ -25,7 +25,7 @@ import java.util.TimeZone;
      * time he logged in and out .
      * we also compute some operations like totalIn and totalOut which are designed  to show the total number of users that are using the system
      * at a time (logged in) and the others that have logged out at a time. I think it now makes sense.
-     * @Date: 5 Feb 2021
+     * @date: 5 Feb 2021
      * @copyright all right reserved.
      **/
     
@@ -45,7 +45,7 @@ public class UserLogsActions {
             userLog.setAction(result.getString("action"));
             userLog.setDateTimeLoggedOut(result.getString("date_Time_logged_Out"));
             userLog.setTotalIn(result.getInt("Total_in"));
-            userLog.setTotalIn(result.getInt("Total_out"));
+            userLog.setTotalOut(result.getInt("Total_out"));
             userLogList.add((Object) userLog);
         }
 
@@ -56,9 +56,8 @@ public class UserLogsActions {
          TimeZone tz = TimeZone.getTimeZone("UTC");
          DateFormat df = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
          df.setTimeZone(tz);
-         String nowAsISO = df.format(new Date());
 
-         return nowAsISO;
+         return df.format(new Date());
      }
 
     public ResponseStatus recordUserLogs(UserLog userLog) throws Exception{
@@ -69,7 +68,6 @@ public class UserLogsActions {
         ResultSet rs=statement.executeQuery(getPreviousRowQuery);
         while (rs.next()){
            if(userLog.getAction().equals("logIn")){
-               System.out.println("Reached here");
                int currentTotalIn = 0;
                currentTotalIn=rs.getInt("Total_in");
                int currentTotalOut = 0;
@@ -80,6 +78,8 @@ public class UserLogsActions {
            else if(userLog.getAction().equals("logOut")){
                int currentTotalIn = rs.getInt("Total_in");
                int currentTotalOut = rs.getInt("Total_out");
+               userLog.setDateTimeLoggedIn(rs.getString("date_Time_logged_In"));
+
                userLog.setDateTimeLoggedOut(dateParser());
                userLog.setTotalIn(currentTotalIn-1);
                userLog.setTotalOut(currentTotalOut+1);
@@ -104,7 +104,7 @@ public class UserLogsActions {
             int inserted =preparedStatement.executeUpdate();
 
             if (inserted == 1){
-                return new ResponseStatus(200,"USER LOG ADDED","You have inserted the user log successfully");
+                return new ResponseStatus(200,"USER LOG ADDED","successfully recorded this activity");
             }
         }
         catch (Exception e){

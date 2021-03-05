@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
  * @author Abizera Oreste
  * @author Kwizera Emmanuel
@@ -27,6 +29,7 @@ public class SearchView {
             System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
             System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
             System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice ");
         int option = scanner.nextInt();
@@ -37,6 +40,7 @@ public class SearchView {
             case 3 -> searchMessages();
             case 4 -> searchPopular();
             case 5 -> viewRecentSearches();
+            case 6 -> welcomeToSpiral();
             default -> System.out.println("Invalid option");
         }
 
@@ -110,6 +114,7 @@ public class SearchView {
 
         System.out.println("Comment on spot " + spot.getSpotId());
         new CommentView().makeComment(spot);
+
     }
 
     /**
@@ -133,6 +138,16 @@ public class SearchView {
         Spot spotToSend = new Spot();
         System.out.print("Search a spot: ");
         String searchKey = scanner.next();
+        //        create user log
+        UserLog userLogToInsert = new UserLog();
+        userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+        userLogToInsert.setAction("searching " + searchKey);
+        userLogToInsert.setDateTimeLoggedOut(null);
+        userLogToInsert.setTotalIn(5);
+        userLogToInsert.setTotalOut(3);
+        new ReportsView().createUserlog(userLogToInsert);
+
         spotToSend.setSpotName(searchKey);
         requestBody.setObject(spotToSend);
 
@@ -146,6 +161,8 @@ public class SearchView {
             Spot spot = (Spot) response;
             System.out.println(index + ". " + spot.getSpotName());
             spotsList.add(spot);
+
+
         }
 
         if(!found){
@@ -154,6 +171,12 @@ public class SearchView {
             displaySpot(spotsList);
         }
 
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "Searched " + searchKey;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
 
@@ -205,6 +228,12 @@ public class SearchView {
         }else {
             displayUser(usersList);
         }
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "Searched " + searchKey;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
 
@@ -252,6 +281,13 @@ public class SearchView {
                 }
             }
         }
+
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "viewed recent searches " ;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
     public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
@@ -267,6 +303,13 @@ public class SearchView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsertOnSearch = new UserLog();
+            userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            String logAction= "deleted recent searches " ;
+            userLogToInsertOnSearch.setAction(logAction);
+
+            new ReportsView().createUserlog(userLogToInsertOnSearch);
         }
     }
 
@@ -300,7 +343,6 @@ public class SearchView {
         }else{
             PopularSearch selectedSearch = (PopularSearch) popularSearches.get(choice-1);
             System.out.println("Search: " + selectedSearch.getSearch());
-
             RequestBody request = new RequestBody();
             request.setUrl("/search");
             request.setAction("getSpots");
@@ -319,6 +361,12 @@ public class SearchView {
                 Spot spot = (Spot) responseFound;
                 System.out.println(index + ". " + spot.getSpotName());
                 spotsList.add(spot);
+                UserLog userLogToInsertOnSearch = new UserLog();
+                userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                String logAction= "Searched popular " +  spot.getSpotName();
+                userLogToInsertOnSearch.setAction(logAction);
+
+                new ReportsView().createUserlog(userLogToInsertOnSearch);
             }
 
             if(!found){
@@ -326,6 +374,8 @@ public class SearchView {
             }else {
                 displaySpot(spotsList);
             }
+
+
         }
 
     }

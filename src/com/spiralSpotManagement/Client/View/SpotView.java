@@ -8,6 +8,8 @@ import com.spiralSpotManagement.Server.Model.*;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 public class SpotView {
     FormsView formClient = new FormsView();
 
@@ -110,6 +112,7 @@ public class SpotView {
         System.out.println("\t\t\t||------------------    1. CREATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    2. UPDATE A SPOT           ------------------||");
         System.out.println("\t\t\t||------------------    3. DELETE A SPOT           ------------------||");
+        System.out.println("\t\t\t||------------------    4. RETURN HOME             ------------------||");
         System.out.println("\t\t\t||-------------------------------------------------------------------||");
         System.out.println("\t\t\t\t  Enter your choice                                              ");
         choice = scanner.nextInt();
@@ -118,13 +121,10 @@ public class SpotView {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0) {
                     formClient.createSpot();
 
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("created spot");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
+                    UserLog userLogToInsertonSpotCreation = new UserLog();
+                    userLogToInsertonSpotCreation.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertonSpotCreation.setAction("Created spots ");
+                    new ReportsView().createUserlog(userLogToInsertonSpotCreation);
                 }
 
             else{
@@ -135,11 +135,7 @@ public class SpotView {
             case 2 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0){
                     userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
                     userLogToInsert.setAction("updated a spot");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
                     formClient.updateSpot();
                 }
 
@@ -151,11 +147,7 @@ public class SpotView {
             case 3 -> {
                 if(new UserAuthMiddleware().checkForUserExistence() != 0) {
                     userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
                     userLogToInsert.setAction("Deleted a spot");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
                     formClient.deleteSpotContent();
                 }
                 else{
@@ -163,6 +155,7 @@ public class SpotView {
                     new UserView().loginUser();
                 }
             }
+            case 4 -> welcomeToSpiral();
             default -> System.out.println("Invalid input");
         }
     }

@@ -108,7 +108,7 @@ public class ReportController {
                 return allInactiveLocations;
 
             case "getSpotsByLocations":
-                List<Object> SpotsByLocations = new LocationsReportsActions().getSpotsByLocation((String) request.getObject());
+                List<Object> SpotsByLocations = new LocationsReportsActions().getSpotsByLocation();
                 return SpotsByLocations;
 
             case "viewTodaysSpots":
