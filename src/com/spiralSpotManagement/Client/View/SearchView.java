@@ -213,7 +213,10 @@ public class SearchView {
     }
 
     /**
+     * @ author :pauline Ishimwe
      * Method to view recent searches
+     * description : it will help to display a list of recent searches
+     * done
      */
     public static void viewRecentSearches() throws Exception {
         RequestBody requestBody = new RequestBody();
