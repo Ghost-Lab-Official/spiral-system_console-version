@@ -107,7 +107,7 @@ public class SpotCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
-//
+    //
     public void GetSpotCategory() throws Exception {
         /* Get all registered categories */
         RequestBody requestBody = new RequestBody();
@@ -161,10 +161,10 @@ public class SpotCategoryView {
         }
     }
 
-   public void SpotCategoryMenu() throws Exception {
-      /* SpotcategoryMenu entry  */
-       String toContinue;
-       do{
+    public void SpotCategoryMenu() throws Exception {
+        /* SpotcategoryMenu entry  */
+        String toContinue;
+        do{
             int choice;
             Scanner scanner = new Scanner(System.in);
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
@@ -179,7 +179,7 @@ public class SpotCategoryView {
             switch (choice){
                 case 1 :
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    CreateCategory();
+                        CreateCategory();
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
@@ -187,7 +187,7 @@ public class SpotCategoryView {
                     break;
                 case 2:
                     if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                    UpdateCategory();
+                        UpdateCategory();
                     else{
                         System.out.println("You have to login first");
                         new UserView().loginUser();
@@ -195,7 +195,7 @@ public class SpotCategoryView {
                     break;
                 case 3:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    GetSpotCategory();
+                        GetSpotCategory();
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
@@ -203,7 +203,7 @@ public class SpotCategoryView {
                     break;
                 case 4:
                     if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                    ChangeSpotStatus();
+                        ChangeSpotStatus();
                     else{
                         System.out.println("You have to login first");
                         new UserView().loginUser();
@@ -219,6 +219,5 @@ public class SpotCategoryView {
             System.out.print("\t\tDo you want to continue searching? (y/n): ");
             toContinue = scanner.next();
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
-   }
-   }
-
+    }
+}
