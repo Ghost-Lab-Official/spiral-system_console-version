@@ -2,19 +2,13 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -53,7 +47,7 @@ public class Main {
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(200);
+            Thread.sleep(100);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
@@ -77,15 +71,20 @@ public class Main {
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            if (new UserAuthMiddleware().checkForUserExistence() == 0){
             System.out.println("\t\t\t||------------------    1.LOGIN                    ------------------||");
-            System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
+                System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
+            }
+
+
             System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
             System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
-            System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");
+            if(new UserAuthMiddleware().checkForUserExistence() !=0){
+            System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");}
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -103,6 +102,11 @@ public class Main {
                     }
                     break;
                 case 3:
+                    Boolean status = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"SPOT_MANAGEMENT");
+                    Thread.sleep(3000);
+                    if(status==false){
+                        welcomeToSpiral();
+                    } else
                     spotForms.spotViewMenu();
                     break;
                 case 4:
@@ -110,7 +114,11 @@ public class Main {
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0) {
-
+                        Boolean statusTwo = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"LOCATION_MANAGEMENT");
+                        Thread.sleep(3000);
+                        if(statusTwo==false){
+                            welcomeToSpiral();
+                        } else
                         locationForms.LocationViewMenu();
 
                     }

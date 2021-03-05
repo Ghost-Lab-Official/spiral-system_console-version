@@ -31,10 +31,14 @@
       <option name="IGNORE_DUPLICATED_THROWS" value="false" />
       <option name="IGNORE_POINT_TO_ITSELF" value="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <option name="myAdditionalJavadocTags" value="Comment:,Author:,Date:,copyright,author:,date:" />
 =======
       <option name="myAdditionalJavadocTags" value="Comment:,Author:,Date:,copyright,Author:Best,Author:Mike,description:" />
 >>>>>>> 50e5675e0a68b8d30631ceba6e3c41a49f1ad90f
+=======
+      <option name="myAdditionalJavadocTags" value="Comment:,Author:,Date:,copyright,Author:Best,Author:Mike,description:,author:" />
+>>>>>>> 2a6f865819f56e3e6857d8f4db10bfa6684977b5
     </inspection_tool>
   </profile>
 </component>
