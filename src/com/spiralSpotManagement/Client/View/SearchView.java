@@ -20,6 +20,8 @@ public class SearchView {
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final Scanner scanner = new Scanner(System.in);
+    UserView userForms = new UserView();
+
     public void mainMethod() throws Exception{
         String cont = "";
         do {
@@ -41,7 +43,13 @@ public class SearchView {
             case 2 -> searchPeople();
             case 3 -> searchMessages();
             case 4 -> searchPopular();
-            case 5 -> viewRecentSearches();
+            case 5 -> {
+                if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                viewRecentSearches();
+                System.out.println("You have to login first");
+                userForms.loginUser();
+            }
+
             case 6 -> welcomeToSpiral();
             default -> System.out.println("Invalid option");
         }

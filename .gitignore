@@ -15,7 +15,7 @@
 #*.jar
 *.war
 #*.jar
-./out
+/out
 *.nar
 *.ear
 *.zip
