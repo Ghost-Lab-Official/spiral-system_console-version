@@ -1,8 +1,7 @@
 package com.spiralSpotManagement.Server.Controllers.LocationLevelControllers;
 
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.LocationLevels;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Server.DbController.*;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,16 +43,16 @@ public class LocationLevelsActions {
             stmt.setString(3, level.getDescription());
             int inserted_rec = stmt.executeUpdate();
             if(inserted_rec == 1){
-              return new ResponseStatus(200,"CREATED","Location level registered");
+                return new ResponseStatus(200,"CREATED","Location level registered");
             }
-            if(connection == null){
+            if(connection != null){
                 return new ResponseStatus(500,"SERVER ERROR","Insertion failed, try or contact System Administrator");
             }
 
         }catch(Exception e){
             return new ResponseStatus(300,"EXCEPTIONAL ERROR",e.getMessage());
         }
-           return new ResponseStatus(200,"CREATED","Location level registered");
+        return new ResponseStatus(200,"CREATED","Location level registered");
     }
 
     /**

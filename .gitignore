@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 
+
 # Log file
 *.log
 
@@ -11,7 +12,10 @@
 .mtj.tmp/
 
 # Package Files #
+#*.jar
 *.war
+#*.jar
+/out
 *.nar
 *.ear
 *.zip

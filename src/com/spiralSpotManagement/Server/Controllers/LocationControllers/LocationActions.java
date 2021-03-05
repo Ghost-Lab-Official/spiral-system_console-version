@@ -1,6 +1,6 @@
 package com.spiralSpotManagement.Server.Controllers.LocationControllers;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
-import com.spiralSpotManagement.Server.Model.LocationModel;
+import com.spiralSpotManagement.Server.Model.Location;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class LocationActions {
-    public ResponseStatus registerLocation(LocationModel location){
+    public ResponseStatus registerLocation(Location location){
         String location_id = UUID.randomUUID().toString();
 
         try{
@@ -49,7 +49,7 @@ public class LocationActions {
      *
      */
 
-    public  ResponseStatus UpdateLocation (LocationModel location){
+    public  ResponseStatus UpdateLocation (Location location){
 
         HashMap<String,String> updateLocationData = new HashMap<>();
         updateLocationData.put("location_id",location.getLocation_id());
@@ -85,7 +85,7 @@ public class LocationActions {
             }else{
                 String withoutLastComma = attr.substring( 0, attr.length( ) - ",".length( ) );
                 query +="UPDATE locations SET "+withoutLastComma+" "+cond;
-                System.out.println("Queryy::: "+query);
+                //System.out.println("Queryy::: "+query);
 
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 int updated = preparedStatement.executeUpdate();
@@ -205,24 +205,24 @@ public List<Object> fetchByParent(String parent) throws Exception {
      * it will change the status of our input to inactive if it exists in our database
      * */
 
-    public ResponseStatus DeleteLocation(LocationModel location){
+    public ResponseStatus DeleteLocation(Location location){
         try {
             Connection connection= new CloudStorageConnectionHandler().getConnection();
 
-                if(!CheckLocationId(location.getLocation_id())){
-                    return new ResponseStatus(400,"BAD REQUEST","Oops,Entered location doesn't exists");
-                }
-                        String status = "inactive";
-                        String sql = "UPDATE locations SET status = ? WHERE location_id = ?";
-                        PreparedStatement stmt = connection.prepareStatement(sql);
-                        stmt.setString(1,status);
-                        stmt.setString(2,location.getLocation_id());
-                        int updated = stmt.executeUpdate();
-                        if(updated<1){
-                            connection.close();
-                            return  new ResponseStatus(500,"SERVER ERROR","Unable to delete, please try again.");
-                        }
-                        connection.close();
+            if(!CheckLocationId(location.getLocation_id())){
+                return new ResponseStatus(400,"BAD REQUEST","Oops,Entered location doesn't exists");
+            }
+            String status = "inactive";
+            String sql = "UPDATE locations SET status = ? WHERE location_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1,status);
+            stmt.setString(2,location.getLocation_id());
+            int updated = stmt.executeUpdate();
+            if(updated<1){
+                connection.close();
+                return  new ResponseStatus(500,"SERVER ERROR","Unable to delete, please try again.");
+            }
+            connection.close();
             return  new ResponseStatus(200,"DELETED","Delete success.");
 
         } catch (Exception e) {
@@ -242,7 +242,7 @@ public List<Object> fetchByParent(String parent) throws Exception {
      *
      */
 
-    public ResponseStatus RecoverLocation(LocationModel location){
+    public ResponseStatus RecoverLocation(Location location){
         try {
             Connection connection= new CloudStorageConnectionHandler().getConnection();
 
@@ -264,9 +264,35 @@ public List<Object> fetchByParent(String parent) throws Exception {
         }
     }
 
-
-//    OTHER METHODS TO GO HERE
-//    ---------------------------------------
-
+    /**
+     * @author: Landrada Iradukunda
+     * get locations by parent
+     * */
+    public List<Object> fetchByParent(String parent) throws Exception {
+        ResultSet result1;
+        ResultSet result2;
+        String locId = null;
+        List<Object> locations = new ArrayList<>();
+        Connection connection = new CloudStorageConnectionHandler().getConnection();
+        String query1 = "select location_id,location_name from locations where location_name =?";
+        PreparedStatement selectStmt1 = connection.prepareStatement(query1);
+        selectStmt1.setString(1,parent);
+        result1 = selectStmt1.executeQuery();
+        while (result1.next()){
+            System.out.println("Searching...");
+            locId = result1.getString("location_id");
+        }
+        String query = "select * from locations where parent_id ='"+locId+"' and status='active'";
+        PreparedStatement selectStmt = connection.prepareStatement(query);
+        result2 = selectStmt.executeQuery();
+        while(result2.next()){
+            List<Object> list = new ArrayList<>();
+            list.add(result2.getString("location_name"));
+            list.add(result2.getString("location_GPS"));
+            list.add(result2.getString("description"));
+            locations.add(list);
+        }
+        return locations;
+    }
 
 }

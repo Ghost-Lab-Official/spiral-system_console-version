@@ -11,13 +11,10 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
-//import java.util.Scanner;
 
-/*
-
-         @author : Ntwari Egide - Scrum Master
-         @author : Ishimwe Gervais
-
+/**
+ * @author : Ntwari Egide - Scrum Master
+ * @author : Ishimwe Gervais
  */
 
 public class ClientServerConnector {
@@ -35,37 +32,24 @@ public class ClientServerConnector {
             ObjectInputStream in
                     = new ObjectInputStream(socket.getInputStream());
 
-            // object of scanner class
-           // Scanner sc = new Scanner(System.in);
             String line = null;
 
-//            while (!"exit".equalsIgnoreCase(line)) {
-//                RequestBody myRequestBody = new RequestBody("/users","/post",users);
-//                Users userSent = (Users) myR                System.out.println(" add name");equestBody.getObject();
-//                userSent.getEmail();
                 /*
                         SAMPLE OF THE REQUEST AND RESPONSE
                         ----------------------------------
                         user: /users
                         response : table of users
-
                         user: /users/1
                         response : user with id that id
                  */
 
-                // sending the user input to server
-                out.writeObject(requestBody);
-                out.flush();
+            // sending the user input to server
+            out.writeObject(requestBody);
+            out.flush();
 
                 // displaying server reply
                  List<Object> dataReturned = (List<Object>) in.readObject();
-//                 for (Users user:usersFound){
-//                     System.out.println("Server replied "
-//                             + user.getEmail());
-//                 }
-//            }
 
-            // closing the scanner object
 
             ResponseBody responseBody = new ResponseBody(dataReturned);
 

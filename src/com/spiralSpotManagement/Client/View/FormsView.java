@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Client.View;
 
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.io.IOException;
@@ -7,16 +8,16 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.io.BufferedReader;
 
-//@authors: Blessing Hirwa
-//This class is contains required forms to help a user create,update, and delete a spot
+/**
+ * @authors: Blessing Hirwa
+ * This class is contains required forms to help a user create,update, and delete a spot
+ */
+
 public class FormsView {
-    public Spot createSpotViewForm() throws IOException {
+    public Spot createSpotViewForm() throws Exception {
         Scanner scanner = new Scanner(System.in);
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader entered = new BufferedReader(isr);
-
-        System.out.println("Enter user id ");
-        Integer userId = scanner.nextInt();
         System.out.println("Enter category id");
         Integer categoryId = scanner.nextInt();
         System.out.println("Enter your location Id ");
@@ -29,7 +30,7 @@ public class FormsView {
         Integer spotStatus = scanner.nextInt();
 
         Spot spot = new Spot();
-        spot.setUserId(userId);
+        spot.setUserId(new UserAuthMiddleware().checkForUserExistence());
         spot.setCategoryId(categoryId);
         spot.setLocationId(locationId);
         spot.setSpotName(spotName);
@@ -39,12 +40,10 @@ public class FormsView {
         return spot;
     }
 
-    public Spot updateSpotViewForm(){
+    public Spot updateSpotViewForm() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter spot id to update");
         Integer spotId = scanner.nextInt();
-        System.out.println("Enter user id ");
-        Integer userId = scanner.nextInt();
         System.out.println("Enter category id");
         int categoryId = scanner.nextInt();
         System.out.println("Enter your location Id ");
@@ -58,7 +57,7 @@ public class FormsView {
 
         Spot spot = new Spot();
         spot.setSpotId(spotId);
-        spot.setUserId(userId);
+        spot.setUserId(new UserAuthMiddleware().checkForUserExistence());
         spot.setCategoryId(categoryId);
         spot.setLocationId(locationId);
         spot.setSpotName(spotName);

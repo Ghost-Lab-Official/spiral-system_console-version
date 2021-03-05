@@ -1,7 +1,5 @@
 package com.spiralSpotManagement.Server.ServerMain;
-
-import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
-import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
+import com.spiralSpotManagement.Server.Controllers.BillingControllers.BillingController;
 import com.spiralSpotManagement.Server.Controllers.SearchControllers.SearchController;
 import com.spiralSpotManagement.Server.Controllers.BillingControllers.BillingController;
 import com.spiralSpotManagement.Server.Controllers.ReportController.ReportController;
@@ -9,6 +7,9 @@ import com.spiralSpotManagement.Server.Controllers.SpotCategoryControllers.SpotC
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentReactionController;
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
+import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
+import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
+import com.spiralSpotManagement.Server.Controllers.UserBilling.UserBillingController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
 import com.spiralSpotManagement.Server.DbController.PropertyVariables;
@@ -21,12 +22,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
 
-// Server class
-/*
-
- @author : Ntwari Egide - Scrum Master
- @author : Ishimwe Gervais
-
+/**
+ *  @author : Ntwari Egide - Scrum Master
+ *  @author : Ishimwe Gervais
  */
 public class
 SpiralMultiThreadedServer {
@@ -174,20 +172,13 @@ SpiralMultiThreadedServer {
                             responseObject = new BillingController().mainMethod(requestBody);
                             break;
 
+                        case "/users-billing":
+                            responseObject = new UserBillingController().mainMethod(requestBody);
+                            break;
                         default:
 
                     }
-                    // writing the received message from
-                    // client
-//                   Users users = new Users();
-//                    users.setEmail(((Users) requestBody.getObject()).getEmail());
-//                    System.out.println(users.getEmail());
-////                    System.out.printf(
-////                            " Sent from the client: %s\n",
-////                            requestBody.getObject());
-//                    List<Users> usersList = new ArrayList<>();
-//                    usersList.add(users);
-//                    usersList.add(users);
+
 
                     out.writeObject(responseObject);
                 }

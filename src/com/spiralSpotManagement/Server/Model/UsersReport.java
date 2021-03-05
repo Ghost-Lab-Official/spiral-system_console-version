@@ -2,6 +2,12 @@ package com.spiralSpotManagement.Server.Model;
 
 import java.io.Serializable;
 
+/**
+     * @author Ntezirizaza Erneste
+     * @description This method shows the schema of users table
+     * @throws Exception
+     */
+
 public class UsersReport implements Serializable {
     private String user_id;
     private String first_name;
@@ -15,7 +21,7 @@ public class UsersReport implements Serializable {
     private String user_status;
     private String registration_date;
 
-
+    // User report constructor
     public UsersReport(String user_id, String first_name, String last_name, String user_name, String email, String gender, String birth_date, String user_category, String location, String user_status, String registration_date) {
         this.user_id = user_id;
         this.first_name = first_name;
@@ -29,7 +35,7 @@ public class UsersReport implements Serializable {
         this.user_status = user_status;
         this.registration_date = registration_date;
     }
-
+   // getters function
     public String getUser_id() {
         return user_id;
     }
@@ -41,7 +47,7 @@ public class UsersReport implements Serializable {
     public String getFirst_name() {
         return first_name;
     }
-
+    // setters function
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }

@@ -9,13 +9,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
  * @author Abizera Oreste
  * @author Kwizera Emmanuel
  */
 
 public class SearchView {
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[0m";
     public static final Scanner scanner = new Scanner(System.in);
+    UserView userForms = new UserView();
+
     public void mainMethod() throws Exception{
         String cont = "";
         do {
@@ -27,6 +33,7 @@ public class SearchView {
             System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
             System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
             System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice ");
         int option = scanner.nextInt();
@@ -36,13 +43,49 @@ public class SearchView {
             case 2 -> searchPeople();
             case 3 -> searchMessages();
             case 4 -> searchPopular();
-            case 5 -> viewRecentSearches();
+            case 5 -> {
+                if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                viewRecentSearches();
+                System.out.println("You have to login first");
+                userForms.loginUser();
+            }
+
+            case 6 -> welcomeToSpiral();
             default -> System.out.println("Invalid option");
         }
 
-        System.out.print("Do you want to continue searching? (y/n): ");
-        cont = scanner.next();
+            System.out.print("Do you want to continue searching? (y/n): ");
+            cont = scanner.next();
         }while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"));
+    }
+
+    /**
+     * Sends a request to display spot comments
+     * @param spotId
+     * @throws Exception
+     */
+    public static void displayComments(Integer spotId) throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/spot-comment");
+        requestBody.setAction("getComments");
+
+        requestBody.setObject((Object) spotId);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        boolean found = false;
+        Integer index = 0;
+        List<Object> commentsList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Comment comment = (Comment) response;
+            System.out.println(index + ". " + comment.getContent());
+            commentsList.add(comment);
+        }
+
+        if(!found){
+            System.out.println("No comments Found.");
+        }
     }
 
     /**
@@ -77,6 +120,8 @@ public class SearchView {
             likeSpot(selectedSpot);
         }else if (action == 2){
             commentOnSpot(selectedSpot);
+        }else if(action == 3){
+            displayComments(selectedSpot.getSpotId());
         }
     }
 
@@ -110,6 +155,7 @@ public class SearchView {
 
         System.out.println("Comment on spot " + spot.getSpotId());
         new CommentView().makeComment(spot);
+
     }
 
     /**
@@ -126,34 +172,48 @@ public class SearchView {
      * Search a spot
      */
     public static void searchSpot() throws Exception{
-        RequestBody requestBody = new RequestBody();
-        requestBody.setUrl("/search");
-        requestBody.setAction("getSpots");
+        try {
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/search");
+            requestBody.setAction("getSpots");
 
-        Spot spotToSend = new Spot();
-        System.out.print("Search a spot: ");
-        String searchKey = scanner.next();
-        spotToSend.setSpotName(searchKey);
-        requestBody.setObject(spotToSend);
+            Spot spotToSend = new Spot();
+            System.out.print("Search a spot: ");
+            String searchKey = scanner.next();
+            //        create user log
+            UserLog userLogToInsert = new UserLog();
+            userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
+            userLogToInsert.setAction("searching " + searchKey);
+            userLogToInsert.setDateTimeLoggedOut(null);
+            userLogToInsert.setTotalIn(5);
+            userLogToInsert.setTotalOut(3);
+            new ReportsView().createUserlog(userLogToInsert);
 
-        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-        boolean found = false;
-        Integer index = 0;
-        List<Object> spotsList = new ArrayList<>();
-        for (Object response: responseBody.getResponse()){
-            index++;
-            found = true;
-            Spot spot = (Spot) response;
-            System.out.println(index + ". " + spot.getSpotName());
-            spotsList.add(spot);
+            spotToSend.setSpotName(searchKey);
+            requestBody.setObject(spotToSend);
+
+            ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+            boolean found = false;
+            Integer index = 0;
+            List<Object> spotsList = new ArrayList<>();
+            for (Object response : responseBody.getResponse()) {
+                index++;
+                found = true;
+                Spot spot = (Spot) response;
+                String showDesc = spot.getSpotDescription().length() > 20 ? spot.getSpotDescription().substring(0,20) + "..." : spot.getSpotDescription();
+                System.out.println(index + ". " + spot.getSpotName() + "\n\t\t" + ANSI_BLUE +  showDesc + ANSI_RESET);
+                spotsList.add(spot);
+            }
+
+            if (!found) {
+                System.out.println("No spots Found.");
+            } else {
+                displaySpot(spotsList);
+            }
+        }catch (Exception e){
+            System.out.println("Error occured" + e.getMessage());
         }
-
-        if(!found){
-            System.out.println("No spots Found.");
-        }else {
-            displaySpot(spotsList);
-        }
-
     }
 
 
@@ -205,11 +265,43 @@ public class SearchView {
         }else {
             displayUser(usersList);
         }
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "Searched " + searchKey;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
 
-    public static void searchMessages(){
+    public static void searchMessages() throws Exception {
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/search");
+        requestBody.setAction("getMessages");
 
+        System.out.print("Search a comment: ");
+        String searchKey = scanner.next();
+        requestBody.setObject(searchKey);
+
+        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+        if(responseBody.getResponse() == null){
+            System.out.println("No comments found");
+            return;
+        }
+        boolean found = false;
+        Integer index = 0;
+        List<Object> messagesList = new ArrayList<>();
+        for (Object response: responseBody.getResponse()){
+            index++;
+            found = true;
+            Comment comment = (Comment) response;
+            System.out.println(index + ". " + comment.getContent());
+            messagesList.add(comment);
+        }
+
+        if(!found){
+            System.out.println("No comments Found.");
+        }
     }
 
     /**
@@ -252,6 +344,13 @@ public class SearchView {
                 }
             }
         }
+
+        UserLog userLogToInsertOnSearch = new UserLog();
+        userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+        String logAction= "viewed recent searches " ;
+        userLogToInsertOnSearch.setAction(logAction);
+
+        new ReportsView().createUserlog(userLogToInsertOnSearch);
     }
 
     public static void RemoveRecentSearch(RecentSearch recentSearch) throws Exception {
@@ -267,6 +366,13 @@ public class SearchView {
             System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
+
+            UserLog userLogToInsertOnSearch = new UserLog();
+            userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            String logAction= "deleted recent searches " ;
+            userLogToInsertOnSearch.setAction(logAction);
+
+            new ReportsView().createUserlog(userLogToInsertOnSearch);
         }
     }
 
@@ -284,10 +390,6 @@ public class SearchView {
         List<Object> popularSearches = new ArrayList<>();
 
         ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-     //   responseBody.getResponse();
-//        for(int i=0;i< responseBody.getResponse().size();i++) {
-//            System.out.println(i+1+"."+popularSpots.get(i));
-//        }
 
         int i=1;
         for(Object response: responseBody.getResponse()){
@@ -303,7 +405,6 @@ public class SearchView {
         }else{
             PopularSearch selectedSearch = (PopularSearch) popularSearches.get(choice-1);
             System.out.println("Search: " + selectedSearch.getSearch());
-
             RequestBody request = new RequestBody();
             request.setUrl("/search");
             request.setAction("getSpots");
@@ -322,6 +423,12 @@ public class SearchView {
                 Spot spot = (Spot) responseFound;
                 System.out.println(index + ". " + spot.getSpotName());
                 spotsList.add(spot);
+//                UserLog userLogToInsertOnSearch = new UserLog();
+//                userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+//                String logAction= "Searched popular " +  spot.getSpotName();
+//                userLogToInsertOnSearch.setAction(logAction);
+//
+//                new ReportsView().createUserlog(userLogToInsertOnSearch);
             }
 
             if(!found){
@@ -329,6 +436,8 @@ public class SearchView {
             }else {
                 displaySpot(spotsList);
             }
+
+
         }
 
     }
