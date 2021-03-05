@@ -27,6 +27,13 @@ public class SpotRatingController {
                 usersObject.add((Object) updatedSpotRating);
                 return  usersObject;
 
+            case "getRatings":
+                List<SpotRatings> spotRatingsList = new SpotRatingActions().getRatings((Integer) requestBody.getObject());
+                for (SpotRatings spotRating:spotRatingsList){
+                    usersObject.add((Object) spotRating);
+                }
+
+
 //            case "updateStatus":
 //                ResponseStatus updatedSpotRatingStatus = new SpotRatingActions().updateTheSpotRatingStatus((SpotRatings) requestBody.getObject());
 //                usersObject.add((Object) updatedSpotRatingStatus);
