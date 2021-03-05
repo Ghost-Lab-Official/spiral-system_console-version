@@ -6,87 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/spiral-system_console-version.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/libs/mysql-connector.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/activation-1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/javax.mail-1.6.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/javax.mail.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/mysql-connector-java-5.1.49.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spiral-system_console-version.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/LocationModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/LocationReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/Navigation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/ReportModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/spotReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/ReportModule/spotsModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/UsersModule/UsersModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/commons_codec_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_49.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_491.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_8_0_232.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral console/.project" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral console/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral console/bin/.project" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral console/bin/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/.project" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/.project" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/jackson_annotations_2_12_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/libraries/jackson_annotations_2_12_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/libs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/libraries/libs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/libraries/mysql_connector_java_5_1_49_bin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/libraries/mysql_connector_java_5_1_49_bin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/UserCategoryView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Client/View/UserView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotCategoryControllers/SpotCategoryActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/SpotController/SpotCommentActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserCategoryActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserCategoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Controllers/UserModuleControllers/UsersActions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/Comment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/CommentReactions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Model/Spot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/Utils/UserCategories.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jBCrypt-0.4.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jBCrypt-0.4.3.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jackson-annotations-2.12.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jackson-annotations-2.12.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jackson-core-2.12.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jackson-core-2.12.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jackson-databind-2.12.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jackson-databind-2.12.1.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jjwt-api-0.11.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jjwt-api-0.11.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jjwt-impl-0.11.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jjwt-impl-0.11.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jjwt-jackson-0.11.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jjwt-jackson-0.11.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/Server/libs/jjwt-orgjson-0.11.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/Server/libs/jjwt-orgjson-0.11.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/spiral-spot-management-system/com/spiralSpotManagement/spiralSpotManagement.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/spiral-system_console-version/com/spiralSpotManagement/spiralSpotManagement.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Middleware/UserAuthMiddleware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Middleware/UserAuthMiddleware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/FormsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/FormsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/LocationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/LocationView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/ReportsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/ReportsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotCategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SpotCategoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/ReportController/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/DbController/CloudStorageConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jBCrypt-0.4.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jackson-annotations-2.12.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jackson-core-2.12.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jackson-databind-2.12.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-api-0.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-impl-0.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-jackson-0.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/libs/jjwt-orgjson-0.11.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/SpotModule/SpotCategory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/SpotModule/SpotRatings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +33,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.SpiralMultiThreadedServer">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.spiralSpotManagement.Client.Main" />
       <module name="spiral-system_console-version" />
@@ -175,22 +96,22 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="348" y="86" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1614918905156" />
-    <state width="1237" height="351" key="GridCell.Tab.0.bottom" timestamp="1614919024478">
+    <state width="1237" height="351" key="GridCell.Tab.0.bottom" timestamp="1614919266921">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="351" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614919024478" />
-    <state width="1237" height="351" key="GridCell.Tab.0.center" timestamp="1614919024478">
+    <state width="1237" height="351" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614919266921" />
+    <state width="1237" height="351" key="GridCell.Tab.0.center" timestamp="1614919266921">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="351" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614919024478" />
-    <state width="1237" height="351" key="GridCell.Tab.0.left" timestamp="1614919024478">
+    <state width="1237" height="351" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614919266921" />
+    <state width="1237" height="351" key="GridCell.Tab.0.left" timestamp="1614919266921">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="351" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614919024478" />
-    <state width="1237" height="351" key="GridCell.Tab.0.right" timestamp="1614919024478">
+    <state width="1237" height="351" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614919266921" />
+    <state width="1237" height="351" key="GridCell.Tab.0.right" timestamp="1614919266921">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="351" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614919024478" />
+    <state width="1237" height="351" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614919266921" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1614918908723">
       <screen x="0" y="0" width="1280" height="689" />
     </state>

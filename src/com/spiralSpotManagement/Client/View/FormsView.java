@@ -40,12 +40,10 @@ public class FormsView {
         return spot;
     }
 
-    public Spot updateSpotViewForm(){
+    public Spot updateSpotViewForm() throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter spot id to update");
         Integer spotId = scanner.nextInt();
-        System.out.println("Enter user id ");
-        Integer userId = scanner.nextInt();
         System.out.println("Enter category id");
         int categoryId = scanner.nextInt();
         System.out.println("Enter your location Id ");
@@ -59,7 +57,7 @@ public class FormsView {
 
         Spot spot = new Spot();
         spot.setSpotId(spotId);
-        spot.setUserId(userId);
+        spot.setUserId(new UserAuthMiddleware().checkForUserExistence());
         spot.setCategoryId(categoryId);
         spot.setLocationId(locationId);
         spot.setSpotName(spotName);
