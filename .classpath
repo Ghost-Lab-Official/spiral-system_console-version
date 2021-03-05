@@ -5,11 +5,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
+
 	<classpathentry excluding="libs/" kind="src" path="src"/>
-=======
-	<classpathentry kind="src" path="src"/>
->>>>>>> 15d0861c7d226a9ee1f27b8a910c2eac753173d8
+
+
 	<classpathentry kind="lib" path="src/com/spiralSpotManagement/DbConnection/mysql-connector-java-5.1.49.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
