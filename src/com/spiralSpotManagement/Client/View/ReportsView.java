@@ -147,21 +147,22 @@ public class ReportsView {
                         ClientServerConnector  clientServerConnector1 = new ClientServerConnector();
                         ResponseBody responseBody1 = clientServerConnector1.ConnectToServer(myRequest7);
 
-                        System.out.format("+----------------------------------------------+----------------------------------+-------------------------+-----------------------------+%n");
-                        System.out.println(String.format("|%-20s | %-20s | %-30s | %-35s |%-20s |","#Id ", "Location Name","Location GPs","Description","Status"));
-                        System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+---------------+%n");
-
+                        System.out.format("+----------------------------------------------+----------------------------------+-------------------------+-----------------------------+-------------------------+-----------------------------+-----------------------+------------------+%n");
+                        System.out.println(String.format("|%-20s | %-20s | %-30s | %-35s |%-20s | %-30s | %-30s | %-30s |","#Id ", "Spot Name","Spot category","Created by","Location","Views","Status","Registration Date"));
+                        System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+---------------+-------------------------+-----------------------------+-----------------------+------------------+%n");
 
                         for(Object response:responseBody1.getResponse()){
-                            LocationsReport spotLoc = (LocationsReport) response;
-
+                            SpotsReport spotsReport = (SpotsReport) response;
                             System.out.println(
-                                    String.format("|%-20.10s | %-20s | %-30s | %-35.30s |%-20s |",
-                                            spotLoc.getLocationId(),
-                                            spotLoc.getLocation_name(),
-                                            spotLoc.getLocation_GPS(),
-                                            spotLoc.getDescription(),
-                                            spotLoc.getStatus())
+                                    String.format("|%-20s | %-20s | %-30s | %-35s |%-20s | %-30s | %-30s | %-30s |",
+                                            spotsReport.getSpot_id(),
+                                            spotsReport.getSpot_name(),
+                                            spotsReport.getCategory_name(),
+                                            spotsReport.getUser_name(),
+                                            spotsReport.getLocation_name(),
+                                            spotsReport.getViews(),
+                                            spotsReport.getStatus(),
+                                            spotsReport.getRegistration_date())
                             );
                         }
 
