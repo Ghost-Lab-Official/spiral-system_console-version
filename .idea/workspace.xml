@@ -6,7 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/BillingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/BillingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserBillingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserBillingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserBilling/UserBillingActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserBilling/UserBillingActions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +88,14 @@
       <workItem from="1614703408466" duration="466000" />
       <workItem from="1614875707460" duration="6647000" />
     </task>
+    <task id="LOCAL-00001" summary="PROTECTING ROUTES BY USER PLAN">
+      <created>1614923724660</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614923724660</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +113,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="PROTECTING ROUTES BY USER PLAN" />
+    <option name="LAST_COMMIT_MESSAGE" value="PROTECTING ROUTES BY USER PLAN" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614921018809">
       <screen x="0" y="0" width="1280" height="689" />
@@ -109,30 +126,34 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="348" y="86" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1614918905156" />
-    <state width="1323" height="256" key="GridCell.Tab.0.bottom" timestamp="1614923539729">
+    <state width="1323" height="230" key="GridCell.Tab.0.bottom" timestamp="1614927993227">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1237" height="532" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614922314570" />
-    <state width="1323" height="256" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1614923539729" />
-    <state width="1323" height="256" key="GridCell.Tab.0.center" timestamp="1614923539729">
+    <state width="1323" height="230" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
+    <state width="1323" height="230" key="GridCell.Tab.0.center" timestamp="1614927993227">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1237" height="532" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614922314570" />
-    <state width="1323" height="256" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1614923539729" />
-    <state width="1323" height="256" key="GridCell.Tab.0.left" timestamp="1614923539729">
+    <state width="1323" height="230" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
+    <state width="1323" height="230" key="GridCell.Tab.0.left" timestamp="1614927993227">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1237" height="532" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614922314569" />
-    <state width="1323" height="256" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1614923539729" />
-    <state width="1323" height="256" key="GridCell.Tab.0.right" timestamp="1614923539729">
+    <state width="1323" height="230" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
+    <state width="1323" height="230" key="GridCell.Tab.0.right" timestamp="1614927993227">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state width="1237" height="532" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614922314570" />
-    <state width="1323" height="256" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1614923539729" />
+    <state width="1323" height="230" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1614918908723">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1614918908723" />
+    <state x="275" y="117" key="Vcs.Push.Dialog.v2" timestamp="1614923734515">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="275" y="117" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1614923734515" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/spiral_system_console_version$SpiralMultiThreadedServer.ic" NAME="SpiralMultiThreadedServer Coverage Results" MODIFIED="1612443014417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

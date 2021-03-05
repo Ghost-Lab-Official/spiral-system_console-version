@@ -67,11 +67,7 @@ public class UserBillingActions {
     }
  /**
      *  pay for a plan.
-<<<<<<< HEAD
-     * @param |UserBilling Object having user_id and plan id
-=======
      * @param "UserBilling" Object having user_id and plan id
->>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
@@ -105,8 +101,8 @@ public class UserBillingActions {
 
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1,userBilling.getPlan_id());
-            statement.setInt(2,userBilling.getUser_id());
+            statement.setInt(1,userBilling.getUser_id());
+            statement.setInt(2,userBilling.getPlan_id());
             statement.setString(3,expirationDate);
 
             int inserted_rec = statement.executeUpdate();
