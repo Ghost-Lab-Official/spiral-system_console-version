@@ -32,8 +32,6 @@ public class SpotCategoryView {
 
     public void CreateCategory() throws Exception {
         /* Create category form */
-        System.out.println("\t\t\tEnter User id: ");
-        int userId = scanner.nextInt();
         System.out.println("\t\t\t Enter category name: ");
         String categoryName = entered.readLine();
         System.out.println("\t\t\t  Enter category description: ");
@@ -43,7 +41,7 @@ public class SpotCategoryView {
 
         SpotCategory spotCategoryToInsert = new SpotCategory();
 
-        spotCategoryToInsert.setUserId(userId);
+        spotCategoryToInsert.setUserId(new UserAuthMiddleware().checkForUserExistence());
         spotCategoryToInsert.setCategoryName(categoryName);
         spotCategoryToInsert.setDescription(description);
         spotCategoryToInsert.setStatus(status);

@@ -1,5 +1,6 @@
 package com.spiralSpotManagement.Client.View;
 
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.Spot;
 
 import java.io.IOException;
@@ -13,13 +14,10 @@ import java.io.BufferedReader;
  */
 
 public class FormsView {
-    public Spot createSpotViewForm() throws IOException {
+    public Spot createSpotViewForm() throws Exception {
         Scanner scanner = new Scanner(System.in);
         InputStreamReader isr = new InputStreamReader(System.in);
         BufferedReader entered = new BufferedReader(isr);
-
-        System.out.println("Enter user id ");
-        Integer userId = scanner.nextInt();
         System.out.println("Enter category id");
         Integer categoryId = scanner.nextInt();
         System.out.println("Enter your location Id ");
@@ -32,7 +30,7 @@ public class FormsView {
         Integer spotStatus = scanner.nextInt();
 
         Spot spot = new Spot();
-        spot.setUserId(userId);
+        spot.setUserId(new UserAuthMiddleware().checkForUserExistence());
         spot.setCategoryId(categoryId);
         spot.setLocationId(locationId);
         spot.setSpotName(spotName);
