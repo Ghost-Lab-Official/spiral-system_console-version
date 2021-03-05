@@ -1,15 +1,16 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
-import com.spiralSpotManagement.Server.Model.LocationLevels;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.Scanner;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
  * @author : Gervais Ishimwe
+ * @author : Harerimana Egide
  * LOCATION LEVELS CONTROLLER  - SERVER CONTROLLER
  * Synchronizing all the methods
  */
@@ -58,5 +59,34 @@ public class LocationLevelsView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
 
         }
+    }
+
+    public void LocationLevelsViewMenu() throws Exception {
+        /* LocationLevelsView entry  */
+
+        String toContinue;
+        do{
+            int choice;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    1.CREATE A LOCATION LEVEL  ------------------||");
+            System.out.println("\t\t\t||------------------    2.GET ALL LOCATION LEVELS  ------------------||");
+            System.out.println("\t\t\t\t  Enter your choice                                              ");
+            choice = scanner.nextInt();
+            switch (choice){
+                case 1 :
+                    registerLocationLevels();
+                    break;
+                case 2:
+                    getAllLocationLevelsView();
+                    break;
+                default:
+                    System.out.println("Invalid input");
+
+                    break;
+            }
+            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            toContinue = scanner.next();
+        }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
 }
