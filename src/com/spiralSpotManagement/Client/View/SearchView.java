@@ -415,12 +415,12 @@ public class SearchView {
                 Spot spot = (Spot) responseFound;
                 System.out.println(index + ". " + spot.getSpotName());
                 spotsList.add(spot);
-                UserLog userLogToInsertOnSearch = new UserLog();
-                userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                String logAction= "Searched popular " +  spot.getSpotName();
-                userLogToInsertOnSearch.setAction(logAction);
-
-                new ReportsView().createUserlog(userLogToInsertOnSearch);
+//                UserLog userLogToInsertOnSearch = new UserLog();
+//                userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+//                String logAction= "Searched popular " +  spot.getSpotName();
+//                userLogToInsertOnSearch.setAction(logAction);
+//
+//                new ReportsView().createUserlog(userLogToInsertOnSearch);
             }
 
             if(!found){
