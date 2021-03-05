@@ -115,13 +115,14 @@ public class UsersActions {
                     Token loginCredentials = new Token(rs.getString("email"),newPayload);
                     String userToken = loginCredentials.generateJwtToken(1, ChronoUnit.DAYS);
 
-                    File file;
+//                    File file;
                     InputStream inputStream = new FileInputStream("config.properties");
                     // Writing token and other required credentials
                     Properties properties = new Properties();
                     properties.load(inputStream);
                     properties.setProperty("Token",userToken);
                     properties.setProperty("UserId",rs.getString("user_id"));
+                    properties.setProperty("ROLE",rs.getString("user_category"));
 
                     properties.store(new FileOutputStream("config.properties"),null);
 

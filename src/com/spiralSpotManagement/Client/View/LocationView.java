@@ -1,15 +1,16 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationActions;
-import com.spiralSpotManagement.Server.Model.Location;
-import com.spiralSpotManagement.Server.Model.RequestBody;
-import com.spiralSpotManagement.Server.Model.ResponseBody;
-import com.spiralSpotManagement.Server.Model.ResponseStatus;
+import com.spiralSpotManagement.Server.Model.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 /**
             @author : Gervais Ishimwe
             @outhor : EGIDE Harerimana
@@ -20,7 +21,7 @@ public class LocationView {
 
     public void registerLocation()throws Exception{
         Scanner scanner = new Scanner(System.in);
-
+        System.out.println("CREATING A NEW LOCATION\n=====================================\n");
         System.out.println("Enter the Location name: ");
         String locationName = scanner.nextLine();
 
@@ -60,6 +61,13 @@ public class LocationView {
             System.out.println("\t\t --------------         Action: " + responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
 
+
+            UserLog userLogToInsertOnLocations = new UserLog();
+            userLogToInsertOnLocations.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+            userLogToInsertOnLocations.setAction("registered a location");
+
+            new ReportsView().createUserlog(userLogToInsertOnLocations);
+
         }
     }
 
@@ -74,6 +82,8 @@ public class LocationView {
      */
 
     public void updateLocation(){
+
+        System.out.println("UPDATING EXISTING LOCATION\n=====================================\n");
     try {
         LocationActions location = new LocationActions();
         Scanner scanner = new Scanner(System.in);
@@ -81,8 +91,20 @@ public class LocationView {
         String locId = scanner.nextLine();
         //chek location id going to be update exists
         if (!location.CheckLocationId(locId)){
-            System.out.println("The location doesn't exists.\n1. Register it now!\n2. Try again.\n0. Exit.");
-            System.exit(1);
+            System.out.println("The location doesn't exists.\n\t1. TRY AGAIN\n\t2. REGISTER IT NOW.\n\t0. BACK HOME.\n\tEnter your choice here:: ");
+            int userChoose;
+            userChoose = scanner.nextInt();
+              if (userChoose==1){
+                 updateLocation();
+              }else if (userChoose==2){
+                  registerLocation();
+              }else if(userChoose==0){
+                  welcomeToSpiral();
+              }else {
+                  System.out.println("Bad choice! you returned to home");
+                  welcomeToSpiral();
+              }
+            //System.exit(1);
         }
         System.out.println("\nIf you don't want to update some fields.\nEnter -1 in that input\n\n");
         System.out.print("New Level ID: ");
@@ -90,8 +112,21 @@ public class LocationView {
         //check new level going to be updated exists
 
         if (!levelID.equals("-1") &&!location.CheckLevelId(levelID)){
-            System.out.println("The location level doesn't exists.\n");
-            System.exit(1);
+
+            System.out.println("The location level doesn't exists.\n\t1. TRY AGAIN\n\t2. REGISTER IT NOW.\n\t0. BACK HOME.\n\tEnter your choice here:: ");
+            int userChoose;
+            userChoose = scanner.nextInt();
+            if (userChoose==1){
+                updateLocation();
+            }else if (userChoose==2){
+                registerLocation();
+            }else if(userChoose==0){
+                welcomeToSpiral();
+            }else {
+                System.out.println("Bad choice! you returned to home");
+                welcomeToSpiral();
+            }
+          //  System.exit(1);
         }
         if(levelID.equals("-1")) levelID=null;
 
@@ -99,8 +134,20 @@ public class LocationView {
         String parentId = scanner.nextLine();
         //chek new location parent id going to be update exists
         if (!parentId.equals("-1") && !location.CheckLocationId(parentId)){
-            System.out.println("The location doesn't exists.\n Register it now!\n");
-            System.exit(1);
+            System.out.println("The location doesn't exists.\n\t1. TRY AGAIN\n\t2. REGISTER IT NOW.\n\t0. BACK HOME.\n\tEnter your choice here:: ");
+            int userChoose;
+            userChoose = scanner.nextInt();
+            if (userChoose==1){
+                updateLocation();
+            }else if (userChoose==2){
+                registerLocation();
+            }else if(userChoose==0){
+                welcomeToSpiral();
+            }else {
+                System.out.println("Bad choice! you returned to home");
+                welcomeToSpiral();
+            }
+           // System.exit(1);
         }
         if(parentId.equals("-1")) parentId=null;
 
@@ -143,6 +190,8 @@ public class LocationView {
     }catch (Exception e){
         System.out.println("Error Occurred "+e.getMessage());
     }
+
+
     }
 
     /**
@@ -156,6 +205,7 @@ public class LocationView {
      */
 
     public void DeleteLocation(){
+        System.out.println("DELETING EXISTING LOCATION\n=====================================\n");
         try {
             System.out.println("Provide Location ID to delete:: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -193,6 +243,7 @@ public class LocationView {
  */
 
 public  void RecoverLocation(){
+    System.out.println("RECOVERING A DELETED LOCATION\n=====================================\n");
     try{
         LocationActions location = new LocationActions();
         Scanner scanner = new Scanner(System.in);
@@ -201,7 +252,21 @@ public  void RecoverLocation(){
 
         //chek location id going to be update exists
         if (!location.CheckLocationId(locId)){
-            System.out.println("The location was deleted permanently.\n1. Register it now!\n2. Try again.\n0. Exit.");
+
+            System.out.println("The location doesn't exists.\n\t1. TRY AGAIN\n\t2. REGISTER IT NOW.\n\t0. BACK HOME.\n\tEnter your choice here:: ");
+            int userChoose;
+            userChoose = scanner.nextInt();
+            if (userChoose==1){
+                updateLocation();
+            }else if (userChoose==2){
+                registerLocation();
+            }else if(userChoose==0){
+                welcomeToSpiral();
+            }else {
+                System.out.println("Bad choice! you returned to home");
+                welcomeToSpiral();
+            }
+
         }
 
         Location RecoverData = new Location();
@@ -226,6 +291,41 @@ public  void RecoverLocation(){
     }
 }
 
+    /**
+     *location management class. Method Recovering a deleted given location
+     * @author Felix DUSENGIMANA && landrada iradukunda
+     * @powered by Rwanda Coding Academy
+     * instructor Donatien MASHENGESHO
+     * @since  08-02-2021
+     * return boolean to indicated the success or fail to update.
+     *
+     */
+
+
+    public void SearchByParentLocation(){
+        Scanner scanner = new Scanner(System.in);
+        RequestBody requestBody = new RequestBody();
+        requestBody.setUrl("/location");
+        requestBody.setAction("getLocationsByParent");
+        String parent;
+        System.out.println("Enter the location you want to search by: ");
+        parent = scanner.nextLine();
+        requestBody.setObject(parent);
+        try {
+            ClientServerConnector clientServerConnector = new ClientServerConnector();
+            ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+            for (Object i : responseBody.getResponse()) {
+                System.out.println(i);
+            }
+            if ((responseBody.getResponse().isEmpty())) {
+                System.out.println("No locations found😀! "+requestBody);
+            }
+        }catch (Exception e){
+            System.out.println("Error Message:: "+e.getMessage());
+        }
+    }
+
+
     public void LocationViewMenu() throws Exception {
         /* LocationView entry  */
 
@@ -236,8 +336,10 @@ public  void RecoverLocation(){
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------    1.CREATE A LOCATION        ------------------||");
             System.out.println("\t\t\t||------------------    2.UPDATE LOCATION          ------------------||");
-            System.out.println("\t\t\t||------------------    3.DELETE A LOCATION     ------------------||");
-            System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION   ------------------||");
+            System.out.println("\t\t\t||------------------    3.DELETE A LOCATION        ------------------||");
+            System.out.println("\t\t\t||------------------    4.RECOVER A LOCATION       ------------------||");
+            System.out.println("\t\t\t||------------------    5.GET BY PARENT            ------------------||");
+            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -247,13 +349,34 @@ public  void RecoverLocation(){
                     break;
                 case 2:
                     updateLocation();
+                    UserLog userLogToInsertOnLocations1 = new UserLog();
+                    userLogToInsertOnLocations1.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertOnLocations1.setAction("Updated a location");
+
+                    new ReportsView().createUserlog(userLogToInsertOnLocations1);
                     break;
+
                 case 3:
                     DeleteLocation();
+                    UserLog userLogToInsertOnLocations = new UserLog();
+                    userLogToInsertOnLocations.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertOnLocations.setAction("Deleted a location");
+
+                    new ReportsView().createUserlog(userLogToInsertOnLocations);
+
                     break;
                 case 4:
                     RecoverLocation();
+                    UserLog userLogToInsertOnLocations2 = new UserLog();
+                    userLogToInsertOnLocations2.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                    userLogToInsertOnLocations2.setAction("recovered a location");
+
+                    new ReportsView().createUserlog(userLogToInsertOnLocations2);
                     break;
+                case 5:
+                    SearchByParentLocation();
+                case 6:
+                    welcomeToSpiral();
                 default:
                     System.out.println("Invalid input");
 
