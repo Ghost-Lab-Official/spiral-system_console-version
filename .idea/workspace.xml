@@ -5,7 +5,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="" />
+    <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/ServerMain/SpiralMultiThreadedServer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,39 +91,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1614921018809">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.689@0.0.1280.689" timestamp="1614921018809" />
-    <state x="348" y="86" key="FileChooserDialogImpl" timestamp="1614918905156">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="348" y="86" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1614918905156" />
-    <state width="1237" height="515" key="GridCell.Tab.0.bottom" timestamp="1614924688004">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state width="1237" height="515" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
-    <state width="1237" height="515" key="GridCell.Tab.0.center" timestamp="1614924688004">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state width="1237" height="515" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
-    <state width="1237" height="515" key="GridCell.Tab.0.left" timestamp="1614924688004">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state width="1237" height="515" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
-    <state width="1237" height="515" key="GridCell.Tab.0.right" timestamp="1614924688004">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state width="1237" height="515" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1614918908723">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1614918908723" />
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1614923412668">
-      <screen x="0" y="0" width="1280" height="689" />
-    </state>
-    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1614923412668" />
   </component>
 </project>
