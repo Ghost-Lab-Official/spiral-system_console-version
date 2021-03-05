@@ -1,5 +1,7 @@
 package com.spiralSpotManagement.Server.Controllers.ReportController;
 
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
+import com.spiralSpotManagement.Client.View.ReportsView;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.UserLog;
@@ -61,11 +63,17 @@ public class UserLogsActions {
      }
 
     public ResponseStatus recordUserLogs(UserLog userLog) throws Exception{
+        int user_id=new UserAuthMiddleware().checkForUserExistence();
         String recordUserLogsQuery="INSERT into user_logs(user_id, date_Time_logged_In,Action, date_Time_logged_Out,Total_In, Total_out) values (?, ?, ?, ?, ?, ?)";
         String getPreviousRowQuery="SELECT date_Time_logged_In, Total_In, Total_out  FROM user_logs ORDER by id DESC LIMIT 1";
+
+        String getLogInTime="SELECT date_Time_logged_In from user_logs where user_id = " + user_id;
+
         Connection connection=new CloudStorageConnectionHandler().getConnection();
         Statement statement=connection.createStatement();
         ResultSet rs=statement.executeQuery(getPreviousRowQuery);
+
+        ResultSet result=statement.executeQuery(getLogInTime);
         while (rs.next()){
            if(userLog.getAction().equals("logIn")){
                int currentTotalIn = 0;
@@ -78,14 +86,15 @@ public class UserLogsActions {
            else if(userLog.getAction().equals("logOut")){
                int currentTotalIn = rs.getInt("Total_in");
                int currentTotalOut = rs.getInt("Total_out");
-               userLog.setDateTimeLoggedIn(rs.getString("date_Time_logged_In"));
+               userLog.setDateTimeLoggedIn(result.getString("date_Time_logged_In"));
 
                userLog.setDateTimeLoggedOut(dateParser());
                userLog.setTotalIn(currentTotalIn-1);
                userLog.setTotalOut(currentTotalOut+1);
            }
            else{
-               String currentLoginDateTime=rs.getString("date_Time_logged_In");
+
+               String currentLoginDateTime=result.getString("date_Time_logged_In");
                userLog.setDateTimeLoggedIn(currentLoginDateTime);
                userLog.setTotalIn(rs.getInt("Total_in"));
                userLog.setTotalOut(rs.getInt("Total_out"));
@@ -94,6 +103,8 @@ public class UserLogsActions {
 
         try {
             PreparedStatement preparedStatement=connection.prepareStatement(recordUserLogsQuery);
+
+
             preparedStatement.setInt(1,userLog.getUser_id());
             preparedStatement.setString(2,userLog.getDateTimeLoggedIn());
             preparedStatement.setString(3,userLog.getAction());

@@ -5,10 +5,7 @@ import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandle
 import com.spiralSpotManagement.Server.Model.ResponseBody;
 import com.spiralSpotManagement.Server.Model.SpotsReport;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -61,7 +58,7 @@ public class SpotReportsActions {
                 CloudStorageConnectionHandler cloudStorageConnection = new CloudStorageConnectionHandler();
                 Connection connection = cloudStorageConnection.getConnection();
                 Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status='active'");
+                ResultSet rs = stmt.executeQuery("select count(spot_name) from Spot_table where status=1 ");
             try {
                 int result = 0;
                 while(rs.next()){
@@ -89,7 +86,7 @@ public class SpotReportsActions {
             Connection connection= cloudStorageConnection.getConnection();
             try{
                 Statement stmt = connection.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT count(spot_name) FROM Spot_table where status='inactive'");
+                ResultSet rs = stmt.executeQuery("SELECT count(spot_name) FROM Spot_table where status=0'");
 
                 int result = 0;
                 while(rs.next()){
@@ -188,7 +185,7 @@ public class SpotReportsActions {
                     "Spot_table.registration_date "+"FROM `Spot_table` LEFT JOIN users_table ON users_table.user_id = Spot_table.user_id " +
                     "LEFT JOIN spot_category ON "+"spot_category.category_id = Spot_table.category_id LEFT JOIN locations on " +
                     "locations.location_id = Spot_table.location_id" +
-                    " WHERE Spot_table.status ='inactive'";
+                    " WHERE Spot_table.status =0 ";
             ResultSet resultset=stmnt.executeQuery(query);
             List <Object> AllSpots = new ArrayList<>();
 
@@ -221,7 +218,7 @@ public class SpotReportsActions {
                     "left join users_table on Spot_table.user_id=users_table.user_id" +
                     " left join locations on Spot_table.location_id = locations.location_id" +
                     " left join spot_category on Spot_table.category_id = spot_category.category_id " +
-                    "WHERE Spot_table.status ='active' AND Spot_table.views > 10";
+                    "WHERE Spot_table.status =1 AND Spot_table.views > 10";
             ResultSet resultset = stment.executeQuery(querry);
 
             List <Object> AllSpots = new ArrayList<>();
@@ -258,8 +255,8 @@ public class SpotReportsActions {
                     "Spot_table.registration_date "+"FROM `Spot_table` LEFT JOIN users_table ON users_table.user_id = Spot_table.user_id " +
                     "LEFT JOIN spot_category ON "+"spot_category.category_id = Spot_table.category_id LEFT JOIN locations on " +
                     "locations.location_id = Spot_table.location_id" +
-                    " WHERE Spot_table.status ='active'";
-            System.out.println(query);
+                    " WHERE Spot_table.status =1 ";
+//            System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
 
 
@@ -376,7 +373,12 @@ public class SpotReportsActions {
                 Connection connection=cloudStorageConnection.getConnection();
 
                 Statement statement=connection.createStatement();
-                LocalDate currentDate = LocalDate.now();
+                LocalDate now = LocalDate.now();
+                Timestamp currentDate = Timestamp.valueOf(now.atStartOfDay());
+
+
+
+                System.out.println("current date: " + currentDate);
                 String query="SELECT Spot_table.spot_id , Spot_table.spot_name , Spot_table.spot_description ," +
                         " Spot_table.status , Spot_table.views  , Spot_table.registration_date ," +
                         " users_table.user_name , locations.location_name , spot_category.category_name from Spot_table " +
