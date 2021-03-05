@@ -127,6 +127,12 @@ public class SearchView {
         }else if(action == 4){
             displayRatings(selectedSpot.getSpotId());
         }
+        else if(action == 5){
+            welcomeToSpiral();
+        }
+        else{
+            System.out.println("Invalid option");
+        }
     }
 
     /**
@@ -159,9 +165,7 @@ public class SearchView {
         }catch (Exception e){
             System.out.println("Exception occured: " + e.getMessage());
         }
-        else if(action == 4){
-            welcomeToSpiral();
-        }
+
         System.out.println("Invalid");
     }
 
