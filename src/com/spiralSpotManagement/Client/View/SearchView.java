@@ -22,41 +22,45 @@ public class SearchView {
     public static final Scanner scanner = new Scanner(System.in);
     UserView userForms = new UserView();
 
-    public void mainMethod() throws Exception{
-        String cont = "";
-        do {
-            System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
-            System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------    1.SEARCH SPOT              ------------------||");
-            System.out.println("\t\t\t||------------------    2.SEARCH PEOPLE            ------------------||");
-            System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
-            System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
-            System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
-            System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
-            System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t\t  Enter your choice ");
-        int option = scanner.nextInt();
+    public void mainMethod() throws Exception {
+        try {
+            String cont = "";
+            do {
+                System.out.println("\t\t\t||-------------------------------------------------------------------||");
+                System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
+                System.out.println("\t\t\t||-------------------------------------------------------------------||");
+                System.out.println("\t\t\t||------------------    1.SEARCH SPOT              ------------------||");
+                System.out.println("\t\t\t||------------------    2.SEARCH PEOPLE            ------------------||");
+                System.out.println("\t\t\t||------------------    3.SEARCH MESSAGE           ------------------||");
+                System.out.println("\t\t\t||------------------    4.POPULAR SEARCHES         ------------------||");
+                System.out.println("\t\t\t||------------------    5.RECENT SEARCHES          ------------------||");
+                System.out.println("\t\t\t||------------------    6.RETURN HOME              ------------------||");
+                System.out.println("\t\t\t||-------------------------------------------------------------------||");
+                System.out.println("\t\t\t\t  Enter your choice ");
+                int option = scanner.nextInt();
 
-        switch (option) {
-            case 1 -> searchSpot();
-            case 2 -> searchPeople();
-            case 3 -> searchMessages();
-            case 4 -> searchPopular();
-            case 5 -> {
-                if(new UserAuthMiddleware().checkForUserExistence() != 0)
-                viewRecentSearches();
-                System.out.println("You have to login first");
-                userForms.loginUser();
-            }
+                switch (option) {
+                    case 1 -> searchSpot();
+                    case 2 -> searchPeople();
+                    case 3 -> searchMessages();
+                    case 4 -> searchPopular();
+                    case 5 -> {
+                        if (new UserAuthMiddleware().checkForUserExistence() != 0)
+                            viewRecentSearches();
+                        System.out.println("You have to login first");
+                        userForms.loginUser();
+                    }
 
-            case 6 -> welcomeToSpiral();
-            default -> System.out.println("Invalid option");
+                    case 6 -> welcomeToSpiral();
+                    default -> System.out.println("Invalid option");
+                }
+
+                System.out.print("Do you want to continue searching? (y/n): ");
+                cont = scanner.next();
+            } while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"));
+        }catch (Exception e){
+            System.out.println("Exception occured: " + e.getMessage());
         }
-
-            System.out.print("Do you want to continue searching? (y/n): ");
-            cont = scanner.next();
-        }while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"));
     }
 
     /**
@@ -92,40 +96,49 @@ public class SearchView {
      * display a spot
      */
     public static void displaySpot(List<Object> spotsList) throws Exception{
-        Spot selectedSpot = null;
-        System.out.println("Enter your Choice: ");
-        int choice = scanner.nextInt();
-        if(choice > spotsList.size()){
-            System.out.println("Invalid Choice");
-        }else {
-            selectedSpot = (Spot) spotsList.get(choice - 1);
-            System.out.println("=================== " + selectedSpot.getSpotName() + " =============");
-            System.out.println("\t\t" + "Name" + ":\t  " + selectedSpot.getSpotName());
-            System.out.println("\t\t" + "Description" + ":\t  " + selectedSpot.getSpotDescription());
-            System.out.println("\t\t" + "Registered At" + ":\t  " + selectedSpot.getRegistrationDate());
-            System.out.println("\t\t" + "Location" + ":\t  " + selectedSpot.getLocationId());
-            System.out.println("\t\t" + "Category" + ":\t  " + selectedSpot.getCategoryId());
-            System.out.println("\t\t" + "User" + ":\t  " + selectedSpot.getUserId());
-        }
+        boolean leave = false;
+            Spot selectedSpot = null;
+            System.out.println("Enter your Choice: ");
+            int choice = scanner.nextInt();
+        do {
+            if (choice > spotsList.size()) {
+                System.out.println("Invalid Choice");
+            } else {
+                selectedSpot = (Spot) spotsList.get(choice - 1);
+                System.out.println("=================== " + selectedSpot.getSpotName() + " =============");
+                System.out.println("\t\t" + "Name" + ":\t  " + selectedSpot.getSpotName());
+                System.out.println("\t\t" + "Description" + ":\t  " + selectedSpot.getSpotDescription());
+                System.out.println("\t\t" + "Registered At" + ":\t  " + selectedSpot.getRegistrationDate());
+                System.out.println("\t\t" + "Location" + ":\t  " + selectedSpot.getLocationId());
+                System.out.println("\t\t" + "Category" + ":\t  " + selectedSpot.getCategoryId());
+                System.out.println("\t\t" + "User" + ":\t  " + selectedSpot.getUserId());
+            }
 
-        System.out.println("\n\t\t Actions");
-        System.out.println("\t\t 1. Rate");
-        System.out.println("\t\t 2. Comment");
-        System.out.println("\t\t 3. View Comments");
-        System.out.println("\t\t 4. View Ratings");
-        System.out.println("\t\t 5. Skip");
+            System.out.println("\n\t\t Actions");
+            System.out.println("\t\t 1. Rate");
+            System.out.println("\t\t 2. Comment");
+            System.out.println("\t\t 3. View Comments");
+            System.out.println("\t\t 4. View Ratings");
+            System.out.println("\t\t 5. Skip");
 
-        System.out.print("Enter Choice: ");
-        Integer action = scanner.nextInt();
-        if(action == 1){
-            rateSpot(selectedSpot);
-        }else if (action == 2){
-            commentOnSpot(selectedSpot);
-        }else if(action == 3){
-            displayComments(selectedSpot.getSpotId());
-        }else if(action == 4){
-            displayRatings(selectedSpot.getSpotId());
-        }
+            System.out.print("Enter Choice: ");
+            Integer action = scanner.nextInt();
+            if (action == 1) {
+                rateSpot(selectedSpot);
+            } else if (action == 2) {
+                commentOnSpot(selectedSpot);
+            } else if (action == 3) {
+                displayComments(selectedSpot.getSpotId());
+            } else if (action == 4) {
+                displayRatings(selectedSpot.getSpotId());
+            }else {
+                leave = true;
+            }
+            if(!leave) {
+                System.out.print("Press any key to continue: ");
+                scanner.next();
+            }
+        }while (!leave);
     }
 
     /**
@@ -269,6 +282,10 @@ public class SearchView {
             boolean found = false;
             Integer index = 0;
             List<Object> spotsList = new ArrayList<>();
+            if(responseBody.getResponse() == null){
+                System.out.println("Error occured connecting. try again later...");
+                return;
+            }
             for (Object response : responseBody.getResponse()) {
                 index++;
                 found = true;
