@@ -202,7 +202,7 @@ public class SearchView {
                 found = true;
                 Spot spot = (Spot) response;
                 String showDesc = spot.getSpotDescription().length() > 20 ? spot.getSpotDescription().substring(0,20) + "..." : spot.getSpotDescription();
-                System.out.println(index + ". " + spot.getSpotName() + "\n\t\t" + ANSI_BLUE +  showDesc + ANSI_RESET);
+                System.out.println(index + ". " + spot.getSpotName() + "\n\t" + ANSI_BLUE +  showDesc + ANSI_RESET);
                 spotsList.add(spot);
             }
 
