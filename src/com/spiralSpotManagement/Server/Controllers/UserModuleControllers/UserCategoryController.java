@@ -1,5 +1,10 @@
 package com.spiralSpotManagement.Server.Controllers.UserModuleControllers;
 
+/**
+ * @author : Ineza Aimee Annabelle
+ * @description: This is user category actions controller
+ */
+
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseStatus;
 import com.spiralSpotManagement.Server.Model.User;
@@ -29,6 +34,9 @@ public class UserCategoryController {
                 ResponseStatus responseStatus3 = new UserCategoryActions().deleteUserCategory((UserCategory) requestBody.getObject());
                 usersObject.add((Object) responseStatus3);
                 return usersObject;
+            case "selectCategoryById":
+                usersObject = new UserCategoryActions().selectCategoriesById((UserCategory) requestBody.getObject());
+                return  usersObject;
         }
 
         return null;

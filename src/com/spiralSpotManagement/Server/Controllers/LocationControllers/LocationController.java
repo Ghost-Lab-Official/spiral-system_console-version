@@ -1,6 +1,5 @@
 package com.spiralSpotManagement.Server.Controllers.LocationControllers;
 
-import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelsActions;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.ArrayList;
@@ -18,15 +17,27 @@ public class LocationController {
 
         switch (action){
             case "register":
-                ResponseStatus registerLocation = new LocationActions().registerLocation((LocationModel) requestBody.getObject());
+                ResponseStatus registerLocation = new LocationActions().registerLocation((Location) requestBody.getObject());
                 location.add((Object)registerLocation);
                 return location;
 
             case "update":
-                break;
+                ResponseStatus updateLocation = new LocationActions().UpdateLocation((Location) requestBody.getObject());
+                location.add((Object) updateLocation);
+                return  location;
 
-//                OTHER ACTIONS SHOULD GO HERE
-//            --------------------------------------
+            case "delete":
+                ResponseStatus deleteLocation = new LocationActions().DeleteLocation((Location) requestBody.getObject());
+                location.add((Object) deleteLocation);
+                return  location;
+            case "recover":
+                ResponseStatus recoverLocation = new LocationActions().RecoverLocation((Location) requestBody.getObject());
+                location.add((Object) recoverLocation);
+                return location;
+
+            case "getLocationsByParent":
+                List<Object> locations = new LocationActions().fetchByParent((String) requestBody.getObject());
+                return locations;
         }
         return  null;
     }

@@ -1,6 +1,9 @@
 package com.spiralSpotManagement.Client.View;
+import java.io.BufferedReader;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Main;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.RequestBody;
 import com.spiralSpotManagement.Server.Model.ResponseBody;
@@ -15,22 +18,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class SpotCategoryView {
-    public void CreateCategory() throws Exception {
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
 
-        Scanner reader = new Scanner(System.in);
-        System.out.println("\t\t\t Enter User id: ");
-        int userId = reader.nextInt();
+/**
+ * @author  Bethiane
+ */
+public class SpotCategoryView {
+    /* This the view for spotCategory */
+
+    InputStreamReader isr = new InputStreamReader(System.in);
+    BufferedReader entered = new BufferedReader(isr);
+    Scanner scanner = new Scanner(System.in);
+
+    public void CreateCategory() throws Exception {
+        /* Create category form */
         System.out.println("\t\t\t Enter category name: ");
-        String categoryName = reader.nextLine();
+        String categoryName = entered.readLine();
         System.out.println("\t\t\t  Enter category description: ");
-        String description = reader.nextLine();
+        String description = entered.readLine();
         System.out.println("\t\t\t Enter the status: ");
-        String status = reader.nextLine();
+        String status = entered.readLine();
 
         SpotCategory spotCategoryToInsert = new SpotCategory();
-        spotCategoryToInsert.setUserId(userId);
-        spotCategoryToInsert.setCategoryName("category Name 1");
+
+        spotCategoryToInsert.setUserId(new UserAuthMiddleware().checkForUserExistence());
+        spotCategoryToInsert.setCategoryName(categoryName);
         spotCategoryToInsert.setDescription(description);
         spotCategoryToInsert.setStatus(status);
 
@@ -60,16 +72,15 @@ public class SpotCategoryView {
     }
 
     public void UpdateCategory() throws Exception {
-
-        Scanner read = new Scanner(System.in);
-        System.out.println("\t\t\t Enter category ID: ");
-        int categoryId = read.nextInt();
+        /* Update category form */
+        System.out.println("\t\t\t Enter category id to be updated: ");
+        int categoryId = scanner.nextInt();
         System.out.println("\t\t\t Enter category name: ");
-        String categoryName = read.nextLine();
+        String categoryName = entered.readLine();
         System.out.println("\t\t\t  Enter category description: ");
-        String description = read.nextLine();
+        String description = entered.readLine();
         System.out.println("\t\t\t Enter the status: ");
-        String status = read.nextLine();
+        String status = entered.readLine();
 
         SpotCategory spotCategoryToInsert = new SpotCategory();
         spotCategoryToInsert.setCategoryName(categoryName);
@@ -96,8 +107,9 @@ public class SpotCategoryView {
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
     }
-//
+    //
     public void GetSpotCategory() throws Exception {
+        /* Get all registered categories */
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/sportCategory");
         requestBody.setAction("getAll");
@@ -120,6 +132,7 @@ public class SpotCategoryView {
     }
 
     public void ChangeSpotStatus() throws Exception {
+        /* Change category status*/
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t\t Enter category_id: ");
@@ -146,5 +159,65 @@ public class SpotCategoryView {
             System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
             System.out.println("\t\t ------------------------------------------------------------------------------");
         }
+    }
+
+    public void SpotCategoryMenu() throws Exception {
+        /* SpotcategoryMenu entry  */
+        String toContinue;
+        do{
+            int choice;
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------    1.CREATE A CATEGORY        ------------------||");
+            System.out.println("\t\t\t||------------------    2.UPDATE CATEGORY          ------------------||");
+            System.out.println("\t\t\t||------------------    3.GET SPORT CATEGORIES     ------------------||");
+            System.out.println("\t\t\t||------------------    4.CHANGE CATEGORY STATUS   ------------------||");
+           System.out.println("\t\t\t||------------------     5.RETURN HOME               -----------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t\t  Enter your choice                                              ");
+            choice = scanner.nextInt();
+            switch (choice){
+                case 1 :
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
+                        CreateCategory();
+                    else{
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
+                    break;
+                case 2:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                        UpdateCategory();
+                    else{
+                        System.out.println("You have to login first");
+                        new UserView().loginUser();
+                    }
+                    break;
+                case 3:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
+                        GetSpotCategory();
+                    else{
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
+                    break;
+                case 4:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0)
+                        ChangeSpotStatus();
+                    else{
+                        System.out.println("You have to login first");
+                        new UserView().loginUser();
+                    }
+                    break;
+                case 5:
+                    welcomeToSpiral();
+                default:
+                    System.out.println("Invalid input");
+
+                    break;
+            }
+            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            toContinue = scanner.next();
+        }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
 }

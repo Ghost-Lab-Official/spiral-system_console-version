@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>src</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+<<<<<<< HEAD
+	<filteredResources>
+		<filter>
+			<id>1614711441845</id>
+=======
+<<<<<<< HEAD
+	<filteredResources>
+		<filter>
+			<id>1614711441845</id>
+=======
+<<<<<<< HEAD
+=======
+	<filteredResources>
+		<filter>
+			<id>1612894922479</id>
+>>>>>>> 42d946579dc006fea2fa1d680d5dbd0bea5ee631
+>>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> ba08fc119ddd37e242d6adb23a8e585930dc05d0
+>>>>>>> 42d946579dc006fea2fa1d680d5dbd0bea5ee631
+>>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
+</projectDescription>

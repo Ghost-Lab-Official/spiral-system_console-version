@@ -1,47 +1,55 @@
 package com.spiralSpotManagement.Client;
-
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
+import com.spiralSpotManagement.Client.View.SpotView;
+import com.spiralSpotManagement.Client.View.UserView;
+import com.spiralSpotManagement.Client.View.SpotCategoryView;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
 import java.util.List;
 import java.util.Scanner;
 
-/*
-            @author : Ntwari Egide - Scrum Master
-            USER CONTROLLER  - SERVER CONTROLLER
-            Synchronizing all the methods on the
+/**
+ * @author : Anne Bethiane,
+ * @author : Blessing Hirwa
+ * This is the entry of Spiral;
+ * WELCOME!
  */
 
 public class Main {
-    public static void ExampleOfUsageOfClientServerConnector()throws Exception{
-        RequestBody requestBody = new RequestBody();
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
-        Users testingObject = new Users();
-        testingObject.setEmail("ntwari@gmal.test");
-        testingObject.setFullName("ntwari testing");
-        requestBody.setObject(testingObject);
+    public void spiralWelcomePage(){
+       System.out.println("\n\n\n                                                                                                       ");
+       System.out.println("\t\t\t\t                                                                                                       ");
+       System.out.println(ANSI_BLUE +"\t\t\t\t    -------------                                                             ----                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |  ----------                                                             |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                               __                                     |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                              |__|                                    |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    |   ---------   ----  ---------   ----   ----  -----      ------   --     |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    '--------   |   |  ' '-----.  |   |  |   |  ''_____|    /  ----- \\   |    |  |                    "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    ---------|  |   |  |-----------   |  |   |  |          |  --------   |    |  |_______              "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t    ------------'   |  |-----------   ----   ----           \\________,\\__|    '__________            "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+       System.out.println(ANSI_BLUE +"\t\t\t\t                    ----                                                                               "+ANSI_RESET);
+   }
 
-        requestBody.setUrl("/users");
-        requestBody.setAction("register");
-
-        ClientServerConnector clientServerConnector = new ClientServerConnector();
-        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
-
-        // depending on clients need you will need to do type casting
-
-        List<Object> usersFoundObject =  responseBody.getResponse();
-
-        for (Object userObject: usersFoundObject){
-            ResponseStatus responseStatus = (ResponseStatus) userObject;
-
-            System.out.println("Server replied "
-                    + (responseStatus.getStatus()));
+    public void loadingPageWrapper() throws InterruptedException {
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------");
+        System.out.print("\t\t\t\tSpiraling \t");
+        for (int i = 0; i < 20; i++) {
+            System.out.print(".");
+            Thread.sleep(100);
         }
+<<<<<<< HEAD
 
         /*
             WORKING ON USER REGISTRATION
@@ -64,71 +72,128 @@ public class Main {
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
 //        new SearchView().mainMethod();
+=======
+        System.out.print("\n");
+        System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
+        System.out.println("\n");
+>>>>>>> d1ba61f70642d41ccb4db008cc7cd141a99612ad
     }
 
+    public static void welcomeToSpiral() throws Exception{
+        RequestBody requestBody = new RequestBody();
+        UserView userForms = new UserView();
+        SpotView spotForms = new SpotView();
+        UserCategoryView userCategoryForms = new UserCategoryView();
+        SpotCategoryView spotCategories= new SpotCategoryView();
+        LocationView locationForms = new LocationView();
+        SearchView searchForms = new SearchView();
+        String toContinue;
+        do {
+            int choice;
+            Scanner scanner = new Scanner(System.in);
+            new Main().spiralWelcomePage();
+            new Main().loadingPageWrapper();
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            if (new UserAuthMiddleware().checkForUserExistence() == 0){
+            System.out.println("\t\t\t||------------------    1.LOGIN                    ------------------||");
+                System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
+            }
 
 
+            System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
+            System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
+            System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
+            System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
+            System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
+            System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
+            if(new UserAuthMiddleware().checkForUserExistence() !=0){
+            System.out.println("\t\t\t||------------------    9.LOGOUT                   ------------------||");}
+            System.out.println("\t\t\t||-------------------------------------------------------------------||");
+            System.out.println("\t\t\t\t  Enter your choice                                              ");
+            choice = scanner.nextInt();
+            switch (choice){
+                case 1 :
+                    userForms.loginUser();
+                    break;
+                case 2:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                        userForms.registerUser();
+                    }
+                    else {
+                        System.out.println("You have to login first\n");
+                        userForms.loginUser();
+                    }
+                    break;
+                case 3:
+                    Boolean status = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"SPOT_MANAGEMENT");
+                    Thread.sleep(3000);
+                    if(status==false){
+                        welcomeToSpiral();
+                    } else
+                    spotForms.spotViewMenu();
+                    break;
+                case 4:
+                    spotCategories.SpotCategoryMenu();
+                    break;
+                case 5:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+                        Boolean statusTwo = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"LOCATION_MANAGEMENT");
+                        Thread.sleep(3000);
+                        if(statusTwo==false){
+                            welcomeToSpiral();
+                        } else
+                        locationForms.LocationViewMenu();
 
-    public static void spotCategoryModuleMain()throws Exception{
+                    }
+                    else{
+                        System.out.println("You have to login first\n");
+                        new UserView().loginUser();
+                    }
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t=                SPOT CATEGORY DASHBOARD          = ");
-        System.out.println("\t\t\t============================================= ");
-        System.out.println("\t\t\t|| 1.  create spot category                                ||");
-        System.out.println("\t\t\t|| 2.  update spot category                     ||");
-        System.out.println("\t\t\t|| 3.  select all categories                    ||");
-        System.out.println("\t\t\t|| 4.  change spot status                            ||");
-        System.out.println("\t\t\t============================================ ");
-        System.out.println("\t\t\tEnter your choice: ");
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1 :
-                new SpotCategoryView().CreateCategory();
-                break;
-            case 2:
-                new SpotCategoryView().UpdateCategory();
-                break;
-            case 3 :
-                new SpotCategoryView().GetSpotCategory();
-                break;
-            case 4 :
-                new SpotCategoryView().ChangeSpotStatus();
-                break;
-            default :
-                System.out.println("Invalid choice");
-        }
+                case 6:
+                    //        create user log
+
+                    searchForms.mainMethod();
+                    break;
+                case 7:
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                        UserLog userLogToInsertonReports = new UserLog();
+                        userLogToInsertonReports.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsertonReports.setAction("viewed reports");
+
+                        new ReportsView().createUserlog(userLogToInsertonReports);
+                        new ReportsView().reportDashboard();
+
+                    }
+                    else {
+                        System.out.println("You have to login as an admin to view reports\n");
+                        new UserView().loginUser();
+                    }
+                    break;
+                case 8:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                        new UserView().mainMethod();
+                    }
+                    else {
+                        System.out.println("You have to login first\n");
+                        userForms.loginUser();
+                    }
+                    break;
+                case 9:
+                    new UserAuthMiddleware().logoutMiddleWare();
+
+                    break;
+                default:
+                    System.out.println("Invalid input");
+            }
+            System.out.print("\t\tDo you want to continue searching? (y/n): ");
+            toContinue = scanner.next();
+        }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
 
-
-    public static void spotMainContent()throws Exception{
-        Scanner input = new Scanner(System.in);
-        System.out.println("==============================");
-        System.out.println("||\t\tSpot  Section\t\t||");
-        System.out.println("==============================\n");
-        System.out.println("||\t\t1.Create Spot\t\t||\n");
-        System.out.println("||\t\t2.Edit Spot\t\t\t||\n");
-        System.out.println("||\t\t3.Delete Spot\t\t||\n");
-        System.out.println("||\t\t4.Exit         \t\t||\n");
-        System.out.println("==============================");
-        String choose = input.nextLine();
-
-
-        switch (choose) {
-            case "1":
-                new SpotView().createSpot();
-                break;
-          case "2":
-                new SpotView().updateSpot();
-            break;
-          case "3":
-            new SpotView().deleteSpotContent();
-            break;
-            case "4":
-                System.exit(0);
-            default:
-                System.out.println("Incorrect Input!!");
-        }
+    public static void main(String[] args) throws Exception {
+        welcomeToSpiral();
     }
-
 }
