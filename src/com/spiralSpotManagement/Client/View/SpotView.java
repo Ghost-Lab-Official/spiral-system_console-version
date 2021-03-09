@@ -1,13 +1,3 @@
-
-/*
-            @author : Cyebukayire Peace
-            Created on: 2021 Jan 25
-            What these codes are doing:
-            . Inserting Spot : This means creating a new spot into the database
-            . Updating Spot: Editing information about the spot
-            . Changing Spot Status (Deleting): We just change the status from active to inactive instead of deleting
-                                               permanently because we don't want to loose any data.
- */
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
@@ -21,19 +11,6 @@ import java.util.Scanner;
 import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
 
 public class SpotView {
-<<<<<<< HEAD
-
-    //Creating a spot
-    public void createSpot()throws Exception{
-        Integer spot_id = 13;
-        Integer user_id = 1;
-        Integer category_id = 45;
-        Integer location_id =5655;
-        String spot_name = "Mouse";
-        String spot_description = "Black and brown mouse found in class B";
-        String registration_date = "2021-09-21";
-        String status ="1";
-=======
     FormsView formClient = new FormsView();
 
     public void createSpot()throws Exception{
@@ -45,7 +22,6 @@ public class SpotView {
         String spot_name = customSpot.getSpotName();
         String spot_description = customSpot.getSpotDescription();
         Integer status = customSpot.getStatus();
->>>>>>> d1ba61f70642d41ccb4db008cc7cd141a99612ad
 
 
         Spot spotToCreate = new Spot(user_id,category_id,location_id,spot_name,spot_description,status);
@@ -67,7 +43,6 @@ public class SpotView {
         }
     }
 
-    //Updating Spot Information
     public void updateSpot()throws Exception{
         Spot spotToUpdate = new Spot();
         spotToUpdate = formClient.updateSpotViewForm();
@@ -82,17 +57,6 @@ public class SpotView {
         Integer status = spotToUpdate.getStatus();
 
         Scanner scan = new Scanner(System.in);
-<<<<<<< HEAD
-        Integer spot_id = 8;
-        Integer user_id = 1;
-        Integer category_id = 45;
-        Integer location_id =5655;
-        String spot_name = "jacket";
-        String spot_description = "Black and brown mouse found in class A";
-        String registration_date = "2021-01-31";
-        String status = "1";
-=======
->>>>>>> d1ba61f70642d41ccb4db008cc7cd141a99612ad
 
         Spot spotToCreate = new Spot(spot_id,user_id,category_id,location_id,spot_name,spot_description,status);
 
@@ -113,13 +77,8 @@ public class SpotView {
         }
     }
 
-    //Changing the status of the spot
     public void deleteSpotContent()throws Exception{
-<<<<<<< HEAD
-        Integer id =12;
-=======
         Integer spotIdToDelete = formClient.deleteSpotViewForm();
->>>>>>> d1ba61f70642d41ccb4db008cc7cd141a99612ad
 
         Spot spotToDelete = new Spot();
         spotToDelete.setSpotId(spotIdToDelete);
