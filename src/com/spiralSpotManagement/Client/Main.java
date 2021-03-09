@@ -49,7 +49,6 @@ public class Main {
             System.out.print(".");
             Thread.sleep(100);
         }
-<<<<<<< HEAD
 
         /*
             WORKING ON USER REGISTRATION
@@ -72,11 +71,9 @@ public class Main {
 //          new LocationView().registerLocation();
 //        new UserCategoryView().mainMethod();
 //        new SearchView().mainMethod();
-=======
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
         System.out.println("\n");
->>>>>>> d1ba61f70642d41ccb4db008cc7cd141a99612ad
     }
 
     public static void welcomeToSpiral() throws Exception{
