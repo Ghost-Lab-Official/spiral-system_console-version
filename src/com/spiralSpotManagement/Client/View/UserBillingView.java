@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.Random;
@@ -12,9 +13,10 @@ public class UserBillingView {
         Integer user_id;
         Integer plan_id;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the user ID: ");
-        user_id= scanner.nextInt();
-        System.out.println("Enter the plan ID: ");
+//        System.out.println("Enter the user ID: ");
+//        user_id= scanner.nextInt();
+        user_id = new UserAuthMiddleware().checkForUserExistence();
+        System.out.println("Enter the plan Index: ");
         plan_id = scanner.nextInt();
         UserBilling userBilling = new UserBilling(user_id,plan_id);
 
