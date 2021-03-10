@@ -13,10 +13,9 @@ public class UserBillingView {
         Integer user_id;
         Integer plan_id;
         Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter the user ID: ");
-//        user_id= scanner.nextInt();
-        user_id = new UserAuthMiddleware().checkForUserExistence();
-        System.out.println("Enter the plan Index: ");
+        System.out.println("Enter the user ID: ");
+        user_id= scanner.nextInt();
+        System.out.println("Enter the plan ID: ");
         plan_id = scanner.nextInt();
         UserBilling userBilling = new UserBilling(user_id,plan_id);
 

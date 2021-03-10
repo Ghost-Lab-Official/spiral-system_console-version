@@ -49,7 +49,7 @@ public class BillingView {
 
                 break;
             case 3 :
-               previewBillingPlans();
+                previewBillingPlans();
                 break;
             case 4 :
                 previewBillingPlans();
@@ -203,7 +203,7 @@ public class BillingView {
 
     }
 
-//    this method deals with activating or deactivating an existing billing plan
+    //    this method deals with activating or deactivating an existing billing plan
     public void actionOnBillingPlan()throws Exception {
 
         Billing billingModel = new Billing();

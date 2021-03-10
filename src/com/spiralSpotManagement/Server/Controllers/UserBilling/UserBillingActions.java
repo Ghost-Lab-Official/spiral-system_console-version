@@ -99,8 +99,8 @@ public class UserBillingActions {
 
 
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1,userBilling.getUser_id());
-            statement.setInt(2,userBilling.getPlan_id());
+            statement.setInt(1,userBilling.getPlan_id());
+            statement.setInt(2,userBilling.getUser_id());
             statement.setString(3,expirationDate);
 
             int inserted_rec = statement.executeUpdate();
