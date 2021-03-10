@@ -8,6 +8,7 @@ import com.spiralSpotManagement.Server.Controllers.SpotController.SpotCommentRea
 import com.spiralSpotManagement.Server.Controllers.SpotController.SpotController;
 import com.spiralSpotManagement.Server.Controllers.LocationControllers.LocationController;
 import com.spiralSpotManagement.Server.Controllers.LocationLevelControllers.LocationLevelController;
+import com.spiralSpotManagement.Server.Controllers.SpotController.SpotRatingController;
 import com.spiralSpotManagement.Server.Controllers.UserBilling.UserBillingController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserCategoryController;
 import com.spiralSpotManagement.Server.Controllers.UserModuleControllers.UserController;
@@ -151,6 +152,9 @@ SpiralMultiThreadedServer {
                             break;
                         case "/spot-reaction":
                             responseObject = new SpotCommentReactionController().mainMethod(requestBody);
+                            break;
+                        case "/spot-rating":
+                            responseObject = new SpotRatingController().mainSpotController(requestBody);
                             break;
 
                         case "/search":

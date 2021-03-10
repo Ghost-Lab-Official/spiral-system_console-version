@@ -114,7 +114,7 @@ public class Main {
                     spotForms.spotViewMenu();
                     break;
                 case 4:
-                    userCategoryForms.UserCategoryMenu();
+                    spotCategories.SpotCategoryMenu();
                     break;
                 case 5:
                     if (new UserAuthMiddleware().checkForUserExistence() != 0) {
