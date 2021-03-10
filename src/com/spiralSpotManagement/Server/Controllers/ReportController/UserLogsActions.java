@@ -101,6 +101,7 @@ public class UserLogsActions {
            }
         }
 
+
         try {
             PreparedStatement preparedStatement=connection.prepareStatement(recordUserLogsQuery);
 

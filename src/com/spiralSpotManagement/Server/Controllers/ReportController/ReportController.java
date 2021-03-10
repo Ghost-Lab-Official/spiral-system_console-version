@@ -27,6 +27,7 @@ public class ReportController {
                 ResponseStatus userLogResponseStatus = new UserLogsActions().recordUserLogs((UserLog) request.getObject());
                 userLogsReport.add((Object) userLogResponseStatus);
                 return userLogsReport;
+
             case "getTotalNumberOfUsers":
                 return new UsersReportActions().getTheTotalNumberOfAllUsersRegistered();
 
