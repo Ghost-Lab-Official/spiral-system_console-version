@@ -7,11 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> d1ba61f70642d41ccb4db008cc7cd141a99612ad
 import com.mysql.jdbc.CommunicationsException;
 
 import java.io.FileReader;
