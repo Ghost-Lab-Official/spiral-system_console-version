@@ -110,23 +110,62 @@ public class SearchView {
         }
 
         System.out.println("\n\t\t Actions");
-        System.out.println("\t\t 1. Like");
+        System.out.println("\t\t 1. Rate");
         System.out.println("\t\t 2. Comment");
         System.out.println("\t\t 3. View Comments");
-        System.out.println("\t\t 4. Skip");
+        System.out.println("\t\t 4. View Ratings");
+        System.out.println("\t\t 5. Skip");
 
         System.out.print("Enter Choice: ");
         Integer action = scanner.nextInt();
         if(action == 1){
-            likeSpot(selectedSpot);
+            rateSpot(selectedSpot);
         }else if (action == 2){
             commentOnSpot(selectedSpot);
         }else if(action == 3){
             displayComments(selectedSpot.getSpotId());
+        }else if(action == 4){
+            displayRatings(selectedSpot.getSpotId());
         }
-        else if(action == 4){
+        else if(action == 5){
             welcomeToSpiral();
         }
+        else{
+            System.out.println("Invalid option");
+        }
+    }
+
+    /**
+     * author: Abizera Oreste
+     * @param spotId
+     */
+    public static void displayRatings(Integer spotId){
+        try {
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/spot-rating");
+            requestBody.setAction("getRatings");
+
+            requestBody.setObject((Object) spotId);
+
+            ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
+            boolean found = false;
+            Integer index = 0;
+            List<Object> ratingsList = new ArrayList<>();
+            for (Object response: responseBody.getResponse()){
+                index++;
+                found = true;
+                SpotRatings spotRating = (SpotRatings) response;
+                System.out.println(index + ". " + "user " + spotRating.getUser_id() + " rated " + spotRating.getRating() + " on spot " + spotRating.getSpot_id());
+                ratingsList.add(spotRating);
+            }
+
+            if(!found){
+                System.out.println("No ratings Found for this spot.");
+            }
+        }catch (Exception e){
+            System.out.println("Exception occured: " + e.getMessage());
+        }
+
         System.out.println("Invalid");
     }
 
@@ -164,12 +203,49 @@ public class SearchView {
     }
 
     /**
-     * Like a spot
+     * Rate a spot
      */
 
-    public static void likeSpot(Spot spot){
+    public static void rateSpot(Spot spot){
+        try{
+            Integer userId = new UserAuthMiddleware().checkForUserExistence();
+            if(userId == 0){
+                System.out.println("You are not logged in");
+                return;
+            }
 
-        System.out.println("Like spot " + spot.getSpotId());
+            Integer rating;
+            System.out.print("Enter rating for this spot: ");
+            rating = scanner.nextInt();
+
+            SpotRatings spotRating = new SpotRatings();
+            spotRating.setSpot_id(spot.getSpotId());
+            spotRating.setUser_id(userId);
+            spotRating.setRating(rating);
+
+            RequestBody requestBody = new RequestBody();
+            requestBody.setUrl("/spot-rating");
+            requestBody.setAction("register");
+            requestBody.setObject(spotRating);
+            ClientServerConnector clientServerConnector = new ClientServerConnector();
+            ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+            for (Object response: responseBody.getResponse()){
+                ResponseStatus responseStatus = (ResponseStatus) response;
+                System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+                System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+                System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+                System.out.println("\t\t ------------------------------------------------------------------------------");
+
+                UserLog userLogToInsertOnSearch = new UserLog();
+                userLogToInsertOnSearch.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                String logAction= "rated spot " ;
+                userLogToInsertOnSearch.setAction(logAction);
+
+                new ReportsView().createUserlog(userLogToInsertOnSearch);
+            }
+        }catch (Exception e){
+            System.out.println("Exception occured." + e.getMessage());
+        }
     }
 
 

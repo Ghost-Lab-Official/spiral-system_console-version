@@ -1,6 +1,7 @@
 package com.spiralSpotManagement.Client.View;
 
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
+import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Server.Model.*;
 
 import java.util.Random;
@@ -71,5 +72,33 @@ public class UserBillingView {
         }
 
         return null;
+    }
+
+
+
+
+    public void getuserPlanInfo()throws Exception{
+        RequestBody requestBody = new RequestBody();
+        UserBilling userBilling = new UserBilling();
+        userBilling.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+
+        requestBody.setUrl("/users-billing");
+        requestBody.setAction("userPlanInfo");
+        requestBody.setObject(userBilling);
+
+        ClientServerConnector clientServerConnector = new ClientServerConnector();
+        ResponseBody responseBody = clientServerConnector.ConnectToServer(requestBody);
+
+        for (Object response:responseBody.getResponse()){
+            Billing responseBody1 = (Billing) response;
+            System.out.println("+---------------------------------------+");
+            System.out.println("|              MY PLAN INFO             |");
+            System.out.println("+---------------------------------------+");
+            System.out.println("Plan name: "+ responseBody1.getBilling_name());
+            System.out.println("Plan period: "+ responseBody1.getBilling_period());
+            System.out.println("Plan price: "+responseBody1.getPrice());
+            System.out.println("\n");
+
+        }
     }
 }
