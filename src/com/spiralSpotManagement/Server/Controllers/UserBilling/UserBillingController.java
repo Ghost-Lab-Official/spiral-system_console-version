@@ -23,6 +23,10 @@ public class UserBillingController {
                 billProcess.add((Object) checkResponseStatus);
                 return billProcess;
 
+            case "userPlanInfo":
+                billProcess = new UserBillingActions().getUserPlan((UserBilling) requestBody.getObject());
+                return billProcess;
+
         }
         return null;
     }

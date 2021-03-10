@@ -53,7 +53,7 @@ public class SearchController {
                 return recentSearchesList;
             case "RemoveRecentSearch":
                 User user = new User();
-                user.setUserId(1);
+                user.setUserId(new UserAuthMiddleware().checkForUserExistence());
                 ResponseStatus responseStatus = new SearchActions().RemoveRecentSearch(user,
                         (RecentSearch) requestBody.getObject());
                 results.add(responseStatus);

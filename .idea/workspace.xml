@@ -5,13 +5,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="">
+    <list default="true" id="c09cb95f-01a8-44da-9f8a-9d7d12055756" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/BillingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/BillingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/SearchView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserBillingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserBillingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Client/View/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/SearchControllers/SearchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserBilling/UserBillingActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserBilling/UserBillingActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserBilling/UserBillingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/spiralSpotManagement/Server/Controllers/UserBilling/UserBillingController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +42,8 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.SpiralMultiThreadedServer">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.spiralSpotManagement.Client.Main" />
       <extension name="coverage">
         <pattern>
@@ -63,16 +67,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d07c7e63-0217-41db-910d-2c35c3b3f87e" name="Default Changelist" comment="" />
+      <changelist id="c09cb95f-01a8-44da-9f8a-9d7d12055756" name="Default Changelist" comment="" />
       <created>1613047062390</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -87,6 +86,8 @@
       <workItem from="1614247027109" duration="12000" />
       <workItem from="1614703408466" duration="466000" />
       <workItem from="1614875707460" duration="6647000" />
+      <workItem from="1614929010304" duration="6763000" />
+      <workItem from="1615399498097" duration="936000" />
     </task>
     <task id="LOCAL-00001" summary="PROTECTING ROUTES BY USER PLAN">
       <created>1614923724660</created>
@@ -126,34 +127,34 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="348" y="86" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1614918905156" />
-    <state width="1323" height="230" key="GridCell.Tab.0.bottom" timestamp="1614927993227">
+    <state width="1323" height="532" key="GridCell.Tab.0.bottom" timestamp="1615400366231">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1237" height="532" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614922314570" />
-    <state width="1323" height="230" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
-    <state width="1323" height="230" key="GridCell.Tab.0.center" timestamp="1614927993227">
+    <state width="1237" height="515" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
+    <state width="1323" height="532" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1615400366231" />
+    <state width="1323" height="532" key="GridCell.Tab.0.center" timestamp="1615400366231">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1237" height="532" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614922314570" />
-    <state width="1323" height="230" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
-    <state width="1323" height="230" key="GridCell.Tab.0.left" timestamp="1614927993227">
+    <state width="1237" height="515" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
+    <state width="1323" height="532" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1615400366231" />
+    <state width="1323" height="532" key="GridCell.Tab.0.left" timestamp="1615400366231">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1237" height="532" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614922314569" />
-    <state width="1323" height="230" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
-    <state width="1323" height="230" key="GridCell.Tab.0.right" timestamp="1614927993227">
+    <state width="1237" height="515" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
+    <state width="1323" height="532" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1615400366231" />
+    <state width="1323" height="532" key="GridCell.Tab.0.right" timestamp="1615400366231">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1237" height="532" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614922314570" />
-    <state width="1323" height="230" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1614927993227" />
+    <state width="1237" height="515" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1614924688004" />
+    <state width="1323" height="532" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1615400366231" />
     <state x="121" y="0" key="SettingsEditor" timestamp="1614918908723">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="121" y="0" key="SettingsEditor/0.0.1280.689@0.0.1280.689" timestamp="1614918908723" />
-    <state x="275" y="117" key="Vcs.Push.Dialog.v2" timestamp="1614923734515">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup" timestamp="1614923412668">
+      <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="275" y="117" key="Vcs.Push.Dialog.v2/0.0.1366.768@0.0.1366.768" timestamp="1614923734515" />
+    <state x="303" y="10" width="672" height="678" key="search.everywhere.popup/0.0.1280.689@0.0.1280.689" timestamp="1614923412668" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/spiral_system_console_version$SpiralMultiThreadedServer.ic" NAME="SpiralMultiThreadedServer Coverage Results" MODIFIED="1612443014417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
