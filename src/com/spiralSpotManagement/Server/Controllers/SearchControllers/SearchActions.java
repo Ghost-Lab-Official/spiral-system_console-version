@@ -41,10 +41,11 @@ public class SearchActions {
 
             Integer userId = new UserAuthMiddleware().checkForUserExistence();
             if(userId > 0) {
-                String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+                String insertsql = "INSERT INTO searchHistory (searched_query,user_id,search_date) values (?,?,?)";
                 PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
                 insertHistorystmt.setString(1, searchKey);
                 insertHistorystmt.setInt(2, userId);
+                insertHistorystmt.setDate(3, Date.valueOf(java.time.LocalDate.now()));
                 insertHistorystmt.executeUpdate();
             }
             return spotsList;
@@ -86,10 +87,11 @@ public class SearchActions {
             }
             Integer userId = new  UserAuthMiddleware().checkForUserExistence();
             if(userId > 0) {
-                String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+                String insertsql = "INSERT INTO searchHistory (searched_query,user_id,search_date) values (?,?,?)";
                 PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
                 insertHistorystmt.setString(1, searchKey);
                 insertHistorystmt.setInt(2, userId);
+                insertHistorystmt.setDate(3, Date.valueOf(java.time.LocalDate.now()));
                 insertHistorystmt.executeUpdate();
             }
             return peopleList;
@@ -128,10 +130,11 @@ public class SearchActions {
             }
             Integer userId = new  UserAuthMiddleware().checkForUserExistence();
             if(userId > 0) {
-                String insertsql = "INSERT INTO searchHistory (searched_query,user_id) values (?,?)";
+                String insertsql =  "INSERT INTO searchHistory (searched_query,user_id,search_date) values (?,?,?)";
                 PreparedStatement insertHistorystmt = connection.prepareStatement(insertsql);
                 insertHistorystmt.setString(1, searchKey);
                 insertHistorystmt.setInt(2, userId);
+                insertHistorystmt.setDate(3, Date.valueOf(java.time.LocalDate.now()));
                 insertHistorystmt.executeUpdate();
             }
             return messagesList;
