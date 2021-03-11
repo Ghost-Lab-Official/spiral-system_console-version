@@ -26,8 +26,8 @@ public class FormsView {
         String spotName = entered.readLine();
         System.out.println("Enter spot description ");
         String spotDescription = entered.readLine();
-        System.out.println("Enter spot status ");
-        Integer spotStatus = scanner.nextInt();
+//        System.out.println("Enter spot status ");
+        Integer spotStatus = 1;
 
         Spot spot = new Spot();
         spot.setUserId(new UserAuthMiddleware().checkForUserExistence());
@@ -42,6 +42,8 @@ public class FormsView {
 
     public Spot updateSpotViewForm() throws Exception {
         Scanner scanner = new Scanner(System.in);
+        InputStreamReader isr = new InputStreamReader(System.in);
+        BufferedReader entered = new BufferedReader(isr);
         System.out.println("Enter spot id to update");
         Integer spotId = scanner.nextInt();
         System.out.println("Enter category id");
@@ -49,11 +51,11 @@ public class FormsView {
         System.out.println("Enter your location Id ");
         Integer locationId = scanner.nextInt();
         System.out.println("Enter spot name ");
-        String spotName = scanner.nextLine();
+        String spotName = entered.readLine();
         System.out.println("Enter spot description ");
-        String spotDescription = scanner.nextLine();
-        System.out.println("Enter spot status ");
-        Integer spotStatus = scanner.nextInt();
+        String spotDescription = entered.readLine();
+//        System.out.println("Enter spot status ");
+        Integer spotStatus = 1;
 
         Spot spot = new Spot();
         spot.setSpotId(spotId);

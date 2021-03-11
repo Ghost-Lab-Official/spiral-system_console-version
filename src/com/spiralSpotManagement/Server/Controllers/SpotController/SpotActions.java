@@ -71,7 +71,7 @@ public class SpotActions {
             int updated = sql.executeUpdate();
 
             if (updated == 1) {
-                return new ResponseStatus(200, "SPOT CREATED", "Spot is available World Wide");
+                return new ResponseStatus(200, "SPOT UPDATED", "Spot is available World Wide");
             }
 
         } catch (SQLException e) {
