@@ -26,8 +26,8 @@ public class FormsView {
         String spotName = entered.readLine();
         System.out.println("Enter spot description ");
         String spotDescription = entered.readLine();
-        System.out.println("Enter spot status ");
-        Integer spotStatus = scanner.nextInt();
+//        System.out.println("Enter spot status ");
+        Integer spotStatus = 1;
 
         Spot spot = new Spot();
         spot.setUserId(new UserAuthMiddleware().checkForUserExistence());
@@ -54,8 +54,8 @@ public class FormsView {
         String spotName = entered.readLine();
         System.out.println("Enter spot description ");
         String spotDescription = entered.readLine();
-        System.out.println("Enter spot status ");
-        Integer spotStatus = scanner.nextInt();
+//        System.out.println("Enter spot status ");
+        Integer spotStatus = 1;
 
         Spot spot = new Spot();
         spot.setSpotId(spotId);
