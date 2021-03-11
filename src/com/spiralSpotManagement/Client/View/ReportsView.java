@@ -12,6 +12,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static com.spiralSpotManagement.Client.Main.welcomeToSpiral;
+
 public class ReportsView {
     
     
@@ -39,7 +41,7 @@ public class ReportsView {
             System.out.println("\t\t\t---------------------------------------------------");
             System.out.println("\t\t\t=                ADMIN DASHBOARD                  =");
             System.out.println("\t\t\t---------------------------------------------------");
-            System.out.println("\t\t\t|| 1.  Home                                     ||");
+            System.out.println("\t\t\t|| 1.  Dashboard                                ||");
             System.out.println("\t\t\t|| 2.  Spot related reports                     ||");
             System.out.println("\t\t\t|| 3.  Users related reports                    ||");
             System.out.println("\t\t\t|| 4.  Locations related reports                ||");
@@ -93,7 +95,8 @@ public class ReportsView {
             System.out.println("\t\t\t|| 3.  View Locations by status            ||");
             System.out.println("\t\t\t|| 4.  View spots in a location            ||");
             System.out.println("\t\t\t|| 5.  Back                                ||");
-            System.out.println("\t\t\t|| 6.  Exit                                ||");
+            System.out.println("\t\t\t|| 6.  Home                                ||");
+            System.out.println("\t\t\t|| 7.  Exit                                ||");
             System.out.println("\t\t\t============================================ ");
 
             System.out.println("\t\t\t Make a choice: ");
@@ -112,16 +115,16 @@ public class ReportsView {
                     ClientServerConnector  clientServerConnector = new ClientServerConnector();
                     ResponseBody responseBody = clientServerConnector.ConnectToServer(request);
 
-                    System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
-                    System.out.println(String.format("|%-50s | %-35s | %-35s | %-50s |%-30s |","#Id ", "Location Name","LOcation GPs","Description","Status"));
-                    System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
+                    System.out.format("+----------------------------------------------+----------------------------------+-------------------------+-----------------------------+%n");
+                    System.out.println(String.format("|%-20s | %-20s | %-30s | %-35s |%-20s |","#Id ", "Location Name","Location GPs","Description","Status"));
+                    System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+---------------+%n");
 
 
                     for(Object response:responseBody.getResponse()){
                         LocationsReport location = (LocationsReport) response;
 
                         System.out.println(
-                                String.format("|%-50s | %-25s | %-25s | %-50s |%-30s |",
+                                String.format("|%-20.10s | %-20s | %-30s | %-35.30s |%-20s |",
                                         location.getLocationId(),
                                         location.getLocation_name(),
                                         location.getLocation_GPS(),
@@ -134,34 +137,34 @@ public class ReportsView {
                 case 3 : locationsByStatus();
                     break;
                 case 4 :
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+                    System.out.println("Enter a location");
+                    String location = bufferedReader.readLine();
+
                     RequestBody myRequest7= new RequestBody();
                     myRequest7.setUrl("/report");
                     myRequest7.setAction("getSpotsByLocations");
-                    myRequest7.setObject(null);
+                    myRequest7.setObject(location);
 
                     try{
                         ClientServerConnector  clientServerConnector1 = new ClientServerConnector();
                         ResponseBody responseBody1 = clientServerConnector1.ConnectToServer(myRequest7);
 
-                        System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
-                        System.out.println(String.format("|%-50s | %-35s | %-35s | %-50s |%-30s |","#Id ", "Location Name","LOcation GPs","Description","Status"));
-                        System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
+                        System.out.format("+----------------------------------------------+----------------------------------+-------------------------+-----------------------------+%n");
+                        System.out.println(String.format("|%-20s | %-20s | %-30s | %-35s |%-20s |","#Id ", "Location Name","Location GPs","Description","Status"));
+                        System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+---------------+%n");
 
 
                         for(Object response:responseBody1.getResponse()){
-                            SpotsReport spotsReport = (SpotsReport) response;
+                            LocationsReport spotLoc = (LocationsReport) response;
 
                             System.out.println(
-                                    String.format("| %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
-                                            spotsReport.getSpot_id(),
-                                            spotsReport.getSpot_name(),
-                                            spotsReport.getCategory_name(),
-                                            spotsReport.getUser_name(),
-                                            spotsReport.getLocation_name(),
-                                            spotsReport.getSpot_description(),
-                                            spotsReport.getViews(),
-                                            spotsReport.getStatus(),
-                                            spotsReport.getRegistration_date())
+                                    String.format("|%-20.10s | %-20s | %-30s | %-35.30s |%-20s |",
+                                            spotLoc.getLocationId(),
+                                            spotLoc.getLocation_name(),
+                                            spotLoc.getLocation_GPS(),
+                                            spotLoc.getDescription(),
+                                            spotLoc.getStatus())
                             );
                         }
 
@@ -173,7 +176,8 @@ public class ReportsView {
 
                 case 5 : reportDashboard();
                     break;
-                case 6 : System.exit(0);
+                    case 6: welcomeToSpiral();
+                case 7 : System.exit(0);
                 default : System.out.println("\t\t\t\t Invalid input");
             }
     }
@@ -281,16 +285,16 @@ public class ReportsView {
                     ClientServerConnector  clientServerConnector = new ClientServerConnector();
                     ResponseBody responseBody = clientServerConnector.ConnectToServer(myRequest2);
 
-                    System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
-                    System.out.println(String.format("|%-50s | %-35s | %-35s | %-50s |%-30s |","#Id ", "Location Name","LOcation GPs","Description","Status"));
-                    System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
+                    System.out.format("+----------------------------------------------+----------------------------------+-------------------------+-----------------------------+%n");
+                    System.out.println(String.format("|%-20s | %-20s | %-30s | %-35s |%-20s |","#Id ", "Location Name","Location GPs","Description","Status"));
+                    System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+---------------+%n");
 
 
                     for(Object response:responseBody.getResponse()){
                         LocationsReport location = (LocationsReport) response;
 
                         System.out.println(
-                                String.format("|%-50s | %-25s | %-25s | %-50s |%-30s |",
+                                String.format("|%-20.10s | %-20s | %-30s | %-35.30s |%-20s |",
                                         location.getLocationId(),
                                         location.getLocation_name(),
                                         location.getLocation_GPS(),
@@ -313,16 +317,16 @@ public class ReportsView {
                     ClientServerConnector  clientServerConnector = new ClientServerConnector();
                     ResponseBody responseBody = clientServerConnector.ConnectToServer(myRequest3);
 
-                    System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
-                    System.out.println(String.format("|%-50s | %-35s | %-35s | %-50s |%-30s |","#Id ", "Location Name","LOcation GPs","Description","Status"));
-                    System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+------------------------------+%n");
+                    System.out.format("+----------------------------------------------+----------------------------------+-------------------------+---------------------------+%n");
+                    System.out.println(String.format("|%-20s | %-20s | %-30s | %-35s |%-20s |","#Id ", "Location Name","Location GPs","Description","Status"));
+                    System.out.format("+--------------------------------+----------------------------------+-------------------------+---------------------------+-------------+%n");
 
 
                     for(Object response:responseBody.getResponse()){
                         LocationsReport location = (LocationsReport) response;
 
                         System.out.println(
-                                String.format("|%-50s | %-25s | %-25s | %-50s |%-30s |",
+                                String.format("|%-20.10s | %-20s | %-30s | %-35.30s |%-20s |",
                                         location.getLocationId(),
                                         location.getLocation_name(),
                                         location.getLocation_GPS(),
@@ -988,16 +992,13 @@ public class ReportsView {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("Enter the date that you want to get reports for. eg(February 5, 2021)");
                 String anotherDate=reader.readLine();
-//            String anotherDate="February 5, 2021";
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM d, yyyy", Locale.ENGLISH);
-                LocalDate myDate = LocalDate.parse(anotherDate, formatter);
-                System.out.println(myDate);
-//                spotReportController.getReportForAnotherDay(myDate);
+
+
 
                 RequestBody request=new RequestBody();
                 request.setUrl("/report");
                 request.setAction("viewReportForAnotherDay");
-                request.setObject(null);
+                request.setObject(anotherDate);
                 ResponseBody responseBody = new ClientServerConnector().ConnectToServer(request);
 
 
@@ -1005,10 +1006,10 @@ public class ReportsView {
                     System.out.println("NO data found! ");
                 }
                 else {
-                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+--------------------------------------------+%n");
 
                     System.out.println(String.format("| %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |","#Id ","Spot name", "Category_name","Creator","Location","Description","Views","Status","Location name","status","Registration date"));
-                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+--------------------------------------------+%n");
 
                     for(Object Response: responseBody.getResponse()){
                         SpotsReport SpotsReport = (SpotsReport) Response;
@@ -1090,9 +1091,8 @@ try{
             System.out.println("\t\t\t|| 2.  View all users                      ||");
             System.out.println("\t\t\t|| 3.  View user activities                ||");
             System.out.println("\t\t\t|| 4.  View user by status                 ||");
-            System.out.println("\t\t\t|| 5.  Create user a user log              ||");
-            System.out.println("\t\t\t|| 6.  Back                                ||");
-            System.out.println("\t\t\t|| 7.  Exit                                ||");
+            System.out.println("\t\t\t|| 5.  Back                                ||");
+            System.out.println("\t\t\t|| 6.  Exit                                ||");
             System.out.println("\t\t\t-------------------------------------------- ");
 
             System.out.println("\t\t\t Make a choice: ");
@@ -1120,12 +1120,10 @@ try{
                 case 4 :
                     viewUsersByStatus();
                     break;
+
                 case 5 :
-                    createUserlog(userLogToInsert);
-                    break;
-                case 6 :
                     navigateToUsersManagement();
-                case 7 :
+                case 6 :
                     System.exit(0);
                 default :
                     System.out.println("\t\t\t\t Invalid input");
@@ -1262,26 +1260,29 @@ try{
                         e.printStackTrace();
                     }
 
-            System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
-            System.out.println(String.format("| %4s | %-15s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-15s | %-15s | %-20s |","#Id ","First name", "Last name","Username","Email","Gender","Birth date","User category","Location name","User status","Registration date"));
-            System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
-            for(Object Response: responseBody.getResponse()){
-                UsersReport usersReport = (UsersReport) Response;
-                System.out.println(
-                        String.format("| %4s | %-15s | %-15s | %-15s | %-25s | %-15s | %-15s | %-15s | %-15s | %-15s | %-20s |",
-                                usersReport.getUser_id(),
-                                usersReport.getFirst_name(),
-                                usersReport.getLast_name(),
-                                usersReport.getUser_name(),
-                                usersReport.getEmail(),
-                                usersReport.getGender(),
-                                usersReport.getBirth_date(),
-                                usersReport.getUser_category(),
-                                usersReport.getLocation(),
-                                usersReport.getUser_status(),
-                                usersReport.getRegistration_date())
-                );
-            }
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+
+                    System.out.println(String.format("| %20s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-15s | %-25s | %-25s | %-25s |","#Id ","First name", "Last name","Username","Email","Gender","Birth date","User category","Location name","User status","Registration date"));
+                    System.out.format("+-------+------------------+----------------+----------------+-------------+--------------+-------------------+--------------------+---------------------+------------------+-------------------------+%n");
+
+                    for(Object Response: responseBody.getResponse()){
+                        UsersReport usersReport = (UsersReport) Response;
+
+                        System.out.println(
+                                String.format("| %25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s | %-25s |",
+                                        usersReport.getUser_id(),
+                                        usersReport.getFirst_name(),
+                                        usersReport.getLast_name(),
+                                        usersReport.getUser_name(),
+                                        usersReport.getEmail(),
+                                        usersReport.getGender(),
+                                        usersReport.getBirth_date(),
+                                        usersReport.getUser_category(),
+                                        usersReport.getLocation(),
+                                        usersReport.getUser_status(),
+                                        usersReport.getRegistration_date())
+                        );
+                    }
 
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -1383,9 +1384,9 @@ try{
 
 
             ResponseBody responseBody = new ClientServerConnector().ConnectToServer(request);
-            System.out.format("+------------------------------+--------------------------------+-----------------------------+--------------------------+--------------------------+---------------------------------+%n");
+            System.out.format("+------------------------------+--------------------------------+-----------------------------+--------------------------+--------------------------+---------------+%n");
             System.out.println(String.format("|%-15s | %-15s | %-25s | %-25s | %-25s | %-15s | %-15s|","#Id ","User_Id", "Date_Time_loggedIn","Action","Date_Time_loggedOut","TotalIn","TotalOut"));
-            System.out.format("+------------------------------+--------------------------------+-----------------------------+--------------------------+--------------------------+---------------------------------+%n");
+            System.out.format("+------------------------------+--------------------------------+-----------------------------+--------------------------+--------------------------+---------------+%n");
 
             for (Object response: responseBody.getResponse()){
                  UserLog userLog = (UserLog) response;
@@ -1415,7 +1416,15 @@ try{
             request.setObject(userLog);
 
             ClientServerConnector  clientServerConnector = new ClientServerConnector();
-            ResponseBody responseBody = clientServerConnector.ConnectToServer(request);
+            ResponseBody responseBody = new ClientServerConnector().ConnectToServer(request);
+
+            for (Object response: responseBody.getResponse()){
+                ResponseStatus responseStatus = (ResponseStatus) response;
+                System.out.println("\t\t -------------------------------------- STATUS: "+responseStatus.getStatus()+" ---------------------------");
+                System.out.println("\t\t --------------         Meaning: "+responseStatus.getMessage());
+                System.out.println("\t\t --------------         Action: "+responseStatus.getActionToDo());
+                System.out.println("\t\t ------------------------------------------------------------------------------");
+            }
 
         }
 
@@ -1423,5 +1432,3 @@ try{
 
 
 }
-
-

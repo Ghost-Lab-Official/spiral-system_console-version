@@ -2,19 +2,13 @@ package com.spiralSpotManagement.Client;
 import com.spiralSpotManagement.Client.ClientMain.ClientServerConnector;
 import com.spiralSpotManagement.Client.Middleware.UserAuthMiddleware;
 import com.spiralSpotManagement.Client.View.*;
-import com.spiralSpotManagement.Client.View.LocationLevelsView;
 import com.spiralSpotManagement.Client.View.LocationView;
 import com.spiralSpotManagement.Client.View.SpotView;
 import com.spiralSpotManagement.Client.View.UserView;
 import com.spiralSpotManagement.Client.View.SpotCategoryView;
-import com.spiralSpotManagement.Server.DbController.CloudStorageConnectionHandler;
 import com.spiralSpotManagement.Server.Model.*;
-import com.spiralSpotManagement.Server.ServerMain.SpiralMultiThreadedServer;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -29,38 +23,38 @@ public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
 
     public void spiralWelcomePage(){
-       System.out.println("\n\n\n                                                                                                       ");
-       System.out.println("\t\t\t\t                                                                                                       ");
-       System.out.println(ANSI_BLUE +"\t\t\t\t    -------------                                                             ----                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |  ----------                                                             |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                               __                                     |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                              |__|                                    |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    |   ---------   ----  ---------   ----   ----  -----      ------   --     |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    '--------   |   |  ' '-----.  |   |  |   |  ''_____|    /  ----- \\   |    |  |                    "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    ---------|  |   |  |-----------   |  |   |  |          |  --------   |    |  |_______              "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t    ------------'   |  |-----------   ----   ----           \\________,\\__|    '__________            "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
-       System.out.println(ANSI_BLUE +"\t\t\t\t                    ----                                                                               "+ANSI_RESET);
-   }
+        System.out.println("\n\n\n                                                                                                       ");
+        System.out.println("\t\t\t\t                                                                                                       ");
+        System.out.println(ANSI_BLUE +"\t\t\t\t    -------------                                                             ----                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |  ----------                                                             |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                               __                                     |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |  |                              |__|                                    |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    |   ---------   ----  ---------   ----   ----  -----      ------   --     |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    '--------   |   |  ' '-----.  |   |  |   |  ''_____|    /  ----- \\   |    |  |                    "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t             |  |   |  |       |  |   |  |   |  |          |  |      |   |    |  |                     "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    ---------|  |   |  |-----------   |  |   |  |          |  --------   |    |  |_______              "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t    ------------'   |  |-----------   ----   ----           \\________,\\__|    '__________            "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    |  |                                                                               "+ANSI_RESET);
+        System.out.println(ANSI_BLUE +"\t\t\t\t                    ----                                                                               "+ANSI_RESET);
+    }
 
     public void loadingPageWrapper() throws InterruptedException {
         System.out.println("\t\t-------------------------------------------------------------------------------------------------");
         System.out.print("\t\t\t\tSpiraling \t");
         for (int i = 0; i < 20; i++) {
             System.out.print(".");
-            Thread.sleep(300);
+            Thread.sleep(100);
         }
         System.out.print("\n");
         System.out.println("\t\t-------------------------------------------------------------------------------------------------\n\n");
         System.out.println("\n");
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void welcomeToSpiral() throws Exception{
         RequestBody requestBody = new RequestBody();
         UserView userForms = new UserView();
         SpotView spotForms = new SpotView();
@@ -77,14 +71,24 @@ public class Main {
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t||------------------      WELCOME TO SPIRAL        ------------------||");
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
-            System.out.println("\t\t\t||------------------    1.LOGIN                    ------------------||");
-            System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
+            if (new UserAuthMiddleware().checkForUserExistence() == 0){
+                System.out.println("\t\t\t||------------------    1.LOGIN                    ------------------||");
+                System.out.println("\t\t\t||------------------    2.REGISTER                 ------------------||");
+            }
+
+
             System.out.println("\t\t\t||------------------    3.SPOT INFO                ------------------||");
             System.out.println("\t\t\t||------------------    4.SPOT CATEGORY INFO       ------------------||");
             System.out.println("\t\t\t||------------------    5.LOCATION INFO            ------------------||");
             System.out.println("\t\t\t||------------------    6.SEARCH                   ------------------||");
             System.out.println("\t\t\t||------------------    7.REPORT                   ------------------||");
             System.out.println("\t\t\t||------------------    8.USER SETTINGS            ------------------||");
+
+            System.out.println("\t\t\t||------------------    9.BILLING                  ------------------||");
+            if(new UserAuthMiddleware().checkForUserExistence() !=0){
+                System.out.println("\t\t\t||------------------    10.LOGOUT                   ------------------||");
+
+            }
             System.out.println("\t\t\t||-------------------------------------------------------------------||");
             System.out.println("\t\t\t\t  Enter your choice                                              ");
             choice = scanner.nextInt();
@@ -102,14 +106,26 @@ public class Main {
                     }
                     break;
                 case 3:
-                    spotForms.spotViewMenu();
+                    Boolean status = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"SPOT_MANAGEMENT");
+                    Thread.sleep(3000);
+                    if(status==false){
+                        welcomeToSpiral();
+                    } else
+                        spotForms.spotViewMenu();
                     break;
                 case 4:
-                    userCategoryForms.UserCategoryMenu();
+                    spotCategories.SpotCategoryMenu();
                     break;
                 case 5:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    locationForms.LocationViewMenu();
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0) {
+                        Boolean statusTwo = new UserBillingView().checkUserPlanExistence(new UserAuthMiddleware().checkForUserExistence(),"LOCATION_MANAGEMENT");
+                        Thread.sleep(3000);
+                        if(statusTwo==false){
+                            welcomeToSpiral();
+                        } else
+                            locationForms.LocationViewMenu();
+
+                    }
                     else{
                         System.out.println("You have to login first\n");
                         new UserView().loginUser();
@@ -117,21 +133,21 @@ public class Main {
 
                 case 6:
                     //        create user log
-                    UserLog userLogToInsert = new UserLog();
-                    userLogToInsert.setUser_id(new UserAuthMiddleware().checkForUserExistence());
-                    userLogToInsert.setDateTimeLoggedIn("2021-02-10 05:10:08.000000");
-                    userLogToInsert.setAction("searching");
-                    userLogToInsert.setDateTimeLoggedOut(null);
-                    userLogToInsert.setTotalIn(5);
-                    userLogToInsert.setTotalOut(3);
-                    new ReportsView().createUserlog(userLogToInsert);
+
                     searchForms.mainMethod();
                     break;
                 case 7:
-                    if (new UserAuthMiddleware().checkForUserExistence() != 0)
-                    new ReportsView().reportDashboard();
+                    if (new UserAuthMiddleware().checkForUserExistence() != 0 && new UserAuthMiddleware().checkIfIsAdmin() == 2){
+                        UserLog userLogToInsertonReports = new UserLog();
+                        userLogToInsertonReports.setUser_id(new UserAuthMiddleware().checkForUserExistence());
+                        userLogToInsertonReports.setAction("viewed reports");
+
+                        new ReportsView().createUserlog(userLogToInsertonReports);
+                        new ReportsView().reportDashboard();
+
+                    }
                     else {
-                        System.out.println("You have to login first\n");
+                        System.out.println("You have to login as an admin to view reports\n");
                         new UserView().loginUser();
                     }
                     break;
@@ -144,6 +160,20 @@ public class Main {
                         userForms.loginUser();
                     }
                     break;
+
+                case 9:
+                    if(new UserAuthMiddleware().checkForUserExistence() != 0){
+                        new BillingView().mainMethod();
+                    }
+                    else {
+                        System.out.println("You have to login first\n");
+                        userForms.loginUser();
+                    }
+                    break;
+                case 10:
+                    new UserAuthMiddleware().logoutMiddleWare();
+
+                    break;
                 default:
                     System.out.println("Invalid input");
             }
@@ -152,4 +182,7 @@ public class Main {
         }while (toContinue.equalsIgnoreCase("y") || toContinue.equalsIgnoreCase("yes"));
     }
 
+    public static void main(String[] args) throws Exception {
+        welcomeToSpiral();
+    }
 }
