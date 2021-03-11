@@ -7,15 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserBillingActions {
     /**
      *  checkUserBilling payment status.
-<<<<<<< HEAD
      * @param |UserBillingServices project having the UserBilling Object and the service to do,
-=======
-     * @param "UserBillingServices" project having the UserBilling Object and the service to do,
->>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
@@ -67,11 +65,7 @@ public class UserBillingActions {
     }
  /**
      *  pay for a plan.
-<<<<<<< HEAD
      * @param |UserBilling Object having user_id and plan id
-=======
-     * @param "UserBilling" Object having user_id and plan id
->>>>>>> bb77ebb5d7c59d7ec810724d7ede9cb25482d73c
      * The function returns the ResponseStatus
      * @author Gervais Ishimwe
      */
@@ -121,5 +115,45 @@ public class UserBillingActions {
         }
         return new ResponseStatus(200,"CREATED","PLAN PURCHASED SUCCESSFULLY");
 
+    }
+
+
+
+
+
+    public List<Object> getUserPlan(UserBilling userBilling)throws Exception{
+        String getBillingId  = "SELECT * FROM users_billing WHERE user_id = ?";
+        List<Object> planInfo = new ArrayList<>();
+        try{
+            
+            Connection connection = new CloudStorageConnectionHandler().getConnection();
+            PreparedStatement statement = connection.prepareStatement(getBillingId);
+            statement.setInt(1,userBilling.getUser_id());
+            ResultSet resultSet = statement.executeQuery();
+            Integer planId=null;
+            while(resultSet.next()){
+                planId = resultSet.getInt(3);
+            }
+            String getPlan = "SELECT * FROM billing WHERE billing_id = ?";
+            PreparedStatement statement1 = connection.prepareStatement(getPlan);
+            statement1.setInt(1,planId);
+
+            ResultSet resultSet1 = statement1.executeQuery();
+            while(resultSet1.next()){
+                Billing billing = new Billing();
+
+                billing.setBilling_name(resultSet1.getString(2));
+                billing.setPrice(resultSet1.getInt(3));
+                billing.setBilling_period(resultSet1.getInt(4));
+                billing.setBilling_status(resultSet1.getString(5));
+
+                planInfo.add(billing);
+            }
+            return planInfo;
+        }catch (Exception e){
+            planInfo.add(e);
+        }
+
+        return null;
     }
 }

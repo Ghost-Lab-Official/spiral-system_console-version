@@ -40,7 +40,8 @@ public class UserView {
         System.out.println("||\t\t6.DELETE USER             ||\n");
         System.out.println("||\t\t7.RESET PASSWORD          ||\n");
         System.out.println("||\t\t8.USER CATEGORIES         ||\n");
-        System.out.println("||\t\t9.RETURN HOME             ||\n");
+        System.out.println("||\t\t9.VIEW MY PLAN            ||\n");
+        System.out.println("||\t\t10.RETURN HOME            ||\n");
         System.out.println("====================================");
         Integer choice = input.nextInt();
         switch(choice) {
@@ -93,7 +94,16 @@ public class UserView {
                     System.out.println("\t\t YOU SHOULD LOGIN AS ADMIN TO PERFORM THIS ACTION");
                 }
                 break;
+
             case 9:
+                if(new UserAuthMiddleware().checkIfIsAdmin() != 0){
+                    new UserBillingView().getuserPlanInfo();
+                }
+                else{
+                    System.out.println("\t\t YOU SHOULD LOGIN TO ACCESS THIS ACTION");
+                }
+                break;
+            case 10:
                 welcomeToSpiral();
             default:
                 System.out.println("Incorrect input!!");
