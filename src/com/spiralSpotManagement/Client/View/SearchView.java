@@ -169,17 +169,7 @@ public class SearchView {
      * @author: Blessing Hirwa
      * This method is used to get recent searches by a logged in user
      */
-
-//    public static void getRecentSearches() throws Exception{
-//        RequestBody requestBody = new RequestBody();
-//        requestBody.setUrl("/search");
-//        requestBody.setAction("viewRecentSearches");
-//
-//        User userIdToGetRecentSearches = new User();
-//        requestBody.setObject(userIdToGetRecentSearches);
-//        ResponseBody responseBody = new ClientServerConnector().ConnectToServer(requestBody);
-//        System.out.println("response is here : "+ responseBody);
-//    }
+    
     public static void searchPeople() throws Exception {
         RequestBody requestBody = new RequestBody();
         requestBody.setUrl("/search");
